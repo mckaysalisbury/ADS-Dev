@@ -1,3 +1,4 @@
+/// <reference path="../typings/mocha/mocha.d.ts"/>
 var index = require('../routes/index');
 /* global getPayPeriod */
 /// <reference path="../typings/mocha/mocha.d.ts"/>

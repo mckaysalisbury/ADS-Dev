@@ -1,8 +1,8 @@
 /// <reference path="../typings/node/node.d.ts"/>
 /// <reference path="../typings/express/express.d.ts"/>
 var express = require('express');
-var router = express.Router();
 var http = require('http');
+var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express', data: {} });
@@ -30,5 +30,8 @@ router.post('/', function (req, res, next) {
 });
 router.get('/:produceName', function (req, res, next) {
     res.send(req.params.produceName);
+});
+router.get('/client', function (req, res, next) {
+    res.render('client');
 });
 module.exports = router;
