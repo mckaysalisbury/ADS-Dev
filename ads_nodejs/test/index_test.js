@@ -1,4 +1,5 @@
 /// <reference path="../typings/mocha/mocha.d.ts"/>
+require('typescript-require');
 var index = require('../routes/index');
 /* global getPayPeriod */
 /// <reference path="../typings/mocha/mocha.d.ts"/>

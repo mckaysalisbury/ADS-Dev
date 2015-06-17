@@ -1,3 +1,4 @@
+require('typescript-require');
 var app = require('../app')
   , hippie = require('hippie');
 
