@@ -4,3 +4,17 @@ block content
   h1= title
   #container
     p Welcome to #{title}!
+    form(action='/',method='post',enctype='application/x-www-form-urlencoded')
+      button(type='submit').
+          Post
+    table#dataTable
+      tr
+        th A
+        th B
+      each item in data
+        tr
+          td= item["term"]
+          td= item["count"]
+    script
+      $("#dataTable").DataTable();
+    

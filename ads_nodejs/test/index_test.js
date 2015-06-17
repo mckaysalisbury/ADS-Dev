@@ -1,3 +1,4 @@
+var index = require('../routes/index');
 /* global getPayPeriod */
 /// <reference path="../typings/mocha/mocha.d.ts"/>
 var assert = require("assert");
