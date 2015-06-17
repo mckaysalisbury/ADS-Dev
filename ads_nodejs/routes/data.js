@@ -10,7 +10,7 @@ router.get('/names', function(req, res, next) {
   //var results = jsonQuery('complaints[].name', {data: datablob}) 
   complaints.forEach(function(each){
     datablob.push({name: each.name});
-  })
+  });
   res.send(datablob);
 });
 
@@ -40,7 +40,7 @@ router.get('/query', function(req, res, next) {
     response.on('end', function () {
       res.send(str);
     });
-  }
+  };
   http.request(options, callback).end();
 });
 router.get('/', function(req, res, next) {
