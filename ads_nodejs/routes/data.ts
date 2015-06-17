@@ -1,4 +1,6 @@
-var express = require('express');
+/// <reference path="../typings/node/node.d.ts"/>
+/// <reference path="../typings/express/express.d.ts"/>
+import express = require('express');
 var router = express.Router();
 //var jsonQuery = require('json-query');
 
@@ -13,8 +15,6 @@ router.get('/names', function(req, res, next) {
   });
   res.send(datablob);
 });
-
-
 
 
 router.get('/query', function(req, res, next) {
