@@ -35,4 +35,8 @@ router.get('/:produceName', function(req, res, next) {
   res.send(req.params.produceName);
 });
 
+router.get('/client', function(req, res, next) {
+  res.render('client');
+});
+
 module.exports = router;
