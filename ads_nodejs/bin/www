@@ -4,8 +4,10 @@
  * Module dependencies.
  */
 
+require('typescript-require');
+
 var app = require('../app');
-var debug = require('debug')('testapp:server');
+var debug = require('debug')('ads_nodejs:server');
 var http = require('http');
 
 /**

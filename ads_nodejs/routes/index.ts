@@ -1,6 +1,8 @@
-var express = require('express');
+/// <reference path="../typings/node/node.d.ts"/>
+/// <reference path="../typings/express/express.d.ts"/>
+import express = require('express');
+import http = require('http');
 var router = express.Router();
-var http = require('http');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,6 +30,9 @@ router.post('/', function(req, res, next){
     console.log('Problem with request: ' + e.message);
   });
   request.end();
+});
+router.get('/:produceName', function(req, res, next) {
+  res.send(req.params.produceName);
 });
 
 module.exports = router;
