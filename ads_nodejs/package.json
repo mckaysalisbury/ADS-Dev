@@ -1,9 +1,10 @@
 {
-  "name": "testapp",
+  "name": "ads_nodejs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha test"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
@@ -15,7 +16,6 @@
     "serve-favicon": "~2.2.1"
   },
   "devDependencies": {
-    "chai-http": "^1.0.0",
     "hippie": "^0.3.0",
     "should": "^6.0.3"
   }
