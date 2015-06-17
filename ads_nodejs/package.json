@@ -14,6 +14,7 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1",
+    "typescript": "^1.4.1",
     "typescript-require": "^0.2.9"
   },
   "devDependencies": {
