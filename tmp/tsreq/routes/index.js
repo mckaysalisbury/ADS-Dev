@@ -29,5 +29,8 @@ router.post('/', function (req, res, next) {
 router.get('/client', function (req, res, next) {
     res.sendFile(path.join(__dirname, "../views/client.html"));
 });
+router.get('/ingred', function (req, res, next) {
+    res.sendFile(path.join(__dirname, "../views/ingred.html"));
+});
 module.exports = router;
 //# sourceMappingURL=index.js.map

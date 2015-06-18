@@ -4,26 +4,11 @@ var express = require('express');
 var http = require('http');
 var api = require('../modules/api');
 var router = express.Router();
-//var jsonQuery = require('json-query');
-/* GET users listing. */
-router.get('/names', function (req, res, next) {
-    var complaints = require('../data/complaints.json');
-    var datablob = [];
-    //datablob.complaints = complaints;
-    //var results = jsonQuery('complaints[].name', {data: datablob}) 
-    complaints.forEach(function (each) {
-        datablob.push({ name: each.name });
-    });
-    res.send(datablob);
-});
-router.get('/query', function (req, res, next) {
-    //var fullUrl = req.url;
-    //var query = fullUrl.substring(12, fullUrl.length());
-    //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+function sendQueryResults(query, res) {
     var options = {
         host: 'api.fda.gov',
         //path: '/drug/event.json?search=patient.drug.openfda.pharm_class_epc:"nonsteroidal+anti-inflammatory+drug"'
-        path: '/drug/label.json?count=openfda.substance_name.exact'
+        path: query
     };
     var callback = function (response) {
         var str = '';
@@ -37,14 +22,26 @@ router.get('/query', function (req, res, next) {
         });
     };
     http.request(options, callback).end();
+}
+;
+router.get('/substances', function (req, res, next) {
+    sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
+});
+router.get('/drugsContaining/:ingredient', function (req, res, next) {
+    var ingredient = req.params.ingredient;
+    sendQueryResults('/drug/label.json?limit=10&search=openfda.substance_name:"' + ingredient + '"', res);
 });
 router.get('/products/:productName', function (req, res, next) {
-    var name = req.params.productName;
-    var wr = new api.WebRequest();
-    wr.Send(name, function (body) {
+    var wr = new api.Fda();
+    wr.Products(req.params.productName, function (body) {
         res.send(body);
     });
-    //api.WebRequest.Send(function(body){res.send(name);});
+});
+router.get('/product/:id', function (req, res, next) {
+    var wr = new api.Fda();
+    wr.Product(req.params.id, function (body) {
+        res.send(body);
+    });
 });
 router.get('/simple', function (req, res, next) {
     res.send("simple");
@@ -55,7 +52,7 @@ router.get('/doubleecho/:value', function (req, res, next) {
 });
 router.get('/doubleechoapi/:value', function (req, res, next) {
     var value = req.params.value;
-    var wr = new api.WebRequest();
+    var wr = new api.Fda();
     wr.DoubleEcho(value, function (body) {
         res.send(body);
     });

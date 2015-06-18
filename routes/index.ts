@@ -33,9 +33,10 @@ router.post('/', function(req, res, next){
   request.end();
 });
 router.get('/client', function(req, res, next) {
-  //res.render('client');
   res.sendFile(path.join(__dirname, "../views/client.html"));
 });
-
+router.get('/ingred', function(req, res, next) {
+  res.sendFile(path.join(__dirname, "../views/ingred.html"));
+});
 
 module.exports = router;

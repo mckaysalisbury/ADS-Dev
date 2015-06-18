@@ -2,18 +2,10 @@ var express = require('express');
 var http = require('http');
 var api = require('../modules/api');
 var router = express.Router();
-router.get('/names', function (req, res, next) {
-    var complaints = require('../data/complaints.json');
-    var datablob = [];
-    complaints.forEach(function (each) {
-        datablob.push({ name: each.name });
-    });
-    res.send(datablob);
-});
-router.get('/query', function (req, res, next) {
+function sendQueryResults(query, res) {
     var options = {
         host: 'api.fda.gov',
-        path: '/drug/label.json?count=openfda.substance_name.exact'
+        path: query
     };
     var callback = function (response) {
         var str = '';
@@ -25,6 +17,14 @@ router.get('/query', function (req, res, next) {
         });
     };
     http.request(options, callback).end();
+}
+;
+router.get('/substances', function (req, res, next) {
+    sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
+});
+router.get('/drugsContaining/:ingredient', function (req, res, next) {
+    var ingredient = req.params.ingredient;
+    sendQueryResults('/drug/label.json?limit=10&search=openfda.substance_name:"' + ingredient + '"', res);
 });
 router.get('/products/:productName', function (req, res, next) {
     var wr = new api.Fda();

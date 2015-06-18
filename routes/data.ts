@@ -5,7 +5,6 @@ import http = require('http');
 import api = require('../modules/api');
 
 var router = express.Router();
-//var jsonQuery = require('json-query');
 
 function sendQueryResults(query:string, res:express.Response){
   var options = {
@@ -28,26 +27,15 @@ function sendQueryResults(query:string, res:express.Response){
     });
   };
   http.request(options, callback).end();
-}
-/* GET users listing. */
-router.get('/names', function(req, res, next) {
-  var complaints = require('../data/complaints.json');
-  var datablob = [];
-  //datablob.complaints = complaints;
-  //var results = jsonQuery('complaints[].name', {data: datablob}) 
-  complaints.forEach(function(each){
-    datablob.push({name: each.name});
-  });
-  res.send(datablob);
-});
-
+};
 
 router.get('/substances', function(req, res, next) {
   sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
 });
 
-router.get('/drugsContaining/:', function(req, res, next) {
-  sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
+router.get('/drugsContaining/:ingredient', function(req, res, next) {
+  var ingredient = req.params.ingredient;
+  sendQueryResults('/drug/label.json?limit=10&search=openfda.substance_name:"' + ingredient + '"', res);
 });
 
 router.get('/products/:productName', function(req, res, next) {
