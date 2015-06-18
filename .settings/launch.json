@@ -5,13 +5,13 @@
 	"configurations": [
 		{
 			// Name of configuration; appears in the launch configuration drop down menu.
-			"name": "Launch app.js",
+			"name": "Launch app",
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "app.js",
+			"program": "ads_nodejs/bin/www",
 			// Automatically stop program after launch.
-			"stopOnEntry": true,
+			"stopOnEntry": false,
 			// Command line arguments passed to the program.
 			"args": [],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
@@ -23,7 +23,7 @@
 			// Environment variables passed to the program.
 			"env": { },
 			// Use JavaScript source maps (if they exist).
-			"sourceMaps": false
+			"sourceMaps": true
 		}, 
 		{
 			"name": "Attach",
@@ -31,8 +31,8 @@
 			// TCP/IP address. Default is "localhost".
 			"address": "localhost",
 			// Port to attach to.
-			"port": 3000,
-			"sourceMaps": false
+			"port": 5858,
+			"sourceMaps": true
 		}
 	]
 }
