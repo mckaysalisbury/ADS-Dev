@@ -18,6 +18,10 @@
     "typescript-require": "^0.2.9"
   },
   "devDependencies": {
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-jscs": "^1.6.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-less": "^3.0.3",
     "hippie": "^0.3.0",
     "should": "^6.0.3"
   }

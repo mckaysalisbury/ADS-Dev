@@ -1,9 +1,7 @@
 /// <reference path="../typings/mocha/mocha.d.ts"/>
+/// <reference path="../typings/should/should.d.ts"/>
 require('typescript-require');
 var index = require('../routes/index');
-/* global getPayPeriod */
-/// <reference path="../typings/mocha/mocha.d.ts"/>
-var assert = require("assert");
 var should = require("should");
 describe('Index', function(){
   describe('Testing stuff', function(){
