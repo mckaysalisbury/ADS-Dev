@@ -2,6 +2,7 @@
 /// <reference path="../typings/express/express.d.ts"/>
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -29,6 +30,7 @@ router.post('/', function (req, res, next) {
     request.end();
 });
 router.get('/client', function (req, res, next) {
-    res.render('client');
+    //res.render('client');
+    res.sendFile(path.join(__dirname, "../views/client.html"));
 });
 module.exports = router;

@@ -2,6 +2,7 @@
 /// <reference path="../typings/express/express.d.ts"/>
 import express = require('express');
 import http = require('http');
+import path = require('path');
 var router = express.Router();
 
 /* GET home page. */
@@ -32,7 +33,8 @@ router.post('/', function(req, res, next){
   request.end();
 });
 router.get('/client', function(req, res, next) {
-  res.render('client');
+  //res.render('client');
+  res.sendFile(path.join(__dirname, "../views/client.html"));
 });
 
 

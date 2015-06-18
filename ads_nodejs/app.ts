@@ -1,7 +1,7 @@
 /// <reference path="typings/node/node.d.ts"/>
 /// <reference path="typings/express/express.d.ts"/>
 var express = require('express');
-var path = require('path');
+import path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -29,8 +29,8 @@ app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
+  var err = new Error('Not Found')
+  //err.status = 404;
   next(err);
 });
 
