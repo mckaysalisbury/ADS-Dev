@@ -5,6 +5,28 @@ import http = require('http');
 var router = express.Router();
 //var jsonQuery = require('json-query');
 
+function sendQueryResults(query:string, res:express.Response){
+    var options = {
+      host: 'api.fda.gov',
+      //path: '/drug/event.json?search=patient.drug.openfda.pharm_class_epc:"nonsteroidal+anti-inflammatory+drug"'
+      path: query
+    };
+    
+    var callback = function(response) {
+      var str = '';
+    
+      //another chunk of data has been recieved, so append it to `str`
+      response.on('data', function (chunk) {
+        str += chunk;
+      });
+    
+      //the whole response has been recieved, so we just print it out here
+      response.on('end', function () {
+        res.send(str);
+      });
+    };
+    http.request(options, callback).end();
+}
 /* GET users listing. */
 router.get('/names', function(req, res, next) {
   var complaints = require('../data/complaints.json');
@@ -18,33 +40,14 @@ router.get('/names', function(req, res, next) {
 });
 
 
-router.get('/query', function(req, res, next) {
-  //var fullUrl = req.url;
-  //var query = fullUrl.substring(12, fullUrl.length());
-
-
-  //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
-  var options = {
-    host: 'api.fda.gov',
-    //path: '/drug/event.json?search=patient.drug.openfda.pharm_class_epc:"nonsteroidal+anti-inflammatory+drug"'
-    path: '/drug/label.json?count=openfda.substance_name.exact'
-  };
-  
-  var callback = function(response) {
-    var str = '';
-  
-    //another chunk of data has been recieved, so append it to `str`
-    response.on('data', function (chunk) {
-      str += chunk;
-    });
-  
-    //the whole response has been recieved, so we just print it out here
-    response.on('end', function () {
-      res.send(str);
-    });
-  };
-  http.request(options, callback).end();
+router.get('/substances', function(req, res, next) {
+  sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
 });
+
+router.get('/drugsContaining/:', function(req, res, next) {
+  sendQueryResults('/drug/label.json?count=openfda.substance_name.exact', res);
+});
+
 router.get('/', function(req, res, next) {
   var complaints = require('../data/complaints.json');
 
