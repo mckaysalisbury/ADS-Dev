@@ -1,11 +1,11 @@
 {
     "version": "0.1.0",
-    "command": "tsc",    
-    "showOutput": "silent",
+    "command": "tsc",
+    //"showOutput": "silent",
     "windows": {
         "command": "tsc",
         "isShellCommand": true
     },
-    "args": ["ads_nodejs/app.ts", "--modules commonjs", "--removeComments", "--sourceMap"],    
+    "args": ["ads_nodejs/app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "ads_nodejs/tmp/tsreq"],    
     "problemMatcher": "$tsc"
 }

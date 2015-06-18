@@ -1,4 +1,8 @@
+/// <reference path="../typings/node/node.d.ts"/>
+/// <reference path="../typings/express/express.d.ts"/>
 /// <reference path="../typings/should/should.d.ts"/>
+/// <reference path="../typings/mocha/mocha.d.ts"/>
+
 var api = require('../modules/api');
 
 var should = require("should");
@@ -45,18 +49,18 @@ describe('Requesting from data.gov',function(){
   });
 });
 
-describe('echo', function(){
+describe('double echo', function(){
   
   it ('unspecified should 404', function(done){    
     hippie(app)
-      .get('/data/echo/')
+      .get('/data/doubleecho/')
       .expectStatus(404)
       .end(done);
   });
 
   it ('specified should echo', function(done){    
     hippie(app)
-      .get('/data/echo/Quack')
+      .get('/data/doubleecho/Quack')
       .expectStatus(200)
       .end(function(err, res, body) {
           if (err) throw err;
@@ -66,32 +70,55 @@ describe('echo', function(){
   });
 
 });
-describe('data products', function(){
+
+
+describe('double echo api', function(){
   
   it ('unspecified should 404', function(done){    
     hippie(app)
-      .get('/data/products/')
+      .get('/data/doubleechoapi/')
       .expectStatus(404)
       .end(done);
   });
 
-  it ('specified should have data', function(done){    
+  it ('specified should echo', function(done){    
     hippie(app)
-      .get('/data/products/Tylenol')
+      .get('/data/doubleechoapi/Quack')
       .expectStatus(200)
       .end(function(err, res, body) {
           if (err) throw err;
-          body.should.contain("Acetominaphin");
+          body.should.be.eql("QuackQuack");
           done();
         });
   });
+
 });
+// describe('data products', function(){
+//   
+//   it ('unspecified should 404', function(done){    
+//     hippie(app)
+//       .get('/data/products/')
+//       .expectStatus(404)
+//       .end(done);
+//   });
+// 
+//   it ('specified should have data', function(done){    
+//     hippie(app)
+//       .get('/data/products/Tylenol')
+//       .expectStatus(200)
+//       .end(function(err, res, body) {
+//           if (err) throw err;
+//           body.should.contain("Acetominaphin");
+//           done();
+//         });
+//   });
+// });
 
 
 describe('WebRequest',function(){
   it('should return results',function(done){
     var wr = new api.WebRequest();
-    wr.Send('quack', function(){
+    wr.DoubleEcho('quack', function(){
       done();  
     });
     

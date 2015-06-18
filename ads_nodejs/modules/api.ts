@@ -6,6 +6,7 @@ export class WebRequest{
     DoubleEcho(value : string, callback) {
       callback(value + value)
     }
+    
   	Send(value: string, callback) {
   		  var options = {
   		    host : 'api.fda.gov',
