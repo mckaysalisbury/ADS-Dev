@@ -41,3 +41,4 @@ router.get('/', function (req, res, next) {
     res.send(complaints);
 });
 module.exports = router;
+//# sourceMappingURL=data.js.map

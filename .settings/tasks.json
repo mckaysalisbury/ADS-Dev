@@ -6,6 +6,6 @@
         "command": "tsc",
         "isShellCommand": true
     },
-    "args": ["-p", "."],    
+    "args": ["ads_nodejs/app.ts", "--modules commonjs", "--removeComments", "--sourceMap"],    
     "problemMatcher": "$tsc"
 }
