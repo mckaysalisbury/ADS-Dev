@@ -1,3 +1,8 @@
+/// <reference path="../typings/should/should.d.ts"/>
+var api = require('../modules/api');
+
+var should = require("should");
+
 require('typescript-require');
 var app = require('../app')
   , hippie = require('hippie');
@@ -39,3 +44,58 @@ describe('Requesting from data.gov',function(){
         });
   });
 });
+
+describe('echo', function(){
+  
+  it ('unspecified should 404', function(done){    
+    hippie(app)
+      .get('/data/echo/')
+      .expectStatus(404)
+      .end(done);
+  });
+
+  it ('specified should echo', function(done){    
+    hippie(app)
+      .get('/data/echo/Quack')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          body.should.be.eql("QuackQuack");
+          done();
+        });
+  });
+
+});
+describe('data products', function(){
+  
+  it ('unspecified should 404', function(done){    
+    hippie(app)
+      .get('/data/products/')
+      .expectStatus(404)
+      .end(done);
+  });
+
+  it ('specified should have data', function(done){    
+    hippie(app)
+      .get('/data/products/Tylenol')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          body.should.contain("Acetominaphin");
+          done();
+        });
+  });
+});
+
+
+describe('WebRequest',function(){
+  it('should return results',function(done){
+    var wr = new api.WebRequest();
+    wr.Send('quack', function(){
+      done();  
+    });
+    
+  });
+});
+
+

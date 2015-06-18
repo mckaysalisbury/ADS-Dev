@@ -1,6 +1,11 @@
 /// <reference path="../typings/node/node.d.ts"/>
 /// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../modules/api.ts"/>
+
 import express = require('express');
+import http = require('http');
+import api = require('../modules/api');
+
 var router = express.Router();
 //var jsonQuery = require('json-query');
 
@@ -20,7 +25,6 @@ router.get('/names', function(req, res, next) {
 router.get('/query', function(req, res, next) {
   //var fullUrl = req.url;
   //var query = fullUrl.substring(12, fullUrl.length());
-  var http = require('http');
 
   //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
   var options = {
@@ -43,6 +47,22 @@ router.get('/query', function(req, res, next) {
   };
   http.request(options, callback).end();
 });
+
+router.get('/products/:productName', function(req, res, next) {  
+  var name = req.params.productName;
+  var wr = new api.WebRequest();
+  wr.Send(name, function(body){res.send(name);});
+  //api.WebRequest.Send(function(body){res.send(name);});
+
+});
+
+router.get('/echo/:value', function(req, res, next) {  
+  var name = req.params.value;
+  var wr = new api.WebRequest();
+  wr.DoubleEcho(name, function(body){res.send(body)})
+});
+
+
 router.get('/', function(req, res, next) {
   var complaints = require('../data/complaints.json');
 

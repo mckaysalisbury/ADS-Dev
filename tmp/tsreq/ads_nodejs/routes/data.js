@@ -5,9 +5,6 @@ var http = require('http');
 var WebRequest = (function () {
     function WebRequest() {
     }
-    WebRequest.prototype.DoubleEcho = function (value, callback) {
-        callback(value + value);
-    };
     WebRequest.prototype.Send = function (callback) {
         var options = {
             host: 'api.fda.gov',
@@ -66,17 +63,10 @@ router.get('/query', function (req, res, next) {
 router.get('/products/:productName', function (req, res, next) {
     var name = req.params.productName;
     var wr = new WebRequest();
-    wr.Send(name, function (body) {
+    wr.Send(function (body) {
         res.send(name);
     });
     //api.WebRequest.Send(function(body){res.send(name);});
-});
-router.get('/echo/:value', function (req, res, next) {
-    var name = req.params.value;
-    var wr = new WebRequest();
-    wr.DoubleEcho(name, function (body) {
-        res.send(body);
-    });
 });
 router.get('/', function (req, res, next) {
     var complaints = require('../data/complaints.json');
