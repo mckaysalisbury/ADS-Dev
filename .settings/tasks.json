@@ -3,9 +3,9 @@
     "command": "tsc",
     "showOutput": "silent",
     "windows": {
-        "command": "tsc",
+        "command": "node node_modules/typescript/bin/tsc",
         "isShellCommand": true
     },
-    "args": ["ads_nodejs/app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "ads_nodejs/tmp/tsreq"],    
+    "args": ["app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "tmp/tsreq"],    
     "problemMatcher": "$tsc"
 }
