@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha test"
+    "test": "mocha test",
+    "integration_firefox": "nightwatch",
+    "integration_chrome": "nightwatch --env chrome"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
@@ -23,6 +25,7 @@
     "gulp-jshint": "^1.11.0",
     "gulp-less": "^3.0.3",
     "hippie": "^0.3.0",
+    "nightwatch": "^0.6.15",
     "should": "^6.0.3"
   }
 }
