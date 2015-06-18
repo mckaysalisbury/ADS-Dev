@@ -48,13 +48,14 @@ router.get('/query', function(req, res, next) {
   http.request(options, callback).end();
 });
 
-
 router.get('/products/:productName', function(req, res, next) {
-  var name = req.params.productName;
-  var wr = new api.WebRequest();
-  wr.Send(name, function(body){res.send(body);});
-  //api.WebRequest.Send(function(body){res.send(name);});
+  var wr = new api.Fda();
+  wr.Products(req.params.productName, function(body){res.send(body);});
+});
 
+router.get('/product/:id', function(req, res, next) {
+  var wr = new api.Fda();
+  wr.Product(req.params.id, function(body){res.send(body);});
 });
 
 router.get('/simple', function(req, res, next) {  
@@ -68,7 +69,7 @@ router.get('/doubleecho/:value', function(req, res, next) {
 
 router.get('/doubleechoapi/:value', function(req, res, next) {  
   var value = req.params.value;
-  var wr = new api.WebRequest();
+  var wr = new api.Fda();
   wr.DoubleEcho(value, function(body){res.send(body)})
 });
 

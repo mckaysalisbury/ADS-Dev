@@ -3,7 +3,6 @@
 /// <reference path="../typings/should/should.d.ts"/>
 /// <reference path="../typings/mocha/mocha.d.ts"/>
 
-var api = require('../modules/api'); 
 var should = require("should");
 
 require('typescript-require');
@@ -101,10 +100,10 @@ describe('data products', function(){
       .end(done);
   });
 
-  it ('specified should have data', function(done){    
+  it ('Visine should have data', function(done){    
     hippie(app)
       .json()
-      .get('/data/products/Glimepiride')
+      .get('/data/products/Visine')
       .expectStatus(200)
       .end(function(err, res, body) {
           if (err) throw err;
@@ -125,17 +124,16 @@ describe('data products', function(){
           done();
         });
   });
-});
-
-
-describe('WebRequest',function(){
-  it('should return results',function(done){
-    var wr = new api.WebRequest();
-    wr.DoubleEcho('quack', function(){
-      done();  
-    });
-    
+  
+  it ('Specific product should be tylenol', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/product/07090b21-bc6c-4d16-a49e-02f0622eb0f1')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["openfda"]["brand_name"][0].should.be.eql("TYLENOL SINUS CONGESTION AND PAIN DAYTIME");
+          done();
+        });
   });
 });
-
-
