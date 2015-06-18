@@ -42,14 +42,21 @@ router.get('/products/:productName', function (req, res, next) {
     var name = req.params.productName;
     var wr = new api.WebRequest();
     wr.Send(name, function (body) {
-        res.send(name);
+        res.json((body));
     });
     //api.WebRequest.Send(function(body){res.send(name);});
 });
-router.get('/echo/:value', function (req, res, next) {
-    var name = req.params.value;
+router.get('/simple', function (req, res, next) {
+    res.send("simple");
+});
+router.get('/doubleecho/:value', function (req, res, next) {
+    var value = req.params.value;
+    res.send(value + value);
+});
+router.get('/doubleechoapi/:value', function (req, res, next) {
+    var value = req.params.value;
     var wr = new api.WebRequest();
-    wr.DoubleEcho(name, function (body) {
+    wr.DoubleEcho(value, function (body) {
         res.send(body);
     });
 });

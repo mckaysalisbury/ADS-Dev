@@ -1,9 +1,6 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/express/express.d.ts"/>
 var express = require('express');
 var http = require('http');
 var router = express.Router();
-/* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express', data: {} });
 });
@@ -32,3 +29,4 @@ router.get('/client', function (req, res, next) {
     res.render('client');
 });
 module.exports = router;
+//# sourceMappingURL=index.js.map

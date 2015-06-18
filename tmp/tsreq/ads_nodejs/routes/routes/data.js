@@ -1,6 +1,9 @@
 /// <reference path="../typings/node/node.d.ts"/>
 /// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../modules/api.ts"/>
 var express = require('express');
+var http = require('http');
+var api = require('../modules/api');
 var router = express.Router();
 //var jsonQuery = require('json-query');
 /* GET users listing. */
@@ -17,7 +20,6 @@ router.get('/names', function (req, res, next) {
 router.get('/query', function (req, res, next) {
     //var fullUrl = req.url;
     //var query = fullUrl.substring(12, fullUrl.length());
-    var http = require('http');
     //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
     var options = {
         host: 'api.fda.gov',
@@ -36,9 +38,29 @@ router.get('/query', function (req, res, next) {
     };
     http.request(options, callback).end();
 });
+router.get('/products/:productName', function (req, res, next) {
+    var name = req.params.productName;
+    res.send("this is a test");
+    // var wr = new api.WebRequest();
+    // wr.Send(name, function(body){res.send(body);});
+    //api.WebRequest.Send(function(body){res.send(name);});
+});
+router.get('/simple', function (req, res, next) {
+    res.send("simple");
+});
+router.get('/doubleecho/:value', function (req, res, next) {
+    var value = req.params.value;
+    res.send(value + value);
+});
+router.get('/doubleechoapi/:value', function (req, res, next) {
+    var value = req.params.value;
+    var wr = new api.WebRequest();
+    wr.DoubleEcho(value, function (body) {
+        res.send(body);
+    });
+});
 router.get('/', function (req, res, next) {
     var complaints = require('../data/complaints.json');
     res.send(complaints);
 });
 module.exports = router;
-//# sourceMappingURL=data.js.map

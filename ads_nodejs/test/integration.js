@@ -3,8 +3,7 @@
 /// <reference path="../typings/should/should.d.ts"/>
 /// <reference path="../typings/mocha/mocha.d.ts"/>
 
-var api = require('../modules/api');
-
+var api = require('../modules/api'); 
 var should = require("should");
 
 require('typescript-require');
@@ -93,26 +92,40 @@ describe('double echo api', function(){
   });
 
 });
-// describe('data products', function(){
-//   
-//   it ('unspecified should 404', function(done){    
-//     hippie(app)
-//       .get('/data/products/')
-//       .expectStatus(404)
-//       .end(done);
-//   });
-// 
-//   it ('specified should have data', function(done){    
-//     hippie(app)
-//       .get('/data/products/Tylenol')
-//       .expectStatus(200)
-//       .end(function(err, res, body) {
-//           if (err) throw err;
-//           body.should.contain("Acetominaphin");
-//           done();
-//         });
-//   });
-// });
+describe('data products', function(){
+  
+  it ('unspecified should 404', function(done){    
+    hippie(app)
+      .get('/data/products/')
+      .expectStatus(404)
+      .end(done);
+  });
+
+  it ('specified should have data', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/products/Glimepiride')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          body.results.should.be.instanceOf(Array);
+          done();
+        });
+  });
+
+  it ('Excedrin should have acetominaphin', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/products/Tylenol')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          
+          body.results[0]["active_ingredient"].should.match(/Acetaminophen/);
+          done();
+        });
+  });
+});
 
 
 describe('WebRequest',function(){

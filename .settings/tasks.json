@@ -3,7 +3,7 @@
     "command": "tsc",
     //"showOutput": "silent",
     "windows": {
-        "command": "tsc",
+        "command": "node ads_nodejs/node_modules/typescript/bin/tsc",
         "isShellCommand": true
     },
     "args": ["ads_nodejs/app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "ads_nodejs/tmp/tsreq"],    

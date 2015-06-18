@@ -10,8 +10,7 @@ var WebRequest = (function () {
     WebRequest.prototype.Send = function (value, callback) {
         var options = {
             host: 'api.fda.gov',
-            //https://api.fda.gov/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&search=product_type:human+NOT+otc&skip=0&limit=100
-            path: '/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=0&limit=100&search=product_type:human+NOT+otc',
+            path: '/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=0&limit=1&search=brand_name:' + value,
             port: 80,
             method: 'GET'
         };

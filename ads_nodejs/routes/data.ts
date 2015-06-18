@@ -48,10 +48,10 @@ router.get('/query', function(req, res, next) {
   http.request(options, callback).end();
 });
 
-router.get('/products/:productName', function(req, res, next) {  
+router.get('/products/:productName', function(req, res, next) {
   var name = req.params.productName;
   var wr = new api.WebRequest();
-  wr.Send(name, function(body){res.send(name);});
+  wr.Send(name, function(body){res.send(body);});
   //api.WebRequest.Send(function(body){res.send(name);});
 
 });
