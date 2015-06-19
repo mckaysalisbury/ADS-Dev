@@ -9,13 +9,18 @@ export class Fda{
     
   public Products(brand : string, callback) : void
   {
-    this.Label('brand_name:' + brand, 0, 10, callback, Fda.SummaryProductData);
+    this.Label('brand_name:' + brand, 0, 100, callback, Fda.SummaryProductData);
   }
   
   public Product(id : string, callback) : void
   {
-    this.Label('id:' + id, 0, 10, callback, Fda.Identity);
+    this.Label('id:' + id, 0, 1, callback, Fda.Identity);
   }    
+  
+  public Ingredient(ingredient: string, callback) : void
+  {
+    this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 1, callback, Fda.SummaryProductData);
+  }
         
   private Label(search: string, skip : number, limit : number, callback, filter) : void {
     var options = {
@@ -55,9 +60,7 @@ export class Fda{
     var returnValue = new Array();
     for (var i = 0; i < input.length; i++)
     {
-      //Fda.SummaryProductDataResult(input[i]);
       returnValue[i] = Fda.SummaryProductDataResult(input[i]);
-      //returnValue[i] = null;        
     }
     return returnValue;    
   }

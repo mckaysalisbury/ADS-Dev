@@ -73,8 +73,7 @@ describe('data products', function(){
       .get('/data/products/Excedrin')
       .expectStatus(200)
       .end(function(err, res, body) {
-          if (err) throw err;
-          
+          if (err) throw err;         
           body.results[0]["active_ingredient"].should.match(/Acetaminophen/);
           done();
         });
@@ -92,7 +91,19 @@ describe('data products', function(){
           done();
         });
   });
-  
+});
+describe('ingredient', function(){
+  it ('Phenylephrine should be found in Day Time with PE', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/ingredient/Phenylephrine')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Day Time with PE");
+          done();
+        });
+  });
 });
 describe('data product', function(){
   it ('Specific product should be tylenol', function(done){    

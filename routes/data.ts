@@ -8,12 +8,17 @@ var router = express.Router();
 
 router.get('/products/:productName', function(req, res, next) {
   var wr = new api.Fda();
-  wr.Products(req.params.productName, function(body){res.send(body);});
+  wr.Products(req.params.productName, function(body){res.json(body);});
 });
 
 router.get('/product/:id', function(req, res, next) {
   var wr = new api.Fda();
-  wr.Product(req.params.id, function(body){res.send(body);});
+  wr.Product(req.params.id, function(body){res.json(body);});
+});
+
+router.get('/ingredient/:ingredientName', function(req, res, next) {
+  var wr = new api.Fda();
+  wr.Ingredient(req.params.ingredientName, function(body){res.json(body);});
 });
 
 // router.get('/simple', function(req, res, next) {  

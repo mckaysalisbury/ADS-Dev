@@ -8,10 +8,13 @@ var Fda = (function () {
         callback(value + value);
     };
     Fda.prototype.Products = function (brand, callback) {
-        this.Label('brand_name:' + brand, 0, 10, callback, Fda.SummaryProductData);
+        this.Label('brand_name:' + brand, 0, 100, callback, Fda.SummaryProductData);
     };
     Fda.prototype.Product = function (id, callback) {
-        this.Label('id:' + id, 0, 10, callback, Fda.Identity);
+        this.Label('id:' + id, 0, 1, callback, Fda.Identity);
+    };
+    Fda.prototype.Ingredient = function (ingredient, callback) {
+        this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 1, callback, Fda.SummaryProductData);
     };
     Fda.prototype.Label = function (search, skip, limit, callback, filter) {
         var options = {
@@ -46,7 +49,6 @@ var Fda = (function () {
     Fda.SummaryProductDataResults = function (input) {
         var returnValue = new Array();
         for (var i = 0; i < input.length; i++) {
-            //Fda.SummaryProductDataResult(input[i]);
             returnValue[i] = Fda.SummaryProductDataResult(input[i]);
         }
         return returnValue;
