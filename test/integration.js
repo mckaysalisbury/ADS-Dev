@@ -47,52 +47,7 @@ describe('Requesting from data.gov',function(){
   });
 });
 
-describe('double echo', function(){
-  
-  it ('unspecified should 404', function(done){    
-    hippie(app)
-      .get('/data/doubleecho/')
-      .expectStatus(404)
-      .end(done);
-  });
-
-  it ('specified should echo', function(done){    
-    hippie(app)
-      .get('/data/doubleecho/Quack')
-      .expectStatus(200)
-      .end(function(err, res, body) {
-          if (err) throw err;
-          body.should.be.eql("QuackQuack");
-          done();
-        });
-  });
-
-});
-
-
-describe('double echo api', function(){
-  
-  it ('unspecified should 404', function(done){    
-    hippie(app)
-      .get('/data/doubleechoapi/')
-      .expectStatus(404)
-      .end(done);
-  });
-
-  it ('specified should echo', function(done){    
-    hippie(app)
-      .get('/data/doubleechoapi/Quack')
-      .expectStatus(200)
-      .end(function(err, res, body) {
-          if (err) throw err;
-          body.should.be.eql("QuackQuack");
-          done();
-        });
-  });
-
-});
-describe('data products', function(){
-  
+describe('data products', function(){ 
   it ('unspecified should 404', function(done){    
     hippie(app)
       .get('/data/products/')
@@ -115,7 +70,7 @@ describe('data products', function(){
   it ('Excedrin should have acetominaphin', function(done){    
     hippie(app)
       .json()
-      .get('/data/products/Tylenol')
+      .get('/data/products/Excedrin')
       .expectStatus(200)
       .end(function(err, res, body) {
           if (err) throw err;
@@ -124,7 +79,22 @@ describe('data products', function(){
           done();
         });
   });
+
+  it ('should not have extra data', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/products/Tylenol')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          body.results[0].should.have.property("active_ingredient");          
+          body.results[0].should.not.have.property("storage_and_handling");
+          done();
+        });
+  });
   
+});
+describe('data product', function(){
   it ('Specific product should be tylenol', function(done){    
     hippie(app)
       .json()
