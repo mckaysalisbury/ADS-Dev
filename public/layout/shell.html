@@ -1,12 +1,12 @@
-<div ng-controller="ShellController as vm">
+<div ng-controller="ShellController">
     <header class="clearfix">
         <ht-top-nav navline="vm.navline"></ht-top-nav>
     </header>
     <section id="content" class="content">
         <div ng-include="'layout/sidebar.html'"></div>
-
+        <b>My first expression {{ 5 + 5 }}</b>
         <div ui-view class="shuffle-animation"></div>
-            {{vm.name}}    
+            {{name}}    
         <div ngplus-overlay
              ngplus-overlay-delay-in="50"
              ngplus-overlay-delay-out="700"

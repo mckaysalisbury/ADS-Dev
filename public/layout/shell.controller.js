@@ -1,8 +1,7 @@
 (function() {
     'use strict';
-
     angular
-        .module([])
+        .module(['layout'])
         .controller('ShellController', ShellController);
 
     ShellController.$inject = ['$rootScope', '$timeout'];

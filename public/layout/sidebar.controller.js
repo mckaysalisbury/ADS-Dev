@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('layout')
+        .module(['layout'])
         .controller('SidebarController', SidebarController);
 
     SidebarController.$inject = ['$state', 'routerHelper'];
