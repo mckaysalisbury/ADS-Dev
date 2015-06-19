@@ -21,6 +21,11 @@ export class Fda{
   {
     this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
   }
+  
+  public Purpose(purpose: string, callback) : void
+  {
+    this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
+  }
         
   private Label(search: string, skip : number, limit : number, callback, filter) : void {
     var options = {

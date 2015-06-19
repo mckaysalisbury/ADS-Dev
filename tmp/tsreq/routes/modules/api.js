@@ -14,7 +14,10 @@ var Fda = (function () {
         this.Label('id:' + id, 0, 1, callback, Fda.Identity);
     };
     Fda.prototype.Ingredient = function (ingredient, callback) {
-        this.Label("active_ingredient:" + ingredient, 0, 1, callback, Fda.SummaryProductData);
+        this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    };
+    Fda.prototype.Purpose = function (purpose, callback) {
+        this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
     };
     Fda.prototype.Label = function (search, skip, limit, callback, filter) {
         var options = {
@@ -58,15 +61,19 @@ var Fda = (function () {
         returnValue["brand_name"] = input.openfda.brand_name[0];
         returnValue["generic_name"] = input.openfda.generic_name[0];
         returnValue["manufacturer_name"] = input.openfda.generic_name[0];
-        returnValue["purpose"] = input.purpose[0];
+        returnValue["purpose"] = Fda.FirstIfArrayDefined(input.purpose);
         returnValue["active_ingredient"] = input.active_ingredient[0];
-        if (input.inactiveIngredient != undefined) {
-            returnValue["inactive_ingredient"] = input.inactive_ingredient[0];
-        }
+        returnValue["inactive_ingredient"] = Fda.FirstIfArrayDefined(input.inactive_ingredient);
         returnValue["effective_time"] = input.effective_time;
         returnValue["id"] = input.id;
         returnValue["set_id"] = input.set_id;
         return returnValue;
+    };
+    Fda.FirstIfArrayDefined = function (input) {
+        if (input != undefined) {
+            return input[0];
+        }
+        return undefined;
     };
     Fda.Identity = function (input) {
         return input;

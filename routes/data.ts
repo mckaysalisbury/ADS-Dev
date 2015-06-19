@@ -21,6 +21,11 @@ router.get('/ingredient/:ingredientName', function(req, res, next) {
   wr.Ingredient(req.params.ingredientName, function(body){res.json(body);});
 });
 
+router.get('/purpose/:purpose', function(req, res, next) {
+  var wr = new api.Fda();
+  wr.Purpose(req.params.purpose, function(body){res.json(body);});
+});
+
 // router.get('/simple', function(req, res, next) {  
 //   res.send("simple");
 // });

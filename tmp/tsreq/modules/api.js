@@ -1,5 +1,3 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/express/express.d.ts"/>
 var http = require('http');
 var Fda = (function () {
     function Fda() {
@@ -15,6 +13,9 @@ var Fda = (function () {
     };
     Fda.prototype.Ingredient = function (ingredient, callback) {
         this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    };
+    Fda.prototype.Purpose = function (purpose, callback) {
+        this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
     };
     Fda.prototype.Label = function (search, skip, limit, callback, filter) {
         var options = {
@@ -78,3 +79,4 @@ var Fda = (function () {
     return Fda;
 })();
 exports.Fda = Fda;
+//# sourceMappingURL=api.js.map

@@ -93,7 +93,7 @@ describe('data products', function(){
   });
 });
 describe('ingredient', function(){
-  it ('Phenylephrine should be found in Day Time with PE', function(done){    
+  it ('Phenylephrine should be found first in Day Time with PE', function(done){    
     hippie(app)
       .json()
       .get('/data/ingredient/Phenylephrine')
@@ -105,6 +105,21 @@ describe('ingredient', function(){
         });
   });
 });
+
+describe('purpose', function(){
+  it ('headaches should be found first in Day Time with PE', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/purpose/Headache')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Sinus Relief");
+          done();
+        });
+  });
+});
+
 describe('data product', function(){
   it ('Specific product should be tylenol', function(done){    
     hippie(app)
