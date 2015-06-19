@@ -1,3 +1,5 @@
+/// <reference path="typings/node/node.d.ts"/>
+/// <reference path="typings/express/express.d.ts"/>
 var path = require('path');
 var express = require('express');
 var favicon = require('serve-favicon');
@@ -14,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./'));
 app.use('/', routes);
 app.use('/data', data);
 app.use(function (req, res, next) {

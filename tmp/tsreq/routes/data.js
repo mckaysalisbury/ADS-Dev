@@ -1,3 +1,5 @@
+/// <reference path="../typings/node/node.d.ts"/>
+/// <reference path="../typings/express/express.d.ts"/>
 var express = require('express');
 var http = require('http');
 var api = require('../modules/api');
@@ -28,15 +30,11 @@ router.get('/drugsContaining/:ingredient', function (req, res, next) {
 });
 router.get('/products/:productName', function (req, res, next) {
     var wr = new api.Fda();
-    wr.Products(req.params.productName, function (body) {
-        res.send(body);
-    });
+    wr.Products(req.params.productName, function (body) { res.send(body); });
 });
 router.get('/product/:id', function (req, res, next) {
     var wr = new api.Fda();
-    wr.Product(req.params.id, function (body) {
-        res.send(body);
-    });
+    wr.Product(req.params.id, function (body) { res.send(body); });
 });
 router.get('/simple', function (req, res, next) {
     res.send("simple");
@@ -48,9 +46,7 @@ router.get('/doubleecho/:value', function (req, res, next) {
 router.get('/doubleechoapi/:value', function (req, res, next) {
     var value = req.params.value;
     var wr = new api.Fda();
-    wr.DoubleEcho(value, function (body) {
-        res.send(body);
-    });
+    wr.DoubleEcho(value, function (body) { res.send(body); });
 });
 router.get('/', function (req, res, next) {
     var complaints = require('../data/complaints.json');
