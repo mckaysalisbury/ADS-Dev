@@ -19,7 +19,7 @@ export class Fda{
   
   public Ingredient(ingredient: string, callback) : void
   {
-    this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 1, callback, Fda.SummaryProductData);
+    this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
   }
         
   private Label(search: string, skip : number, limit : number, callback, filter) : void {
@@ -69,17 +69,23 @@ export class Fda{
     var returnValue = new Object();
     returnValue["brand_name"] = input.openfda.brand_name[0];
     returnValue["generic_name"] = input.openfda.generic_name[0];
-    returnValue["manufacturer_name"] = input.openfda.generic_name[0];
-    returnValue["purpose"] = input.purpose[0];
+    returnValue["manufacturer_name"] = input.openfda.generic_name[0];    
+    returnValue["purpose"] = Fda.FirstIfArrayDefined(input.purpose);
     returnValue["active_ingredient"] = input.active_ingredient[0];
-    if (input.inactiveIngredient != undefined)
-    {
-      returnValue["inactive_ingredient"] = input.inactive_ingredient[0];
-    }
+    returnValue["inactive_ingredient"] = Fda.FirstIfArrayDefined(input.inactive_ingredient);
     returnValue["effective_time"] = input.effective_time;
     returnValue["id"] = input.id;
     returnValue["set_id"] = input.set_id;
     return returnValue;    
+  }
+  
+  private static FirstIfArrayDefined(input)
+  {
+    if (input != undefined)
+    {
+      return input[0];    
+    }
+    return undefined;
   }
   
   private static Identity(input)
