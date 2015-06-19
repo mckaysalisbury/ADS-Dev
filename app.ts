@@ -8,8 +8,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var port = process.env.PORT || 8001;
+var environment = process.env.NODE_ENV;
+
 import routes = require('./routes/index');
 import data = require('./routes/data');
+
+console.log('About to crank up node');
+console.log('PORT=' + port);
+console.log('NODE_ENV=' + environment);
 
 var app = express();
 
@@ -63,6 +70,5 @@ app.use(function(err : Error, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

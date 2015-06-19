@@ -1,5 +1,6 @@
 module.exports = function () {
     var client = './public/';
+    var server = './routes/';
     var report = './report/';
     var root = './';
     var specRunnerFile = 'specs.html';
@@ -14,6 +15,7 @@ module.exports = function () {
     var nodeModules = 'node_modules';
 
     var config = {
+        server: server,
         /**
          * File paths
          */
@@ -116,8 +118,8 @@ module.exports = function () {
         /**
          * Node settings
          */
-        nodeServer: './src/server/app.ts',
-        defaultPort: '3000'
+        nodeServer: './bin/www',
+        defaultPort: '8001'
     };
 
     /**
