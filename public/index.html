@@ -21,6 +21,7 @@
         <!-- endbuild -->
         <!-- build:css styles/app.css -->
         <!-- inject:css -->
+        <link rel="stylesheet" href="/.tmp/styles.css"> 
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -29,9 +30,10 @@
         <div>
             index is here!
             <div ng-include="'layout/shell.html'"></div>
+            <div>hello world</div>
             <div id="splash-page" ng-show="showSplash">
                 <div class="page-splash">
-                    <div class="page-splash-message">helloWorld</div>
+                    <div class="page-splash-message">mike shields</div>
                     <div class="progress progress-striped active page-progress-bar">
                         <div class="bar"></div>
                     </div>
@@ -49,8 +51,11 @@
         <!-- endbuild -->
         <!-- build:js js/app.js -->
         <!-- inject:js -->
-        <script src="/public/app.js"></script>
+        <script src="/public/app.module.js"></script>
+        <script src="/public/core/core.module.js"></script>
+        <script src="/public/layout/layout.module.js"></script>
         <script src="/public/layout/shell.controller.js"></script>
+        <script src="/public/layout/sidebar.controller.js"></script>
         <!-- endinject -->
         <!-- inject:templates:js -->
         <!-- endinject -->
