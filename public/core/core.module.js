@@ -3,7 +3,7 @@
 
     angular
         .module('core', [
-            'ngAnimate', 'ngSanitize',
-            'ui.router'
-        ]);
+        'ngAnimate', 'ngSanitize', 'blocks.router',
+        'ui.router'
+    ]);
 })();

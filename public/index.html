@@ -7,7 +7,7 @@
                 /* Since Angular has this but needs to load, this gives us the class early. */
                 .ng-hide { display: none!important; }
         </style>
-        <title ng-bind="title">hello World</title>
+        <title ng-bind="title">Pyramid Systems Inc.</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
@@ -28,12 +28,9 @@
     
     <body>
         <div>
-            index is here!
             <div ng-include="'layout/shell.html'"></div>
-            <div>hello world</div>
             <div id="splash-page" ng-show="showSplash">
                 <div class="page-splash">
-                    <div class="page-splash-message">mike shields</div>
                     <div class="progress progress-striped active page-progress-bar">
                         <div class="bar"></div>
                     </div>
@@ -53,11 +50,23 @@
         <!-- build:js js/app.js -->
         <!-- inject:js -->
         <script src="/public/app.module.js"></script>
+        <script src="/public/admin/admin.module.js"></script>
+        <script src="/public/blocks/router/router.module.js"></script>
         <script src="/public/core/core.module.js"></script>
+        <script src="/public/dashboard/dashboard.module.js"></script>
         <script src="/public/layout/layout.module.js"></script>
-        <script src="/public/layout/dashboard.controller.js"></script>
+        <script src="/public/widgets/widgets.module.js"></script>
+        <script src="/public/admin/admin.controller.js"></script>
+        <script src="/public/admin/admin.route.js"></script>
+        <script src="/public/blocks/router/router-helper.provider.js"></script>
+        <script src="/public/core/config.js"></script>
+        <script src="/public/dashboard/dashboard.controller.js"></script>
+        <script src="/public/dashboard/dashboard.route.js"></script>
+        <script src="/public/layout/ht-sidebar.directive.js"></script>
+        <script src="/public/layout/ht-top-nav-directive.js"></script>
         <script src="/public/layout/shell.controller.js"></script>
         <script src="/public/layout/sidebar.controller.js"></script>
+        <script src="/public/widgets/ht-widget-header.directive.js"></script>
         <!-- endinject -->
         <!-- inject:templates:js -->
         <!-- endinject -->

@@ -4,7 +4,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var router = express.Router();
-/* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express', data: {} });
 });
@@ -36,3 +35,4 @@ router.get('/ingred', function (req, res, next) {
     res.sendFile(path.join(__dirname, "../views/ingred.html"));
 });
 module.exports = router;
+//# sourceMappingURL=index.js.map
