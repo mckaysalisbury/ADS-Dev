@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">28</p>
+      <p class="stat">29</p>
     </div>
   </div>
   <div class="row historical">
@@ -93,7 +93,7 @@
     &#039;use strict&#039;;
 
     angular
-        .module(&#039;dashboard&#039;)
+        .module(&#039;app.dashboard&#039;)
         .controller(&#039;DashboardController&#039;, DashboardController);
 
     DashboardController.$inject = [&#039;$q&#039;];
@@ -106,16 +106,17 @@
         };
         vm.messageCount = 222;
         vm.people = [
-        {id: 1, firstName: &#039;John&#039;, lastName: &#039;Papa&#039;, age: 25, location: &#039;Florida&#039;},
-        {id: 2, firstName: &#039;Ward&#039;, lastName: &#039;Bell&#039;, age: 31, location: &#039;California&#039;},
-        {id: 3, firstName: &#039;Colleen&#039;, lastName: &#039;Jones&#039;, age: 21, location: &#039;New York&#039;},
-        {id: 4, firstName: &#039;Madelyn&#039;, lastName: &#039;Green&#039;, age: 18, location: &#039;North Dakota&#039;},
-        {id: 5, firstName: &#039;Ella&#039;, lastName: &#039;Jobs&#039;, age: 18, location: &#039;South Dakota&#039;},
-        {id: 6, firstName: &#039;Landon&#039;, lastName: &#039;Gates&#039;, age: 11, location: &#039;South Carolina&#039;},
-        {id: 7, firstName: &#039;Haley&#039;, lastName: &#039;Guthrie&#039;, age: 35, location: &#039;Wyoming&#039;},
-        {id: 8, firstName: &#039;Aaron&#039;, lastName: &#039;Jinglehiemer&#039;, age: 22, location: &#039;Utah&#039;}
-    ];
-        vm.title = &#039;Dashboard&#039;;};
+            { id: 1, firstName: &#039;John&#039;, lastName: &#039;Papa&#039;, age: 25, location: &#039;Florida&#039; },
+            { id: 2, firstName: &#039;Ward&#039;, lastName: &#039;Bell&#039;, age: 31, location: &#039;California&#039; },
+            { id: 3, firstName: &#039;Colleen&#039;, lastName: &#039;Jones&#039;, age: 21, location: &#039;New York&#039; },
+            { id: 4, firstName: &#039;Madelyn&#039;, lastName: &#039;Green&#039;, age: 18, location: &#039;North Dakota&#039; },
+            { id: 5, firstName: &#039;Ella&#039;, lastName: &#039;Jobs&#039;, age: 18, location: &#039;South Dakota&#039; },
+            { id: 6, firstName: &#039;Landon&#039;, lastName: &#039;Gates&#039;, age: 11, location: &#039;South Carolina&#039; },
+            { id: 7, firstName: &#039;Haley&#039;, lastName: &#039;Guthrie&#039;, age: 35, location: &#039;Wyoming&#039; },
+            { id: 8, firstName: &#039;Aaron&#039;, lastName: &#039;Jinglehiemer&#039;, age: 22, location: &#039;Utah&#039; }
+        ];
+        vm.title = &#039;Dashboard&#039;;
+    }
 })();</textarea>
   </div>
 </div>

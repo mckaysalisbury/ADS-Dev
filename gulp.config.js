@@ -119,7 +119,7 @@ module.exports = function () {
         /**
          * Node settings
          */
-        nodeServer: './bin/www',
+        nodeServer: './src/server/bin/www',
         defaultPort: '8001'
     };
 

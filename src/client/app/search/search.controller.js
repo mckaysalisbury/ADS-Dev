@@ -11,9 +11,10 @@
     /* @ngInject */
     function SearchController($http, $scope) {
         var vm = this;
-        vm.filterOptions = { filterText: '' };
+        vm.filterOptions = { filterText: '',  };
         vm.gridOptions = { data: 'vm.names', filterOptions: vm.filterOptions };
 
+        vm.havingIngredientsGrid = { data: 'vm.drugsContaining', filterOptions: vm.filterOptions };
         vm.filterNephi = function () {
             var filterText = 'name:Nephi';
             if ($scope.filterOptions.filterText === '') {

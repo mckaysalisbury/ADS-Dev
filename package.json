@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./src/server/bin/www",
     "test": "mocha test",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome"
