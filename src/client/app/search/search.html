@@ -1,15 +1,30 @@
 <section class="mainbar">
 	<section class="matter">
 		<div class="container">
-			<div class="row">{{vm.Title}} Search:
-				<input ng-model="query">
-				<table>
-					<tr ng-repeat="x in vm.names | filter:query">
-						<td>{{ x.term }}</td>
-						<td>{{ x.count }}</td>
-					</tr>
-				</table>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="widget wgreen">
+						<div ht-widget-header title="Search" allow-collapse="true"></div>
+						<div class="widget-content text-center text-info">Search:
+							<input ng-model="query">
+						</div>
+							<div class="gridStyle" ng-grid="vm.gridOptions"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="widget wgreen">Having ingredient:
+						<input ng-model="vm.ingredient" ng-keypress="vm.doSearch($event);">
+						<br/>Filter:
+						<input ng-model="containing">
+						<table>
+							<tr ng-repeat="x in vm.drugsContaining | filter:containing">
+								<td>{{ x.openfda.manufacturer_name[0] }}</td>
+								<td>{{ x.openfda.brand_name[0] }}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
-		</div>
 	</section>
 </section>

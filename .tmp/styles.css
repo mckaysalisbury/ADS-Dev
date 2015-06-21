@@ -828,6 +828,12 @@ form label {
 .widget.wviolet .widget-head .widget-icons a:hover {
   color: #eee;
 }
+/*style.css*/
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 400px; 
+    height: 300px
+}
 /* Widget white extras */
 .widget .nav-tabs > li a {
   padding: 5px 10px;

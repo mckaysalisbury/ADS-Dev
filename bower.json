@@ -20,6 +20,7 @@
     "font-awesome": "~4.3.0",
     "jquery": "~2.1.4",
     "angular-ui-router": "~0.2.15",
-    "angular-sanitize": "~1.4.1"
+    "angular-sanitize": "~1.4.1",
+    "ng-grid": "~2.0.14"
   }
 }
