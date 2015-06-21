@@ -6,10 +6,9 @@
 					<div class="widget wgreen">
 						<div ht-widget-header title="Search" allow-collapse="true"></div>
 						<div class="widget-content text-center text-info">Search:
-							<input ng-model="query">
+							<input ng-model="vm.filterOptions.filterText">
 						</div>
-							<div class="gridStyle" ng-grid="vm.gridOptions"></div>
-						</div>
+						<div class="gridStyle" ng-grid="vm.gridOptions"></div>
 					</div>
 				</div>
 				<div class="col-md-6">
