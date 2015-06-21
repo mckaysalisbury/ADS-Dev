@@ -1471,6 +1471,10 @@ a {
 /*#endregion */
 /*#region Responsive */
 @media (max-width: 979px) {
+  .gridStyle {
+    border: 1px solid #d4d4d4;
+    height: 600px;
+  }
   .sidebar-filler {
     width: 200px;
   }
@@ -1497,11 +1501,19 @@ a {
   }
 }
 @media (min-width: 768px) {
+  .gridStyle {
+    border: 1px solid #d4d4d4;
+    height: 700px;
+  }
   .sidebar .sidebar-inner {
     display: block !important;
   }
 }
 @media (max-width: 767px) {
+  .gridStyle {
+    border: 1px solid #d4d4d4;
+    height: 500px;
+  }
   .sidebar-filler {
     display: none;
   }
@@ -1536,8 +1548,16 @@ a {
   textarea.form-control {
     width: 70%;
   }
+  .gridStyle {
+    border: 1px solid #d4d4d4;
+    height: 320px;
+  }
 }
 @media (max-width: 320px) {
+  .gridStyle {
+    border: 1px solid #d4d4d4;
+    height: 120px;
+  }
   .today-datas li {
     padding: 1em .5em;
     line-height: 1em;
@@ -1579,7 +1599,3 @@ a {
   }
 }
 /*#endregion */
-.gridStyle {
-  border: 1px solid #d4d4d4;
-  height: 600px;
-}
