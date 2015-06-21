@@ -6,7 +6,7 @@
 
 require('typescript-require');
 
-var app = require('../app');
+var app = require('../src/server/app');
 var debug = require('debug')('ads_nodejs:server');
 var http = require('http');
 

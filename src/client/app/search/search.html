@@ -1,0 +1,15 @@
+<section class="mainbar">
+	<section class="matter">
+		<div class="container">
+			<div class="row">{{vm.Title}} Search:
+				<input ng-model="query">
+				<table>
+					<tr ng-repeat="x in vm.names | filter:query">
+						<td>{{ x.term }}</td>
+						<td>{{ x.count }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</section>
+</section>

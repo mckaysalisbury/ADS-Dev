@@ -1,6 +1,7 @@
 module.exports = function () {
-    var client = './public/';
-    var server = './routes/';
+    var client = './src/client/';
+    var clientApp = client + 'app/';
+    var server = './src/server/';
     var report = './report/';
     var root = './';
     var specRunnerFile = 'specs.html';
@@ -20,20 +21,20 @@ module.exports = function () {
          * File paths
          */
         // all javascript that we want to vet
-        alljs: ['./public/**/*.js'],
+        alljs: ['./src/**/*.js'],
         build: './build/',
         client: client,
         css: temp + 'styles.css',
         fonts: bower.directory + 'font-awesome/fonts/**/*.*',
         html: client + '**/*.html',
-        htmltemplates: client + '**/*.html',
+        htmltemplates: clientApp + '**/*.html',
         images: client + 'images/**/*.*',
         index: client + 'index.html',
         // app js, with no specs
         js: [
-            client + '**/*.module.js',
-            client + '**/*.js',
-            '!' + client + '**/*.spec.js'
+            clientApp + '**/*.module.js',
+            clientApp + '**/*.js',
+            '!' + clientApp + '**/*.spec.js'
         ],
         jsOrder: [
             '**/app.module.js',
