@@ -152,7 +152,7 @@ gulp.task('wiredep', function () {
         .pipe(gulp.dest(config.client));
 });
 
-gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
+gulp.task('inject', ['compile-tsc', 'wiredep', 'styles', 'templatecache'], function () {
     log('Wire up css into the html, after files are ready');
 
     return gulp
@@ -204,7 +204,7 @@ gulp.task('build-specs', ['templatecache'], function (done) {
  * This is separate so we can run tests on
  * optimize before handling image or fonts
  */
-gulp.task('build', ['compile-tsc', 'optimize', 'images', 'fonts'], function () {
+gulp.task('build', ['optimize', 'images', 'fonts'], function () {
     log('Building everything');
 
     var msg = {
