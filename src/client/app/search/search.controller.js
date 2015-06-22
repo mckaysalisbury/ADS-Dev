@@ -38,8 +38,28 @@
             enablePaging: true
         //pagingOptions: $scope.pagingOptions,
              };
-             
-             //purposeInput
+         function getExample(query, input){
+             var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
+             var i = indexOfQuery + query.length;
+             console.log(query);
+             var fullText = query;
+             while (input.length > i && input[i] != " "){
+                 fullText += input[i++];
+             }
+             var startIndex = indexOfQuery - 25;
+             var endIndex = indexOfQuery + 25 + fullText.length;
+             if (startIndex < 0){
+                startIndex = 0;
+             }
+             if (endIndex >= input.length){
+                 endIndex = input.length;
+             }
+             var example = input.substring(startIndex, endIndex);
+             console.log('query: ' + query + ' | input: ' + input);
+             console.log('output query: ' + fullText + ' | example: ' + example);
+             return {'value': fullText, 'example': example};
+         }
+         
          var bestPictures = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
           queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -47,14 +67,15 @@
             url: '../data/purposeWithQuery/%QUERY',
             wildcard: '%QUERY',
             filter: function(data){
-                console.log(data);
-                // var result = [];
-                // var query = data.q;
-                // data.d.results.forEach(function(element) {
-                //     result.push({"value": query, "example": element.purpose});
-                // }, this);
-                // return result;
-                return data;
+                var result = [];
+                var query = data.q;
+                if (!data.d.results){
+                    return result;
+                }
+                data.d.results.forEach(function(element) {
+                    result.push(getExample(query, element.purpose));
+                }, this);  
+                return result;
             }
           }
         });
@@ -63,15 +84,16 @@
           name: 'purposes',
           display: 'value', 
           source: bestPictures,
+          limit:10,
           templates: {
             empty: [
               '<div class="empty-message">',
-                'unable to find any Best Picture winners that match the current query',
+                'Unable to find any purposes that match your search.',
               '</div>'
             ].join('\n'),
             suggestion: function(data){
-      return '<p><strong>' + data.value + '</strong> - ' + data.example + '</p>';
-    }
+              return '<p><strong>' + data.value + '</strong> - ' + data.example + '</p>';
+            }
           }
         });
     }
