@@ -15,7 +15,7 @@ describe('search routes', function () {
 
         bard.verifyNoOutstandingHttpRequests();
 
-        it('should map state search to url / ', function() {
+        it('should map state search to url /search ', function() {
             expect($state.href('search', {})).to.equal('/search');
         });
 
