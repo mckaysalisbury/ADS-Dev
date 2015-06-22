@@ -5,31 +5,36 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$http', '$scope'];
+    SearchController.$inject = ['$http'];
     /* @ngInject */
-    function SearchController($http, $scope) {
+    function SearchController($http) {
         var vm = this;
-        vm.filterOptions = { filterText: '',  };
-        vm.gridOptions = { data: 'vm.names', filterOptions: vm.filterOptions };
+        vm.filterOptions = { filterText: '', };
 
         vm.havingIngredientsGrid = { data: 'vm.drugsContaining', filterOptions: vm.filterOptions };
         vm.filterNephi = function () {
             var filterText = 'name:Nephi';
-            if ($scope.filterOptions.filterText === '') {
-                $scope.filterOptions.filterText = filterText;
+            if (vm.filterOptions.filterText === '') {
+                vm.filterOptions.filterText = filterText;
             }
-            else if ($scope.filterOptions.filterText === filterText) {
-                $scope.filterOptions.filterText = '';
+            else if (vm.filterOptions.filterText === filterText) {
+                vm.filterOptions.filterText = '';
             }
         };
-
-        $http.get('/data/substances')
-            .success(function (response) {
-            vm.names = response.results;
-        });
-        vm.doSearch = function (evt) {
-            $http.get('/data/drugsContaining/' + vm.ingredient)
+        
+        vm.searchPurposeWithoutIngredient = function (evt) {
+            $http.get("/data/purposeWithoutIngredient/" + vm.purpose + "/" + vm.ingredient)
                 .success(function (response) { vm.drugsContaining = response.results; });
         };
+        
+        vm.productSearch = function(evt) {
+            $http.get("/data/products/" + vm.productName)
+		    			.success(function (response) {vm.products = response.results;});
+        };
+        
+        vm.gridOptions = { data: 'vm.products', filterOptions: vm.filterOptions,
+            enablePaging: true,
+        //pagingOptions: $scope.pagingOptions,
+             };
     }
 })();

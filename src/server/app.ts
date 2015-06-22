@@ -3,6 +3,7 @@
 import path = require('path');
 import express = require('express');
 import data = require('./routes/data');
+import product = require('./routes/product');
 
 var app = express();
 var bodyParser = require('body-parser');
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 
 app.use('/data', <any>data);
+app.use('/product', <any>product);
 
 console.log('About to crank up node');
 console.log('PORT=' + port);

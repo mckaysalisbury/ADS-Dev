@@ -1,5 +1,6 @@
 var express = require('express');
 var data = require('./routes/data');
+var product = require('./routes/product');
 var app = express();
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use('/data', data);
+app.use('/product', product);
 console.log('About to crank up node');
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);

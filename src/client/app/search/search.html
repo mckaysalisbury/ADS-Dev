@@ -4,10 +4,11 @@
 			<div class="row-fluid">
 				<div class="col-md-6">
 					<div class="widget wgreen">
-						<div ht-widget-header title="Find Term and Count" allow-collapse="true"></div>
+						<div ht-widget-header title="Product Search" allow-collapse="true"></div>
 						<div class="widget-content text-left text-info">
 							<div class="form-group">
-								<input class="form-control" ng-model="vm.filterOptions.filterText" placeholder="Search here..." />
+								<input ng-model="vm.productName" ng-keyup="vm.productSearch($event);" placeholder="Search a product">
+								<input class="form-control" ng-model="vm.filterOptions.filterText" placeholder="Filter a product..." />
 							</div>
 							<div class="row">
 								<!-- Wrapper around the non-responsive ng-grid -->
@@ -18,35 +19,40 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="widget worange">
-					<div ht-widget-header title="Find ingredients" allow-collapse="true"></div>
-					<div class="widget-content text-left text-info">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 form-group">
-								<input class="form-control" ng-model="vm.ingredient " ng-keypress="vm.doSearch($event);" placeholder="Search here...">
-							</div>
-							<div class="col-md-12 col-sm-12 form-group">
-								<input class="form-control" ng-model="containing " placeholder="Filter..." />
-							</div>
-							</form>
+				<div class="col-md-6">
+					<div class="widget worange"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="widget wred">
+						<div ht-widget-header title="Find ingredients" allow-collapse="true"></div>
+						<div class="widget-content text-left text-info">
+							<input ng-model="vm.purpose" ng-keyup="vm.searchPurposeWithoutIngredient($event);" placeholder="What's your purpose'">
+							<input ng-model="vm.ingredient" ng-keyup="vm.searchPurposeWithoutIngredient($event);" placeholder="What's the ingredient?!'">
+							<br/>
+							<!--Search: <input ng-model="query">-->
+							<table style="border:">
+								<tr>
+									<!--<th>Manufacturer Name</th>-->
+									<td>
+										<strong>Brand Name</strong>
+									</td>
+								</tr>
+								<tr ng-repeat="x in vm.products | filter:query">
+									<!--<td>{{ x.manufacturer_name }}</td>-->
+									<td>
+										<a href="/product/{{x.id}}">{{ x.brand_name }}</a>
+										<small>
+											<a href="/data/product/{{x.id}}">(json)</a>
+										</small>
+									</td>
+								</tr>
+							</table>
 						</div>
-						<div class="row ">
-							<h5 class="col-md-6 ">Manufacturer Name</h5>
-							<h5 class="col-md-6 ">Brand Name</h5>
+						<div class="widget-foot ">
+							<div class="clearfix "></div>
 						</div>
-						<div class="row " ng-repeat="x in vm.drugsContaining | filter:containing ">
-							<label class="col-md-6 ">{{ x.openfda.manufacturer_name[0] }}</label>
-							<label class="col-md-6 ">{{ x.openfda.brand_name[0] }}</label>
-						</div>
-					</div>
-					<div class="widget-foot ">
-						<div class="clearfix "></div>
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
 	</section>
 </section>
