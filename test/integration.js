@@ -47,52 +47,7 @@ describe('Requesting from data.gov',function(){
   });
 });
 
-describe('double echo', function(){
-  
-  it ('unspecified should 404', function(done){    
-    hippie(app)
-      .get('/data/doubleecho/')
-      .expectStatus(404)
-      .end(done);
-  });
-
-  it ('specified should echo', function(done){    
-    hippie(app)
-      .get('/data/doubleecho/Quack')
-      .expectStatus(200)
-      .end(function(err, res, body) {
-          if (err) throw err;
-          body.should.be.eql("QuackQuack");
-          done();
-        });
-  });
-
-});
-
-
-describe('double echo api', function(){
-  
-  it ('unspecified should 404', function(done){    
-    hippie(app)
-      .get('/data/doubleechoapi/')
-      .expectStatus(404)
-      .end(done);
-  });
-
-  it ('specified should echo', function(done){    
-    hippie(app)
-      .get('/data/doubleechoapi/Quack')
-      .expectStatus(200)
-      .end(function(err, res, body) {
-          if (err) throw err;
-          body.should.be.eql("QuackQuack");
-          done();
-        });
-  });
-
-});
-describe('data products', function(){
-  
+describe('data products', function(){ 
   it ('unspecified should 404', function(done){    
     hippie(app)
       .get('/data/products/')
@@ -115,16 +70,57 @@ describe('data products', function(){
   it ('Excedrin should have acetominaphin', function(done){    
     hippie(app)
       .json()
-      .get('/data/products/Tylenol')
+      .get('/data/products/Excedrin')
       .expectStatus(200)
       .end(function(err, res, body) {
-          if (err) throw err;
-          
+          if (err) throw err;         
           body.results[0]["active_ingredient"].should.match(/Acetaminophen/);
           done();
         });
   });
-  
+
+  it ('should not have extra data', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/products/Tylenol')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;
+          body.results[0].should.have.property("active_ingredient");          
+          body.results[0].should.not.have.property("storage_and_handling");
+          done();
+        });
+  });
+});
+describe('ingredient', function(){
+  it ('Phenylephrine should be found first in Day Time with PE', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/ingredient/Phenylephrine')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Day Time with PE");
+          done();
+        });
+  });
+});
+
+describe('purpose', function(){
+  it ('headaches should be found first in Day Time with PE', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/purpose/Headache')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Sinus Relief");
+          done();
+        });
+  });
+});
+
+describe('data product', function(){
   it ('Specific product should be tylenol', function(done){    
     hippie(app)
       .json()
@@ -133,6 +129,21 @@ describe('data products', function(){
       .end(function(err, res, body) {
           if (err) throw err;          
           body.results[0]["openfda"]["brand_name"][0].should.be.eql("TYLENOL SINUS CONGESTION AND PAIN DAYTIME");
+          done();
+        });
+  });
+});
+
+
+describe('purpose without ingredient', function(){
+  it ('Product without waterproduct should be tylenol', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/purposeWithoutIngredient/pain/water')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Pain Relief Extra Strength");
           done();
         });
   });

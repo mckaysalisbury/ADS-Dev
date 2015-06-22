@@ -1,30 +1,32 @@
 <html>
 	<head>
-		<title>Test grids</title>
+		<title>Product Search</title>
 		<link rel="stylesheet" href="/stylesheets/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 	</head>
 
-	<div ng-app="myApp" ng-controller="customersCtrl">
-		Having ingredient: <input ng-model="ingredient" ng-keyup="doSearch($event);"><br/>
+	<div ng-app="myApp" ng-controller="productController">
+		Product Name: <input ng-model="productName" ng-keyup="doSearch($event);"><br/>
 		Search: <input ng-model="query">
-		<table>
+		<table style="border:">
+			<tr>
+				<!--<th>Manufacturer Name</th>-->
+				<th>Brand Name</th>
+			</tr>
 		  <tr ng-repeat="x in names | filter:query">
 		    <!--<td>{{ x.manufacturer_name }}</td>-->
-		    <td>{{ x.brand_name }}</td>
+		    <td><a href="/product/{{x.id}}">{{ x.brand_name }}</a></td>
 		  </tr>
 		</table>
 
 	</div>
 	<script>
 		var app = angular.module('myApp', []);
-		app.controller('customersCtrl', function($scope, $http) {
+		app.controller('productController', function($scope, $http) {
 			$scope.doSearch = function(evt){
-					$http.get("/data/ingredient/" + $scope.ingredient)
+					$http.get("/data/products/" + $scope.productName)
 		    			.success(function (response) {$scope.names = response.results;});
-			};
-		    
+			};		    
 		});
-
 	</script>
 </html>

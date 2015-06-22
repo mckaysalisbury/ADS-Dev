@@ -34,5 +34,11 @@ router.get('/client', function (req, res, next) {
 router.get('/ingred', function (req, res, next) {
     res.sendFile(path.join(__dirname, "../views/ingred.html"));
 });
+router.get('/productSearch', function (req, res, next) {
+    res.sendFile(path.join(__dirname, "../views/productSearch.html"));
+});
+router.get('/purposeWithoutIngredient', function (req, res, next) {
+    res.sendFile(path.join(__dirname, "../views/purposeWithoutIngredient.html"));
+});
 module.exports = router;
 //# sourceMappingURL=index.js.map
