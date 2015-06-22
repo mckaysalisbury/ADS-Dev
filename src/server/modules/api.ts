@@ -73,11 +73,11 @@ export class Fda {
   }
   private static SummaryProductDataResult(input) {
     var returnValue = new Object();
-    returnValue["brand_name"] = input.openfda.brand_name[0];
-    returnValue["generic_name"] = input.openfda.generic_name[0];
-    returnValue["manufacturer_name"] = input.openfda.generic_name[0];
+    returnValue["brand_name"] = Fda.FirstIfArrayDefined(input.openfda.brand_name);
+    returnValue["generic_name"] = Fda.FirstIfArrayDefined(input.openfda.generic_name);
+    returnValue["manufacturer_name"] = Fda.FirstIfArrayDefined(input.openfda.generic_name);
     returnValue["purpose"] = Fda.FirstIfArrayDefined(input.purpose);
-    returnValue["active_ingredient"] = input.active_ingredient[0];
+    returnValue["active_ingredient"] = Fda.FirstIfArrayDefined(input.active_ingredient);
     returnValue["inactive_ingredient"] = Fda.FirstIfArrayDefined(input.inactive_ingredient);
     returnValue["effective_time"] = input.effective_time;
     returnValue["id"] = input.id;

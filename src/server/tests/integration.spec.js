@@ -108,6 +108,22 @@ describe('purpose', function () {
     });
 });
 
+describe('purpose', function () {
+    it('sunscreen should be found', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/sunscreen')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.results[0]['brand_name'].should.be.eql('CHANTECAILLE PROTECTION NATURELLE BRONZE SPF 46');
+            done();
+        });
+    });
+});
+
 describe('data product', function () {
     it('Specific product should be tylenol', function (done) {
         hippie(app)
