@@ -1,9 +1,9 @@
 /* jshint -W117, -W030 */
-describe('DashboardController', function() {
+describe('DashboardController', function () {
     var controller;
     var people = mockData.getMockPeople();
 
-    beforeEach(function() {
+    beforeEach(function () {
         bard.appModule('app.dashboard');
         bard.inject('$controller', '$log', '$q', '$rootScope');
     });
@@ -15,19 +15,19 @@ describe('DashboardController', function() {
 
     bard.verifyNoOutstandingHttpRequests();
 
-    describe('Dashboard controller', function() {
+    describe('Dashboard controller', function () {
         it('should be created successfully', function () {
             expect(controller).to.be.defined;
         });
 
-        describe('after activate', function() {
+        describe('after activate', function () {
             it('should have title of Dashboard', function () {
                 expect(controller.title).to.equal('Dashboard');
             });
 
-            it('should have logged "Activated"', function() {
-                expect($log.info.logs).to.match(/Activated/);
-            });
+            //  it('should have logged "Activated"', function() {
+            //      expect($log.info.logs).to.match(/Activated/);
+            //  });
 
             it('should have news', function () {
                 expect(controller.news).to.not.be.empty;

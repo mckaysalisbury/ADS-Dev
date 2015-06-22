@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    
+    <head>
+        <style>
+            /* This helps the ng-show/ng-hide animations start at the right place. */
+                /* Since Angular has this but needs to load, this gives us the class early. */
+                .ng-hide { display: none!important; }
+        </style>
+        <title ng-bind="title">Pyramid Systems Inc.</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+        />
+        <base href="/">
+        <link rel="stylesheet" href="styles/lib-fc6044f161.css">
+        <link rel="stylesheet" href="styles/app-aabdf2fe7a.css">
+    </head>
+    
+    <body>
+        <div>
+            <div ng-include="'app/layout/shell.html'"></div>
+            <div id="splash-page" ng-show="showSplash">
+                <div class="page-splash">
+                    <div class="progress progress-striped active page-progress-bar">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/lib-ff4d2627e4.js"></script>
+        <script src="js/app-9c0a004683.js"></script>
+    </body>
+
+</html>

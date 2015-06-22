@@ -2,5 +2,5 @@
 (function () {
     'use strict';
 
-    angular.module('app.search', ['app.core','ngGrid']);
+    angular.module('app.search', ['app.core', 'ngGrid']);
 })();
