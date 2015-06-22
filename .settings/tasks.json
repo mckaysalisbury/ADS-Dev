@@ -2,18 +2,17 @@
     "version": "0.1.0",
     "command": "gulp",
     "showOutput": "silent",
-    "windows": {
-        "command": "node node_modules/typescript/bin/tsc",
-        "isShellCommand": true
-    },
-     "tasks": [
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+  "tasks": [
         {
-            "taskName": "build",
+            "taskName": "compile-tsc",
             "args": [],
             "isBuildCommand": true,
             "problemMatcher": [
                 "$lessCompile",
-                "$tsc",
                 "$jshint"
             ]
         }

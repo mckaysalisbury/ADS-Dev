@@ -44,7 +44,7 @@ module.exports = function () {
             '**/*.module.js',
             '**/*.js'
         ],
-        less: client + 'styles/styles.less',
+        less: client + 'styles/*.less',
         report: report,
         root: root,
         source: 'src/',
@@ -116,8 +116,8 @@ module.exports = function () {
             nodeModules + '/sinon-chai/lib/sinon-chai.js'
         ],
         specHelpers: [client + 'test-helpers/*.js'],
-        specs: [client + '**/*.spec.js'],
-        serverIntegrationSpecs: [client + '/tests/server-integration/**/*.spec.js'],
+        specs: ['./src/' + '**/*.spec.js'],
+        serverIntegrationSpecs: [server + '/tests/**/*.spec.js'],
     
         /**
          * Node settings

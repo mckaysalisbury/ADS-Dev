@@ -24,6 +24,13 @@ router.get('/purpose/:purpose', function(req, res, next) {
   var wr = new api.Fda();
   wr.Purpose(req.params.purpose, function(body){res.json(body);});
 });
+router.get('/purposeWithQuery/:purpose', function(req, res, next) {
+  var wr = new api.Fda();
+  wr.Purpose(req.params.purpose, function(body){
+    body = '{"q": "' + req.params.purpose + '", "d": ' + body + '}';
+    res.json(body);
+  });
+});
 
 router.get('/ingredientCount/:ingredientName', function(req, res, next) {
   var wr = new api.Fda();
