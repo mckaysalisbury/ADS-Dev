@@ -8,12 +8,11 @@
     ],
   "tasks": [
         {
-            "taskName": "serve-dev",
+            "taskName": "compile-tsc",
             "args": [],
             "isBuildCommand": true,
             "problemMatcher": [
                 "$lessCompile",
-                "$tsc",
                 "$jshint"
             ]
         }
