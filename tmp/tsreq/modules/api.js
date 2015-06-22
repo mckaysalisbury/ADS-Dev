@@ -17,6 +17,9 @@ var Fda = (function () {
     Fda.prototype.Purpose = function (purpose, callback) {
         this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
     };
+    Fda.prototype.PurposeWithoutIngredient = function (purpose, ingredient, callback) {
+        this.Label("purpose:" + purpose + "+AND+NOT+generic_ingredient:" + ingredient + "+AND+NOT+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    };
     Fda.prototype.Label = function (search, skip, limit, callback, filter) {
         var options = {
             host: 'api.fda.gov',

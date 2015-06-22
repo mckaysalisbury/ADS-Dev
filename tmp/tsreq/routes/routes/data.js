@@ -27,24 +27,10 @@ router.get('/purpose/:purpose', function (req, res, next) {
         res.json(body);
     });
 });
-// router.get('/simple', function(req, res, next) {  
-//   res.send("simple");
-// });
-// 
-// router.get('/doubleecho/:value', function(req, res, next) {  
-//   var value = req.params.value;
-//   res.send(value + value);
-// });
-// 
-// router.get('/doubleechoapi/:value', function(req, res, next) {  
-//   var value = req.params.value;
-//   var wr = new api.Fda();
-//   wr.DoubleEcho(value, function(body){res.send(body)})
-// });
-// 
-// router.get('/', function(req, res, next) {
-//   var complaints = require('../data/complaints.json');
-// 
-//   res.send(complaints);
-// });
+router.get('/purposeWithoutIngredient/:purpose/:ingredient', function (req, res, next) {
+    var wr = new api.Fda();
+    wr.PurposeWithoutIngredient(req.params.purpose, req.params.ingredient, function (body) {
+        res.json(body);
+    });
+});
 module.exports = router;

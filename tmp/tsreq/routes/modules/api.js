@@ -19,6 +19,11 @@ var Fda = (function () {
     Fda.prototype.Purpose = function (purpose, callback) {
         this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
     };
+    Fda.prototype.PurposeWithoutIngredient = function (purpose, ingredient, callback) {
+        // Generic name is a little bit more helpful than active ingredient?
+        //this.Label("purpose:"+ purpose +"+AND+NOT+active_ingredient:" + ingredient + "+AND+NOT+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+        this.Label("purpose:" + purpose + "+AND+NOT+generic_ingredient:" + ingredient + "+AND+NOT+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    };
     Fda.prototype.Label = function (search, skip, limit, callback, filter) {
         var options = {
             host: 'api.fda.gov',

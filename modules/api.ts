@@ -26,6 +26,13 @@ export class Fda{
   {
     this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
   }
+  
+  public PurposeWithoutIngredient(purpose: string, ingredient: string, callback) : void
+  {
+    // Generic name is a little bit more helpful than active ingredient?
+    //this.Label("purpose:"+ purpose +"+AND+NOT+active_ingredient:" + ingredient + "+AND+NOT+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    this.Label("purpose:"+ purpose +"+AND+NOT+generic_ingredient:" + ingredient + "+AND+NOT+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+  }
         
   private Label(search: string, skip : number, limit : number, callback, filter) : void {
     var options = {

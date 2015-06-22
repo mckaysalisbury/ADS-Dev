@@ -25,5 +25,12 @@ router.get('/purpose/:purpose', function (req, res, next) {
         res.json(body);
     });
 });
+router.get('/purposeWithoutIngredient/:purpose/:ingredient', function (req, res, next) {
+    var wr = new api.Fda();
+    console.log(req.params);
+    wr.PurposeWithoutIngredient(req.params.purpose, req.params.ingredient, function (body) {
+        res.json(body);
+    });
+});
 module.exports = router;
 //# sourceMappingURL=data.js.map

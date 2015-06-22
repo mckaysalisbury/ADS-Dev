@@ -133,3 +133,18 @@ describe('data product', function(){
         });
   });
 });
+
+
+describe('purpose without ingredient', function(){
+  it ('Product without waterproduct should be tylenol', function(done){    
+    hippie(app)
+      .json()
+      .get('/data/purposeWithoutIngredient/pain/water')
+      .expectStatus(200)
+      .end(function(err, res, body) {
+          if (err) throw err;          
+          body.results[0]["brand_name"].should.be.eql("Pain Relief Extra Strength");
+          done();
+        });
+  });
+});
