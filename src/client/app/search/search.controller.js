@@ -38,10 +38,15 @@
             enablePaging: true
         //pagingOptions: $scope.pagingOptions,
              };
-         function getExample(query, input){
+         vm.getExample = function getExample(query, input){
+             if (query == null || input == null){
+                 return {};
+             }
              var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
+             if (indexOfQuery == -1){
+                 return {'value': query, 'example': ''};
+             }
              var i = indexOfQuery + query.length;
-             console.log(query);
              var fullText = query;
              while (input.length > i && input[i] != " "){
                  fullText += input[i++];
@@ -51,12 +56,22 @@
              if (startIndex < 0){
                 startIndex = 0;
              }
+             else{
+                 while (startIndex > 0 && input[startIndex-1] != " "){
+                     startIndex--;
+                 }
+             }
              if (endIndex >= input.length){
                  endIndex = input.length;
              }
+             else{
+                 while (endIndex < input.length && input[endIndex] != " "){
+                     endIndex++;
+                 }
+             }
              var example = input.substring(startIndex, endIndex);
-             console.log('query: ' + query + ' | input: ' + input);
-             console.log('output query: ' + fullText + ' | example: ' + example);
+            //  console.log({'query': query, 'input': input});
+            //  console.log({'value': fullText, 'example': example});
              return {'value': fullText, 'example': example};
          }
          
@@ -73,7 +88,7 @@
                     return result;
                 }
                 data.d.results.forEach(function(element) {
-                    result.push(getExample(query, element.purpose));
+                    result.push(vm.getExample(query, element.purpose));
                 }, this);  
                 return result;
             }
