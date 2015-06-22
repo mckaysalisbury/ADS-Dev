@@ -24,6 +24,7 @@ router.get('/purpose/:purpose', function(req, res, next) {
   var wr = new api.Fda();
   wr.Purpose(req.params.purpose, function(body){res.json(body);});
 });
+
 router.get('/purposeWithQuery/:purpose', function(req, res, next) {
   var wr = new api.Fda();
   wr.Purpose(req.params.purpose, function(body){
