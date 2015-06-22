@@ -1,4 +1,4 @@
 *.log
-*/.tmp/*
-./report
-*/tmp/*
+.tmp/*
+report/*
+tmp/*
