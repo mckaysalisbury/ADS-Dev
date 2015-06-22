@@ -18,6 +18,10 @@ export class Fda {
   public Ingredient(ingredient: string, callback): void {
     this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
   }
+  
+  public IngredientCount(ingredient: string, callback): void {
+    this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+  }  
 
   public Purpose(purpose: string, callback): void {
     this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);

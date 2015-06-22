@@ -139,3 +139,32 @@ describe('purpose without ingredient', function () {
         });
     });
 });
+
+describe('ingredient Count', function () {
+    it('aloe should be many', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/ingredientCount/aloe')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.meta.results.total.should.not.be.eql(0);
+            done();
+        });
+    });
+    it('garbage should be none', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/ingredientCount/garbage')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.error.code.should.be.eql("NOT_FOUND");
+            done();
+        });
+    });
+});

@@ -16,6 +16,9 @@ var Fda = (function () {
     Fda.prototype.Ingredient = function (ingredient, callback) {
         this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
     };
+    Fda.prototype.IngredientCount = function (ingredient, callback) {
+        this.Label("active_ingredient:" + ingredient + "+inactive_ingredient:" + ingredient, 0, 100, callback, Fda.SummaryProductData);
+    };
     Fda.prototype.Purpose = function (purpose, callback) {
         this.Label("purpose:" + purpose, 0, 100, callback, Fda.SummaryProductData);
     };

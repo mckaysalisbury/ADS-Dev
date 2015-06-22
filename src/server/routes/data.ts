@@ -25,6 +25,11 @@ router.get('/purpose/:purpose', function(req, res, next) {
   wr.Purpose(req.params.purpose, function(body){res.json(body);});
 });
 
+router.get('/ingredientCount/:ingredientName', function(req, res, next) {
+  var wr = new api.Fda();
+  wr.IngredientCount(req.params.ingredientName, function(body){res.json(body);});
+});
+
 router.get('/purposeWithoutIngredient/:purpose/:ingredient', function(req, res, next) {
   var wr = new api.Fda();
   wr.PurposeWithoutIngredient(req.params.purpose, req.params.ingredient, function(body){res.json(body);});
