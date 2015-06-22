@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./src/server/bin/www",
-    "test": "mocha test",
+    "test": "mocha ./src/server/test",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome"
   },

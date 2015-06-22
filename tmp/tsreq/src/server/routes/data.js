@@ -1,5 +1,6 @@
-/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
-/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
+
+/// <reference path="../../../../../vendortypescripts/node/node.d.ts"/>
+/// <reference path="../../../../../vendortypescripts/express/express.d.ts"/>
 var express = require('express');
 var api = require('../modules/api');
 var router = express.Router();

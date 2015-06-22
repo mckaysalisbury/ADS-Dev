@@ -9,32 +9,6 @@ require('typescript-require');
 var app = require('../app');
 var hippie = require('hippie');
 
-describe('User API on index', function () {
-    it('GET / should return 200', function (done) {
-        hippie(app)
-            .get('/')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            done();
-        });
-    });
-
-    it('POST / should return 200', function (done) {
-        hippie(app)
-            .post('/')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            done();
-        });
-    });
-});
-
 describe('Requesting from data.gov', function () {
     it('should return results', function (done) {
         hippie()
@@ -47,50 +21,6 @@ describe('Requesting from data.gov', function () {
                 throw err;
             }
             body.results.should.be.instanceOf(Array);
-            done();
-        });
-    });
-});
-
-describe('double echo', function () {
-    it('unspecified should 404', function (done) {
-        hippie(app)
-            .get('/data/doubleecho/')
-            .expectStatus(404)
-            .end(done);
-    });
-
-    it('specified should echo', function (done) {
-        hippie(app)
-            .get('/data/doubleecho/Quack')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.should.be.eql('QuackQuack');
-            done();
-        });
-    });
-});
-
-describe('double echo api', function () {
-    it('unspecified should 404', function (done) {
-        hippie(app)
-            .get('/data/doubleechoapi/')
-            .expectStatus(404)
-            .end(done);
-    });
-
-    it('specified should echo', function (done) {
-        hippie(app)
-            .get('/data/doubleechoapi/Quack')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.should.be.eql('QuackQuack');
             done();
         });
     });
