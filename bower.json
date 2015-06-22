@@ -22,5 +22,8 @@
     "angular-ui-router": "~0.2.15",
     "angular-sanitize": "~1.4.1",
     "ng-grid": "~2.0.14"
+  },
+  "devDependencies": {
+    "bardjs": "~0.1.4"
   }
 }

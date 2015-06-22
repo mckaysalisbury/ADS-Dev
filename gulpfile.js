@@ -64,7 +64,7 @@ gulp.task('plato', function (done) {
 gulp.task('compile-tsc', function () {
     log('Compiling Typescript');
     gulp.src(config.allts)
-        .pipe(typescript({sourceMap:true}))
+        .pipe(typescript({sourceMap:true, module:"commonJs", removeComments: true}))
         .pipe(gulp.dest(config.typeScriptDirectory));
 });
 

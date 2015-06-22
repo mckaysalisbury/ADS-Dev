@@ -9,7 +9,6 @@
      "tasks": [
         {
             "taskName": "build",
-            //"args": ["app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "tmp/tsreq"],
             "args": [],
             "isBuildCommand": true,
             "problemMatcher": [
