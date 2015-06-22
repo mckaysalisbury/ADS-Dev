@@ -1,13 +1,14 @@
-(function() {
+/// <reference path="../../../../vendortypescripts/angularjs/angular.d.ts"/>
+(function () {
     'use strict';
     angular
-        .module(['app.layout'])
+        .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout','config'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'config'];
     /* @ngInject */
     function ShellController($rootScope, $timeout, config) {
-       var vm = this;
+        var vm = this;
         //vm.busyMessage = 'Please wait ...';
         //vm.isBusy = true;
         $rootScope.showSplash = true;
@@ -16,10 +17,9 @@
             text: 'Open FDA',
         };
         hideSplash();
-        
-         function hideSplash() {
+        function hideSplash() {
             //Force a 1 second delay so we can see the splash.
-            $timeout(function() {
+            $timeout(function () {
                 $rootScope.showSplash = false;
             }, 300);
         }

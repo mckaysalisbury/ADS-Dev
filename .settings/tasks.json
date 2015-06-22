@@ -1,11 +1,22 @@
 {
     "version": "0.1.0",
-    "command": "tsc",
+    "command": "gulp",
     "showOutput": "silent",
     "windows": {
         "command": "node node_modules/typescript/bin/tsc",
         "isShellCommand": true
     },
-    "args": ["app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "tmp/tsreq"],    
-    "problemMatcher": "$tsc"
+     "tasks": [
+        {
+            "taskName": "build",
+            //"args": ["app.ts", "--module", "commonjs", "--removeComments", "--sourceMap", "--outDir", "tmp/tsreq"],
+            "args": [],
+            "isBuildCommand": true,
+            "problemMatcher": [
+                "$lessCompile",
+                "$tsc",
+                "$jshint"
+            ]
+        }
+    ]
 }

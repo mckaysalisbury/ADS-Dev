@@ -1,5 +1,5 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
+/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
 import http = require('http');
 
 export class Fda{

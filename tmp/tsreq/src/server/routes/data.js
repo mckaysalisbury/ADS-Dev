@@ -1,5 +1,5 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
+/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
 var express = require('express');
 var http = require('http');
 var api = require('../modules/api');

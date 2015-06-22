@@ -1,7 +1,7 @@
 module.exports = function () {
     var client = './src/client/';
-    var clientApp = client + 'app/';
     var server = './src/server/';
+    var clientApp = client + 'app/';
     var report = './report/';
     var root = './';
     var specRunnerFile = 'specs.html';
@@ -16,7 +16,10 @@ module.exports = function () {
     var nodeModules = 'node_modules';
 
     var config = {
+        typeScriptDirectory: temp + 'typescript',
         server: server,
+        
+        allts: ['./src/**/*.ts'],
         /**
          * File paths
          */
@@ -50,7 +53,7 @@ module.exports = function () {
             client + 'stubs/**/*.js'
         ],
         temp: temp,
-
+    
         /**
          * optimized files
          */
@@ -58,17 +61,17 @@ module.exports = function () {
             app: 'app.js',
             lib: 'lib.js'
         },
-
+    
         /**
          * plato
          */
         plato: { js: client + '**/*.js' },
-
+    
         /**
          * browser sync
          */
         browserReloadDelay: 1000,
-
+    
         /**
          * template cache
          */
@@ -80,7 +83,7 @@ module.exports = function () {
                 standAlone: false
             }
         },
-
+    
         /**
          * Bower and NPM files
          */
@@ -89,13 +92,13 @@ module.exports = function () {
             './package.json',
             './bower.json'
         ],
-
+    
         /**
          * specs.html, our HTML spec runner
          */
         specRunner: client + specRunnerFile,
         specRunnerFile: specRunnerFile,
-
+    
         /**
          * The sequence of the injections into specs.html:
          *  1 testlibraries
@@ -115,7 +118,7 @@ module.exports = function () {
         specHelpers: [client + 'test-helpers/*.js'],
         specs: [client + '**/*.spec.js'],
         serverIntegrationSpecs: [client + '/tests/server-integration/**/*.spec.js'],
-
+    
         /**
          * Node settings
          */

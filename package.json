@@ -46,6 +46,7 @@
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^1.0.1",
     "gulp-print": "^1.1.0",
+    "gulp-tsc": "^0.10.1",
     "gulp-util": "^3.0.5",
     "hippie": "^0.3.0",
     "jshint-stylish": "^2.0.0",

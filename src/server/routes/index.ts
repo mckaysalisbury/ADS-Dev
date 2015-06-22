@@ -1,5 +1,5 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
+/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
 import express = require('express');
 import http = require('http');
 import path = require('path');

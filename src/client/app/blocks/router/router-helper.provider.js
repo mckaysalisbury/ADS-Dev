@@ -1,11 +1,11 @@
 /* Help configure the state-base ui.router */
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('blocks.router')
         .provider('routerHelper', routerHelperProvider);
-        
+
     routerHelperProvider.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
     /* @ngInject */
     function routerHelperProvider($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -17,7 +17,7 @@
 
         $locationProvider.html5Mode(true);
 
-        this.configure = function(cfg) {
+        this.configure = function (cfg) {
             angular.extend(config, cfg);
         };
 
@@ -45,9 +45,9 @@
             ///////////////
 
             function configureStates(states, otherwisePath) {
-                states.forEach(function(state) {
+                states.forEach(function (state) {
                     state.config.resolve =
-                        angular.extend(state.config.resolve || {}, config.resolveAlways);
+                    angular.extend(state.config.resolve || {}, config.resolveAlways);
                     $stateProvider.state(state.state, state.config);
                 });
                 if (otherwisePath && !hasOtherwise) {
@@ -61,7 +61,7 @@
                 // On routing error, go to the dashboard.
                 // Provide an exit clause if it tries to do it twice.
                 $rootScope.$on('$stateChangeError',
-                    function(event, toState, toParams, fromState, fromParams, error) {
+                    function (event, toState, toParams, fromState, fromParams, error) {
                         if (handlingStateChangeError) {
                             return;
                         }
@@ -75,7 +75,7 @@
                             ': ' + (error.status || '');
                         $location.path('/');
                     }
-                );
+                    );
             }
 
             function init() {
@@ -87,13 +87,13 @@
 
             function updateDocTitle() {
                 $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams) {
+                    function (event, toState, toParams, fromState, fromParams) {
                         stateCounts.changes++;
                         handlingStateChangeError = false;
                         var title = config.docTitle + ' ' + (toState.title || '');
                         $rootScope.title = title; // data bind to <title>
                     }
-                );
+                    );
             }
         }
     }

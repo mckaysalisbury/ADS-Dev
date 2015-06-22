@@ -5,8 +5,6 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-
-
     SearchController.$inject = ['$http', '$scope'];
     /* @ngInject */
     function SearchController($http, $scope) {
@@ -30,7 +28,7 @@
             vm.names = response.results;
         });
         vm.doSearch = function (evt) {
-            $http.get("/data/drugsContaining/" + vm.ingredient)
+            $http.get('/data/drugsContaining/' + vm.ingredient)
                 .success(function (response) { vm.drugsContaining = response.results; });
         };
     }
