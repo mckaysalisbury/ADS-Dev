@@ -12,7 +12,7 @@
 							<label>Purpose: </label>
 						</div>
 						<div>
-							<input ng-model="vm.purpose" ng-keyup="vm.provideExamplePurposes($event);" placeholder="What's your purpose?">
+							<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes($event);" placeholder="What's your purpose?">
 						</div>
 						<div>
 							<h5>Purposes include...</h5>
@@ -30,7 +30,7 @@
 							<label>Ingredient: </label>
 						</div>
 						<div>
-							<input ng-model="vm.ingredient" ng-keyup="vm.provideExampleIngredients($event);" placeholder="What's the ingredient?">
+							<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients($event);" placeholder="What's the ingredient?">
 						</div>
 						<div>
 							<h5>Ingredients excluded:</h5>

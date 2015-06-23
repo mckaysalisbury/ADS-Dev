@@ -36,13 +36,15 @@
             if (indexOfQuery === -1) {
                 return {'value': query, 'example': null};
             }
-            var i = indexOfQuery + query.length;
-            var fullText = query;
-            while (input.length > i && input[i] !== ' ') {
-                fullText += input[i++];
-            }
+            var fullText = getFullTextFromInput(query, input, indexOfQuery);
+            var example = getSampleTextFromInput(query, input, indexOfQuery, fullText.length);
+            console.log({'query': query, 'input': input});
+            console.log({'value': fullText, 'example': example});
+            return {'value': fullText.toLowerCase(), 'example': example};
+        }
+        function getSampleTextFromInput(query, input, indexOfQuery, fullTextLength) {
             var startIndex = indexOfQuery - 25;
-            var endIndex = indexOfQuery + 25 + fullText.length;
+            var endIndex = indexOfQuery + 25 + fullTextLength;
             if (startIndex < 0) {
                 startIndex = 0;
             }
@@ -59,10 +61,15 @@
                     endIndex++;
                 }
             }
-            var example = input.substring(startIndex, endIndex);
-            console.log({'query': query, 'input': input});
-            console.log({'value': fullText, 'example': example});
-            return {'value': fullText.toLowerCase(), 'example': example};
+            return input.substring(startIndex, endIndex);
+        }
+        function getFullTextFromInput(query, input, indexOfQuery) {
+            var i = indexOfQuery + query.length;
+            var fullText = query;
+            while (input.length > i && input[i] !== ' ') {
+                fullText += input[i++];
+            }
+            return fullText;
         }
 
         vm.transformPurpose = function(data) {
