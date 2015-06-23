@@ -10,8 +10,3 @@ before_script:
   - bower install
   - gulp build
   
-  deploy:
-  provider: heroku
-  api_key: pyramidopenfdadev
-  app:
-    pyramidopenfdadev: dev-staging
