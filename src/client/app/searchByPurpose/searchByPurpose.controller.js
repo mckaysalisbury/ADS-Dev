@@ -48,16 +48,16 @@
             $location.path('/products');
             $location.search('query', getPurposeWithoutIngredientQuery());
         };
-        function getPurposeWithoutIngredientQuery(){
+        function getPurposeWithoutIngredientQuery() {
             return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);
         }
-        function sanitize(input){
+        function sanitize(input) {
             if (!input) {
                 return input;
             }
             return input.replace(' ', '+');
         }
-        function unsanitize(input){
+        function unsanitize(input) {
             if (!input) {
                 return input;
             }
