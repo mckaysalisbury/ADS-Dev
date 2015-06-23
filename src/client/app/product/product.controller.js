@@ -13,7 +13,7 @@
         var splitByEquals = document.location.search.split('=');
         // I could check for "id" here
         var lastPiece = splitByEquals[splitByEquals.length - 1];
-        vm.url = "/data/product/" + lastPiece;
+        vm.url = '/data/product/' + lastPiece;
 	    $http.get(vm.url).success(function (response) {
 		      vm.result = response.results[0];
         });
