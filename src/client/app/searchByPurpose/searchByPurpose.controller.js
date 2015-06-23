@@ -16,7 +16,7 @@
         var contains = $.inArray;
         /* jshint +W117 */
         vm.searchPurposeWithoutIngredient = function (evt) {
-            $http.get('/data/purposeWithoutIngredient/' + vm.purpose + '/' + vm.ingredient)
+            $http.get('/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient))
                 .success(function (response) { vm.productsWithoutIngredient = response.results; });
         };
 
@@ -25,7 +25,7 @@
                 vm.examplePurposes = [];
                 return;
             }
-            $http.get('/data/purpose/' + vm.purpose.replace(' ', '+'))
+            $http.get('/data/purpose/' + sanitize(vm.purpose))
                 .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
             vm.searchPurposeWithoutIngredient(evt);
         };
@@ -34,7 +34,7 @@
                 vm.exampleIngredients = [];
                 return;
             }
-            $http.get('/data/ingredient/' + vm.ingredient.replace(' ', '+'))
+            $http.get('/data/ingredient/' + sanitize(vm.ingredient))
                 .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
             vm.searchPurposeWithoutIngredient(evt);
         };
@@ -44,6 +44,18 @@
             }
             return getExampleSanitized(query, input);
         };
+        function sanitize(input){
+            if (!input) {
+                return input;
+            }
+            return input.replace(' ', '+');
+        }
+        function unsanitize(input){
+            if (!input) {
+                return input;
+            }
+            return input.replace('+', ' ');
+        }
         function getExampleSanitized(query, input) {
             var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
             if (indexOfQuery === -1) {
@@ -87,7 +99,7 @@
 
         vm.transformPurpose = function(data) {
             var result = [];
-            var query = data.meta.query[0].replace('+', ' ');
+            var query = unsanitize(data.meta.query[0]);
             if (!data.results) {
                 return result;
             }
@@ -103,7 +115,7 @@
         };
         vm.transformIngredient = function(data) {
             var result = [];
-            var query = data.meta.query[0].replace('+', ' ');
+            var query = unsanitize(data.meta.query[0]);
             if (!data.results) {
                 return result;
             }

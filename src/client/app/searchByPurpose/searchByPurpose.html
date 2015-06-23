@@ -51,7 +51,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<label>{{vm.productsWithoutIngredient ? vm.productsWithoutIngredient.length : 0}} matching drugs found </label>
+						<label>{{vm.productsWithoutIngredient ? (vm.productsWithoutIngredient.length === 100 ? "100+" : vm.productsWithoutIngredient.length) : 0}} matching drugs found </label>
 						<button>View Results</button>
 					</div>
 					<div class="widget-foot ">
