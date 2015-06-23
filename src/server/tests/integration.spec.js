@@ -179,7 +179,7 @@ describe('ingredient Count', function () {
             if (err) {
                 throw err;
             }
-            body.error.code.should.be.eql("NOT_FOUND");
+            body.error.code.should.be.eql('NOT_FOUND');
             done();
         });
     });
