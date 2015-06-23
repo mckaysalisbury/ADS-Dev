@@ -8,7 +8,7 @@
     ],
   "tasks": [
         {
-            "taskName": "compile-editor",
+            "taskName": "b",
             "args": [],
             "isBuildCommand": true,
             "problemMatcher": [

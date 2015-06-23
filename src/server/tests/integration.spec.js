@@ -1,9 +1,4 @@
 /* jshint -W117, -W030 */
-/// <reference path="../../../typings/node/node.d.ts"/>
-/// <reference path="../../../typings/express/express.d.ts"/>
-/// <reference path="../../../typings/should/should.d.ts"/>
-/// <reference path="../../../typings/mocha/mocha.d.ts"/>
-
 var should = require('should');
 require('typescript-require');
 var app = require('../app'), hippie = require('hippie');
@@ -27,6 +22,7 @@ describe('Requesting from data.gov', function () {
 
 describe('data products', function () {
     it('unspecified should 404', function (done) {
+        this.timeout(5000);
         hippie(app)
             .get('/data/products/')
             .expectStatus(404)
@@ -34,6 +30,7 @@ describe('data products', function () {
     });
 
     it('Visine should have data', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/products/Visine')
@@ -48,6 +45,7 @@ describe('data products', function () {
     });
 
     it('Excedrin should have acetominaphin', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/products/Excedrin')
@@ -62,6 +60,7 @@ describe('data products', function () {
     });
 
     it('should not have extra data', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/products/Tylenol')
@@ -78,6 +77,7 @@ describe('data products', function () {
 });
 describe('ingredient', function () {
     it('Phenylephrine should be found first in Day Time with PE', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/ingredient/Phenylephrine')
@@ -110,6 +110,7 @@ describe('purpose', function () {
 
 describe('purpose', function () {
     it('sunscreen should be found', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/purpose/sunscreen')
@@ -185,6 +186,7 @@ describe('data product', function () {
 
 describe('purpose without ingredient', function () {
     it('Product without waterproduct should be tylenol', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/purposeWithoutIngredient/pain/water')

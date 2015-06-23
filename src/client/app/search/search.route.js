@@ -1,5 +1,4 @@
-/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -24,17 +23,9 @@
                     title: 'Product Search',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-search"></i> Search By Name'
+                        content: '<i class="fa fa-search"></i> Search'
                     }
                 },
-            },
-            {
-                state: 'products',
-                config:{
-                    url: '/products',
-                    templateUrl: 'app/search/products.html',
-                    title: 'Products',
-                }
             }
         ];
     }

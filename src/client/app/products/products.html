@@ -4,12 +4,15 @@
 			<div class="row-fluid">
 				<div class="col-md-12">
 					<div class="widget wgreen">
-						<div ht-widget-header title="Product Search" allow-collapse="true"></div>
+						<div ht-widget-header title="Products Search" allow-collapse="true"></div>
 						<div class="widget-content text-left text-info">
 							<div class="form-group">
 								<input class="form-control" ng-model="vm.filterOptions.filterText" placeholder="Filter a product..." />
 							</div>
 							<div class="row">
+								{{ vm.url }}<br/>
+								{{ vm.result.openfda.generic_name[0] }}<br/>
+								{{ vm.result.active_ingredient[0] }}<br/>
 								<!-- Wrapper around the non-responsive ng-grid -->
 								<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptions" /></div>
 						</div>

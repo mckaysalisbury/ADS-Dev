@@ -52,7 +52,7 @@
     "disallowMultipleLineBreaks": true,
 
     "disallowCommaBeforeLineBreak": null,
-    "disallowDanglingUnderscores": true,
+    "disallowDanglingUnderscores": null,
     "disallowEmptyBlocks": true,
     "disallowTrailingComma": null,
     "requireCommaBeforeLineBreak": true,

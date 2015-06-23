@@ -5,7 +5,7 @@
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'config'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger'];
     /* @ngInject */
     function ShellController($rootScope, $timeout, config) {
         var vm = this;
@@ -18,7 +18,7 @@
         };
         hideSplash();
         function hideSplash() {
-            //Force a 1 second delay so we can see the splash.
+            //Force a .3 second delay so we can see the splash.
             $timeout(function () {
                 $rootScope.showSplash = false;
             }, 300);
