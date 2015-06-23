@@ -25,7 +25,5 @@
             { id: 8, firstName: 'Aaron', lastName: 'Jinglehiemer', age: 22, location: 'Utah' }
         ];
         vm.title = 'Dashboard';
-
-        vm.Test = 'trigger more heroku';
     }
 })();

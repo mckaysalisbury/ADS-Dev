@@ -1,5 +1,5 @@
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -27,14 +27,14 @@
                         content: '<i class="fa fa-search"></i> Search'
                     }
                 },
-            }            ,
+            },
             {
                 state: 'products',
-                config:{
+                config: {
                     url: '/products',
                     templateUrl: 'app/search/products.html',
                     title: 'Products',
-                }                
+                }
             }
         ];
     }

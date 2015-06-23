@@ -1,10 +1,10 @@
-/// <reference path="../../../../vendortypescripts/angularjs/angular.d.ts"/>
 (function () {
     'use strict';
 
     angular
         .module('app.core', [
-        'ngAnimate', 'ngSanitize', 'blocks.router',
+        'ngAnimate', 'ngSanitize',
+        'blocks.exception', 'blocks.logger', 'blocks.router',
         'ui.router'
     ]);
 })();

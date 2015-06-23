@@ -44,7 +44,6 @@
 
         vm.gridOptions = { data: 'vm.products', filterOptions: vm.filterOptions,
             enablePaging: true
-        //pagingOptions: $scope.pagingOptions,
-             };
+        };
     }
 })();
