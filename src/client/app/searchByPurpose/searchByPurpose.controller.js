@@ -29,6 +29,9 @@
              if (query == null || input == null){
                  return {};
              }
+             return getExampleSanitized(query, input);             
+         };
+         function getExampleSanitized(query, input) {
              var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
              if (indexOfQuery == -1){
                  return {'value': query, 'example': null};
@@ -60,7 +63,7 @@
              console.log({'query': query, 'input': input});
              console.log({'value': fullText, 'example': example});
              return {'value': fullText.toLowerCase(), 'example': example};
-         };
+         }
          
          vm.transformPurpose = function(data){
             var result = [];
