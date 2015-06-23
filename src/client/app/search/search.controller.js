@@ -29,12 +29,12 @@
             $http.get('/data/purposeWithoutIngredient/' + vm.purpose + '/' + vm.excludeIngredient)
                 .success(function (response) { vm.productsWithoutIngredient = response.results; });
         };
-        
+
         vm.provideExamplePurposes = function (evt) {
             console.log('purpose: ' + vm.purpose);
             $http.get('/data/purposeWithQuery/' + vm.purpose)
-                .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });  
-            vm.searchPurposeWithoutIngredient(evt);          
+                .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            vm.searchPurposeWithoutIngredient(evt);
         };
 
         vm.productSearch = function(evt) {

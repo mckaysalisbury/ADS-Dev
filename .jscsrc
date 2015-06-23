@@ -11,7 +11,7 @@
         "catch"
     ],
     "requireOperatorBeforeLineBreak": true,
-    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties", // FDA dataset
     "validateIndentation": 4,
     "validateQuoteMarks": "'",
 
