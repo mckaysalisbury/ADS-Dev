@@ -27,14 +27,14 @@
                         content: '<i class="fa fa-search"></i> Search'
                     }
                 },
-            }            ,
+            },
             {
                 state: 'products',
                 config:{
                     url: '/products',
                     templateUrl: 'app/search/products.html',
                     title: 'Products',
-                }                
+                }
             }
         ];
     }
