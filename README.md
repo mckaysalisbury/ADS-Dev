@@ -5,4 +5,4 @@
 Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submission
 
 ## License
-ADS-Dev is licensed under the MIT license(LICENSE).
+ADS-Dev is licensed under the MIT license.
