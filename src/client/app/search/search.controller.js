@@ -25,8 +25,15 @@
         };
 
         vm.searchPurposeWithoutIngredient = function (evt) {
-            $http.get('/data/purposeWithoutIngredient/' + vm.purpose + '/' + vm.ingredient)
-                .success(function (response) { vm.drugsContaining = response.results; });
+            $http.get('/data/purposeWithoutIngredient/' + vm.purpose + '/' + vm.excludeIngredient)
+                .success(function (response) { vm.productsWithoutIngredient = response.results; });
+        };
+        
+        vm.provideExamplePurposes = function (evt) {
+            console.log('purpose: ' + vm.purpose);
+            $http.get('/data/purposeWithQuery/' + vm.purpose)
+                .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });  
+            vm.searchPurposeWithoutIngredient(evt);          
         };
 
         vm.productSearch = function(evt) {
@@ -75,13 +82,7 @@
              return {'value': fullText, 'example': example};
          }
          
-         var bestPictures = new Bloodhound({
-          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-          queryTokenizer: Bloodhound.tokenizers.whitespace,
-          remote: {
-            url: '../data/purposeWithQuery/%QUERY',
-            wildcard: '%QUERY',
-            filter: function(data){
+         vm.transformPurpose = function(data){
                 var result = [];
                 var query = data.q;
                 if (!data.d.results){
@@ -91,25 +92,33 @@
                     result.push(vm.getExample(query, element.purpose));
                 }, this);  
                 return result;
-            }
-          }
-        });
+            };
          
-        $('#purposeInput').typeahead(null, {
-          name: 'purposes',
-          display: 'value', 
-          source: bestPictures,
-          limit:10,
-          templates: {
-            empty: [
-              '<div class="empty-message">',
-                'Unable to find any purposes that match your search.',
-              '</div>'
-            ].join('\n'),
-            suggestion: function(data){
-              return '<p><strong>' + data.value + '</strong> - ' + data.example + '</p>';
-            }
-          }
-        });
+        //  var bestPictures = new Bloodhound({
+        //   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        //   queryTokenizer: Bloodhound.tokenizers.whitespace,
+        //   remote: {
+        //     url: '../data/purposeWithQuery/%QUERY',
+        //     wildcard: '%QUERY',
+        //     filter: vm.transformPurpose
+        //   }
+        // });
+        //  
+        // $('#purposeInput').typeahead(null, {
+        //   name: 'purposes',
+        //   display: 'value', 
+        //   source: bestPictures,
+        //   limit:10,
+        //   templates: {
+        //     empty: [
+        //       '<div class="empty-message">',
+        //         'Unable to find any purposes that match your search.',
+        //       '</div>'
+        //     ].join('\n'),
+        //     suggestion: function(data){
+        //       return '<p><strong>' + data.value + '</strong> - ' + data.example + '</p>';
+        //     }
+        //   }
+        // });
     }
 })();

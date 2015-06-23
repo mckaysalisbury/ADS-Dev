@@ -8,6 +8,7 @@
         'app.admin',
         'app.dashboard',
         'app.layout',
-        'app.search'
+        'app.search',
+        'app.searchByPurpose'
     ]);
 })();

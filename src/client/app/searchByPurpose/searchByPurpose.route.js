@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.search')
+        .module('app.searchByPurpose')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -15,16 +15,16 @@
     function getStates() {
         return [
             {
-                state: 'search',
+                state: 'searchByPurpose',
                 config: {
-                    url: '/search',
-                    templateUrl: 'app/search/search.html',
-                    controller: 'SearchController',
+                    url: '/searchByPurpose',
+                    templateUrl: 'app/searchByPurpose/searchByPurpose.html',
+                    controller: 'SearchByPurposeController',
                     controllerAs: 'vm',
-                    title: 'Product Search',
+                    title: 'Search By Purpose',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-search"></i> Search'
+                        content: '<i class="fa fa-search"></i> Search By Purpose'
                     }
                 },
             }
