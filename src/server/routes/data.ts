@@ -21,13 +21,6 @@ router.get('/purpose/:purpose', function(req, res, next) {
   Fda.Purpose(req.params.purpose, function(body){res.json(body);});
 });
 
-router.get('/purposeWithQuery/:purpose', function(req, res, next) {
-    Fda.Purpose(req.params.purpose, function(body){
-    var result = {"q": req.params.purpose, "d": body};
-    res.json(result);
-  });
-});
-
 router.get('/purposeWithoutIngredient/:purpose/:ingredient', function(req, res, next) {
   Fda.PurposeWithoutIngredient(req.params.purpose, req.params.ingredient, function(body){res.json(body);});
 });
