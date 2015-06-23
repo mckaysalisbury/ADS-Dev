@@ -343,6 +343,11 @@ gulp.task('serve-dev', ['vet','inject'], function () {
 });
 
 /**
+ * compiles with the corresponding editor
+ */
+gulp.task('compile-editor',['compile-tsc','vet']);
+
+/**
  * serve the build environment
  * --debug-brk or --debug
  * --nosync

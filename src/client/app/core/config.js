@@ -1,4 +1,4 @@
-/// <reference path="../../../../vendortypescripts/angularjs/angular.d.ts"/>
+/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
 (function () {
     'use strict';
 

@@ -52,11 +52,9 @@
     "disallowMultipleLineBreaks": true,
 
     "disallowCommaBeforeLineBreak": null,
-    "disallowDanglingUnderscores": null,
-    "disallowEmptyBlocks": null,
+    "disallowDanglingUnderscores": true,
+    "disallowEmptyBlocks": true,
     "disallowTrailingComma": null,
-    "requireCommaBeforeLineBreak": null,
-    "requireDotNotation": null,
-    "requireMultipleVarDecl": null,
+    "requireCommaBeforeLineBreak": true,
     "requireParenthesesAroundIIFE": true
 }
