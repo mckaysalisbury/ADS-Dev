@@ -12,14 +12,17 @@
 							<label>Purpose: </label>
 						</div>
 						<div>
-							<input ng-model="vm.purpose" ng-keyup="vm.provideExamplePurposes($event);" placeholder="What's your purpose?">
+							<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes($event);" placeholder="What's your purpose?">
+						</div>
+						<div>
+							<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
 						</div>
 						<div>
 							<h5>Purposes include...</h5>
 						</div>
 						<div class="row" ng-repeat="x in vm.examplePurposes">
 							<label class="col-md-4 ">{{ x.value }}</label>
-							<label class="col-md-8 ">{{ x.example }}</label>
+							<label style="word-wrap:break-word" class="col-md-8 ">{{ x.example }}</label>
 						</div>
 					</div>
 					<div class="widget-content text-left text-info col-md-6">
@@ -30,14 +33,17 @@
 							<label>Ingredient: </label>
 						</div>
 						<div>
-							<input ng-model="vm.ingredient" ng-keyup="vm.provideExampleIngredients($event);" placeholder="What's the ingredient?">
+							<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients($event);" placeholder="What's the ingredient?">
+						</div>
+						<div>
+							<label>{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</label>
 						</div>
 						<div>
 							<h5>Ingredients excluded:</h5>
 						</div>
 						<div class="row " ng-repeat="x in vm.exampleIngredients">
 							<label class="col-md-4 ">{{ x.value }}</label>
-							<label class="col-md-8 ">{{ x.example }}</label>
+							<label style="word-wrap:break-word" class="col-md-8 ">{{ x.example }}</label>
 						</div>
 					</div>
 					<div class="widget-foot ">
