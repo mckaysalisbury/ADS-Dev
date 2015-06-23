@@ -9,7 +9,7 @@ require('typescript-require');
 var app = require('../app');
 var hippie = require('hippie');
 
-describe('Requesting from data.gov', function () {
+describe.skip('Requesting from data.gov', function () {
     it('should return results', function (done) {
         hippie()
             .json()
@@ -26,7 +26,7 @@ describe('Requesting from data.gov', function () {
     });
 });
 
-describe('data products', function () {
+describe.skip('data products', function () {
     it('unspecified should 404', function (done) {
         hippie(app)
             .get('/data/products/')
