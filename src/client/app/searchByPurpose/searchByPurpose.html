@@ -12,7 +12,7 @@
 							<label>Purpose: </label>
 						</div>
 						<div>
-							<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes($event);" placeholder="What's your purpose?">
+							<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?">
 						</div>
 						<div>
 							<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
@@ -22,7 +22,7 @@
 						</div>
 						<div class="row" style="overflow: scroll; height: 350px;">
 							<div ng-repeat="x in vm.examplePurposes">
-								<label class="col-md-4 ">{{ x.value }}</label>
+								<a class="col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
 								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 							<label>Ingredient: </label>
 						</div>
 						<div>
-							<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients($event);" placeholder="What's the ingredient?">
+							<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?">
 						</div>
 						<div>
 							<label>{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</label>
@@ -45,7 +45,7 @@
 						</div>
 						<div class="row" style="overflow: scroll; height: 350px;">
 							<div ng-repeat="x in vm.exampleIngredients">
-								<label class="col-md-4 ">{{ x.value }}</label>
+								<a ng-click="vm.changeIngredient(x.value);" class="col-md-4" style="font-weight:bold;">{{ x.value }}</a>
 								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
 							</div>
 						</div>

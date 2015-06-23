@@ -15,28 +15,28 @@
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
-        vm.searchPurposeWithoutIngredient = function (evt) {
+        vm.searchPurposeWithoutIngredient = function () {
             $http.get(getPurposeWithoutIngredientQuery())
                 .success(function (response) { vm.productsWithoutIngredient = response.results; });
         };
 
-        vm.provideExamplePurposes = function (evt) {
+        vm.provideExamplePurposes = function () {
             if (vm.purpose == null || vm.purpose === '') {
                 vm.examplePurposes = [];
                 return;
             }
             $http.get('/data/purpose/' + sanitize(vm.purpose))
                 .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
-            vm.searchPurposeWithoutIngredient(evt);
+            vm.searchPurposeWithoutIngredient();
         };
-        vm.provideExampleIngredients = function (evt) {
+        vm.provideExampleIngredients = function () {
             if (vm.ingredient == null || vm.ingredient === '') {
                 vm.exampleIngredients = [];
                 return;
             }
             $http.get('/data/ingredient/' + sanitize(vm.ingredient))
                 .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
-            vm.searchPurposeWithoutIngredient(evt);
+            vm.searchPurposeWithoutIngredient();
         };
         vm.getExample = function getExample(query, input) {
             if (query == null || input == null) {
@@ -47,7 +47,15 @@
         vm.viewResults = function viewResults() {
             $location.path('/products');
             $location.search('query', getPurposeWithoutIngredientQuery());
-            $window.scrollTo(0,0)
+            $window.scrollTo(0, 0);
+        };
+        vm.changePurpose = function changePurpose(newValue) {
+            vm.purpose = newValue;
+            vm.provideExamplePurposes();
+        };
+        vm.changeIngredient = function changeIngredient(newValue) {
+            vm.ingredient = newValue;
+            vm.provideExampleIngredients();
         };
         function getPurposeWithoutIngredientQuery() {
             return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);

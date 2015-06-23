@@ -10,7 +10,7 @@
     /* @ngInject */
     function ProductsController($http, logger, $location) {
         var vm = this;
-        vm.filterOptions = { filterText: '' }; 
+        vm.filterOptions = { filterText: '' };
 
         var splitByEquals = document.location.search.split('=');
         // I could check for "query" here
