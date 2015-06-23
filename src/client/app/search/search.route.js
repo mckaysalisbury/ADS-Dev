@@ -24,7 +24,7 @@
                     title: 'Product Search',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-search"></i> Search'
+                        content: '<i class="fa fa-search"></i> Search By Name'
                     }
                 },
             },
