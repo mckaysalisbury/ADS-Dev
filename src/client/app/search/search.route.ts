@@ -21,7 +21,7 @@
                     templateUrl: 'app/search/search.html',
                     controller: 'SearchController',
                     controllerAs: 'vm',
-                    title: 'Search',
+                    title: 'Product Search',
                     settings: {
                         nav: 3,
                         content: '<i class="fa fa-search"></i> Search'
