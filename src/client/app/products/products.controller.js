@@ -3,17 +3,17 @@
     'use strict';
 
     angular
-        .module('app.product')
-        .controller('ProductController', ProductController);
+        .module('app.products')
+        .controller('ProductsController', ProductsController);
 
-    ProductController.$inject = ['$http'];
+    ProductsController.$inject = ['$http'];
     /* @ngInject */
-    function ProductController($http) {
+    function ProductsController($http) {
         var vm = this;
         var splitByEquals = document.location.search.split('=');
-        // I could check for "id" here
+        // I could check for "query" here
         var lastPiece = splitByEquals[splitByEquals.length - 1];
-        vm.url = '/data/product/' + lastPiece;
+        vm.url = lastPiece;
         $http.get(vm.url).success(function (response) {
             vm.result = response.results[0];
         });
