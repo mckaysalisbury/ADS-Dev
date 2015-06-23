@@ -54,7 +54,7 @@ describe('data products', function () {
             if (err) {
                 throw err;
             }
-            body.results[0]['active_ingredient'].should.match(/Acetaminophen/);
+            body.results[0]['generic_name'].should.match(/ACETAMINOPHEN/);
             done();
         });
     });
@@ -69,7 +69,7 @@ describe('data products', function () {
             if (err) {
                 throw err;
             }
-            body.results[0].should.have.property('active_ingredient');
+            body.results[0].should.have.property('generic_name');
             body.results[0].should.not.have.property('storage_and_handling');
             done();
         });

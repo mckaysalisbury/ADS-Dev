@@ -7,8 +7,8 @@
         'app.admin',
         'app.dashboard',
         'app.layout',
-        'app.product',
         'app.products',
+        'app.product',
         'app.search',
         'app.searchByPurpose'
     ]);
