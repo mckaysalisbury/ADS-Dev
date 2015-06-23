@@ -16,13 +16,6 @@ router.get('/product/:id', function(req, res, next) {
 router.get('/ingredient/:ingredientName', function(req, res, next) {
   Fda.Ingredient(req.params.ingredientName, function(body){res.json(body);});
 });
-router.get('/ingredientWithQuery/:ingredientName', function(req, res, next) {
-  var wr = new api.Fda();
-    wr.Ingredient(req.params.ingredientName, function(body){
-    var result = {"q": req.params.ingredientName, "d": body};
-    res.json(result);
-  });
-});
 
 router.get('/purpose/:purpose', function(req, res, next) {
   Fda.Purpose(req.params.purpose, function(body){res.json(body);});

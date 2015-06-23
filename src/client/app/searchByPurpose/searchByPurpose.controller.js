@@ -16,12 +16,12 @@
         };
         
         vm.provideExamplePurposes = function (evt) {
-            $http.get('/data/purposeWithQuery/' + vm.purpose)
+            $http.get('/data/purpose/' + vm.purpose)
                 .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });  
             // vm.searchPurposeWithoutIngredient(evt);          
         };
         vm.provideExampleIngredients = function (evt) {
-            $http.get('/data/ingredientWithQuery/' + vm.ingredient)
+            $http.get('/data/ingredient/' + vm.ingredient)
                 .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });  
             // vm.searchPurposeWithoutIngredient(evt);  
         };
@@ -59,16 +59,16 @@
              var example = input.substring(startIndex, endIndex);
              console.log({'query': query, 'input': input});
              console.log({'value': fullText, 'example': example});
-             return {'value': fullText, 'example': example};
+             return {'value': fullText.toLowerCase(), 'example': example};
          };
          
          vm.transformPurpose = function(data){
             var result = [];
-            var query = data.q;
-            if (!data.d.results){
+            var query = data.meta.query[0];
+            if (!data.results){
                 return result;
             }
-            data.d.results.forEach(function(element) {
+            data.results.forEach(function(element) {
                 var v = vm.getExample(query, element.purpose);
                 if (v.example){
                     result.push(v);
@@ -78,11 +78,11 @@
         };
         vm.transformIngredient = function(data){
             var result = [];
-            var query = data.q;
-            if (!data.d.results){
+            var query = data.meta.query[0];
+            if (!data.results){
                 return result;
             }
-            data.d.results.forEach(function(element) {
+            data.results.forEach(function(element) {
                 var v = vm.getExample(query, element.generic_name);
                 if (v.example){
                     result.push(v);
