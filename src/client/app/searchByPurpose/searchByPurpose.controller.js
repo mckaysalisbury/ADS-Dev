@@ -7,9 +7,9 @@
         .module('app.searchByPurpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$location'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window'];
     /* @ngInject */
-    function SearchByPurposeController($http, $location) {
+    function SearchByPurposeController($http, $location, $window) {
         var vm = this;
         var nonWordCharacters = [' ', '/', ',', ')', '(', '.'];
         /* jshint -W117 */
@@ -47,6 +47,7 @@
         vm.viewResults = function viewResults() {
             $location.path('/products');
             $location.search('query', getPurposeWithoutIngredientQuery());
+            $window.scrollTo(0,0)
         };
         function getPurposeWithoutIngredientQuery() {
             return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);
