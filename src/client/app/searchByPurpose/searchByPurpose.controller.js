@@ -7,16 +7,16 @@
         .module('app.searchByPurpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http'];
+    SearchByPurposeController.$inject = ['$http', '$location'];
     /* @ngInject */
-    function SearchByPurposeController($http) {
+    function SearchByPurposeController($http, $location) {
         var vm = this;
         var nonWordCharacters = [' ', '/', ',', ')', '(', '.'];
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
         vm.searchPurposeWithoutIngredient = function (evt) {
-            $http.get('/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient))
+            $http.get(getPurposeWithoutIngredientQuery())
                 .success(function (response) { vm.productsWithoutIngredient = response.results; });
         };
 
@@ -44,6 +44,13 @@
             }
             return getExampleSanitized(query, input);
         };
+        vm.viewResults = function viewResults() {
+            $location.path('/products');
+            $location.search('query', getPurposeWithoutIngredientQuery());
+        };
+        function getPurposeWithoutIngredientQuery(){
+            return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);
+        }
         function sanitize(input){
             if (!input) {
                 return input;
