@@ -27,8 +27,8 @@ describe('Requesting from data.gov', function () {
 });
 
 describe('data products', function () {
-        this.timeout(5000);
     it('unspecified should 404', function (done) {
+        this.timeout(5000);
         hippie(app)
             .get('/data/products/')
             .expectStatus(404)
