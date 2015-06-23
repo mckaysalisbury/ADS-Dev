@@ -7,7 +7,6 @@
     "test": "mocha ./src/server/tests",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome",
-    "postinstall": "gulp build"
   },
   "dependencies": {
     "body-parser": "~1.13.1",
