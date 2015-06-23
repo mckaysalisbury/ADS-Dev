@@ -27,7 +27,7 @@
                         content: '<i class="fa fa-search"></i> Search'
                     }
                 },
-            },
+            }            ,
             {
                 state: 'products',
                 config:{
