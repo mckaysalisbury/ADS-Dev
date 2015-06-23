@@ -5,6 +5,7 @@ var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
 var path = require('path');
+var mocha = require('gulp-mocha');
 var typescript = require('gulp-tsc');
 
 var _ = require('lodash');
@@ -64,7 +65,7 @@ gulp.task('plato', function (done) {
 gulp.task('compile-tsc', function () {
     log('Compiling Typescript');
     gulp.src(config.allts)
-        .pipe(typescript({sourceMap:true, module:"commonJs", removeComments: true}))
+        .pipe(typescript({ sourceMap: true, module: "commonJs", removeComments: true }))
         .pipe(gulp.dest(config.typeScriptDirectory));
 });
 
@@ -238,26 +239,26 @@ gulp.task('optimize', ['inject', 'test'], function () {
         .pipe($.plumber())
         .pipe(inject(templateCache, 'templates'))
         .pipe(assets) // Gather all assets from the html with useref
-        // Get the css
+    // Get the css
         .pipe(cssFilter)
         .pipe($.minifyCss())
         .pipe(cssFilter.restore())
-        // Get the custom javascript
+    // Get the custom javascript
         .pipe(jsAppFilter)
         .pipe($.ngAnnotate({ add: true }))
         .pipe($.uglify())
         .pipe(getHeader())
         .pipe(jsAppFilter.restore())
-         // Get the vendor javascript
+    // Get the vendor javascript
         .pipe(jslibFilter)
         .pipe($.uglify()) // another option is to override wiredep to use min files
         .pipe(jslibFilter.restore())
-        // Take inventory of the file names for future rev numbers
+    // Take inventory of the file names for future rev numbers
         .pipe($.rev())
-        // Apply the concat and file replacement with useref
+    // Apply the concat and file replacement with useref
         .pipe(assets.restore())
         .pipe($.useref())
-        // Replace the file names in the html with rev numbers
+    // Replace the file names in the html with rev numbers
         .pipe($.revReplace())
         .pipe(gulp.dest(config.build));
 });
@@ -338,15 +339,29 @@ gulp.task('autotest', function (done) {
  * --debug-brk or --debug
  * --nosync
  */
-gulp.task('serve-dev', ['vet','inject'], function () {
+gulp.task('serve-dev', ['vet', 'inject'], function () {
     serve(true /*isDev*/);
 });
 
 /**
- * compiles with the corresponding editor
+ * compiles with the corresponding editor with typescript,
+ * mocha tests, spectests with phantomjs, and code vet
  */
-gulp.task('compile-editor',['compile-tsc','vet']);
+gulp.task('b', ['compile-tsc', 'test', 'run-mocha', 'vet']);
 
+/**
+ * runs the integration test in mocha 
+ */
+gulp.task('run-mocha', function () {
+    return gulp.src(config.mochaServerTests)
+        .pipe(mocha())
+        .once('error', function () {
+        process.exit(1);
+    })
+        .once('end', function () {
+        process.exit();
+    });
+})
 /**
  * serve the build environment
  * --debug-brk or --debug
@@ -458,24 +473,24 @@ function serve(isDev, specRunner) {
     }
 
     return $.nodemon(nodeOptions)
-        .on('restart', ['vet'], function(ev) {
-            log('*** nodemon restarted');
-            log('files changed:\n' + ev);
-            setTimeout(function() {
-                browserSync.notify('reloading now ...');
-                browserSync.reload({stream: false});
-            }, config.browserReloadDelay);
-        })
+        .on('restart', ['vet'], function (ev) {
+        log('*** nodemon restarted');
+        log('files changed:\n' + ev);
+        setTimeout(function () {
+            browserSync.notify('reloading now ...');
+            browserSync.reload({ stream: false });
+        }, config.browserReloadDelay);
+    })
         .on('start', function () {
-            log('*** nodemon started');
-            startBrowserSync(isDev, specRunner);
-        })
+        log('*** nodemon started');
+        startBrowserSync(isDev, specRunner);
+    })
         .on('crash', function () {
-            log('*** nodemon crashed: script crashed for some reason');
-        })
+        log('*** nodemon crashed: script crashed for some reason');
+    })
         .on('exit', function () {
-            log('*** nodemon exited cleanly');
-        });
+        log('*** nodemon exited cleanly');
+    });
 }
 
 function getNodeOptions(isDev) {

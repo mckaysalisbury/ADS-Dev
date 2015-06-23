@@ -20,9 +20,11 @@
 						<div>
 							<h5>Purposes include...</h5>
 						</div>
-						<div class="row" ng-repeat="x in vm.examplePurposes">
-							<label class="col-md-4 ">{{ x.value }}</label>
-							<label style="word-wrap:break-word" class="col-md-8 ">{{ x.example }}</label>
+						<div class="row" style="overflow: scroll; height: 350px;">
+							<div ng-repeat="x in vm.examplePurposes">
+								<label class="col-md-4 ">{{ x.value }}</label>
+								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
+							</div>
 						</div>
 					</div>
 					<div class="widget-content text-left text-info col-md-6">
@@ -41,10 +43,16 @@
 						<div>
 							<h5>Ingredients excluded:</h5>
 						</div>
-						<div class="row " ng-repeat="x in vm.exampleIngredients">
-							<label class="col-md-4 ">{{ x.value }}</label>
-							<label style="word-wrap:break-word" class="col-md-8 ">{{ x.example }}</label>
+						<div class="row" style="overflow: scroll; height: 350px;">
+							<div ng-repeat="x in vm.exampleIngredients">
+								<label class="col-md-4 ">{{ x.value }}</label>
+								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
+							</div>
 						</div>
+					</div>
+					<div class="col-md-12">
+						<label>{{vm.productsWithoutIngredient ? (vm.productsWithoutIngredient.length === 100 ? "100+" : vm.productsWithoutIngredient.length) : 0}} matching drugs found </label>
+						<button>View Results</button>
 					</div>
 					<div class="widget-foot ">
 						<div class="clearfix "></div>

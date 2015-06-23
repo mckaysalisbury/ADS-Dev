@@ -28,6 +28,7 @@ describe('Requesting from data.gov', function () {
 
 describe('data products', function () {
     it('unspecified should 404', function (done) {
+        this.timeout(5000);
         hippie(app)
             .get('/data/products/')
             .expectStatus(404)
@@ -35,6 +36,7 @@ describe('data products', function () {
     });
 
     it('Visine should have data', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/products/Visine')
@@ -49,6 +51,7 @@ describe('data products', function () {
     });
 
     it('Excedrin should have acetominaphin', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/products/Tylenol')
@@ -64,6 +67,7 @@ describe('data products', function () {
     });
 
     it('Specific product should be tylenol', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/product/07090b21-bc6c-4d16-a49e-02f0622eb0f1')
