@@ -6,6 +6,6 @@ before_script:
   - npm install -g gulp
   - npm install phantomjs
   - npm install -g karma
-  - npm install -g tsc@1.4.1
+  - npm install -g typescript@1.4.1
   - bower install
   - gulp build
