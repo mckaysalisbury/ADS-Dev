@@ -151,6 +151,19 @@ describe('purpose', function () {
         });
     });
 
+    it('garbage shouldnt crash', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/garbage')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            done();
+        });
+    });
+
 
 });
 
