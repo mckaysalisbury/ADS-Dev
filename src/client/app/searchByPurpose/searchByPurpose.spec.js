@@ -1,14 +1,14 @@
 /* jshint -W117, -W030 */
-describe('SearchController', function () {
+describe('SearchByPurposeController', function () {
     var controller;
 
     beforeEach(function () {
-        bard.appModule('app.search');
+        bard.appModule('app.searchByPurpose');
         bard.inject('$controller', '$log', '$q', '$rootScope');
     });
 
     beforeEach(function () {
-        controller = $controller('SearchController');
+        controller = $controller('SearchByPurposeController');
         $rootScope.$apply();
     });
 

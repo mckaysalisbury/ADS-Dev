@@ -46,37 +46,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="widget wred">
-						<div ht-widget-header title="Find ingredients" allow-collapse="true"></div>
-						<div class="widget-content text-left text-info">
-							<input id="purposeInput" ng-model="vm.purpose" ng-keyup="searchPurposeWithoutIngredient($event);" placeholder="What's your purpose'">
-							<input ng-model="vm.ingredient" ng-keyup="searchPurposeWithoutIngredient($event);" placeholder="What's the ingredient'">
-							<br/>
-							<!--Search: <input ng-model="query">-->
-							<table style="border:">
-								<tr>
-									<!--<th>Manufacturer Name</th>-->
-									<td>
-										<strong>Brand Name</strong>
-									</td>
-								</tr>
-								<tr ng-repeat="x in products | filter:query">
-									<!--<td>{{ x.manufacturer_name }}</td>-->
-									<td>
-										<a href="/product/{{x.id}}">{{ x.brand_name }}</a>
-										<small>
-											<a href="/data/product/{{x.id}}">(json)</a>
-										</small>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="widget-foot ">
-							<div class="clearfix "></div>
-						</div>
-					</div>
-				</div>
 			</div>
+		</div>
 	</section>
 </section>
