@@ -1,16 +1,15 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_script:
-  - npm install -g bower
-  - npm install -g gulp
-  - npm install phantomjs
-  - npm install -g karma
-  - npm install -g typescript@1.4.1
-  - bower install
-  - gulp build
-  
-  deploy:
-    provider: heroku
-    api_key: pyramidopenfdadev
-    app: pyramidopenfdadev
+- npm install -g bower
+- npm install -g gulp
+- npm install phantomjs
+- npm install -g karma
+- npm install -g typescript@1.4.1
+- bower install
+- gulp build
+deploy:
+  provider: heroku
+  api_key:
+    secure: j6EVyqsA7z4btrFV2S3qShK2L3RpHdNABz8XazyD3ipVFyT0EysaR04rJ33IYOM0aYf1C3mUT48WMkbx4a3gfVg7ej/4E/TBkAFZ3kljRaS7LExUBFIhI3Y1wx2iFXn9rkyNRFOqBqP2yU7QTobKvSBxS+agL54YWq9umPVo+Bkfe4F/uWjVvDRlmnvHgMWTMiszbFRuHoDWPbQblXGp9kUrNFUBV6dL2B3hgkakJCOKB3vFvfMnaLXIG1msqO9a5utNhpBCuZEVpOecZ+9CychpC067qHNExKsWZ/nggsphoVcFXLpFyK8WPEfXqgHFdbiC2Nx5qJKql5S2krXylANgyp4fn1SfieEtaj7BFRNGCwowr+Zz8rhVsqNkOH0VG8xr3UL+TUpGsY5p2ayqEBCF5GNljZqF0sHBlckkGt1ck7PhC9rPLg37F/HuDFsD6y7SOtokdY1hx7cVp4DGjjUq0zS9aoVnW861OR+kQcqKJCbr3PPjXmqLt2/WyW1r/u9LlV26BhkdRPOAAW05t62OvmcPKZudVOzHZk0e0YTuk1R3UVo7NZIxMRbpdPjcvwjJcakDsh4x5BzgRojT6VLRyBtYjji8rhzRoD/cWD9ThUlzTHyatcxuOpRxKGC+sbx7g8bSKe0NsIFAYAmeBxaEgFp3rRIyqhP7Beh/Kio=
