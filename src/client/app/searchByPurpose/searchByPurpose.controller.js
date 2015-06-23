@@ -30,12 +30,12 @@
                  return {};
              }
              var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
-             if (indexOfQuery == -1){
+             if (indexOfQuery === -1){
                  return {'value': query, 'example': null};
              }
              var i = indexOfQuery + query.length;
              var fullText = query;
-             while (input.length > i && input[i] != " "){
+             while (input.length > i && input[i] !== ' '){
                  fullText += input[i++];
              }
              var startIndex = indexOfQuery - 25;
@@ -44,7 +44,7 @@
                 startIndex = 0;
              }
              else{
-                 while (startIndex > 0 && input[startIndex-1] != " "){
+                 while (startIndex > 0 && input[startIndex-1] !== ' '){
                      startIndex--;
                  }
              }
@@ -52,7 +52,7 @@
                  endIndex = input.length;
              }
              else{
-                 while (endIndex < input.length && input[endIndex] != " "){
+                 while (endIndex < input.length && input[endIndex] !== ' '){
                      endIndex++;
                  }
              }
@@ -70,7 +70,7 @@
             }
             data.results.forEach(function(element) {
                 var v = vm.getExample(query, element.purpose);
-                if (v.example){
+                if (v.example) {
                     result.push(v);
                 }
             }, this);  
@@ -79,19 +79,21 @@
         vm.transformIngredient = function(data){
             var result = [];
             var query = data.meta.query[0];
-            if (!data.results){
+            if (!data.results) {
                 return result;
             }
             data.results.forEach(function(element) {
+/* jshint -W106 */ // comes from FDA dataset
                 var v = vm.getExample(query, element.generic_name);
-                if (v.example){
+                if (v.example) {
                     result.push(v);
                 }
                 v = vm.getExample(query, element.inactive_ingredient);
-                if (v.example){
+/* jshint +W106 */
+                if (v.example) {
                     result.push(v);
                 }
-            }, this);  
+            }, this);
             return result;
         };
     }
