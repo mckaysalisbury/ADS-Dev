@@ -1,4 +1,3 @@
-/// <reference path="../../../vendortypescripts/angularjs/angular.d.ts"/>
 (function () {
     'use strict';
 
@@ -8,6 +7,8 @@
         'app.admin',
         'app.dashboard',
         'app.layout',
+        'app.product',
+        'app.products',
         'app.search',
         'app.searchByPurpose'
     ]);
