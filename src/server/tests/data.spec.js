@@ -1,8 +1,8 @@
 /* jshint -W117, -W030 */
-/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
-/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
-/// <reference path="../../../vendortypescripts/should/should.d.ts"/>
-/// <reference path="../../../vendortypescripts/mocha/mocha.d.ts"/>
+/// <reference path="../../../typings/node/node.d.ts"/>
+/// <reference path="../../../typings/express/express.d.ts"/>
+/// <reference path="../../../typings/should/should.d.ts"/>
+/// <reference path="../../../typings/mocha/mocha.d.ts"/>
 
 var should = require('should');
 require('typescript-require');

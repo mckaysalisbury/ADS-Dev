@@ -1,8 +1,8 @@
 /* jshint -W117, -W030 */
-/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
-/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
-/// <reference path="../../../vendortypescripts/should/should.d.ts"/>
-/// <reference path="../../../vendortypescripts/mocha/mocha.d.ts"/>
+/// <reference path="../../../typings/node/node.d.ts"/>
+/// <reference path="../../../typings/express/express.d.ts"/>
+/// <reference path="../../../typings/should/should.d.ts"/>
+/// <reference path="../../../typings/mocha/mocha.d.ts"/>
 
 var should = require('should');
 require('typescript-require');
@@ -93,7 +93,7 @@ describe('ingredient', function () {
 });
 
 describe('purpose', function () {
-    it('headaches should be found first in Day Time with PE', function (done) {
+    it('vendors should be found first in Day Time with PE', function (done) {
         hippie(app)
             .json()
             .get('/data/purpose/Headache')
@@ -122,6 +122,36 @@ describe('purpose', function () {
             done();
         });
     });
+
+    it('"pai fev" should find pain relievers and fever reducers', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/pai+fev')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.results[0]['purpose'].should.be.eql('Purpose Pain reliever/fever reducer');
+            done();
+        });
+    });
+
+    it('should have the query in the meta', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/pai+fev')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.meta.query[0].should.be.eql('pai+fev');
+            done();
+        });
+    });
+
+
 });
 
 describe('data product', function () {
@@ -151,35 +181,6 @@ describe('purpose without ingredient', function () {
                 throw err;
             }
             body.results[0]['brand_name'].should.be.eql('Pain Relief Extra Strength');
-            done();
-        });
-    });
-});
-
-describe('ingredient Count', function () {
-    it('aloe should be many', function (done) {
-        hippie(app)
-            .json()
-            .get('/data/ingredientCount/aloe')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.meta.results.total.should.not.be.eql(0);
-            done();
-        });
-    });
-    it('garbage should be none', function (done) {
-        hippie(app)
-            .json()
-            .get('/data/ingredientCount/garbage')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.error.code.should.be.eql("NOT_FOUND");
             done();
         });
     });

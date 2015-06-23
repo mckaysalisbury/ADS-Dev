@@ -5,7 +5,7 @@ module.exports = function () {
     var report = './report/';
     var root = './';
     var specRunnerFile = 'specs.html';
-    var temp = './.tmp/';
+    var temp = './tmp/';
     var wiredep = require('wiredep');
     var bowerFiles = wiredep({ devDependencies: true })['js'];
     var bower = {
@@ -116,9 +116,9 @@ module.exports = function () {
             nodeModules + '/sinon-chai/lib/sinon-chai.js'
         ],
         specHelpers: [client + 'test-helpers/*.js'],
-        specs: ['./src/' + '**/*.spec.js'],
-        serverIntegrationSpecs: [server + '/tests/**/*.spec.js'],
-    
+        specs: [client + '**/*.spec.js'],
+        serverIntegrationSpecs: [client + '/tests/server-integration/**/*.spec.js'],
+
         /**
          * Node settings
          */

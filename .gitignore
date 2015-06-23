@@ -2,3 +2,5 @@
 .tmp/*
 report/*
 tmp/*
+build/*
+integration_test/*

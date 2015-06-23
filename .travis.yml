@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- '0.10'
+before_script:
+- npm install -g bower
+- npm install -g gulp
+- npm install phantomjs
+- npm install -g karma
+- npm install -g typescript@1.4.1
+- bower install
+- gulp build
+deploy:
+  provider: heroku
+  api_key:
+    secure: H8FmPkM08crtu2iq64can8Qpv4MTnobEgZRgUIrqj1/FXOWM1zgRCh9q7SgYqloDw0ajjim5Q8banPFv3z9APHyz0yqiTk8IP0Y5g2RwMPGgLnq0wwn4iq4jPbZ6Ivxio+xts4902NiLi1g5rPzHOWK8Oude1upKDcYURMn8O+7ce9Sr0ORRE03C2GwBt7MpikWUCF2yD86mneF5OAiHO2ZMrTdh9ovOnPHzR5m38eFviJQuL5HwyQ2xBVeVUNj4NbfOhSfDdMfnyTFHs9x72BmgfZIrS4uWzI/u038ryN4pCg2r/7ZAvJdnSJdakv9ZIe69CdV4kMX/tkk8NMdWz3s4kDjVtTig6vDJ208J4S0b0ySKHkZfpXl+WysDcpkAnXlyznitRS7Gy/wOnFPok66vzSQX2dLUcmuCcO1QWkBhKHGdefHR6jd9IfPYAhxiAlWF+f8Yp1YBIO1KqltC0AyTCr46Aq54Lun+chh23L6a1KcB30qVuw5qtAnkuJAzwaEI3PsXwx/F1OYFwdnO8ap/JORRjVIL9ltPEcHBxLXrGBPN0SY2AX58ulNEe4ienVDXWYVvD5tft+Ha2bqJUvF1YS9t8U8vMbWJh0+Bm5sHvbit9CjjmO5DT+RiSJ7oO+gLcxqnx47Yw442LkwVcAl/YPAzEmrPLzvkY64WT18=
+  app: pyramidopenfdadev
+  on:
+    repo: PyramidSystemsInc/ADS-Dev
+    branch: dev

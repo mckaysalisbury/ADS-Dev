@@ -1,3 +1,4 @@
+/* jshint -W117, -W030, -W074 */
 (function () {
     'use strict';
 
@@ -45,42 +46,42 @@
             enablePaging: true
         //pagingOptions: $scope.pagingOptions,
              };
-         vm.getExample = function getExample(query, input){
-             if (query == null || input == null){
+        vm.getExample = function getExample(query, input) {
+             if (query == null || input == null) {
                  return {};
              }
              var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
-             if (indexOfQuery == -1){
+             if (indexOfQuery === -1) {
                  return {'value': query, 'example': ''};
              }
              var i = indexOfQuery + query.length;
              var fullText = query;
-             while (input.length > i && input[i] != " "){
+             while (input.length > i && input[i] !== ' ') {
                  fullText += input[i++];
              }
              var startIndex = indexOfQuery - 25;
              var endIndex = indexOfQuery + 25 + fullText.length;
-             if (startIndex < 0){
-                startIndex = 0;
+             if (startIndex < 0) {
+                 startIndex = 0;
              }
-             else{
-                 while (startIndex > 0 && input[startIndex-1] != " "){
+             else {
+                 while (startIndex > 0 && input[startIndex - 1] !== ' ') {
                      startIndex--;
                  }
              }
-             if (endIndex >= input.length){
+             if (endIndex >= input.length) {
                  endIndex = input.length;
              }
-             else{
-                 while (endIndex < input.length && input[endIndex] != " "){
+             else {
+                 while (endIndex < input.length && input[endIndex] !== ' ') {
                      endIndex++;
                  }
              }
              var example = input.substring(startIndex, endIndex);
-            //  console.log({'query': query, 'input': input});
-            //  console.log({'value': fullText, 'example': example});
+             //  console.log({'query': query, 'input': input});
+             //  console.log({'value': fullText, 'example': example});
              return {'value': fullText, 'example': example};
-         }
+         };
          
          vm.transformPurpose = function(data){
                 var result = [];
@@ -93,32 +94,5 @@
                 }, this);  
                 return result;
             };
-         
-        //  var bestPictures = new Bloodhound({
-        //   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-        //   queryTokenizer: Bloodhound.tokenizers.whitespace,
-        //   remote: {
-        //     url: '../data/purposeWithQuery/%QUERY',
-        //     wildcard: '%QUERY',
-        //     filter: vm.transformPurpose
-        //   }
-        // });
-        //  
-        // $('#purposeInput').typeahead(null, {
-        //   name: 'purposes',
-        //   display: 'value', 
-        //   source: bestPictures,
-        //   limit:10,
-        //   templates: {
-        //     empty: [
-        //       '<div class="empty-message">',
-        //         'Unable to find any purposes that match your search.',
-        //       '</div>'
-        //     ].join('\n'),
-        //     suggestion: function(data){
-        //       return '<p><strong>' + data.value + '</strong> - ' + data.example + '</p>';
-        //     }
-        //   }
-        // });
     }
 })();

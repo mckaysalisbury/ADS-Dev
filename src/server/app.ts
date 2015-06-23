@@ -1,5 +1,5 @@
-/// <reference path="../../vendortypescripts/node/node.d.ts"/>
-/// <reference path="../../vendortypescripts/express/express.d.ts"/>
+/// <reference path="../../typings/node/node.d.ts"/>
+/// <reference path="../../typings/express/express.d.ts"/>
 import path = require('path');
 import express = require('express');
 import data = require('./routes/data');
@@ -41,7 +41,7 @@ switch (environment){
         console.log('** DEV **');
         app.use(express.static('./src/client/'));
         app.use(express.static('./'));
-        app.use(express.static('./.tmp'));
+        app.use(express.static('./tmp'));
         // Any invalid calls for templateUrls are under app/* and should return 404
         app.use('/app/*', function(req, res, next) {
             four0four.send404(req, res);
