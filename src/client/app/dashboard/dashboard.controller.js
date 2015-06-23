@@ -26,6 +26,6 @@
         ];
         vm.title = 'Dashboard';
 
-        vm.Test = 'trigger heroku';
+        vm.Test = 'trigger more heroku';
     }
 })();
