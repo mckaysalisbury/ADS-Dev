@@ -1,8 +1,8 @@
 /* jshint -W117, -W030 */
-/// <reference path="../../../vendortypescripts/node/node.d.ts"/>
-/// <reference path="../../../vendortypescripts/express/express.d.ts"/>
-/// <reference path="../../../vendortypescripts/should/should.d.ts"/>
-/// <reference path="../../../vendortypescripts/mocha/mocha.d.ts"/>
+/// <reference path="../../../typings/node/node.d.ts"/>
+/// <reference path="../../../typings/express/express.d.ts"/>
+/// <reference path="../../../typings/should/should.d.ts"/>
+/// <reference path="../../../typings/mocha/mocha.d.ts"/>
 
 var should = require('should');
 require('typescript-require');
@@ -93,7 +93,7 @@ describe.skip('ingredient', function () {
 });
 
 describe.skip('purpose', function () {
-    it('headaches should be found first in Day Time with PE', function (done) {
+    it('vendors should be found first in Day Time with PE', function (done) {
         hippie(app)
             .json()
             .get('/data/purpose/Headache')
