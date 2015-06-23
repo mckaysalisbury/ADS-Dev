@@ -5,8 +5,8 @@
     var core = angular.module('app.core');
 
     var config = {
-        appErrorPrefix: '[Hackathon Error] ',
-        appTitle: 'Hackathon'
+        appErrorPrefix: '[S.H.I.E.L.D. Error] ',
+        appTitle: 'S.H.I.E.L.D.'
     };
 
     core.value('config', config);
