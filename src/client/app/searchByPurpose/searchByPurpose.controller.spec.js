@@ -46,6 +46,23 @@ describe('SearchByPurposeController', function () {
                 expect(result['value']).to.equal('blah');
                 expect(result['example']).to.equal('in order to find out that blah is included and plenty of');
             });
+
+            it('should handle spaces properly', function () {
+                var result = controller.getExample('blah and', 'This contains blah and other stuff');
+                expect(result['value']).to.equal('blah and');
+                expect(result['example']).to.equal('This contains blah and other stuff');
+            });
+
+            it('should handle / properly', function () {
+                var result = controller.getExample('blah and', 'This contains blah and/be other stuff');
+                expect(result['value']).to.equal('blah and');
+                expect(result['example']).to.equal('This contains blah and/be other stuff');
+            });
+            it('should handle , properly', function () {
+                var result = controller.getExample('blah and', 'This contains blah and, other stuff');
+                expect(result['value']).to.equal('blah and');
+                expect(result['example']).to.equal('This contains blah and, other stuff');
+            });
         });
     });
 });
