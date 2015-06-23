@@ -9,3 +9,9 @@ before_script:
   - npm install -g typescript@1.4.1
   - bower install
   - gulp build
+  
+  deploy:
+  provider: heroku
+  api_key: pyramidopenfdadev
+  app:
+    pyramidopenfdadev: dev-staging
