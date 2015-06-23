@@ -137,6 +137,21 @@ describe('purpose', function () {
         });
     });
 
+    it('should have the query in the meta', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/pai+fev')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.meta.query[0].should.be.eql('pai+fev');
+            done();
+        });
+    });
+
+
 });
 
 describe('data product', function () {
