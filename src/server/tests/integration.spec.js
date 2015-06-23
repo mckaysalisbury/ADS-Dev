@@ -8,7 +8,7 @@ var should = require('should');
 require('typescript-require');
 var app = require('../app'), hippie = require('hippie');
 
-describe.skip('Requesting from data.gov', function () {
+describe('Requesting from data.gov', function () {
     it('should return results', function (done) {
         hippie()
             .json()
@@ -25,7 +25,7 @@ describe.skip('Requesting from data.gov', function () {
     });
 });
 
-describe.skip('data products', function () {
+describe('data products', function () {
     it('unspecified should 404', function (done) {
         hippie(app)
             .get('/data/products/')
@@ -76,7 +76,7 @@ describe.skip('data products', function () {
         });
     });
 });
-describe.skip('ingredient', function () {
+describe('ingredient', function () {
     it('Phenylephrine should be found first in Day Time with PE', function (done) {
         hippie(app)
             .json()
@@ -92,7 +92,7 @@ describe.skip('ingredient', function () {
     });
 });
 
-describe.skip('purpose', function () {
+describe('purpose', function () {
     it('vendors should be found first in Day Time with PE', function (done) {
         hippie(app)
             .json()
@@ -108,7 +108,7 @@ describe.skip('purpose', function () {
     });
 });
 
-describe.skip('purpose', function () {
+describe('purpose', function () {
     it('sunscreen should be found', function (done) {
         hippie(app)
             .json()
@@ -122,9 +122,24 @@ describe.skip('purpose', function () {
             done();
         });
     });
+
+    it('"pai fev" should find pain relievers and fever reducers', function (done) {
+        hippie(app)
+            .json()
+            .get('/data/purpose/pai+fev')
+            .expectStatus(200)
+            .end(function (err, res, body) {
+            if (err) {
+                throw err;
+            }
+            body.results[0]['purpose'].should.be.eql('Purpose Pain reliever/fever reducer');
+            done();
+        });
+    });
+
 });
 
-describe.skip('data product', function () {
+describe('data product', function () {
     it('Specific product should be tylenol', function (done) {
         hippie(app)
             .json()
@@ -140,7 +155,7 @@ describe.skip('data product', function () {
     });
 });
 
-describe.skip('purpose without ingredient', function () {
+describe('purpose without ingredient', function () {
     it('Product without waterproduct should be tylenol', function (done) {
         hippie(app)
             .json()
@@ -151,35 +166,6 @@ describe.skip('purpose without ingredient', function () {
                 throw err;
             }
             body.results[0]['brand_name'].should.be.eql('Pain Relief Extra Strength');
-            done();
-        });
-    });
-});
-
-describe.skip('ingredient Count', function () {
-    it('aloe should be many', function (done) {
-        hippie(app)
-            .json()
-            .get('/data/ingredientCount/aloe')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.meta.results.total.should.not.be.eql(0);
-            done();
-        });
-    });
-    it('garbage should be none', function (done) {
-        hippie(app)
-            .json()
-            .get('/data/ingredientCount/garbage')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.error.code.should.be.eql('NOT_FOUND');
             done();
         });
     });
