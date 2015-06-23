@@ -124,6 +124,7 @@ describe('purpose', function () {
     });
 
     it('"pai fev" should find pain relievers and fever reducers', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/purpose/pai+fev')
@@ -138,6 +139,7 @@ describe('purpose', function () {
     });
 
     it('should have the query in the meta', function (done) {
+        this.timeout(5000);
         hippie(app)
             .json()
             .get('/data/purpose/pai+fev')
