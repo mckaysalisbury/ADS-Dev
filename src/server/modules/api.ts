@@ -71,6 +71,10 @@ export class Fda {
       response.on('end', function() {
         var object = JSON.parse(result);
         var filtered = filter(object);
+        if (filtered.meta == undefined)
+        {
+          filtered.meta = new Object();
+        }
         filtered.meta["query"] = queryArguments; // add in the query
         callback(filtered);
       });
