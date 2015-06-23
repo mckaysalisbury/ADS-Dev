@@ -1,17 +1,18 @@
 {
     "version": "0.1.0",
     "command": "gulp",
-    "showOutput": "silent",
+    "showOutput": "always",
     "isShellCommand": true,
     "args": [
         "--no-color"
     ],
   "tasks": [
         {
-            "taskName": "compile-tsc",
+            "taskName": "serve-dev",
             "args": [],
             "isBuildCommand": true,
             "problemMatcher": [
+                "$jshint-stylish",
                 "$lessCompile",
                 "$jshint"
             ]
