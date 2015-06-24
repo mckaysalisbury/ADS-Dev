@@ -1,32 +1,138 @@
 <section class="mainbar">
 	<section class="matter">
 		<div class="container">
-			<div class="row-fluid">
-				<div class="col-md-12">
-							<h6>Disclaimer from the FDA</h6>
-							<p>{{ vm.meta.disclaimer }}</p>
-							<h6>License</h6>
-							<p><a href="{{ vm.meta.license }}" target="_blank">{{ vm.meta.license }}</a></p>
-					<div class="widget wgreen">
-						<div ht-widget-header title="{{ vm.result.openfda.brand_name[0] }}" allow-collapse="true"></div>
-						<div class="widget-content text-left text-info">
+			<div class="col-md-12">
+				<!--<div class="col-md-6">
+					<h6>Disclaimer from the FDA</h6>
+					<p>{{ vm.meta.disclaimer }}</p>
+				</div>
+				<div class="col-md-6">
+					<h6>License</h6>
+					<p><a href="{{ vm.meta.license }}" target="_blank">{{ vm.meta.license }}</a></p>
+				</div>-->
+				<div class="row">
+					<div class="col-md-2">
+						<h1><div class="fa fa-times-circle"/></h1>
+					</div>
+					<div class="col-md-10">
+						<div class="col-md-12">
+							<h1>{{ vm.result.openfda.brand_name[0] }}</h1>
+						</div>
+						<div class="col-md-12">
 							<strong>Manufacturer:</strong> {{ vm.result.openfda.manufacturer_name[0] }}
 						</div>
-						<div class="widget-content text-left text-info">
-							<strong>Generic Name:</strong> {{ vm.result.openfda.generic_name[0] }}
-						</div>
-						<div class="widget-content text-left text-info">
-							<strong>Active Ingredients:</strong> {{ vm.result.active_ingredient[0] }}
-						</div>
-						<div class="widget-content text-left text-info">
-							<strong>Inactive Ingredients:</strong> {{ vm.result.inactive_ingredient[0] }}
-						</div>
-						<div class="widget-content text-left text-info">
+						<div class="col-md-12">
 							<strong>Purpose:</strong> {{ vm.result.purpose[0] }}
 						</div>
-						<!--<div class="widget-content text-left text-info">
-							<strong>Adverse Reactions:</strong> {{ vm.result.openfda.adverse_reactions }}
-						</div>-->
+					</div>
+				</div>
+				<div class="row greyArea">
+					<div class="col-md-12">
+						<h2><div class="fa fa-times-circle"/> Ingredients</h2>
+						<div class="col-md-6">
+							<div class="col-md-12 blueBorder">								
+								<h3>Active Ingredients</h3>
+							</div>
+							<div class="col-md-12 blueBorder next">
+								 {{ vm.result.active_ingredient[0] }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="col-md-12 blackBorder">								
+								<h3>Inactive Ingredients</h3>
+							</div>
+							<div class="col-md-12 blackBorder next">
+								 {{ vm.result.inactive_ingredient[0] }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-12 importantBorder">
+							<h2><div class="fa fa-times-circle"/> Warnings</h2>
+						</div>
+						<div class="col-md-12 importantBorder next">
+							<div class="col-md-12">
+								{{ vm.result.warnings[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.warnings_and_cautions[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.keep_out_of_reach_of_children[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.do_not_use[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.stop_use[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.overdosage[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.adverse_reactions[0] }}
+							</div>
+							<div class="col-md-12">
+								{{ vm.result.drug_interactions[0] }}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<h2>Other Interactions</h2>
+						<div class="col-md-4">
+							<div class="col-md-12 importantBorder">
+								<h3><div class="fa fa-times-circle"/> Ask Doctor/Pharmacist</h3>
+							</div>
+							<div class="col-md-12 importantBorder next">
+								<div class="col-md-12">
+									{{ vm.result.ask_doctor[0] }}
+								</div>
+								<div class="col-md-12">
+									{{ vm.result.ask_doctor_or_pharmacist[0] }}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="col-md-12 importantBorder">
+								<h3><div class="fa fa-times-circle"/> Pregnancy or Breastfeeding</h3>
+							</div>
+							<div class="col-md-12 importantBorder next">
+								<div class="col-md-12">
+									{{ vm.result.pregnancy_or_breastfeeding[0] }}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="col-md-12 importantBorder">
+								<h3><div class="fa fa-times-circle"/> Other Safety</h3>
+							</div>
+							<div class="col-md-12 importantBorder next">
+								<div class="col-md-12">
+									{{ vm.result.other_safety_interactions[0] }}
+								</div>								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row greyArea">
+					<h2>Instructions for Use</h2>
+					<div class="col-md-12">
+						{{ vm.result.instructions_for_use[0] }}
+					</div>
+					<div class="col-md-12">
+						{{ vm.result.dosage_and_administration[0] }}
+					</div>
+					<div class="col-md-12">
+						{{ vm.result.storage_and_handling[0] }}
+					</div>
+					<div class="col-md-12">
+						{{ vm.result.when_using[0] }}
+					</div>
+					<div class="col-md-12">
+						{{ vm.result.indications_and_usage[0] }}
 					</div>
 				</div>
 			</div>
