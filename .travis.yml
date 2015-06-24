@@ -9,6 +9,8 @@ before_script:
 - npm install -g typescript@1.4.1
 - bower install
 - gulp test
+before_deploy:
+- git fetch --unshallow
 deploy:
   provider: heroku
   api_key:
