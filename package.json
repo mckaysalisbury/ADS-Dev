@@ -1,6 +1,8 @@
 {
   "name": "ads_nodejs",
-  "version": "0.0.0",
+  "author": "pyramid systems inc.",
+  "license": "mit",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "./node_modules/gulp/bin/gulp.js build",
