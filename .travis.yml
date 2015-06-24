@@ -10,6 +10,9 @@ before_script:
 - bower install
 - gulp test
 before_deploy:
+- git push
+- git diff --cached
+- git stash drop
 - git fetch --unshallow
 - git config --global alias.stash 'stash -q'
 deploy:
@@ -20,7 +23,3 @@ deploy:
   on:
     repo: PyramidSystemsInc/ADS-Dev
     branch: dev
-after_success:
-- git add .
-- git commit
-- git commit -a
