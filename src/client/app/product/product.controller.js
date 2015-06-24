@@ -16,6 +16,7 @@
         vm.url = '/data/product/' + lastPiece;
         $http.get(vm.url).success(function (response) {
             vm.result = response.results[0];
+            vm.meta = response.meta;
         });
     }
 })();
