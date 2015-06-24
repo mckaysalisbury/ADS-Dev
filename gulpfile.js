@@ -231,7 +231,7 @@ gulp.task('ci', ['optimize', 'compile-tsc', 'vet', 'images', 'fonts'], function(
  * and inject them into the new index.html
  * @return {Stream}
  */
-gulp.task('optimize', ['inject'], function () {
+gulp.task('optimize', ['inject', 'test'], function () {
     log('Optimizing the js, css, and html');
 
     var assets = $.useref.assets({ searchPath: './' });
