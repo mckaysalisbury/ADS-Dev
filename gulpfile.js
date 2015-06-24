@@ -222,8 +222,9 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function () {
  * Task for continuous integration
  * Runs optimize, compile tsc, code vet, imagemin and fonts
  */
-gulp.task('ci', ['optimize', 'compile-tsc', 'vet', 'images', 'fonts'], function() {
+gulp.task('postinstall', ['optimize', 'compile-tsc', 'vet', 'images', 'fonts'], function() {
     log('Starting continuous integration');
+    del(config.temp);
 });
 
 /**
