@@ -33,7 +33,17 @@
                 $location.search('id', i.entity.id);
                 return true;
             },
-            filterOptions: vm.filterOptions
+            filterOptions: vm.filterOptions,
+
+            // Paging
+            enablePaging: true,
+            showFooter: true,
+            totalServerItems: 'meta.results.count',
+            pagingOptions: {
+                pageSizes: [10, 50, 100],
+                pageSize: 100,
+                currentPage: 1,
+            },
         };
         vm.editSearch = function editSearch() {
             var query = getQuery();
