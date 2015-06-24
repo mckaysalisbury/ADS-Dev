@@ -11,32 +11,43 @@
     /* @ngInject */
     function SearchByPurposeController($http, $location, $window, $state, searchformservice) {
         var vm = this;
-        var nonWordCharacters = [' ', '/', ',', ')', '(', '.'];
+        var nonWordCharacters = [' ', '/', ',', ')', '(', '.', ';'];
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
 
         vm.searchPurposeWithoutIngredient = function () {
-            $http.get(getPurposeWithoutIngredientQuery())
-                .success(function (response) { vm.productsWithoutIngredient = response.results; });
+            if (!vm.purpose) {
+                vm.productCount = 0;
+            }
+            else {
+                $http.get(getPurposeWithoutIngredientQuery())
+                    .success(function (response) {
+                        if (response.meta && response.meta.results) {
+                            vm.productCount = response.meta.results.total;
+                        }
+                    });
+            }
         };
 
         vm.provideExamplePurposes = function () {
             if (vm.purpose == null || vm.purpose === '') {
                 vm.examplePurposes = [];
-                return;
             }
-            $http.get('/data/purpose/' + sanitize(vm.purpose))
-                .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            else {
+                $http.get('/data/purpose/' + sanitize(vm.purpose))
+                    .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            }
             vm.searchPurposeWithoutIngredient();
         };
         vm.provideExampleIngredients = function () {
             if (vm.ingredient == null || vm.ingredient === '') {
                 vm.exampleIngredients = [];
-                return;
             }
-            $http.get('/data/ingredient/' + sanitize(vm.ingredient))
-                .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+            else {
+                $http.get('/data/ingredient/' + sanitize(vm.ingredient))
+                    .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+            }
             vm.searchPurposeWithoutIngredient();
         };
         vm.getExample = function getExample(query, input) {
@@ -71,13 +82,13 @@
             if (!input) {
                 return input;
             }
-            return input.replace(' ', '+');
+            return input.split(' ').join('+');
         }
         function unsanitize(input) {
             if (!input) {
                 return input;
             }
-            return input.replace('+', ' ');
+            return input.split('+').join(' ');
         }
         function getExampleSanitized(query, input) {
             var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
@@ -162,8 +173,8 @@
         function setInitialValuesFromSearchQuery() {
             var searchObject = $location.search();
             console.log(searchObject);
-            vm.purpose = searchObject.purpose;
-            vm.ingredient = searchObject.ingredient;
+            vm.purpose = unsanitize(searchObject.purpose);
+            vm.ingredient = unsanitize(searchObject.ingredient);
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }

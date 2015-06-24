@@ -14,7 +14,8 @@
         $rootScope.showSplash = true;
         vm.navline = {
             title: config.appTitle,
-            text: 'Open FDA',
+            text: 'About',
+            link: '/about',
         };
         hideSplash();
         function hideSplash() {

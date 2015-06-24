@@ -59,7 +59,7 @@ export class Fda {
   private static Label(search: string, skip: number, limit: number, queryArguments, callback, filter): void {
     var options = {
       host: 'api.fda.gov',
-      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + skip + "&limit=" + limit + "&search=product_type:otc+AND+" + search,
+      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + skip + "&limit=" + limit + "&search=product_type:otc+AND+NOT+(indications_and_usage:homeopathic+purpose:homeopathic+package_label_principal_display_panel:homeopathic+pharm_class_epc:extract)+AND+" + search,
       port: 80,
       method: 'GET'
     };
@@ -125,12 +125,11 @@ export class Fda {
     return input;
   }
   public static SanitizeProduct(input) {
-    for (var i = 0; i < input.purpose.length; i++) {
-      input = Fda.SanitizeArrayProperty(input, 'purpose', ['purpose', 'use', 'indication', 'otc -', 'section']);
-      input = Fda.SanitizeArrayProperty(input, 'active_ingredient', ['active ingredient', 'otc -', 'section']);
-      input = Fda.SanitizeArrayProperty(input, 'inactive_ingredient', ['inactive ingredient', 'otc -', 'section']);
-      input = Fda.SanitizeArrayProperty(input, 'warnings', ['warning', 'otc -', 'section']);
-    }
+    var phrasesToRemove = ['purpose', 'use', 'indication', 'otc -', 'section', 'drug facts', '..', '__', 'active ingredient', 'inactive ingredient', 'warning'];
+    input = Fda.SanitizeArrayProperty(input, 'purpose', phrasesToRemove);
+    input = Fda.SanitizeArrayProperty(input, 'active_ingredient', phrasesToRemove);
+    input = Fda.SanitizeArrayProperty(input, 'inactive_ingredient', phrasesToRemove);
+    input = Fda.SanitizeArrayProperty(input, 'warnings', phrasesToRemove);
     return input;
   }
   private static SanitizeArrayProperty(input, property, wordsToClean) {
