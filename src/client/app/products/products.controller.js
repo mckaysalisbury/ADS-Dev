@@ -12,9 +12,7 @@
         var vm = this;
         vm.filterOptions = { filterText: '' };
 
-        var splitByEquals = document.location.search.split('=');
-        // I could check for "query" here
-        var lastPiece = splitByEquals[splitByEquals.length - 1];
+        var lastPiece = getQuery();
         vm.url = decodeURIComponent(lastPiece);
         $http.get(vm.url).success(function (response) {
             vm.results = response.results;
@@ -37,5 +35,25 @@
             },
             filterOptions: vm.filterOptions
         };
+        vm.editSearch = function editSearch() {
+            var query = getQuery();
+            var splitBySlash = query.split('/');
+            var purpose = '';
+            var ingredient = '';
+            if (splitBySlash.length > 4) {
+                ingredient = splitBySlash[4];
+            }
+            if (splitBySlash.length > 3) {
+                purpose = splitBySlash[3];
+            }
+            $location.path('/searchByPurpose');
+            $location.search('query', null);
+            $location.search('purpose', purpose);
+            $location.search('ingredient', ingredient);
+        };
+        function getQuery() {
+            var searchObject = $location.search();
+            return searchObject.query;
+        }
     }
 })();
