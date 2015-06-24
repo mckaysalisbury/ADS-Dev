@@ -23,7 +23,7 @@
             else {
                 $http.get(getPurposeWithoutIngredientQuery())
                     .success(function (response) { vm.productCount = response.meta.results.total; });
-            }            
+            }
         };
 
         vm.provideExamplePurposes = function () {
