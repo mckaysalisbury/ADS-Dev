@@ -222,7 +222,7 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function () {
  * Task for continuous integration
  * Runs optimize, compile tsc, code vet, imagemin and fonts
  */
-gulp.task('ci', ['optimize', 'compile-tsc', 'test', 'vet', 'images', 'fonts'], function() {
+gulp.task('ci', ['optimize', 'compile-tsc', 'vet', 'images', 'fonts'], function() {
     log('Starting continuous integration');
 });
 
