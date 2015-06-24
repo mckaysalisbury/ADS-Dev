@@ -70,6 +70,7 @@ export class Fda {
       });
       response.on('end', function() {
         var object = JSON.parse(result);
+        object = Fda.SanitizeProductData(object);
         var filtered = filter(object);
         if (filtered.meta == undefined)
         {
@@ -114,7 +115,55 @@ export class Fda {
     // returnValue["set_id"] = input.set_id;
     return returnValue;
   }
-
+  private static SanitizeProductData(input) {
+    if (!input.results) {
+      return input;
+    }
+    for (var i = 0; i < input.results.length; i++) {
+      input.results[i] = Fda.SanitizeProduct(input.results[i]);
+    }
+    return input;
+  }
+  public static SanitizeProduct(input) {
+    for (var i = 0; i < input.purpose.length; i++) {
+      input = Fda.SanitizeArrayProperty(input, 'purpose', ['purpose', 'use', 'indication', 'otc -', 'section']);
+      input = Fda.SanitizeArrayProperty(input, 'active_ingredient', ['active ingredient', 'otc -', 'section']);
+      input = Fda.SanitizeArrayProperty(input, 'inactive_ingredient', ['inactive ingredient', 'otc -', 'section']);
+      input = Fda.SanitizeArrayProperty(input, 'warnings', ['warning', 'otc -', 'section']);
+    }
+    return input;
+  }
+  private static SanitizeArrayProperty(input, property, wordsToClean) {
+    if (!input[property]) {
+      return input;
+    }
+    for (var i = 0; i < input[property].length; i++) {
+      input[property][i] = Fda.SanitizeString(input[property][i], wordsToClean);
+    }
+    return input;
+  }
+  private static SanitizeString(input, wordsToClean) {
+    var lengthBefore = input.length;
+    var lengthAfter = 0;
+    while (lengthBefore !== lengthAfter) {
+      lengthBefore = input.length;
+      for (var i = 0; i < wordsToClean.length; i++) {
+        input = Fda.CleanWordFromStringStart(wordsToClean[i], input);
+      }
+      lengthAfter = input.length;
+    }
+    return input;
+  }
+  
+  private static CleanWordFromStringStart(word: string, input: string) {
+    if (input.toLowerCase().indexOf(word.toLowerCase()) === 0) {
+      var lengthToRemove = word.length;
+      while (input.length > lengthToRemove && input[lengthToRemove++] !== ' ') {}
+      return input.substring(lengthToRemove);
+    }
+    return input;
+  }
+  
   private static FirstIfArrayDefined(input) {
     if (input != undefined) {
       return input[0];

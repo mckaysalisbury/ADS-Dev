@@ -46,7 +46,7 @@
             if (splitBySlash.length > 3) {
                 purpose = splitBySlash[3];
             }
-            $location.path('/searchByPurpose');
+            $location.path('/');
             $location.search('query', null);
             $location.search('purpose', purpose);
             $location.search('ingredient', ingredient);
