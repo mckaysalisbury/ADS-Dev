@@ -17,26 +17,33 @@
         /* jshint +W117 */
 
         vm.searchPurposeWithoutIngredient = function () {
-            $http.get(getPurposeWithoutIngredientQuery())
-                .success(function (response) { vm.productsWithoutIngredient = response.results; });
+            if (!vm.purpose) {
+                vm.productCount = 0;
+            }
+            else {
+                $http.get(getPurposeWithoutIngredientQuery())
+                    .success(function (response) { vm.productCount = response.meta.results.total; });
+            }
         };
 
         vm.provideExamplePurposes = function () {
             if (vm.purpose == null || vm.purpose === '') {
                 vm.examplePurposes = [];
-                return;
             }
-            $http.get('/data/purpose/' + sanitize(vm.purpose))
-                .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            else {
+                $http.get('/data/purpose/' + sanitize(vm.purpose))
+                    .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            }
             vm.searchPurposeWithoutIngredient();
         };
         vm.provideExampleIngredients = function () {
             if (vm.ingredient == null || vm.ingredient === '') {
                 vm.exampleIngredients = [];
-                return;
             }
-            $http.get('/data/ingredient/' + sanitize(vm.ingredient))
-                .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+            else {
+                $http.get('/data/ingredient/' + sanitize(vm.ingredient))
+                    .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+            }
             vm.searchPurposeWithoutIngredient();
         };
         vm.getExample = function getExample(query, input) {
