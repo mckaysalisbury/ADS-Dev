@@ -16,7 +16,7 @@ module.exports = function () {
     var nodeModules = 'node_modules';
 
     var config = {
-        mochaServerTests: [server + 'tests/**.spec.js'],
+        serverIntegrationTests: [server + 'integration-tests/**.spec.js'],
         typeScriptDirectory: temp + 'typescript',
         server: server,
         

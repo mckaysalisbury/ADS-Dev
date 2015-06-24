@@ -153,7 +153,7 @@ gulp.task('wiredep', function () {
         .pipe(gulp.dest(config.client));
 });
 
-gulp.task('inject', ['compile-tsc', 'wiredep', 'styles', 'templatecache'], function () {
+gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
     log('Wire up css into the html, after files are ready');
 
     return gulp
@@ -216,6 +216,14 @@ gulp.task('build', ['optimize', 'images', 'fonts'], function () {
     del(config.temp);
     log(msg);
     notify(msg);
+});
+
+/**
+ * Task for continuous integration
+ * Runs optimize, compile tsc, code vet, imagemin and fonts
+ */
+gulp.task('ci', ['optimize', 'compile-tsc', 'test', 'vet', 'images', 'fonts'], function() {
+    log('Starting continuous integration');
 });
 
 /**
@@ -347,13 +355,13 @@ gulp.task('serve-dev', ['vet', 'inject'], function () {
  * compiles with the corresponding editor with typescript,
  * mocha tests, spectests with phantomjs, and code vet
  */
-gulp.task('b', ['compile-tsc', 'test', 'run-mocha', 'vet']);
+gulp.task('b', ['compile-tsc', 'test', 'test-integration', 'vet']);
 
 /**
- * runs the integration test in mocha 
+ * Runs the integration test in mocha 
  */
-gulp.task('run-mocha', function () {
-    return gulp.src(config.mochaServerTests)
+gulp.task('test-integration', function () {
+    return gulp.src(config.serverIntegrationTests)
         .pipe(mocha())
         .once('error', function () {
         process.exit(1);
