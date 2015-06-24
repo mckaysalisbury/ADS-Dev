@@ -15,6 +15,7 @@
         var lastPiece = getQuery();
         vm.url = decodeURIComponent(lastPiece);
         $http.get(vm.url).success(function (response) {
+            vm.meta = response.meta;
             vm.results = response.results;
         });
 
@@ -33,24 +34,33 @@
                 $location.search('id', i.entity.id);
                 return true;
             },
-            filterOptions: vm.filterOptions
+            filterOptions: vm.filterOptions,
+            sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']}
         };
         vm.editSearch = function editSearch() {
-            var query = getQuery();
-            var splitBySlash = query.split('/');
-            var purpose = '';
-            var ingredient = '';
-            if (splitBySlash.length > 4) {
-                ingredient = splitBySlash[4];
-            }
-            if (splitBySlash.length > 3) {
-                purpose = splitBySlash[3];
-            }
             $location.path('/');
             $location.search('query', null);
-            $location.search('purpose', purpose);
-            $location.search('ingredient', ingredient);
+            $location.search('purpose', vm.purpose);
+            $location.search('ingredient', vm.ingredient);
         };
+        setPurposeAndIngredient();
+
+        function setPurposeAndIngredient() {
+            var query = getQuery();
+            var splitBySlash = query.split('/');
+            if (splitBySlash.length > 4) {
+                vm.ingredient = splitBySlash[4];
+            }
+            else {
+                vm.ingredient = '';
+            }
+            if (splitBySlash.length > 3) {
+                vm.purpose = splitBySlash[3];
+            }
+            else {
+                vm.purpose = '';
+            }
+        }
         function getQuery() {
             var searchObject = $location.search();
             return searchObject.query;
