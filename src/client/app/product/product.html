@@ -2,14 +2,17 @@
 	<section class="matter">
 		<div class="container">
 			<div class="col-md-12">
-				<!--<div class="col-md-6">
-					<h6>Disclaimer from the FDA</h6>
-					<p>{{ vm.meta.disclaimer }}</p>
+				<div class="row">
+					<div class="col-md-6">
+						<!-- until we have a disclaimer elsewhere in the app, I'm putting it here. -->
+						<h6>Disclaimer from the FDA</h6>
+						<p>{{ vm.meta.disclaimer }}</p>
+					</div>
+					<div class="col-md-6">
+						<h6>License</h6>
+						<p><a href="{{ vm.meta.license }}" target="_blank">{{ vm.meta.license }}</a></p>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<h6>License</h6>
-					<p><a href="{{ vm.meta.license }}" target="_blank">{{ vm.meta.license }}</a></p>
-				</div>-->
 				<div class="row">
 					<div class="col-md-2">
 						<h1><div class="fa fa-times-circle"/></h1>
@@ -27,92 +30,97 @@
 					</div>
 				</div>
 				<div class="row greyArea">
-					<div class="col-md-12">
-						<h2><div class="fa fa-times-circle"/> Ingredients</h2>
-						<div class="col-md-6">
-							<div class="col-md-12 blueBorder">								
-								<h3>Active Ingredients</h3>
-							</div>
-							<div class="col-md-12 blueBorder next">
-								 {{ vm.result.active_ingredient[0] }}
+					<h2><div class="fa fa-times-circle"/> Ingredients</h2>
+					<div class="col-md-6">
+						<div class="widget wblue">
+							<div ht-widget-header title="Active Ingredients" allow-collapse="true"></div>
+							<div class="widget-content text-left text-info">
+								{{ vm.result.active_ingredient[0] }}
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="col-md-12 blackBorder">								
-								<h3>Inactive Ingredients</h3>
-							</div>
-							<div class="col-md-12 blackBorder next">
-								 {{ vm.result.inactive_ingredient[0] }}
+					</div>
+					<div class="col-md-6">
+						<div class="widget wlightblue">
+							<div ht-widget-header title="Inactive Ingredients" allow-collapse="true"></div>
+							<div class="widget-content text-left text-info">
+								{{ vm.result.inactive_ingredient[0] }}
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<div class="col-md-12 importantBorder">
-							<h2><div class="fa fa-times-circle"/> Warnings</h2>
-						</div>
-						<div class="col-md-12 importantBorder next">
-							<div class="col-md-12">
-								{{ vm.result.warnings[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.warnings_and_cautions[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.keep_out_of_reach_of_children[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.do_not_use[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.stop_use[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.overdosage[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.adverse_reactions[0] }}
-							</div>
-							<div class="col-md-12">
-								{{ vm.result.drug_interactions[0] }}
+						<div class="widget wred">
+							<div ht-widget-header icon="fa-times-circle" title="Warnings" allow-collapse="true" />
+							<div class="widget-content text-left text-info">
+								<div class="row">
+									<div class="col-md-12">
+										{{ vm.result.warnings[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.warnings_and_cautions[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.keep_out_of_reach_of_children[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.do_not_use[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.stop_use[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.overdosage[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.adverse_reactions[0] }}
+									</div>
+									<div class="col-md-12">
+										{{ vm.result.drug_interactions[0] }}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<h2>Other Interactions</h2>
 						<div class="col-md-4">
-							<div class="col-md-12 importantBorder">
-								<h3><div class="fa fa-times-circle"/> Ask Doctor/Pharmacist</h3>
-							</div>
-							<div class="col-md-12 importantBorder next">
-								<div class="col-md-12">
-									{{ vm.result.ask_doctor[0] }}
-								</div>
-								<div class="col-md-12">
-									{{ vm.result.ask_doctor_or_pharmacist[0] }}
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="col-md-12 importantBorder">
-								<h3><div class="fa fa-times-circle"/> Pregnancy or Breastfeeding</h3>
-							</div>
-							<div class="col-md-12 importantBorder next">
-								<div class="col-md-12">
-									{{ vm.result.pregnancy_or_breastfeeding[0] }}
+							<div class="widget wlightblue">
+								<div ht-widget-header icon="fa-times-circle" title="Ask Doctor/Pharmacist" allow-collapse="true" />
+								<div class="widget-content text-left text-info">
+									<div class="row">
+										<div class="col-md-12">
+											{{ vm.result.ask_doctor[0] }}
+										</div>
+										<div class="col-md-12">
+											{{ vm.result.ask_doctor_or_pharmacist[0] }}
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4">
-							<div class="col-md-12 importantBorder">
-								<h3><div class="fa fa-times-circle"/> Other Safety</h3>
+							<div class="widget wlightblue">
+								<div ht-widget-header icon="fa-times-circle" title="Pregnancy or Breastfeeding" allow-collapse="true" />
+								<div class="widget-content text-left text-info">
+									<div class="row">
+										<div class="col-md-12">
+											{{ vm.result.pregnancy_or_breast_feeding[0] }}
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="col-md-12 importantBorder next">
-								<div class="col-md-12">
-									{{ vm.result.other_safety_interactions[0] }}
-								</div>								
-								
+						</div>
+						<div class="col-md-4">
+							<div class="widget wlightblue">
+								<div ht-widget-header icon="fa-times-circle" title="Other Safety" allow-collapse="true" />
+								<div class="widget-content text-left text-info">
+									<div class="row">
+										<div class="col-md-12">
+											{{ vm.result.other_safety_interactions[0] }}
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -134,6 +142,9 @@
 					<div class="col-md-12">
 						{{ vm.result.indications_and_usage[0] }}
 					</div>
+				</div>
+				<div class row>
+					<a href="{{vm.url}}">(json)</a>
 				</div>
 			</div>
 		</div>
