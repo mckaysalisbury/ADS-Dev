@@ -7,6 +7,7 @@
         'app.layout',
         'app.products',
         'app.product',
-        'app.searchByPurpose'
+        'app.searchByPurpose',
+        'app.about'
     ]);
 })();
