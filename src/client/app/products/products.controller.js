@@ -6,13 +6,13 @@
         .module('app.products')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$http', 'logger', '$location'];
+    ProductsController.$inject = ['$http', 'logger', '$location', '$stateParams', 'searchformservice'];
     /* @ngInject */
-    function ProductsController($http, logger, $location) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice) {
         var vm = this;
         vm.filterOptions = { filterText: '' };
-
-        var lastPiece = getQuery();
+        var lastPiece = searchformservice.query;
+        logger.info(lastPiece);
         vm.url = decodeURIComponent(lastPiece);
         $http.get(vm.url).success(function (response) {
             vm.results = response.results;

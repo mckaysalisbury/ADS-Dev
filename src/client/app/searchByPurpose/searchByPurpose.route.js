@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -25,7 +25,7 @@
                         nav: 3,
                         content: '<i class="fa fa-search"></i> Search By Purpose'
                     }
-                },
+                }
             }
         ];
     }
