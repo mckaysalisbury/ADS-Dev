@@ -16,6 +16,7 @@
         //      allow-collapse="true" </div>
         var directive = {
             scope: {
+                'icon': '@',
                 'title': '@',
                 'subtitle': '@',
                 'rightText': '@',
