@@ -9,11 +9,6 @@ before_script:
 - npm install -g typescript@1.4.1
 - bower install
 - gulp test
-before_deploy:
-- git diff --cached
-- git stash drop
-- git fetch --unshallow
-- git config --global alias.stash 'stash -q'
 deploy:
   provider: heroku
   api_key:
