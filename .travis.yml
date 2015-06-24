@@ -10,6 +10,9 @@ before_script:
 - bower install
 - gulp test
 before_deploy:
+- git add .
+- git commit
+- git commit -a
 - git fetch --unshallow
 deploy:
   provider: heroku
@@ -19,3 +22,7 @@ deploy:
   on:
     repo: PyramidSystemsInc/ADS-Dev
     branch: dev
+after_success:
+- git add .
+- git commit
+- git commit -a
