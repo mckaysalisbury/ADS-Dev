@@ -10,7 +10,6 @@ before_script:
 - bower install
 - gulp test
 before_deploy:
-- git push
 - git diff --cached
 - git stash drop
 - git fetch --unshallow
