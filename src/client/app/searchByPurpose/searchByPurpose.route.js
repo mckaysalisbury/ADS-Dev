@@ -1,4 +1,3 @@
-/// <reference path="../../../../vendortypescripts/angularjs/angular.d.ts"/>
 (function() {
     'use strict';
 
@@ -17,7 +16,7 @@
             {
                 state: 'searchByPurpose',
                 config: {
-                    url: '/searchByPurpose',
+                    url: '/',
                     templateUrl: 'app/searchByPurpose/searchByPurpose.html',
                     controller: 'SearchByPurposeController',
                     controllerAs: 'vm',

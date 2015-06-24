@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-    angular.module('app.searchByPurpose', ['app.core', 'ngGrid']);
+    angular.module('app.searchByPurpose', ['app.core']);
 })();
