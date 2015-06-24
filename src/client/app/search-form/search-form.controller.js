@@ -6,13 +6,10 @@
         .module('app.search-form')
         .controller('SearchFormController', SearchFormController);
 
-    SearchFormController.$inject = ['$http'];
+    SearchFormController.$inject = ['$state'];
     /* @ngInject */
-    function SearchFormController($http) {
+    function SearchFormController($state) {
         var vm = this;
-        vm.formData = {};
-        vm.processForm = function () {
-            alert('awesome!');
-        };
+        $state.go('search-form.searchByPurpose');
     }
 })();
