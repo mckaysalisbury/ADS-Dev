@@ -10,10 +10,8 @@ before_script:
 - bower install
 - gulp test
 before_deploy:
-- git add .
-- git commit
-- git commit -a
 - git fetch --unshallow
+- git config --global alias.stash 'stash -q'
 deploy:
   provider: heroku
   api_key:
