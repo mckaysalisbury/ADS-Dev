@@ -1,23 +1,55 @@
 <div class="container">
-	<div class="row-fluid">
-		<div class="col-md-12">
-			<div class="widget wgreen">
-				<div ht-widget-header title="Search Results" allow-collapse="true"></div>
-				<div class="widget-content text-left text-info">
-					<div class="form-group">
-						<input class="form-control" ng-model="vm.filterOptions.filterText" placeholder="Filter a product..." />
-						<label>or</label>
-						<a ng-click="vm.editSearch();">Edit Search</a>
-					</div>
-					<div class="col-sm-12">
-						<label>showing {{vm.results ? vm.results.length : 0}} of {{ vm.meta ? vm.meta.results.total : 0 }} matching products with a purpose of '{{vm.purpose.split('+').join(' ')}}' and without the ingredient '{{vm.ingredient.split('+').join(' ')}}'</label>
-					</div>
-					<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptions" />
-					<div class="widget-foot">
-						<div class="clearfix"></div>
+	<div class="col-sm-12 widget-content text-left text-info">
+		<label style="font-weight:normal;">Showing products used for '<strong>{{vm.purpose.split('+').join(' ')}}</strong>'</label>
+		<button ng-click="vm.editSearch();">Edit Search</button>
+	</div>
+	<ul class="nav nav-pills nav-justified">
+	  <li class="active"><a data-toggle="tab" href="#without">without '<strong>{{vm.ingredient.split('+').join(' ')}}</strong>' ({{ vm.meta && vm.meta.results ? vm.meta.results.total : 0 }})</a></li>
+	  <li><a data-toggle="tab" href="#with">with '<strong>{{vm.ingredient.split('+').join(' ')}}</strong>' ({{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }})</a></li>
+	</ul>
+	<div class="tab-content">
+	  <div id="without" class="tab-pane fade in active">
+		<div class="row-fluid">
+			<div class="col-md-12">
+				<div class="widget wgreen">
+					<div ht-widget-header title="Search Results" allow-collapse="true"></div>
+					<div class="widget-content text-left text-info">
+						<div class="form-group">
+							<input class="form-control" ng-model="vm.filterOptions.filterText" placeholder="Filter a product..." />
+						</div>
+						<div class="col-sm-12">
+							<label style="font-weight:normal;">Showing {{vm.results ? vm.results.length : 0}} of {{ vm.meta && vm.meta.results ? vm.meta.results.total : 0 }}</label>
+						</div>
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptions" />
+						<div class="widget-foot">
+							<div class="clearfix"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	  </div>
+	  <div id="with" class="tab-pane fade">
+		<div class="row-fluid">
+			<div class="col-md-12">
+				<div class="widget wgreen">
+					<div ht-widget-header title="Search Results" allow-collapse="true"></div>
+					<div class="widget-content text-left text-info">
+						<div class="form-group">
+							<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." />
+						</div>
+						<div class="col-sm-12">
+							<label style="font-weight:normal;">Showing {{vm.resultsWith ? vm.resultsWith.length : 0}} of {{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</label>
+						</div>
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith" />
+						<div class="widget-foot">
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	  
 	</div>
 </div>

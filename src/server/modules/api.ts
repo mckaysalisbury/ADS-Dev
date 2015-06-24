@@ -33,6 +33,16 @@ export class Fda {
         0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
   }
   
+  public static PurposeWithIngredient(purpose: string, ingredient: string, callback): void {
+    var url = Fda.MultiWordStart("purpose", purpose) +  
+       "+AND+(" + Fda.MultiWordStart("generic_name", ingredient) +
+       "+" + Fda.MultiWordStart("inactive_ingredient", ingredient) + ')';
+    console.log('url: ' + url);
+    Fda.Label(
+      url,
+        0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
+  }
+  
   public static MultiWordStart(field : string, query : string) : string
   {
     var queryPiece = new Array();
