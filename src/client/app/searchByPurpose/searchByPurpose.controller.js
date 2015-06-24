@@ -11,7 +11,7 @@
     /* @ngInject */
     function SearchByPurposeController($http, $location, $window) {
         var vm = this;
-        var nonWordCharacters = [' ', '/', ',', ')', '(', '.'];
+        var nonWordCharacters = [' ', '/', ',', ')', '(', '.', ';'];
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
@@ -22,7 +22,11 @@
             }
             else {
                 $http.get(getPurposeWithoutIngredientQuery())
-                    .success(function (response) { vm.productCount = response.meta.results.total; });
+                    .success(function (response) {
+                        if (response.meta && response.meta.results) {
+                            vm.productCount = response.meta.results.total;
+                        }
+                    });
             }
         };
 
@@ -77,13 +81,13 @@
             if (!input) {
                 return input;
             }
-            return input.replace(' ', '+');
+            return input.split(' ').join('+');
         }
         function unsanitize(input) {
             if (!input) {
                 return input;
             }
-            return input.replace('+', ' ');
+            return input.split('+').join(' ');
         }
         function getExampleSanitized(query, input) {
             var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
@@ -168,8 +172,8 @@
         function setInitialValuesFromSearchQuery() {
             var searchObject = $location.search();
             console.log(searchObject);
-            vm.purpose = searchObject.purpose;
-            vm.ingredient = searchObject.ingredient;
+            vm.purpose = unsanitize(searchObject.purpose);
+            vm.ingredient = unsanitize(searchObject.ingredient);
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }

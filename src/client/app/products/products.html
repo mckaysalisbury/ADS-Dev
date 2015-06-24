@@ -10,7 +10,7 @@
 						<a ng-click="vm.editSearch();">Edit Search</a>
 					</div>
 					<div class="col-sm-12">
-						<label>showing {{vm.results ? vm.results.length : 0}} of {{ vm.meta ? vm.meta.results.total : 0 }} matching products with a purpose of '{{vm.purpose}}' and without the ingredient '{{vm.ingredient}}'</label>
+						<label>showing {{vm.results ? vm.results.length : 0}} of {{ vm.meta ? vm.meta.results.total : 0 }} matching products with a purpose of '{{vm.purpose.split('+').join(' ')}}' and without the ingredient '{{vm.ingredient.split('+').join(' ')}}'</label>
 					</div>
 					<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptions" />
 					<div class="widget-foot">

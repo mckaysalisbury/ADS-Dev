@@ -49,8 +49,7 @@
 				</div>
 			</div>
 			<div class="widget-content text-left text-info col-md-12">
-				<label>{{ vm.productCount }} matching drugs found</label>
-				<button ng-click="vm.viewResults();">View Results</button>
+				<button ng-click="vm.viewResults();">View <strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
 			</div>
 			<div class="widget-foot ">
 				<div class="clearfix "></div>
