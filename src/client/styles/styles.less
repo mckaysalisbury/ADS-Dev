@@ -1166,6 +1166,10 @@ form {
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+    .form-wizard.wizard-horizontal>ol>li {
+        display: inline-block
+    }
+    
     .form {
         margin: 0 !important;
     }
@@ -2176,6 +2180,76 @@ fieldset[disabled] .twitter-typeahead .tt-input {
 
 .greyArea{
     background-color:#e3e4e5
+}
+
+/* Forms Styles */
+.form-wizard>ol {
+    list-style-type: none;
+    padding: 0 15px
+}
+
+.form-wizard>ol>li {
+    min-height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #fcfcfc;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.form-wizard>ol>li>a {
+    text-decoration: none
+}
+
+.form-wizard>ol>li .label {
+    background-color: #5d9cec;
+    vertical-align: super;
+    margin-right: 6px
+}
+
+.form-wizard>ol>li .label[href]:focus, .form-wizard>ol>li .label[href]:hover {
+    background-color: #2f80e7
+}
+
+.form-wizard>ol>li h4 {
+    display: inline-block;
+    color: #515253
+}
+
+.form-wizard>ol>li small {
+    display: block;
+    color: #909fa7
+}
+
+.form-wizard>ol>li.active {
+    background-color: #5d9cec
+}
+
+.form-wizard>ol>li.active h4, .form-wizard>ol>li.active small {
+    color: #fff
+}
+
+.form-wizard>ol>li.active .label {
+    background-color: #fff;
+    border-color: #fff;
+    color: #5d9cec
+}
+
+.form-wizard .wizard-buttons {
+    margin: 0
+}
+
+.form-wizard .well {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 0 0 #000
+}
+
+.form-wizard .well fieldset {
+    margin: 0
 }
 
 

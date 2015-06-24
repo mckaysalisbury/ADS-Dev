@@ -1,24 +1,44 @@
 <!-- form.html -->
 <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-        <div id="form-container">
-            <div class="page-header text-center">
-                <h2>Let's Be Friends</h2>
-                <!-- the links to our nested states using relative paths -->
-                <!-- add the active class if the state matches our ui-sref -->
-                <div id="status-buttons" class="text-center">
-                    <a ui-sref-active="active" ui-sref=".searchbypurpose"><span>1</span> Search by Purpose</a>
-                    <a ui-sref-active="active" ui-sref=".productsearch"><span>2</span> Product Search</a>
-                    <a ui-sref-active="active" ui-sref=".productdetails"><span>3</span> Product Details</a>
-                </div>
-            </div>
-            <!-- use ng-submit to catch the form submission and use our Angular function -->
-            <form id="signup-form" ng-submit="processForm()">
-                <!-- our nested state views will be injected here -->
-                <div id="form-views" ui-view></div>
+    <div id="form-container">
+        <div class="page-header text-center">
+            <!-- the links to our nested states using relative paths -->
+            <!-- add the active class if the state matches our ui-sref -->
+            <form action="/" method="POST" form-wizard="" validate-steps="true" validate-form="" steps="4" class="ng-pristine ng-valid ng-scope"
+            novalidate="">
+                <ol class="row">
+                    <div class="form-wizard wizard-horizontal">
+                        <!-- START wizard steps indicator-->
+                        <ol class="row">
+                            <li ui-sref-active="active" class="col-md-3">
+                                <a ui-sref=".searchByPurpose">
+                                    <h4>Search by purpose</h4>
+                                    <small class="text-muted">Duis volutpat nunc at ligula tincidunt non aliquam.</small>
+                                    </a>
+                            </li>
+                            <li ui-sref-active="active" class="col-md-3">
+                                <a ui-sref=".products"><h4>Product Search</h4>
+                                    <small class="text-muted">Nulla pharetra imperdiet sapien ac faucibus.</small></a>
+                            </li>
+                            <li ui-sref-active="active" class="col-md-3">
+                                <a ui-sref=".product"><h4>Product Details</h4>
+                                    <small class="text-muted">Sed elementum lorem dolor, id fermentum metus.</small>
+                                    </a>
+                            </li>
+                            <li ui-sref-active="active" class="col-md-3">
+                                <a>
+                                <h4>Done!</h4>
+                                <small class="text-muted">Nullam sit amet magna vestibulum libero. ed elementum lorem dolor</small>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
             </form>
         </div>
-        <!-- show our formData as it is being typed -->
-        <pre>{{ formData }}</pre>
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form id="signup-form" ng-submit="processForm()">
+            <!-- our nested state views will be injected here -->
+            <div id="form-views" ui-view></div>
+        </form>
     </div>
 </div>

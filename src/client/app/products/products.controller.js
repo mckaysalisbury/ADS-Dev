@@ -6,9 +6,9 @@
         .module('app.products')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$http', 'logger', '$location'];
+    ProductsController.$inject = ['$http', 'logger', '$location', '$stateParams', 'searchformservice'];
     /* @ngInject */
-    function ProductsController($http, logger, $location) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice) {
         var vm = this;
 
         vm.editSearch = function editSearch() {
@@ -22,7 +22,7 @@
         setPurposeAndIngredient();
 
         function setWithIngredientGrid() {
-            var lastPiece = getQuery();
+            var lastPiece = searchformservice.query;
             if (lastPiece.indexOf('Without') === -1) {
                 vm['gridOptionsWith'] = { filterText: '' };
                 return;
@@ -34,7 +34,7 @@
                 'filterOptionsWith');
         }
         function setWithoutIngredientGrid() {
-            var lastPiece = getQuery();
+            var lastPiece = searchformservice.query;
             setIngredientGrid(decodeURIComponent(lastPiece),
                 'results',
                 'meta',
@@ -71,7 +71,7 @@
         }
 
         function setPurposeAndIngredient() {
-            var query = getQuery();
+            var query = searchformservice.query;
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
                 vm.ingredient = splitBySlash[4];
@@ -85,10 +85,6 @@
             else {
                 vm.purpose = '';
             }
-        }
-        function getQuery() {
-            var searchObject = $location.search();
-            return searchObject.query;
         }
     }
 })();

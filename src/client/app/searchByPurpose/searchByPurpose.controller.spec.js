@@ -4,7 +4,7 @@ describe('SearchByPurposeController', function () {
 
     beforeEach(function () {
         bard.appModule('app.searchByPurpose');
-        bard.inject('$controller', '$log', '$q', '$rootScope');
+        bard.inject('$controller', '$log', '$q', '$rootScope', 'searchformservice');
     });
 
     beforeEach(function () {

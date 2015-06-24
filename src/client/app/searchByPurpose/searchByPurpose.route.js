@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -14,9 +14,9 @@
     function getStates() {
         return [
             {
-                state: 'searchByPurpose',
+                state: 'search-form.searchByPurpose',
                 config: {
-                    url: '/',
+                    url: '/searchbypurpose',
                     templateUrl: 'app/searchByPurpose/searchByPurpose.html',
                     controller: 'SearchByPurposeController',
                     controllerAs: 'vm',
@@ -25,7 +25,7 @@
                         nav: 3,
                         content: '<i class="fa fa-search"></i> Search By Purpose'
                     }
-                },
+                }
             }
         ];
     }
