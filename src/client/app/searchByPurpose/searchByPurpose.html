@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="col-md-12">
-		<div class="widget wred">
+		<div class="widget wgreen">
 			<div ht-widget-header title="Find products without an ingredient" allow-collapse="true"></div>
 			<div class="widget-content text-left text-info col-md-6">
 				<div>
@@ -18,7 +18,7 @@
 				<div>
 					<h5>Purposes include...</h5>
 				</div>
-				<div class="row" style="overflow: scroll; height: 350px;">
+				<div class="row" style="overflow: auto; max-height: 350px;">
 					<div ng-repeat="x in vm.examplePurposes">
 						<a class="col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
 						<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
@@ -41,14 +41,14 @@
 				<div>
 					<h5>Ingredients excluded:</h5>
 				</div>
-				<div class="row" style="overflow: scroll; height: 350px;">
+				<div class="row" style="overflow: auto; max-height: 350px;">
 					<div ng-repeat="x in vm.exampleIngredients">
 						<a ng-click="vm.changeIngredient(x.value);" class="col-md-4" style="font-weight:bold;">{{ x.value }}</a>
 						<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-12">
+			<div class="widget-content text-left text-info col-md-12">
 				<label>{{vm.productsWithoutIngredient ? (vm.productsWithoutIngredient.length === 100 ? "100+" : vm.productsWithoutIngredient.length)
 					: 0}} matching drugs found</label>
 				<button ng-click="vm.viewResults();">View Results</button>
