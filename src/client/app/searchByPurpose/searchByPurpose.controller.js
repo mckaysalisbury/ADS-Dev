@@ -7,9 +7,9 @@
         .module('app.searchByPurpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$location', '$window', '$state', 'searchformservice'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window', '$state', 'logger', 'searchformservice'];
     /* @ngInject */
-    function SearchByPurposeController($http, $location, $window, $state, searchformservice) {
+    function SearchByPurposeController($http, $location, $window, $state, logger, searchformservice) {
         var vm = this;
         var nonWordCharacters = [' ', '/', ',', ')', '(', '.', ';'];
         /* jshint -W117 */
@@ -23,14 +23,15 @@
             else {
                 $http.get(getPurposeWithoutIngredientQuery())
                     .success(function (response) {
-                        if (response.meta && response.meta.results) {
-                            vm.productCount = response.meta.results.total;
-                        }
-                    });
+                    if (response.meta && response.meta.results) {
+                        vm.productCount = response.meta.results.total;
+                    }
+                });
             }
         };
 
         vm.provideExamplePurposes = function () {
+            logger.info('w00t');
             if (vm.purpose == null || vm.purpose === '') {
                 vm.examplePurposes = [];
             }
@@ -41,6 +42,7 @@
             vm.searchPurposeWithoutIngredient();
         };
         vm.provideExampleIngredients = function () {
+            logger.info('w00t');
             if (vm.ingredient == null || vm.ingredient === '') {
                 vm.exampleIngredients = [];
             }
@@ -59,10 +61,9 @@
         vm.viewResults = function viewResults() {
             // $location.path('/products');
             searchformservice.query = getPurposeWithoutIngredientQuery();
+            searchformservice.purpose = vm.purpose;
+            searchformservice.ingredient = vm.ingredient;
             $state.go('^.products');
-            // $location.search('purpose', null);
-            // $location.search('ingredient', null);
-            // $window.scrollTo(0, 0);
         };
         vm.changePurpose = function changePurpose(newValue) {
             vm.purpose = newValue;
@@ -171,10 +172,8 @@
             return result;
         };
         function setInitialValuesFromSearchQuery() {
-            var searchObject = $location.search();
-            console.log(searchObject);
-            vm.purpose = unsanitize(searchObject.purpose);
-            vm.ingredient = unsanitize(searchObject.ingredient);
+            vm.purpose = unsanitize(searchformservice.purpose);
+            vm.ingredient = unsanitize(searchformservice.ingredient);
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }
@@ -184,5 +183,6 @@
         }
 
         setInitialValuesFromSearchQuery();
+
     }
 })();

@@ -46,7 +46,7 @@
         setPurposeAndIngredient();
 
         function setPurposeAndIngredient() {
-            var query = getQuery();
+            var query = searchformservice.query;
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
                 vm.ingredient = splitBySlash[4];
@@ -60,10 +60,6 @@
             else {
                 vm.purpose = '';
             }
-        }
-        function getQuery() {
-            var searchObject = $location.search();
-            return searchObject.query;
         }
     }
 })();

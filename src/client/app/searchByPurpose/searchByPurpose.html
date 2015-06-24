@@ -10,7 +10,7 @@
 					<label>Purpose:</label>
 				</div>
 				<div>
-					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?">
+					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's the purpose?">
 				</div>
 				<div>
 					<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
@@ -49,14 +49,8 @@
 				</div>
 			</div>
 			<div class="widget-content text-left text-info col-md-12">
-<<<<<<< HEAD
-				<label>{{vm.productsWithoutIngredient ? (vm.productsWithoutIngredient.length === 100 ? "100+" : vm.productsWithoutIngredient.length)
-					: 0}} matching drugs found</label>
-				<button ng-click="vm.viewResults();">View Results
-				</button>
-=======
-				<button ng-click="vm.viewResults();">View <strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
->>>>>>> 989dcc5f75ae4f54089882dd5da91b844f71f71f
+				<button ng-click="vm.viewResults();">View
+					<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong>Matching Drugs</button>
 			</div>
 			<div class="widget-foot ">
 				<div class="clearfix "></div>
