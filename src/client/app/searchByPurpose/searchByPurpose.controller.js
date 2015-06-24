@@ -15,6 +15,7 @@
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
+
         vm.searchPurposeWithoutIngredient = function () {
             $http.get(getPurposeWithoutIngredientQuery())
                 .success(function (response) { vm.productsWithoutIngredient = response.results; });
@@ -47,6 +48,8 @@
         vm.viewResults = function viewResults() {
             $location.path('/products');
             $location.search('query', getPurposeWithoutIngredientQuery());
+            $location.search('purpose', null);
+            $location.search('ingredient', null);
             $window.scrollTo(0, 0);
         };
         vm.changePurpose = function changePurpose(newValue) {
@@ -58,6 +61,9 @@
             vm.provideExampleIngredients();
         };
         function getPurposeWithoutIngredientQuery() {
+            if (!vm.ingredient || vm.ingredient === '') {
+                return '/data/purpose/' + sanitize(vm.purpose);
+            }
             return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);
         }
         function sanitize(input) {
@@ -152,5 +158,19 @@
             }, this);
             return result;
         };
+        function setInitialValuesFromSearchQuery() {
+            var searchObject = $location.search();
+            console.log(searchObject);
+            vm.purpose = searchObject.purpose;
+            vm.ingredient = searchObject.ingredient;
+            if (vm.purpose) {
+                vm.provideExamplePurposes();
+            }
+            if (vm.ingredient) {
+                vm.provideExampleIngredients();
+            }
+        }
+
+        setInitialValuesFromSearchQuery();
     }
 })();

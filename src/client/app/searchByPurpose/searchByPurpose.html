@@ -20,7 +20,7 @@
 						<div>
 							<h5>Purposes include...</h5>
 						</div>
-						<div class="row" style="overflow: scroll; height: 350px;">
+						<div class="row" style="overflow: auto; height: 350px;">
 							<div ng-repeat="x in vm.examplePurposes">
 								<a class="col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
 								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
@@ -43,7 +43,7 @@
 						<div>
 							<h5>Ingredients excluded:</h5>
 						</div>
-						<div class="row" style="overflow: scroll; height: 350px;">
+						<div class="row" style="overflow: auto; height: 350px;">
 							<div ng-repeat="x in vm.exampleIngredients">
 								<a ng-click="vm.changeIngredient(x.value);" class="col-md-4" style="font-weight:bold;">{{ x.value }}</a>
 								<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
