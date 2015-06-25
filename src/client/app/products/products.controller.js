@@ -7,9 +7,10 @@
         .controller('ProductsController', ProductsController);
 
     ProductsController.$inject =
-        ['$http', 'logger', '$location', '$stateParams', 'searchformservice', '$state', '$scope'];
+        ['$http', 'logger', '$location', '$stateParams',
+            'searchformservice', '$state', '$scope', 'common'];
     /* @ngInject */
-    function ProductsController($http, logger, $location, $stateParams, searchformservice, $state, $scope) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice, $state, $scope, common) {
         var vm = this;
 
         vm.editSearch = function editSearch() {
@@ -32,6 +33,12 @@
                 return '';
             }
             return vm.purpose.split('+').join(' ');
+        };
+        vm.boldTextMatchingPurpose = function boldTextMatchingPurpose(text) {
+            if (!text) {
+                return '';
+            }
+            return text.replace(new RegExp(vm.purposeClean(), 'gi'), '<strong>$&</strong>');
         };
         function setWithIngredientGrid() {
             var lastPiece = searchformservice.query;
@@ -69,7 +76,7 @@
                 var url = baseUrl + '/' + pagingOptions.currentPage + '/' + pagingOptions.pageSize;
                 $http.get(url).success(function (response) {
                     vm['meta' + propertySuffix] = response.meta;
-                    vm['results' + propertySuffix] = response.results;
+                    vm['results' + propertySuffix] = insertContextualPurpose(response.results);
                     var totalItems = 0;
                     if (response.meta && response.meta.results)
                     {
@@ -93,7 +100,12 @@
                 columnDefs: [
                     {field: 'brand_name', displayName: 'Product Name'},
                     {field: 'manufacturer_name', displayName: 'Manufacturer'},
-                    {field: 'purpose_context', displayName: 'Purpose'},
+                    {
+                        field: 'purpose_context',
+                        displayName: 'Purpose',
+                        cellTemplate: '<div class="ngCellText" ng-bind-html=' +
+                            '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
+                    },
                     {field: 'generic_name', displayName: 'Active Ingredients'},
                 ],
                 multiSelect: false,
@@ -115,8 +127,20 @@
             };
         }
 
-        function insertPurposeContext(input) {
-
+        function insertContextualPurpose(results) {
+            var purpose = common.unsanitize(vm.purpose);
+            if (results) {
+                for (var i = 0; i < results.length; i++) {
+                    var example = common.getExample(purpose, results[i].purpose).example;
+                    if (example) {
+                        results[i].purpose_context = example;
+                    }
+                    else {
+                        results[i].purpose_context = results[i].purpose;
+                    }
+                }
+            }
+            return results;
         }
 
         function setPurposeAndIngredient() {
