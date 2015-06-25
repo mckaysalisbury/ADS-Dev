@@ -1,16 +1,16 @@
 <!-- form.html -->
-<div class="row">
+<div>
     <div id="form-container">
         <div class="page-header text-center">
             <!-- the links to our nested states using relative paths -->
             <!-- add the active class if the state matches our ui-sref -->
-            <ol class="row">
+            <ol>
                 <div class="form-wizard wizard-horizontal">
                     <!-- START wizard steps indicator-->
-                    <ol class="row">
+                    <ol>
                         <div class="col-md-4 wizard-button">
                             <li ui-sref-active="active" ui-sref=".searchByPurpose" ng-click="isActive" ng-hide="isActive">
-                                <div class="row">
+                                <div>
                                     <h4>Search by purpose
                                         <i class="fa fa-chevron-right" "/></h4>
                                 </div>
@@ -18,20 +18,39 @@
                             </li>
                         </div>
                         <div class="col-md-4 wizard-button">
-                            <li ui-sref-active="active" ui-sref=".products" ng-hide="isActive">
-                                <div class="row">
-                                    <h4>Product Search
-                                        <i class="fa fa-chevron-right" "/></h4>
-                                </div>
-                                <small class="text-muted"></small>
+                            <li ui-sref-active="active">
+                                <a ui-sref=".products" ng-if="canGoToProducts()">
+                                    <div>
+                                        <h4>Product Search
+                                            <i class="fa fa-chevron-right" "/>
+                                        </h4>
+                                    </div>
+                                </a>
+                                <span ng-if="!canGoToProducts()">
+                                    <div>
+                                        <h4 style="color: #CCCCCC;">Product Search
+                                            <i class="fa fa-chevron-right" "/>
+                                        </h4>
+                                    </div>
+                                </span>
                             </li>
                         </div>
                         <div class="col-md-4 wizard-button">
-                            <li ui-sref-active="active" ui-sref=".product">
-                                <div class="row">
-                                    <h4>Product Details</h4>
-                                </div>
-                                <small class="text-muted "></small>
+                            <li ui-sref-active="active">
+                                <a ui-sref=".product" ng-if="canGoToProduct()">
+                                    <div>
+                                        <h4>Product Details
+                                            <i class="fa fa-chevron-right" "/>
+                                        </h4>
+                                    </div>
+                                </a>
+                                <span ng-if="!canGoToProduct()">
+                                    <div>
+                                        <h4 style="color: #CCCCCC;">Product Details
+                                            <i class="fa fa-chevron-right" "/>
+                                        </h4>
+                                    </div>
+                                </span>
                             </li>
                         </div>
                     </ol>
