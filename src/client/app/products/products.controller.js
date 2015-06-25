@@ -58,7 +58,7 @@
             vm.url = url;
             $http.get(vm.url).success(function (response) {
                 vm[metaProperty] = response.meta;
-                vm[resultsProperty] = response.results;
+                vm[resultsProperty] = insertPurposeContext(response.results);
             });
 
             vm[gridOptionsProperty] = {
@@ -66,7 +66,7 @@
                 columnDefs: [
                     {field: 'brand_name', displayName: 'Product Name'},
                     {field: 'manufacturer_name', displayName: 'Manufacturer'},
-                    {field: 'purpose', displayName: 'Purpose'},
+                    {field: 'purpose_context', displayName: 'Purpose'},
                     {field: 'generic_name', displayName: 'Active Ingredients'},
                 ],
                 multiSelect: false,
@@ -79,6 +79,10 @@
                 filterOptions: vm[filterOptionsProperty],
                 sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']}
             };
+        }
+
+        function insertPurposeContext(input) {
+            
         }
 
         function setPurposeAndIngredient() {
