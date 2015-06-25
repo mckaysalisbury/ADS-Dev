@@ -6,18 +6,32 @@
         .module('app.products')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$http', 'logger', '$location'];
+    ProductsController.$inject = ['$http', 'logger', '$location', '$scope'];
     /* @ngInject */
-    function ProductsController($http, logger, $location) {
+    function ProductsController($http, logger, $location, $scope) {
         var vm = this;
         vm.filterOptions = { filterText: '' };
 
         var lastPiece = getQuery();
         vm.url = decodeURIComponent(lastPiece);
-        $http.get(vm.url).success(function (response) {
-            vm.meta = response.meta;
-            vm.results = response.results;
-        });
+
+        var refreshData = function() {
+            $http.get(vm.url).success(function (response) {
+                vm.meta = response.meta;
+                vm.results = response.results;
+                $scope.totalServerItems = response.meta.results.total;
+            });
+        };
+
+        refreshData();
+
+        $scope.totalServerItems = -1;
+
+        $scope.pagingOptions = {
+            pageSizes: [10, 50, 100],
+            pageSize: 100,
+            currentPage: 1
+        };
 
         vm.gridOptions = {
             data : 'vm.results',
@@ -35,8 +49,19 @@
                 return true;
             },
             filterOptions: vm.filterOptions,
-            sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']}
+            sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']},
+
+            // Paging Options
+            // enablePaging: true,
+            // showFooter: true,
+            pagingOptions: $scope.pagingOptions,
+            totalServerItems: 'totalServerItems',
         };
+
+        $scope.$watch('pagingOptions', function(newVal, oldVal) {
+            refreshData();
+        });
+
         vm.editSearch = function editSearch() {
             $location.path('/');
             $location.search('query', null);

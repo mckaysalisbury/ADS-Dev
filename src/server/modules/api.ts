@@ -4,62 +4,58 @@ import http = require('http');
 
 export class Fda {
 
-  public static Products(brand: string, callback): void {
-    Fda.Label(Fda.MultiWordStart('brand_name', brand), 0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
-    
-  }
-
   public static Product(id: string, callback): void {
-    Fda.Label('id:' + id, 0, 1, Fda.QueryFromArguments(arguments), callback, Fda.Identity);
+    Fda.Label(
+      'id:' + id,
+      new PageOptions("1","1"),
+      Fda.QueryFromArguments(arguments),
+      callback,
+      Fda.Identity);
   }
 
-  public static Ingredient(ingredient: string, callback): void {
+  public static Products(brand: string, page : string, count : string, callback): void {
+    Fda.Label(
+      Fda.MultiWordStart('brand_name', brand),
+      new PageOptions(page, count),
+      Fda.QueryFromArguments(arguments),
+      callback,
+      Fda.SummaryProductData);
+  }
+
+  public static Ingredient(ingredient: string, page : string, count : string, callback): void {
     // generic name is more useful than active ingredient
     Fda.Label(
-       Fda.MultiWordStart("generic_name", ingredient) +
-       "+" + Fda.MultiWordStart("inactive_ingredient", ingredient),
-        0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
+      Fda.MultiWordStart("generic_name", ingredient) + "+" + Fda.MultiWordStart("inactive_ingredient", ingredient), 
+      new PageOptions(page, count),
+      Fda.QueryFromArguments(arguments),
+      callback,
+      Fda.SummaryProductData);
   }
   
-  public static Purpose(purpose: string, callback): void {
-    Fda.Label(Fda.MultiWordStart("purpose", purpose), 0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
+  public static Purpose(purpose: string, page : string, count : string, callback): void {
+    Fda.Label(
+      Fda.MultiWordStart("purpose", purpose),
+      new PageOptions(page, count),
+      Fda.QueryFromArguments(arguments),
+      callback,
+      Fda.SummaryProductData);
   }
 
-  public static PurposeWithoutIngredient(purpose: string, ingredient: string, callback): void {
+  public static PurposeWithoutIngredient(purpose: string, ingredient: string, page : string, count : string, callback): void {
     Fda.Label(
-      Fda.MultiWordStart("purpose", purpose) +  
+      Fda.MultiWordStart("purpose", purpose) +        
        "+AND+NOT+" + Fda.MultiWordStart("generic_name", ingredient) +
        "+AND+NOT+" + Fda.MultiWordStart("inactive_ingredient", ingredient),
-        0, 100, Fda.QueryFromArguments(arguments), callback, Fda.SummaryProductData);
+      new PageOptions(page, count),   
+      Fda.QueryFromArguments(arguments),
+      callback,
+      Fda.SummaryProductData);
   }
   
-  public static MultiWordStart(field : string, query : string) : string
-  {
-    var queryPiece = new Array();
-    query.replace(' ', '+');
-    query.split('+').forEach((word) =>
-      {        
-        queryPiece.push(field + ":" + Fda.WordStart(word));         
-      });
-    return '(' +queryPiece.join("+AND+") + ')';      
-  }
-  
-  public static WordStart(startOfWord : string) : string{
-    // https://open.fda.gov/api/reference/#dates-and-ranges 
-    return '[' + startOfWord + '+TO+' + startOfWord + 'zzz]'; 
-    // multiple 'z's to make sure that certain things don't get excluded like "snoo" shouln't exclude "snoozing" (because "snoozing" is greater than "snooz") (or "fluconazole" if you're trying to think of something people might actually search for.)
-  }
-  
-  private static QueryFromArguments(methodArguments : IArguments) : any
-  {
-    delete methodArguments[methodArguments.length - 1];
-    return methodArguments;        
-  }
-
-  private static Label(search: string, skip: number, limit: number, queryArguments, callback, filter): void {
+  private static Label(search: string, pageOptions : PageOptions, queryArguments, callback, filter): void {
     var options = {
       host: 'api.fda.gov',
-      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + skip + "&limit=" + limit + "&search=product_type:otc+AND+" + search,
+      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + pageOptions.skip + "&limit=" + pageOptions.limit + "&search=product_type:otc+AND+" + search,
       port: 80,
       method: 'GET'
     };
@@ -172,5 +168,45 @@ export class Fda {
 
   private static Identity(input) {
     return input;
+  }
+  
+  public static MultiWordStart(field : string, query : string) : string
+  {
+    var queryPiece = new Array();
+    query.replace(' ', '+');
+    query.split('+').forEach((word) =>
+      {
+        queryPiece.push(field + ":" + Fda.WordStart(word));
+      });
+    return '(' +queryPiece.join("+AND+") + ')';
+  }
+  
+  public static WordStart(startOfWord : string) : string{
+    // https://open.fda.gov/api/reference/#dates-and-ranges 
+    return '[' + startOfWord + '+TO+' + startOfWord + 'zzz]'; 
+    // multiple 'z's to make sure that certain things don't get excluded like "snoo" shouln't exclude "snoozing" (because "snoozing" is greater than "snooz") (or "fluconazole" if you're trying to think of something people might actually search for.)
+  }
+  
+  private static QueryFromArguments(methodArguments : IArguments) : any
+  {
+    delete methodArguments[methodArguments.length - 1];
+    return methodArguments;
+  }
+}
+
+class PageOptions {
+  skip: number;
+  limit: number;
+  constructor(page: string, count: string) {
+    if (page === undefined)
+    {
+      page = "1";
+    }
+    if (count === undefined)
+    {
+      count = "100";
+    }
+    this.limit = <any>count;
+    this.skip = (<any>page - 1) * this.limit;
   }
 }
