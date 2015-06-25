@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.product')
+        .module('app.search-form')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,14 +14,14 @@
     function getStates() {
         return [
             {
-                state: 'search-form.product',
-                config:{
-                    url: 'product',
-                    controller: 'ProductController',
+                state: 'search-form',
+                config: {
+                    url: '/',
+                    templateUrl: 'app/search-form/search-form.html',
+                    controller: 'SearchFormController',
                     controllerAs: 'vm',
-                    templateUrl: 'app/product/product.html',
-                    title: 'Product',
-                }
+                    title: 'Search Form'
+                },
             }
         ];
     }

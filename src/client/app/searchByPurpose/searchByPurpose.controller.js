@@ -7,11 +7,11 @@
         .module('app.searchByPurpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$location', '$window'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window', '$state', 'logger', 'searchformservice'];
     /* @ngInject */
-    function SearchByPurposeController($http, $location, $window) {
+    function SearchByPurposeController($http, $location, $window, $state, logger, searchformservice) {
         var vm = this;
-        var nonWordCharacters = [' ', '/', ',', ')', '(', '.'];
+        var nonWordCharacters = [' ', '/', ',', ')', '(', '.', ';'];
         /* jshint -W117 */
         var contains = $.inArray;
         /* jshint +W117 */
@@ -22,7 +22,11 @@
             }
             else {
                 $http.get(getPurposeWithoutIngredientQuery())
-                    .success(function (response) { vm.productCount = response.meta.results.total; });
+                    .success(function (response) {
+                    if (response.meta && response.meta.results) {
+                        vm.productCount = response.meta.results.total;
+                    }
+                });
             }
         };
 
@@ -53,11 +57,10 @@
             return getExampleSanitized(query, input);
         };
         vm.viewResults = function viewResults() {
-            $location.path('/products');
-            $location.search('query', getPurposeWithoutIngredientQuery());
-            $location.search('purpose', null);
-            $location.search('ingredient', null);
-            $window.scrollTo(0, 0);
+            searchformservice.query = getPurposeWithoutIngredientQuery();
+            searchformservice.purpose = vm.purpose;
+            searchformservice.ingredient = vm.ingredient;
+            $state.go('^.products');
         };
         vm.changePurpose = function changePurpose(newValue) {
             vm.purpose = newValue;
@@ -77,24 +80,24 @@
             if (!input) {
                 return input;
             }
-            return input.replace(' ', '+');
+            return input.split(' ').join('+');
         }
         function unsanitize(input) {
             if (!input) {
                 return input;
             }
-            return input.replace('+', ' ');
+            return input.split('+').join(' ');
         }
         function getExampleSanitized(query, input) {
             var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
             if (indexOfQuery === -1) {
-                return {'value': query, 'example': null};
+                return { 'value': query, 'example': null };
             }
             var fullText = getFullTextFromInput(query, input, indexOfQuery);
             var example = getSampleTextFromInput(query, input, indexOfQuery, fullText.length);
             // console.log({'query': query, 'input': input});
             // console.log({'value': fullText, 'example': example});
-            return {'value': fullText.toLowerCase(), 'example': example};
+            return { 'value': fullText.toLowerCase(), 'example': example };
         }
         function getSampleTextFromInput(query, input, indexOfQuery, fullTextLength) {
             var startIndex = indexOfQuery - 25;
@@ -126,14 +129,14 @@
             return fullText;
         }
 
-        vm.transformPurpose = function(data) {
+        vm.transformPurpose = function (data) {
             var result = [];
             var query = unsanitize(data.meta.query[0]);
             if (!data.results) {
                 return result;
             }
             var alreadyAdded = [];
-            data.results.forEach(function(element) {
+            data.results.forEach(function (element) {
                 var v = vm.getExample(query, element.purpose);
                 if (v.example && contains(v.value, alreadyAdded) === -1) {
                     result.push(v);
@@ -142,14 +145,14 @@
             }, this);
             return result;
         };
-        vm.transformIngredient = function(data) {
+        vm.transformIngredient = function (data) {
             var result = [];
             var query = unsanitize(data.meta.query[0]);
             if (!data.results) {
                 return result;
             }
             var alreadyAdded = [];
-            data.results.forEach(function(element) {
+            data.results.forEach(function (element) {
                 /* jshint -W106 */ // comes from FDA dataset
                 var v = vm.getExample(query, element.generic_name);
                 if (v.example && contains(v.value, alreadyAdded) === -1) {
@@ -166,10 +169,8 @@
             return result;
         };
         function setInitialValuesFromSearchQuery() {
-            var searchObject = $location.search();
-            console.log(searchObject);
-            vm.purpose = searchObject.purpose;
-            vm.ingredient = searchObject.ingredient;
+            vm.purpose = unsanitize(searchformservice.purpose);
+            vm.ingredient = unsanitize(searchformservice.ingredient);
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }
@@ -179,5 +180,6 @@
         }
 
         setInitialValuesFromSearchQuery();
+
     }
 })();

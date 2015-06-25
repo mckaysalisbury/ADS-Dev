@@ -6,72 +6,86 @@
         .module('app.products')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$http', 'logger', '$location', '$scope'];
+    ProductsController.$inject = ['$http', 'logger', '$location', '$stateParams', 'searchformservice', '$state'];
     /* @ngInject */
-    function ProductsController($http, logger, $location, $scope) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice, $state) {
         var vm = this;
-        vm.filterOptions = { filterText: '' };
-
-        var lastPiece = getQuery();
-        vm.url = decodeURIComponent(lastPiece);
-
-        var refreshData = function() {
-            $http.get(vm.url).success(function (response) {
-                vm.meta = response.meta;
-                vm.results = response.results;
-                $scope.totalServerItems = response.meta.results.total;
-            });
-        };
-
-        refreshData();
-
-        $scope.totalServerItems = -1;
-
-        $scope.pagingOptions = {
-            pageSizes: [10, 50, 100],
-            pageSize: 100,
-            currentPage: 1
-        };
-
-        vm.gridOptions = {
-            data : 'vm.results',
-            columnDefs: [
-                {field: 'brand_name', displayName: 'Product Name'},
-                {field: 'manufacturer_name', displayName: 'Manufacturer'},
-                {field: 'purpose', displayName: 'Purpose'},
-                {field: 'generic_name', displayName: 'Active Ingredients'},
-            ],
-            multiSelect: false,
-            selectedItems: [],
-            afterSelectionChange: function(i, e) {
-                $location.path('/product');
-                $location.search('id', i.entity.id);
-                return true;
-            },
-            filterOptions: vm.filterOptions,
-            sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']},
-
-            // Paging Options
-            // enablePaging: true,
-            // showFooter: true,
-            pagingOptions: $scope.pagingOptions,
-            totalServerItems: 'totalServerItems',
-        };
-
-        $scope.$watch('pagingOptions', function(newVal, oldVal) {
-            refreshData();
-        });
 
         vm.editSearch = function editSearch() {
-            $location.path('/');
-            $location.search('query', null);
-            $location.search('purpose', vm.purpose);
-            $location.search('ingredient', vm.ingredient);
+            searchformservice.purpose = vm.purpose;
+            searchformservice.ingredient = vm.ingredient;
+            $state.go('^.searchByPurpose');
         };
+        setWithoutIngredientGrid();
+        setWithIngredientGrid();
         setPurposeAndIngredient();
 
+        vm.ingredientClean = function ingredientClean() {
+            if (!vm.ingredient) {
+                return '';
+            }
+            return vm.ingredient.split('+').join(' ');
+        };
+        vm.purposeClean = function purposeClean() {
+            if (!vm.purpose) {
+                return '';
+            }
+            return vm.purpose.split('+').join(' ');
+        };
+        function setWithIngredientGrid() {
+            var lastPiece = searchformservice.query;
+            if (!lastPiece || lastPiece.indexOf('Without') === -1) {
+                vm['gridOptionsWith'] = { filterText: '' };
+                return;
+            }
+            setIngredientGrid(decodeURIComponent(lastPiece.replace('Without', 'With')),
+                'resultsWith',
+                'metaWith',
+                'gridOptionsWith',
+                'filterOptionsWith');
+        }
+        function setWithoutIngredientGrid() {
+            var lastPiece = searchformservice.query;
+            setIngredientGrid(decodeURIComponent(lastPiece),
+                'results',
+                'meta',
+                'gridOptions',
+                'filterOptions');
+        }
+        function setIngredientGrid(url, resultsProperty, metaProperty, gridOptionsProperty, filterOptionsProperty) {
+            vm[filterOptionsProperty] = { filterText: '' };
+
+            vm.url = url;
+            $http.get(vm.url).success(function (response) {
+                vm[metaProperty] = response.meta;
+                vm[resultsProperty] = response.results;
+            });
+
+            vm[gridOptionsProperty] = {
+                data : 'vm.' + resultsProperty,
+                columnDefs: [
+                    {field: 'brand_name', displayName: 'Product Name'},
+                    {field: 'manufacturer_name', displayName: 'Manufacturer'},
+                    {field: 'purpose', displayName: 'Purpose'},
+                    {field: 'generic_name', displayName: 'Active Ingredients'},
+                ],
+                multiSelect: false,
+                selectedItems: [],
+                afterSelectionChange: function(i, e) {
+                    searchformservice.id = i.entity.id;
+                    $state.go('^.product');
+                    return true;
+                },
+                filterOptions: vm[filterOptionsProperty],
+                sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']}
+            };
+        }
+
         function setPurposeAndIngredient() {
-            var query = getQuery();
+            var query = searchformservice.query;
+            if (!query) {
+                return;
+            }
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
                 vm.ingredient = splitBySlash[4];
@@ -85,10 +99,6 @@
             else {
                 vm.purpose = '';
             }
-        }
-        function getQuery() {
-            var searchObject = $location.search();
-            return searchObject.query;
         }
     }
 })();

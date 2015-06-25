@@ -25,4 +25,8 @@ router.get('/purposeWithoutIngredient/:purpose/:ingredient/:page?/:count?', func
   Fda.PurposeWithoutIngredient(req.params.purpose, req.params.ingredient, req.params.page, req.params.count, function(body){res.json(body);});
 });
 
+router.get('/purposeWithIngredient/:purpose/:ingredient', function(req, res, next) {
+  Fda.PurposeWithIngredient(req.params.purpose, req.params.ingredient, function(body){res.json(body);});
+});
+
 module.exports = router;

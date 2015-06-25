@@ -43,7 +43,7 @@ export class Fda {
 
   public static PurposeWithoutIngredient(purpose: string, ingredient: string, page : string, count : string, callback): void {
     Fda.Label(
-      Fda.MultiWordStart("purpose", purpose) +        
+      Fda.MultiWordStart("purpose", purpose) +  
        "+AND+NOT+" + Fda.MultiWordStart("generic_name", ingredient) +
        "+AND+NOT+" + Fda.MultiWordStart("inactive_ingredient", ingredient),
       new PageOptions(page, count),   
@@ -55,7 +55,7 @@ export class Fda {
   private static Label(search: string, pageOptions : PageOptions, queryArguments, callback, filter): void {
     var options = {
       host: 'api.fda.gov',
-      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + pageOptions.skip + "&limit=" + pageOptions.limit + "&search=product_type:otc+AND+" + search,
+      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + pageOptions.skip + "&limit=" + pageOptions.limit + "&search=product_type:otc+AND+NOT+(indications_and_usage:homeopathic+purpose:homeopathic+package_label_principal_display_panel:homeopathic+pharm_class_epc:extract)+AND+" + search,
       port: 80,
       method: 'GET'
     };
