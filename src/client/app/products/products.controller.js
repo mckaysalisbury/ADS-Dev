@@ -8,9 +8,22 @@
 
     ProductsController.$inject =
         ['$http', 'logger', '$location', '$stateParams',
-            'searchformservice', '$state', '$scope', 'common'];
+            'searchformservice', '$state', '$scope', 'common', '$q', '$rootScope'];
     /* @ngInject */
-    function ProductsController($http, logger, $location, $stateParams, searchformservice, $state, $scope, common) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice,
+            $state, $scope, common, $q, $rootScope) {
+        $rootScope.$on('$stateChangeStart',
+            function(event, toState, toParams, fromState, fromParams) {
+                if (fromState.url === 'products') {
+                    if (vm.cancelWith) {
+                        vm.cancelWith.resolve();
+                    }
+                    if (vm.cancelWithout) {
+                        vm.cancelWithout.resolve();
+                    }
+                }
+            });
+
         var vm = this;
 
         vm.editSearch = function editSearch() {
@@ -73,8 +86,12 @@
             vm['pagingOptions' + propertySuffix] = pagingOptions;
 
             var getData = function() {
+                if (vm['cancel' + propertySuffix]) {
+                    vm['cancel' + propertySuffix].resolve();
+                }
+                vm['cancel' + propertySuffix] = $q.defer();
                 var url = baseUrl + '/' + pagingOptions.currentPage + '/' + pagingOptions.pageSize;
-                $http.get(url).success(function (response) {
+                $http.get(url, {timeout: vm['cancel' + propertySuffix].promise}).success(function (response) {
                     vm['meta' + propertySuffix] = response.meta;
                     vm['results' + propertySuffix] = insertContextualPurpose(response.results);
                     var totalItems = 0;

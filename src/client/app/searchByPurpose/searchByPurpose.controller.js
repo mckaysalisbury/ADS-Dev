@@ -8,11 +8,11 @@
         .controller('SearchByPurposeController', SearchByPurposeController);
 
     SearchByPurposeController.$inject = ['$http', '$location', '$window',
-        '$state', 'logger', 'searchformservice', 'common'];
+        '$state', 'logger', 'searchformservice', 'common', '$q'];
 
     /* @ngInject */
     function SearchByPurposeController($http, $location, $window, $state,
-        logger, searchformservice, common) {
+        logger, searchformservice, common, $q) {
         var vm = this;
 
         vm.searchPurposeWithoutIngredient = function () {
@@ -20,7 +20,12 @@
                 vm.productCount = 0;
             }
             else {
-                $http.get(getPurposeWithoutIngredientQuery())
+                if (vm.purposeWithoutIngredientCancel) {
+                    vm.purposeWithoutIngredientCancel.resolve();
+                }
+                vm.purposeWithoutIngredientCancel = $q.defer();
+                $http.get(getPurposeWithoutIngredientQuery(),
+                        {timeout: vm.purposeWithoutIngredientCancel.promise})
                     .success(function (response) {
                     if (response.meta && response.meta.results) {
                         vm.productCount = response.meta.results.total;
@@ -34,7 +39,12 @@
                 vm.examplePurposes = [];
             }
             else {
-                $http.get('/data/purpose/' + common.sanitize(vm.purpose))
+                if (vm.purposeCancel) {
+                    vm.purposeCancel.resolve();
+                }
+                vm.purposeCancel = $q.defer();
+                $http.get('/data/purpose/' + common.sanitize(vm.purpose),
+                        {timeout: vm.purposeCancel.promise})
                     .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
             }
             vm.searchPurposeWithoutIngredient();
@@ -44,7 +54,12 @@
                 vm.exampleIngredients = [];
             }
             else {
-                $http.get('/data/ingredient/' + common.sanitize(vm.ingredient))
+                if (vm.ingredientCancel) {
+                    vm.ingredientCancel.resolve();
+                }
+                vm.ingredientCancel = $q.defer();
+                $http.get('/data/ingredient/' + common.sanitize(vm.ingredient),
+                        {timeout: vm.ingredientCancel.promise})
                     .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
             }
             vm.searchPurposeWithoutIngredient();
