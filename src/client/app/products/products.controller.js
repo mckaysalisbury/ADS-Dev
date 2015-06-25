@@ -55,7 +55,7 @@
                 pageSize: 100,
                 currentPage: 1,
             };
-            
+
             vm['rangeDisplay' + propertySuffix] = function() {
                 var offset = (pagingOptions.currentPage - 1) * pagingOptions.pageSize;
                 var resultsCount = 0;
@@ -63,7 +63,7 @@
                 {
                     resultsCount = vm['results' + propertySuffix].length;
                 }
-                return (offset + 1) + " - " + (offset + resultsCount);
+                return (offset + 1) + ' - ' + (offset + resultsCount);
             };
 
             vm['pagingOptions' + propertySuffix] = pagingOptions;
@@ -82,8 +82,8 @@
                 });
             };
             getData();
-            
-            $scope.$watch('vm.pagingOptions' + propertySuffix, function(newVal, oldVal){
+
+            $scope.$watch('vm.pagingOptions' + propertySuffix, function(newVal, oldVal) {
                 // getData();
                 if (oldVal !== newVal && oldVal.currentPage !== newVal.currentPage)
                 {
