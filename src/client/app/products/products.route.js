@@ -16,7 +16,7 @@
             {
                 state: 'search-form.products',
                 config:{
-                    url: '/products',
+                    url: 'products',
                     controller: 'ProductsController',
                     controllerAs: 'vm',
                     templateUrl: 'app/products/products.html',

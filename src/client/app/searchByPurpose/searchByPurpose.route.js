@@ -16,7 +16,7 @@
             {
                 state: 'search-form.searchByPurpose',
                 config: {
-                    url: '/searchbypurpose',
+                    url: 'searchbypurpose',
                     templateUrl: 'app/searchByPurpose/searchByPurpose.html',
                     controller: 'SearchByPurposeController',
                     controllerAs: 'vm',
