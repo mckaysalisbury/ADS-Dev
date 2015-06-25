@@ -7,14 +7,13 @@
         .module('app.searchByPurpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$location', '$window', '$state', 'logger', 'searchformservice'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window',
+        '$state', 'logger', 'searchformservice', 'common'];
+
     /* @ngInject */
-    function SearchByPurposeController($http, $location, $window, $state, logger, searchformservice) {
+    function SearchByPurposeController($http, $location, $window, $state,
+        logger, searchformservice, common) {
         var vm = this;
-        var nonWordCharacters = [' ', '/', ',', ')', '(', '.', ';'];
-        /* jshint -W117 */
-        var contains = $.inArray;
-        /* jshint +W117 */
 
         vm.searchPurposeWithoutIngredient = function () {
             if (!vm.purpose) {
@@ -35,7 +34,7 @@
                 vm.examplePurposes = [];
             }
             else {
-                $http.get('/data/purpose/' + sanitize(vm.purpose))
+                $http.get('/data/purpose/' + common.sanitize(vm.purpose))
                     .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
             }
             vm.searchPurposeWithoutIngredient();
@@ -45,16 +44,10 @@
                 vm.exampleIngredients = [];
             }
             else {
-                $http.get('/data/ingredient/' + sanitize(vm.ingredient))
+                $http.get('/data/ingredient/' + common.sanitize(vm.ingredient))
                     .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
             }
             vm.searchPurposeWithoutIngredient();
-        };
-        vm.getExample = function getExample(query, input) {
-            if (query == null || input == null) {
-                return {};
-            }
-            return getExampleSanitized(query, input);
         };
         vm.viewResults = function viewResults() {
             searchformservice.query = getPurposeWithoutIngredientQuery();
@@ -72,105 +65,25 @@
         };
         function getPurposeWithoutIngredientQuery() {
             if (!vm.ingredient || vm.ingredient === '') {
-                return '/data/purpose/' + sanitize(vm.purpose);
+                return '/data/purpose/' + common.sanitize(vm.purpose);
             }
-            return '/data/purposeWithoutIngredient/' + sanitize(vm.purpose) + '/' + sanitize(vm.ingredient);
-        }
-        function sanitize(input) {
-            if (!input) {
-                return input;
-            }
-            return input.split(' ').join('+');
-        }
-        function unsanitize(input) {
-            if (!input) {
-                return input;
-            }
-            return input.split('+').join(' ');
-        }
-        function getExampleSanitized(query, input) {
-            var indexOfQuery = input.toLowerCase().indexOf(query.toLowerCase());
-            if (indexOfQuery === -1) {
-                return { 'value': query, 'example': null };
-            }
-            var fullText = getFullTextFromInput(query, input, indexOfQuery);
-            var example = getSampleTextFromInput(query, input, indexOfQuery, fullText.length);
-            // console.log({'query': query, 'input': input});
-            // console.log({'value': fullText, 'example': example});
-            return { 'value': fullText.toLowerCase(), 'example': example };
-        }
-        function getSampleTextFromInput(query, input, indexOfQuery, fullTextLength) {
-            var startIndex = indexOfQuery - 25;
-            var endIndex = indexOfQuery + 25 + fullTextLength;
-            if (startIndex < 0) {
-                startIndex = 0;
-            }
-            else {
-                while (startIndex > 0 && contains(input[startIndex - 1], nonWordCharacters) === -1) {
-                    startIndex--;
-                }
-            }
-            if (endIndex >= input.length) {
-                endIndex = input.length;
-            }
-            else {
-                while (endIndex < input.length && contains(input[endIndex], nonWordCharacters) === -1) {
-                    endIndex++;
-                }
-            }
-            return input.substring(startIndex, endIndex);
-        }
-        function getFullTextFromInput(query, input, indexOfQuery) {
-            var i = indexOfQuery + query.length;
-            var fullText = query;
-            while (input.length > i && contains(input[i], nonWordCharacters) === -1) {
-                fullText += input[i++];
-            }
-            return fullText;
+            return '/data/purposeWithoutIngredient/' + common.sanitize(vm.purpose) +
+                '/' + common.sanitize(vm.ingredient);
         }
 
         vm.transformPurpose = function (data) {
-            var result = [];
-            var query = unsanitize(data.meta.query[0]);
-            if (!data.results) {
-                return result;
-            }
-            var alreadyAdded = [];
-            data.results.forEach(function (element) {
-                var v = vm.getExample(query, element.purpose);
-                if (v.example && contains(v.value, alreadyAdded) === -1) {
-                    result.push(v);
-                    alreadyAdded.push(v.value);
-                }
-            }, this);
-            return result;
+            return common.getExampleDistinct(data.meta.query[0],
+                data.results,
+                ['purpose']);
         };
         vm.transformIngredient = function (data) {
-            var result = [];
-            var query = unsanitize(data.meta.query[0]);
-            if (!data.results) {
-                return result;
-            }
-            var alreadyAdded = [];
-            data.results.forEach(function (element) {
-                /* jshint -W106 */ // comes from FDA dataset
-                var v = vm.getExample(query, element.generic_name);
-                if (v.example && contains(v.value, alreadyAdded) === -1) {
-                    result.push(v);
-                    alreadyAdded.push(v.value);
-                }
-                v = vm.getExample(query, element.inactive_ingredient);
-                /* jshint +W106 */ // comes from FDA dataset
-                if (v.example && contains(v.value, alreadyAdded) === -1) {
-                    result.push(v);
-                    alreadyAdded.push(v.value);
-                }
-            }, this);
-            return result;
+            return common.getExampleDistinct(data.meta.query[0],
+                data.results,
+                ['generic_name', 'inactive_ingredient']);
         };
         function setInitialValuesFromSearchQuery() {
-            vm.purpose = unsanitize(searchformservice.purpose);
-            vm.ingredient = unsanitize(searchformservice.ingredient);
+            vm.purpose = common.unsanitize(searchformservice.purpose);
+            vm.ingredient = common.unsanitize(searchformservice.ingredient);
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }
