@@ -6,24 +6,35 @@
         .module('app.products')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$http', 'logger', '$location', '$stateParams', 'searchformservice'];
+    ProductsController.$inject = ['$http', 'logger', '$location', '$stateParams', 'searchformservice', '$state'];
     /* @ngInject */
-    function ProductsController($http, logger, $location, $stateParams, searchformservice) {
+    function ProductsController($http, logger, $location, $stateParams, searchformservice, $state) {
         var vm = this;
 
         vm.editSearch = function editSearch() {
-            $location.path('/');
-            $location.search('query', null);
-            $location.search('purpose', vm.purpose);
-            $location.search('ingredient', vm.ingredient);
+            searchformservice.purpose = vm.purpose;
+            searchformservice.ingredient = vm.ingredient;
+            $state.go('^.searchByPurpose');
         };
         setWithoutIngredientGrid();
         setWithIngredientGrid();
         setPurposeAndIngredient();
 
+        vm.ingredientClean = function ingredientClean() {
+            if (!vm.ingredient) {
+                return '';
+            }
+            return vm.ingredient.split('+').join(' ');
+        };
+        vm.purposeClean = function purposeClean() {
+            if (!vm.purpose) {
+                return '';
+            }
+            return vm.purpose.split('+').join(' ');
+        };
         function setWithIngredientGrid() {
             var lastPiece = searchformservice.query;
-            if (lastPiece.indexOf('Without') === -1) {
+            if (!lastPiece || lastPiece.indexOf('Without') === -1) {
                 vm['gridOptionsWith'] = { filterText: '' };
                 return;
             }
@@ -61,8 +72,8 @@
                 multiSelect: false,
                 selectedItems: [],
                 afterSelectionChange: function(i, e) {
-                    $location.path('/product');
-                    $location.search('id', i.entity.id);
+                    searchformservice.id = i.entity.id;
+                    $state.go('^.product');
                     return true;
                 },
                 filterOptions: vm[filterOptionsProperty],
@@ -72,6 +83,9 @@
 
         function setPurposeAndIngredient() {
             var query = searchformservice.query;
+            if (!query) {
+                return;
+            }
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
                 vm.ingredient = splitBySlash[4];

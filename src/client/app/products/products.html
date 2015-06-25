@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="col-sm-12 widget-content text-left text-info">
-		<label style="font-weight:normal;">Showing products used for '<strong>{{vm.purpose.split('+').join(' ')}}</strong>'</label>
+		<label style="font-weight:normal;">Showing products used for '<strong>{{vm.purposeClean()}}</strong>'</label>
 		<button ng-click="vm.editSearch();">Edit Search</button>
 	</div>
 	<ul class="nav nav-pills nav-justified">
-	  <li class="active"><a data-toggle="tab" href="#without">without '<strong>{{vm.ingredient.split('+').join(' ')}}</strong>' ({{ vm.meta && vm.meta.results ? vm.meta.results.total : 0 }})</a></li>
-	  <li><a data-toggle="tab" href="#with">with '<strong>{{vm.ingredient.split('+').join(' ')}}</strong>' ({{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }})</a></li>
+	  <li class="active"><a data-toggle="tab" href="#without">without '<strong>{{ vm.ingredientClean()}}</strong>' ({{ vm.meta && vm.meta.results ? vm.meta.results.total : 0 }})</a></li>
+	  <li><a data-toggle="tab" href="#with">with '<strong>{{vm.ingredientClean()}}</strong>' ({{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }})</a></li>
 	</ul>
 	<div class="tab-content">
 	  <div id="without" class="tab-pane fade in active">

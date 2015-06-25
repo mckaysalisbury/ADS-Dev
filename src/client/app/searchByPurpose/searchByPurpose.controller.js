@@ -31,7 +31,6 @@
         };
 
         vm.provideExamplePurposes = function () {
-            logger.info('w00t');
             if (vm.purpose == null || vm.purpose === '') {
                 vm.examplePurposes = [];
             }
@@ -42,7 +41,6 @@
             vm.searchPurposeWithoutIngredient();
         };
         vm.provideExampleIngredients = function () {
-            logger.info('w00t');
             if (vm.ingredient == null || vm.ingredient === '') {
                 vm.exampleIngredients = [];
             }
@@ -59,7 +57,6 @@
             return getExampleSanitized(query, input);
         };
         vm.viewResults = function viewResults() {
-            // $location.path('/products');
             searchformservice.query = getPurposeWithoutIngredientQuery();
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;

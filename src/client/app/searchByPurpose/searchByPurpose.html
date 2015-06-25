@@ -10,7 +10,7 @@
 					<label>Purpose:</label>
 				</div>
 				<div>
-					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's the purpose?">
+					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
 				</div>
 				<div>
 					<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
@@ -33,7 +33,7 @@
 					<label>Ingredient:</label>
 				</div>
 				<div>
-					<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?">
+					<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?"></input>
 				</div>
 				<div>
 					<label>{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</label>
@@ -49,8 +49,7 @@
 				</div>
 			</div>
 			<div class="widget-content text-left text-info col-md-12">
-				<button ng-click="vm.viewResults();">View
-					<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong>Matching Drugs</button>
+				<button ng-click="vm.viewResults();">View <strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
 			</div>
 			<div class="widget-foot ">
 				<div class="clearfix "></div>
