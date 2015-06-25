@@ -52,6 +52,17 @@ export class Fda {
       Fda.SummaryProductData);
   }
   
+  public static PurposeWithIngredient(purpose: string, ingredient: string, page : string, count : string, callback): void {
+    Fda.Label(
+      Fda.MultiWordStart("purpose", purpose) +  
+       "+AND+(" + Fda.MultiWordStart("generic_name", ingredient) +
+       "+" + Fda.MultiWordStart("inactive_ingredient", ingredient) + ')',
+       new PageOptions(page, count),
+       Fda.QueryFromArguments(arguments),
+       callback,
+       Fda.SummaryProductData);
+  }
+  
   private static Label(search: string, pageOptions : PageOptions, queryArguments, callback, filter): void {
     var options = {
       host: 'api.fda.gov',
