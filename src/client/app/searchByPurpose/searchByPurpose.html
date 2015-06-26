@@ -10,7 +10,7 @@
 					<label>Purpose:</label>
 				</div>
 				<div>
-					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
+					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
 				</div>
 				<div>
 					<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
