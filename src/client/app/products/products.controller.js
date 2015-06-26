@@ -56,7 +56,7 @@
         function setWithIngredientGrid() {
             var lastPiece = searchformservice.query;
             if (!lastPiece || lastPiece.indexOf('Without') === -1) {
-                vm['gridOptionsWith'] = { filterText: '' };
+                vm.gridOptionsWith = { filterText: '' };
                 return;
             }
             setIngredientGrid(decodeURIComponent(lastPiece.replace('Without', 'With')), 'With');
@@ -69,7 +69,7 @@
             vm['filterOptions' + propertySuffix] = { filterText: '' };
 
             var pagingOptions = {
-                pageSizes: [100],
+                // pageSizes: [100],
                 pageSize: 100,
                 currentPage: 1,
             };
