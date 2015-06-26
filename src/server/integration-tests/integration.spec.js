@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/mocha/mocha.d.ts"/>
 /* jshint -W117, -W030 */
 var should = require('should');
 require('typescript-require');
@@ -72,7 +73,7 @@ describe('data products', function () {
     });
 });
 describe('ingredient', function () {
-    it('Phenylephrine should be found first in Day Time with PE', function (done) {
+    it('Phenylephrine should be found first in product named "Day Time with PE"', function (done) {
         hippie(app)
             .json()
             .get('/data/ingredient/Phenylephrine')
@@ -88,7 +89,7 @@ describe('ingredient', function () {
 });
 
 describe('purpose', function () {
-    it('vendors should be found first in Day Time with PE', function (done) {
+    it('Headache should be found first in product "Aspirin"', function (done) {
         hippie(app)
             .json()
             .get('/data/purpose/Headache')
@@ -97,7 +98,7 @@ describe('purpose', function () {
             if (err) {
                 throw err;
             }
-            body.results[0]['brand_name'].should.be.eql('Sinus Relief');
+            body.results[0]['brand_name'].should.be.eql('Aspirin');
             done();
         });
     });

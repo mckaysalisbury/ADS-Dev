@@ -15,14 +15,12 @@
                     <a ui-sref=".products" ng-if="canGoToProducts()">
                                     <div>
                                         <h4>Product Search
-                                            <i class="fa fa-chevron-right " />
                                         </h4>
                                     </div>
                                 </a>
                     <span ng-if="!canGoToProducts() ">
                         <div>
                             <h4 style="color: #CCCCCC; ">Product Search
-                                <i class="fa fa-chevron-right " />
                             </h4>
                         </div>
                     </span>
@@ -31,12 +29,11 @@
                     <a ui-sref=".product " ng-if="canGoToProduct() ">
                                     <div>
                                         <h4>Product Details
-                                            <i class="fa fa-chevron-right " />
                                         </h4>
                                     </div>
                                 </a>
                     <span>
-                        <div ng-if="!canGoToProduct() ">
+                        <div ng-show="!canGoToProduct() ">
                             <h4 style="color: #CCCCCC; ">Product Details</h4>
                         </div>
                     </span>

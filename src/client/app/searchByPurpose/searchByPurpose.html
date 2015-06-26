@@ -1,65 +1,63 @@
 <div class="col-md-12">
 	<div class="widget wdarkblue">
-		<div ht-widget-header title="Find products without an ingredient" allow-collapse="true"></div>
-		<div class="widget-content text-left text-info col-md-6">
-			<div class="row">
-				<h4 class="col-md-12">I'm looking for a drug...</h4>
-			</div>
-			<div class="row">
-				<h4 class="col-md-12">Purpose:</h4>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<input class="col-md-12" ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
+		<form ng-submit="vm.viewResults();">
+			<!-- for the button to work with the enter key -->
+			<div ht-widget-header title="Find products without an ingredient" allow-collapse="true"></div>
+			<div class="widget-content text-left text-info col-md-6">
+				<div class="row">
+					<h4 class="col-md-12">I'm looking for a drug...</h4>
+				</div>
+				<div class="row">
+					<h4 class="col-md-12">Purpose:</h4>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<input class="col-md-12" ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();"
+						placeholder="What's your purpose?"></input>
+					</div>
+				</div>
+				<div class="row">
+					<h4 class="col-md-12">{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</h4>
+				</div>
+				<div class="row">
+					<h4 class="col-md-12">Purposes include...</h4>
+				</div>
+				<div class="row" style="overflow: auto; max-height: 350px;">
+					<div ng-repeat="x in vm.examplePurposes">
+						<a class="col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
+						<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<h4 class="col-md-12">{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</h4>
-			</div>
-			<div class="row">
-				<h4 class="col-md-12">Purposes include...</h4>
-			</div>
-			<div class="row" style="overflow: auto; max-height: 350px;">
-				<div ng-repeat="x in vm.examplePurposes">
-					<a class="col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
-					<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
+			<div class="widget-content text-left text-info col-md-6">
+				<div class="row">
+					<h4 class="col-md-12">that doesn't contain...</h4>
 				</div>
-			</div>
-		</div>
-		<div class="widget-content text-left text-info col-md-6">
-			<div class="row">
-				<h4 class="col-md-12">that doesn't contain...</h4>
-			</div>
-			<div class="row">
-				<h4 class="col-md-12">Ingredient:</h4>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<input class="col-md-12" ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();"
-					placeholder="What's the ingredient?"></input>
+				<div class="row">
+					<h4 class="col-md-12">Ingredient:</h4>
 				</div>
-			</div>
-			<div class="row">
-				<h4 class="col-md-12">{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</h4>
-			</div>
-			<div class="row">
-				<h4 class="col-md-12">Ingredients excluded:</h4 class="col-md-12">
-			</div>
-			<div class="row" style="overflow: auto; max-height: 350px;">
-				<div ng-repeat="x in vm.exampleIngredients">
-					<a ng-click="vm.changeIngredient(x.value);" class="col-md-4" style="font-weight:bold;">{{ x.value }}</a>
-					<label style="word-wrap:break-word" class="col-md-8 bold">{{ x.example }}</label>
+				<div class="row">
+					<div class="col-md-12">
+						<input class="col-md-12" ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();"
+						placeholder="What's the ingredient?"></input>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row-md-6">
-			<a class="col-md-12 btn btn-info" ng-click="vm.viewResults();">View
+				<div class="row">
+					<h4 class="col-md-12">{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</h4>
+				</div>
+				<div class="row">
+					<h4 class="col-md-12">Ingredients excluded:</h4 class="col-md-12">
+				</div>
+				<div class="row-md-6">
+					<a class="col-md-12 btn btn-info" ng-click="vm.viewResults();">View
 				<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
 				Matching Drugs
 				</a>
-		</div>
-		<div class="widget-foot ">
-			<div class="clearfix "></div>
-		</div>
+				</div>
+				<div class="widget-foot ">
+					<div class="clearfix "></div>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

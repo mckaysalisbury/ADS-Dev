@@ -1,7 +1,10 @@
 <div class="col-sm-12 widget-content text-left text-info">
 	<label style="font-weight:normal;">Showing products used for '
 		<strong>{{vm.purposeClean()}}</strong>'</label>
-	<button class="btn btn-primary" ng-click="vm.editSearch();">Edit Search</button>
+	<button class="btn btn-primary" ng-click="vm.editSearch();">
+		<div class="fa fa-pencil" />
+		Edit Search
+	</button>
 </div>
 <ul class="nav nav-pills nav-justified">
 	<li class="active">
@@ -19,7 +22,7 @@
 					<div ht-widget-header title="Search Results" allow-collapse="true"></div>
 					<div class="widget-content text-left text-info">
 						<div class="form-group">
-							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." />
+							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." autofocus/>
 						</div>
 						<div class="col-sm-12">
 							<label style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</label>
