@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<div class="widget wdarkblue">
-		<form> <!-- for the button to work with the enter key -->
+		<form ng-submit="vm.viewResults();"> <!-- for the button to work with the enter key -->
 			<div ht-widget-header title="Find products without an ingredient" allow-collapse="true"></div>
 			<div class="widget-content text-left text-info col-md-6">
 				<div>
@@ -10,7 +10,7 @@
 					<label>Purpose:</label>
 				</div>
 				<div>
-					<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
+					<input ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 }}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
 				</div>
 				<div>
 					<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
@@ -33,7 +33,8 @@
 					<label>Ingredient:</label>
 				</div>
 				<div>
-					<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?"></input>
+					<input ng-model="vm.ingredient" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
+						 ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?"></input>
 				</div>
 				<div>
 					<label>{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</label>
@@ -49,7 +50,7 @@
 				</div>
 			</div>
 			<div class="widget-content text-left text-info col-md-12">
-				<button type="submit" class="btn btn-primary" ng-click="vm.viewResults();">View
+				<button type="submit" class="btn btn-primary">View
 					<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
 			</div>
 			<div class="widget-foot ">
