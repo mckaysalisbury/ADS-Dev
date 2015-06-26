@@ -7,7 +7,10 @@
 					<label>I'm looking for a drug...</label>
 				</div>
 				<div>
-					<label>Purpose:</label>
+					<label>
+						Purpose:
+						<div class="fa fa-heartbeat" />
+					</label>
 				</div>
 				<div>
 					<input ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 }}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
@@ -30,7 +33,10 @@
 					<label>that doesn't contain...</label>
 				</div>
 				<div>
-					<label>Ingredient:</label>
+					<label>
+						Ingredient:
+						<div class="fa fa-flask" />
+					</label>
 				</div>
 				<div>
 					<input ng-model="vm.ingredient" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
@@ -50,8 +56,12 @@
 				</div>
 			</div>
 			<div class="widget-content text-left text-info col-md-12">
-				<button type="submit" class="btn btn-primary">View
-					<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
+				<button type="submit" class="btn btn-primary">
+					View
+					<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong>
+					Matching Drugs
+					<div class="fa fa-angle-double-right" />
+				</button>
 			</div>
 			<div class="widget-foot ">
 				<div class="clearfix "></div>
