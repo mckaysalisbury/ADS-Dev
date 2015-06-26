@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/mocha/mocha.d.ts"/>
 /* jshint -W117, -W030 */
 var should = require('should');
 require('typescript-require');
