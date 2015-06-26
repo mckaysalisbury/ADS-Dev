@@ -1,50 +1,53 @@
-<div class="container">
-	<div class="col-sm-12 widget-content text-left text-info">
-		<label style="font-weight:normal;">Showing products used for '<strong>{{vm.purposeClean()}}</strong>'</label>
-		<button ng-click="vm.editSearch();">Edit Search</button>
-	</div>
-	<ul class="nav nav-pills nav-justified">
-		<li class="active"><a data-toggle="tab" href="#without">without '<strong>{{ vm.ingredientClean()}}</strong>' ({{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }})</a></li>
-		<li><a data-toggle="tab" href="#with">with '<strong>{{vm.ingredientClean()}}</strong>' ({{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }})</a></li>
-	</ul>
-	<div class="tab-content">
-		<div id="without" class="tab-pane fade in active">
-			<div class="row-fluid">
-				<div class="col-md-12">
-					<div class="widget wgreen">
-						<div ht-widget-header title="Search Results" allow-collapse="true"></div>
-						<div class="widget-content text-left text-info">
-							<div class="form-group">
-								<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." />
-							</div>
-							<div class="col-sm-12">
-								<label style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</label>
-							</div>
-							<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWithout" />
-							<div class="widget-foot">
-								<div class="clearfix"></div>
-							</div>
+<div class="col-sm-12 widget-content text-left text-info">
+	<label style="font-weight:normal;">Showing products used for '
+		<strong>{{vm.purposeClean()}}</strong>'</label>
+	<button class="btn btn-primary" ng-click="vm.editSearch();">Edit Search</button>
+</div>
+<ul class="nav nav-pills nav-justified">
+	<li class="active">
+		<a data-toggle="tab" href="#without">without '<strong>{{ vm.ingredientClean()}}</strong>' ({{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }})</a>
+	</li>
+	<li>
+		<a data-toggle="tab" href="#with">with '<strong>{{vm.ingredientClean()}}</strong>' ({{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }})</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div id="without" class="tab-pane fade in active">
+		<div class="row-fluid">
+			<div class="col-md-12">
+				<div class="widget wdarkblue">
+					<div ht-widget-header title="Search Results" allow-collapse="true"></div>
+					<div class="widget-content text-left text-info">
+						<div class="form-group">
+							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." />
+						</div>
+						<div class="col-sm-12">
+							<label style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</label>
+						</div>
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWithout" />
+						<div class="widget-foot">
+							<div class="clearfix"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="with" class="tab-pane fade">
-			<div class="row-fluid">
-				<div class="col-md-12">
-					<div class="widget wgreen">
-						<div ht-widget-header title="Search Results" allow-collapse="true"></div>
-						<div class="widget-content text-left text-info">
-							<div class="form-group">
-								<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." />
-							</div>
-							<div class="col-sm-12">
-								<label style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</label>
-							</div>
-							<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith" />
-							<div class="widget-foot">
-								<div class="clearfix"></div>
-							</div>
+	</div>
+	<div id="with" class="tab-pane fade">
+		<div class="row-fluid">
+			<div class="col-md-12">
+				<div class="widget wgreen">
+					<div ht-widget-header title="Search Results" allow-collapse="true"></div>
+					<div class="widget-content text-left text-info">
+						<div class="form-group">
+							<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." />
+						</div>
+						<div class="col-sm-12">
+							<label style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</label>
+						</div>
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith" />
+						<div class="widget-foot">
+							<div class="clearfix"></div>
 						</div>
 					</div>
 				</div>

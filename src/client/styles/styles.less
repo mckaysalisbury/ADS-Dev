@@ -1,9 +1,10 @@
-@color_lightblue: #52b9e9;
+@color_lightblue: #25aae1;
 @color_blue: #1171a3;
 @color_success: #43c83c;
 @color_warning: #f88529;
 @color_important: #fa3031;
 @color_violet: #932ab6;
+@color_darkblue: #00529b;
 
 * {
     /*-webkit-box-shadow: none !important;
@@ -198,11 +199,11 @@ a.btn {
 /* Button colors */
 
 .btn.btn-primary {
-    background: @color_blue !important;
+    background: #00529b !important;
 }
 
     .btn.btn-primary:hover {
-        background: #0f608b !important;
+        background: #4f75b2 !important;
     }
 
 .btn.btn-info {
@@ -934,6 +935,12 @@ form {
         border: 1px solid @color_lightblue;
         color: #fff;
     }
+    
+    .widget.wdarkblue .widget-head {
+        background-color: @color_darkblue;
+        border: 1px solid @color_darkblue;
+        color: #fff;
+    }
 
     .widget.wblue .widget-head {
         background-color: @color_blue;
@@ -1074,6 +1081,7 @@ form {
 }
 
 @media (max-width: 767px) {
+    
     body {
         margin: 0 auto;
     }
@@ -1166,9 +1174,7 @@ form {
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-    .form-wizard.wizard-horizontal>ol>li {
-        display: inline-block
-    }
+    
     
     .form {
         margin: 0 !important;
@@ -1850,7 +1856,6 @@ a {
 }
 
 @media (min-width: 768px) {
-    
     .gridStyle {
         border: 1px solid rgb(212,212,212);
         height: 700px;
@@ -2185,13 +2190,13 @@ fieldset[disabled] .twitter-typeahead .tt-input {
 /* Forms Styles */
 .form-wizard>ol {
     list-style-type: none;
-    padding: 0 15px
+    text-align: center;
+    padding: 0 15px;
 }
 
-.form-wizard>ol>div>li {
-    min-height: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.form-wizard>ol>li {
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: #fcfcfc;
     cursor: pointer;
     -webkit-transition: all .3s ease;
@@ -2199,39 +2204,38 @@ fieldset[disabled] .twitter-typeahead .tt-input {
     transition: all .3s ease
 }
 
-.form-wizard>ol>div>li>a {
+.form-wizard>ol>li>a {
     text-decoration: none
 }
 
-.form-wizard>ol>div>li .label {
-    background-color: #5d9cec;
+.form-wizard>ol>li .label {
+    background-color: @color_lightblue;
     vertical-align: super;
-    margin-right: 6px
 }
 
-.form-wizard>ol>div>li .label[href]:focus, .form-wizard>ol>li .label[href]:hover {
+.form-wizard>ol>li .label[href]:focus, .form-wizard>ol>li .label[href]:hover {
     background-color: #2f80e7
 }
 
-.form-wizard>ol>div>li h4 {
+.form-wizard>ol>li h4 {
     display: inline-block;
     color: #515253
 }
 
-.form-wizard>ol>div>li small {
+.form-wizard>ol>li small {
     display: block;
     color: #909fa7
 }
 
-.form-wizard>ol>div>li.active {
-    background-color: #5d9cec
+.form-wizard>ol>li.active {
+    background-color: #25aae1;
 }
 
-.form-wizard>ol>div>li.active h4, .form-wizard>ol>div>li.active small {
+.form-wizard>ol>li.active h4, .form-wizard>ol>div>li.active small {
     color: #fff
 }
 
-.form-wizard>ol>div>li.active .label {
+.form-wizard>ol>li.active .label {
     background-color: #fff;
     border-color: #fff;
     color: #5d9cec
@@ -2246,14 +2250,6 @@ fieldset[disabled] .twitter-typeahead .tt-input {
     margin: 0;
     padding: 0;
     box-shadow: 0 0 0 #000
-}
-
-.form-wizard .well fieldset {
-    margin: 0
-}
-
-.wizard-button {
-    padding: 0px;
 }
 
 
