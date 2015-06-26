@@ -2,20 +2,22 @@
 	<div class="widget wdarkblue">
 		<div ht-widget-header title="Find products without an ingredient" allow-collapse="true"></div>
 		<div class="widget-content text-left text-info col-md-6">
-			<div>
-				<label>I'm looking for a drug...</label>
+			<div class="row">
+				<h4 class="col-md-12">I'm looking for a drug...</h4>
 			</div>
-			<div>
-				<label>Purpose:</label>
+			<div class="row">
+				<h4 class="col-md-12">Purpose:</h4>
 			</div>
-			<div>
-				<input ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
+			<div class="row">
+				<div class="col-md-12">
+					<input class="col-md-12" ng-model="vm.purpose" ng-model-options="{debounce: 300}" ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
+				</div>
 			</div>
-			<div>
-				<label>{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</label>
+			<div class="row">
+				<h4 class="col-md-12">{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</h4>
 			</div>
-			<div>
-				<h5>Purposes include...</h5>
+			<div class="row">
+				<h4 class="col-md-12">Purposes include...</h4>
 			</div>
 			<div class="row" style="overflow: auto; max-height: 350px;">
 				<div ng-repeat="x in vm.examplePurposes">
@@ -25,20 +27,23 @@
 			</div>
 		</div>
 		<div class="widget-content text-left text-info col-md-6">
-			<div>
-				<label>that doesn't contain...</label>
+			<div class="row">
+				<h4 class="col-md-12">that doesn't contain...</h4>
 			</div>
-			<div>
-				<label>Ingredient:</label>
+			<div class="row">
+				<h4 class="col-md-12">Ingredient:</h4>
 			</div>
-			<div>
-				<input ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?"></input>
+			<div class="row">
+				<div class="col-md-12">
+					<input class="col-md-12" ng-model="vm.ingredient" ng-model-options="{debounce: 300}" ng-change="vm.provideExampleIngredients();"
+					placeholder="What's the ingredient?"></input>
+				</div>
 			</div>
-			<div>
-				<label>{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</label>
+			<div class="row">
+				<h4 class="col-md-12">{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</h4>
 			</div>
-			<div>
-				<h5>Ingredients excluded:</h5>
+			<div class="row">
+				<h4 class="col-md-12">Ingredients excluded:</h4 class="col-md-12">
 			</div>
 			<div class="row" style="overflow: auto; max-height: 350px;">
 				<div ng-repeat="x in vm.exampleIngredients">
@@ -47,9 +52,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="widget-content text-left text-info col-md-12">
-			<button class="btn btn-primary" ng-click="vm.viewResults();">View
-				<strong>{{ vm.productCount === undefined ? 0 : vm.productCount }}</strong> Matching Drugs</button>
+		<div class="row-md-6">
+			<a class="col-md-12 btn btn-info" ng-click="vm.viewResults();">View
+				<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
+				Matching Drugs
+				</a>
 		</div>
 		<div class="widget-foot ">
 			<div class="clearfix "></div>
