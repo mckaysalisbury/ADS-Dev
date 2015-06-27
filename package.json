@@ -9,6 +9,10 @@
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome"
   },
+  "engines": {
+    "npm": "2.1.x",
+    "node": "0.12.x"
+  },
   "dependencies": {
     "body-parser": "~1.13.1",
     "cookie-parser": "~1.3.5",
