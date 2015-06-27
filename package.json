@@ -82,6 +82,6 @@
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
     "typescript": "^1.4.1",
-    "typescript-require": "^0.2.9",
+    "typescript-require": "^0.2.9"
   }
 }
