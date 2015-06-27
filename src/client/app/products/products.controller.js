@@ -7,13 +7,13 @@
         .controller('ProductsController', ProductsController);
 
     ProductsController.$inject =
-        ['$http', 'logger', '$location', '$stateParams',
-            'searchformservice', '$state', '$scope', 'common', '$q', '$rootScope'];
+    ['$http', 'logger', '$location', '$stateParams',
+        'searchformservice', '$state', '$scope', 'common', '$q', '$rootScope'];
     /* @ngInject */
     function ProductsController($http, logger, $location, $stateParams, searchformservice,
-            $state, $scope, common, $q, $rootScope) {
+        $state, $scope, common, $q, $rootScope) {
         $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams) {
+            function (event, toState, toParams, fromState, fromParams) {
                 if (fromState.url === 'products') {
                     if (vm.cancelWith) {
                         vm.cancelWith.resolve();
@@ -74,29 +74,27 @@
                 currentPage: 1,
             };
 
-            vm['rangeDisplay' + propertySuffix] = function() {
+            vm['rangeDisplay' + propertySuffix] = function () {
                 var offset = (pagingOptions.currentPage - 1) * pagingOptions.pageSize;
                 var resultsCount = 0;
-                if (vm['results' + propertySuffix])
-                {
+                if (vm['results' + propertySuffix]) {
                     resultsCount = vm['results' + propertySuffix].length;
                 }
                 return (offset + 1) + ' - ' + (offset + resultsCount);
             };
             vm['pagingOptions' + propertySuffix] = pagingOptions;
 
-            var getData = function() {
+            var getData = function () {
                 if (vm['cancel' + propertySuffix]) {
                     vm['cancel' + propertySuffix].resolve();
                 }
                 vm['cancel' + propertySuffix] = $q.defer();
                 var url = baseUrl + '/' + pagingOptions.currentPage + '/' + pagingOptions.pageSize;
-                $http.get(url, {timeout: vm['cancel' + propertySuffix].promise}).success(function (response) {
+                $http.get(url, { timeout: vm['cancel' + propertySuffix].promise }).success(function (response) {
                     vm['meta' + propertySuffix] = response.meta;
                     vm['results' + propertySuffix] = insertContextualPurpose(response.results);
                     var totalItems = 0;
-                    if (response.meta && response.meta.results)
-                    {
+                    if (response.meta && response.meta.results) {
                         totalItems = response.meta.results.total;
                     }
                     vm['totalServerItems' + propertySuffix] = totalItems;
@@ -104,37 +102,36 @@
             };
             getData();
 
-            $scope.$watch('vm.pagingOptions' + propertySuffix, function(newVal, oldVal) {
+            $scope.$watch('vm.pagingOptions' + propertySuffix, function (newVal, oldVal) {
                 // getData();
-                if (oldVal !== newVal && oldVal.currentPage !== newVal.currentPage)
-                {
+                if (oldVal !== newVal && oldVal.currentPage !== newVal.currentPage) {
                     getData();
                 }
             }, true);
 
             vm['gridOptions' + propertySuffix] = {
-                data : 'vm.results' + propertySuffix,
+                data: 'vm.results' + propertySuffix,
                 columnDefs: [
-                    {field: 'brand_name', displayName: 'Product Name'},
-                    {field: 'manufacturer_name', displayName: 'Manufacturer'},
+                    { field: 'brand_name', displayName: 'Product Name' },
+                    { field: 'manufacturer_name', displayName: 'Manufacturer' },
                     {
                         field: 'purpose_context',
                         displayName: 'Purpose',
                         cellTemplate: '<div class="ngCellText" ng-bind-html=' +
-                            '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
+                        '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
                     },
-                    {field: 'generic_name', displayName: 'Active Ingredients'},
+                    { field: 'generic_name', displayName: 'Active Ingredients' },
                 ],
                 multiSelect: false,
                 selectedItems: [],
-                afterSelectionChange: function(i, e) {
+                afterSelectionChange: function (i, e) {
                     searchformservice.id = i.entity.id;
                     $state.go('^.product');
                     return true;
                 },
 
                 filterOptions: vm['filterOptions' + propertySuffix],
-                sortInfo: {fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc']},
+                sortInfo: { fields: ['manufacturer_name', 'brand_name'], directions: ['asc', 'asc'] },
 
                 // Paging Options
                 enablePaging: true,
@@ -162,11 +159,14 @@
 
         function setPurposeAndIngredient() {
             var query = searchformservice.query;
+            vm.hasIngredient = false;
             if (!query) {
                 return;
             }
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
+
+                vm.hasIngredient = true;
                 vm.ingredient = splitBySlash[4];
             }
             else {
