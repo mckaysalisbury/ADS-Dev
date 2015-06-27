@@ -3,12 +3,12 @@ node_js:
 - '0.12'
 sudo: true
 before_script:
-- sudo npm install bower -g
-- bower install
-- sudo npm install gulp -g
-- sudo npm install phantomjs -g
-- sudo npm install karma -g
-- sudo npm install typescript@1.4.1 -g
+- npm install bower -g
+- install
+- npm install gulp -g
+- npm install phantomjs -g
+- npm install karma -g
+- npm install typescript@1.4.1 -g
 - gulp test
 - gulp postinstall
 deploy:
