@@ -5,9 +5,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "gulp serve-build",
+    "start": "npm ./src/server/bin/www",
     "integration_firefox": "nightwatch",
-    "integration_chrome": "nightwatch --env chrome"
+    "integration_chrome": "nightwatch --env chrome",
+    "postinstall": "gulp postinstall"
   },
   "engines": {
     "npm": "2.1.x",

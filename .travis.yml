@@ -10,7 +10,6 @@ before_script:
 - npm install karma -g
 - npm install typescript@1.4.1 -g
 - gulp test
-- gulp postinstall
 deploy:
   provider: heroku
   api_key:
