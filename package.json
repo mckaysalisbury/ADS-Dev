@@ -8,7 +8,7 @@
     "start": "node ./src/server/bin/www",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome",
-    "postinstall" :"gulp build"
+    "postinstall" :"bower install && gulp build"
   },
   "engines": {
     "npm": "2.1.x",
