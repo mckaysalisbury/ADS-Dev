@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.searchByPurpose')
+        .module('app.search-by-purpose')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -14,10 +14,10 @@
     function getStates() {
         return [
             {
-                state: 'search-form.searchByPurpose',
+                state: 'search-form.search-by-purpose',
                 config: {
                     url: 'searchbypurpose',
-                    templateUrl: 'app/searchByPurpose/searchByPurpose.html',
+                    templateUrl: 'app/search-by-purpose/search-by-purpose.html',
                     controller: 'SearchByPurposeController',
                     controllerAs: 'vm',
                     title: 'Search By Purpose',

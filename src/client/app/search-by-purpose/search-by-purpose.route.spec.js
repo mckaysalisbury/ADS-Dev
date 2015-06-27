@@ -2,10 +2,10 @@
 describe('search by purpose routes', function () {
     describe('state', function () {
         var controller;
-        var view = 'app/searchByPurpose/searchByPurpose.html';
+        var view = 'app/search-by-purpose/search-by-purpose.html';
 
         beforeEach(function() {
-            module('app.searchByPurpose', bard.fakeToastr);
+            module('app.search-by-purpose', bard.fakeToastr);
             bard.inject('$httpBackend', '$location', '$rootScope', '$state', '$templateCache');
         });
 
@@ -19,14 +19,14 @@ describe('search by purpose routes', function () {
             expect($state.href(null, {})).to.equal(null);
         });
 
-        it('should map /search-form.searchByPurpose route to searchByPurpose View template', function () {
-            expect($state.get('search-form.searchByPurpose').templateUrl).to.equal(view);
+        it('should map /search-form.search-by-purpose route to search-by-purpose View template', function () {
+            expect($state.get('search-form.search-by-purpose').templateUrl).to.equal(view);
         });
 
-        it('of search-form.searchByPurpose should work with $state.go', function () {
-            $state.go('search-form.searchByPurpose');
+        it('of search-form.search-by-purpose should work with $state.go', function () {
+            $state.go('search-form.search-by-purpose');
             $rootScope.$apply();
-            expect($state.is('search-form.searchByPurpose'));
+            expect($state.is('search-form.search-by-purpose'));
         });
     });
 });

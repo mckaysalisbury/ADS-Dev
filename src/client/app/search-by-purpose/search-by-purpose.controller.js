@@ -4,7 +4,7 @@
     'use strict';
 
     angular
-        .module('app.searchByPurpose')
+        .module('app.search-by-purpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
     SearchByPurposeController.$inject = ['$http', '$location', '$window',

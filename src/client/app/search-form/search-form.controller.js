@@ -10,7 +10,7 @@
     /* @ngInject */
     function SearchFormController($state, $scope, searchformservice) {
         var vm = this;
-        $state.go('search-form.searchByPurpose');
+        $state.go('search-form.search-by-purpose');
         $scope.canGoToProducts = function() {
             return searchformservice.query ? true : false;
         };

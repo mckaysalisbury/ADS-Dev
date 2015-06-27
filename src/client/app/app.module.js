@@ -7,7 +7,7 @@
         'app.layout',
         'app.products',
         'app.product',
-        'app.searchByPurpose',
+        'app.search-by-purpose',
         'app.search-form',
         'app.about'
     ]);

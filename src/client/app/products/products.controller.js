@@ -29,7 +29,7 @@
         vm.editSearch = function editSearch() {
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;
-            $state.go('^.searchByPurpose');
+            $state.go('^.search-by-purpose');
         };
         setWithoutIngredientGrid();
         setWithIngredientGrid();
