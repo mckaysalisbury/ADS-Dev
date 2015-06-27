@@ -3,7 +3,7 @@ describe('SearchByPurposeController', function () {
     var controller;
 
     beforeEach(function () {
-        bard.appModule('app.searchByPurpose');
+        bard.appModule('app.search-by-purpose');
         bard.inject('$controller', '$log', '$q', '$rootScope', 'searchformservice');
     });
 
