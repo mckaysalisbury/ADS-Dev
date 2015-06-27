@@ -3,6 +3,6 @@
 report/*
 tmp/*
 build/*
-integration_test/*.*
-node_modules/*.*
-bower_components/*.*
+integration_test/*
+node_modules/*
+bower_components/*
