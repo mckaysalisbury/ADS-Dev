@@ -4,7 +4,6 @@ node_js:
 sudo: true
 before_script:
 - npm install bower -g
-- bower install
 - npm install gulp -g
 - npm install phantomjs -g
 - npm install karma -g
