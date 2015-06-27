@@ -5,10 +5,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./src/server/bin/www",
+    "start": "gulp serve-build",
     "integration_firefox": "nightwatch",
-    "integration_chrome": "nightwatch --env chrome",
-    "postinstall": "gulp postinstall"
+    "integration_chrome": "nightwatch --env chrome"
   },
   "dependencies": {
     "body-parser": "~1.13.1",
