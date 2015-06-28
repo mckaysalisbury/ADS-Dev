@@ -1,14 +1,14 @@
-<div class="panel"/>
+<div class="panel"></div>
 <div class="col-sm-12">
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="col-sm-12 widget-content text-left text-info">
 				<ul class="nav nav-pills nav-justified">
 					<li class="active">
-						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "/> Show products used for {{vm.purposeClean()}} without <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} without <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "/> Show products used for {{vm.purposeClean()}} with <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} with <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
 					</li>
 				</ul>
 			</div>
@@ -23,12 +23,12 @@
 					<div ht-widget-header title="Results" allow-collapse="true"></div>
 					<div class="widget-content text-left text-info">
 						<div class="form-group">
-							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." autofocus/>
+							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." autofocus></input>
 						</div>
 						<div class="col-sm-12">
 							<label style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</label>
 						</div>
-						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWithout" />
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWithout"></div>
 						<div class="widget-foot">
 							<div class="clearfix"></div>
 						</div>
@@ -44,12 +44,12 @@
 					<div ht-widget-header title="Results" allow-collapse="true"></div>
 					<div class="widget-content text-left text-info">
 						<div class="form-group">
-							<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." />
+							<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." ></input>
 						</div>
 						<div class="col-sm-12">
 							<label style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</label>
 						</div>
-						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith" />
+						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith"></div>
 						<div class="widget-foot">
 							<div class="clearfix"></div>
 						</div>
