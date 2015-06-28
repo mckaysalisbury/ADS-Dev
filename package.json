@@ -5,10 +5,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./src/server/bin/www",
+    "start": "gulp serve-build",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome",
-    "postinstall" :"bower install && gulp build"
+    "postinstall" :"bower install"
   },
   "engines": {
     "npm": "2.1.x",
@@ -63,17 +63,7 @@
     "typescript-require": "^0.2.9"
   },
   "devDependencies": {
-    "browser-sync": "^2.7.12",
     "chai": "^3.0.0",
-    "debug": "~2.2.0",
-    "del": "^1.2.0",
-    "glob": "^5.0.10",
-    "gulp-mocha": "^2.1.2",
-    "gulp-jscs": "^1.6.0",
-    "gulp-jshint": "^1.11.0",
-    "gulp-nodemon": "^2.0.3",
-    "gulp-task-listing": "^1.0.1",
-    "gulp-tsc": "^0.10.1",
     "hippie": "^0.3.0",
     "jade": "~1.11.0",
     "jshint-stylish": "^2.0.1",
@@ -86,16 +76,11 @@
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-sinon": "^1.0.4",
-    "lodash": "^3.9.3",
     "mocha-clean": "^0.4.0",
     "nightwatch": "^0.7.1",
-    "node-notifier": "^4.2.3",
-    "phantomjs": "^1.9.17",
     "plato": "^1.5.0",
     "should": "^7.0.1",
     "sinon": "^1.15.3",
-    "sinon-chai": "^2.8.0",
-    "typescript": "^1.4.1",
-    "typescript-require": "^0.2.9"
+    "sinon-chai": "^2.8.0"
   }
 }
