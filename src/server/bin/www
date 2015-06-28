@@ -7,7 +7,6 @@
 require('typescript-require');
 
 var app = require('../app');
-var debug = require('debug')('ads_nodejs:server');
 var http = require('http');
 
 /**
@@ -88,5 +87,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  var debug = require('debug')('ads_nodejs:server');
   debug('Listening on ' + bind);
 }
