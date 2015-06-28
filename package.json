@@ -59,7 +59,7 @@
     "node-notifier": "^4.2.3",
     "yargs": "^3.12.0",
     "typescript": "^1.4.1",
-    "typescript-require": "^0.2.9",
+    "typescript-require": "^0.2.9"
   },
   "devDependencies": {
     "browser-sync": "^2.7.12",
