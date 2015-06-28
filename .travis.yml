@@ -8,6 +8,7 @@ before_script:
 - npm install phantomjs -g
 - npm install karma -g
 - npm install typescript@1.4.1 -g
+- gulp vet
 - gulp test
 deploy:
   provider: heroku
