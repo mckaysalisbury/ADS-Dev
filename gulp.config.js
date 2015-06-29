@@ -16,7 +16,6 @@ module.exports = function () {
     var nodeModules = 'node_modules';
 
     var config = {
-        serverIntegrationTests: [server + 'integration-tests/**.spec.js'],
         typeScriptDirectory: temp + 'typescript',
         server: server,
         
@@ -118,7 +117,7 @@ module.exports = function () {
         ],
         specHelpers: [client + 'test-helpers/*.js'],
         specs: [client + '**/*.spec.js'],
-        serverIntegrationSpecs: [client + '/tests/server-integration/**/*.spec.js'],
+        serverIntegrationSpecs: [server + '/integration-tests/*.spec.js'],
 
         /**
          * Node settings
@@ -155,8 +154,7 @@ module.exports = function () {
                 config.specHelpers,
                 client + '**/*.module.js',
                 client + '**/*.js',
-                temp + config.templateCache.file,
-                config.serverIntegrationSpecs
+                temp + config.templateCache.file
                 ),
             exclude: [],
             coverage: {
