@@ -5,7 +5,7 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'flock.bootstrap.material'])
+        'ui.router'])
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {
