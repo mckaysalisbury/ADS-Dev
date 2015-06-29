@@ -10,11 +10,11 @@
 ## ADS-Dev
 Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submission
 
-<<<<<<< HEAD
 Hi openFDA,
 Your API key for mshields@psi-it.com is:
 MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ 
-=======
+
+
 ## Bower
 You can easily install  by using Bower, a package manager for front-end components. (See bower.io for more details)
 
@@ -29,4 +29,3 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
 
 ## License
 ADS-Dev is licensed under the MIT license.
->>>>>>> origin/dev
