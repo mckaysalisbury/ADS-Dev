@@ -2,7 +2,9 @@
 <div class="col-md-12">
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<div class="panel-title"><h3>Find products without an ingredient</h3></div>
+			<div class="panel-title">
+				<h3>Find products without an ingredient</h3>
+			</div>
 		</div>
 		<form name="searchForm" ng-submit="vm.viewResults();">
 			<!-- for the button to work with the enter key -->
@@ -67,7 +69,8 @@
 					</div>
 				</div>
 				<div class="panel-body col-xs-12 col-sm-12 col-md-12">
-					<button class="btn btn-primary col-xs-12 col-sm-12 col-md-12  with-ripples" ng-disabled="searchForm.$invalid" type="submit" ng-click="vm.viewResults();">
+					<button angular-ripple class="btn btn-primary col-xs-12 col-sm-12 col-md-12  " ng-disabled="searchForm.$invalid" type="submit"
+					ng-click="vm.viewResults();">
 						<label>View</label>
 						<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
 						<label>Matching Drugs</label>
@@ -80,3 +83,9 @@
 		</form>
 	</div>
 </div>
+<script>
+	$(document).ready(function() {
+	                // This command is used to initialize some elements and make them work properly
+	                $.material.init();
+	            });
+</script>
