@@ -8,6 +8,4 @@ cd ADS-Dev
 
 npm install
 
-npm install gulp -g
-
-gulp serve-build
+npm start
