@@ -8,7 +8,7 @@
     "start": "gulp serve-build",
     "integration_firefox": "nightwatch",
     "integration_chrome": "nightwatch --env chrome",
-    "postinstall" :"bower install --allow-root"
+    "postinstall" :"bower install"
   },
   "engines": {
     "npm": "2.1.x",
