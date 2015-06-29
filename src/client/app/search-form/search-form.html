@@ -12,25 +12,25 @@
                     </a>
                 </li>
                 <li class="col-sm-4 col-md-4" angular-ripple ui-sref-active="active ">
-                    <a ui-sref=".products " ng-if="canGoToProducts() ">
+                    <a ui-sref=".products " ng-if="vm.canGoToProducts() ">
                                         <h4>Product Search
                                         </h4>
                                 </a>
-                    <span ng-if="!canGoToProducts() ">
+                    <span ng-if="!vm.canGoToProducts() ">
                         <div>
                             <h4 style="color: #CCCCCC; ">Product Search</h4>
                         </div>
                     </span>
                 </li>
                 <li class="col-sm-4 col-md-4 " angular-ripple ui-sref-active="active ">
-                    <a ui-sref=".product " ng-if="canGoToProduct() ">
+                    <a ui-sref=".product " ng-if="vm.canGoToProduct() ">
                                     <div>
                                         <h4>Product Details
                                         </h4>
                                     </div>
                                 </a>
                     <span>
-                        <div ng-show="!canGoToProduct() ">
+                        <div ng-show="!vm.canGoToProduct() ">
                             <h4 style="color: #CCCCCC; ">Product Details</h4>
                         </div>
                     </span>

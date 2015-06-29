@@ -4,8 +4,8 @@
     var core = angular.module('app.core');
 
     var config = {
-        appErrorPrefix: '[S.H.I.E.L.D. Error] ',
-        appTitle: 'S.H.I.E.L.D.'
+        appErrorPrefix: '[SHIELD Error] ',
+        appTitle: 'SHIEL'
     };
 
     toastrConfig.$inject = ['toastr'];
