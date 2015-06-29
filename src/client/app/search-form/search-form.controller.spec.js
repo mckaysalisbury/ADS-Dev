@@ -41,11 +41,10 @@ describe('SearchFormController', function () {
             searchformservice.query = 'querytest';
             searchformservice.id = 'idtest';
         });
-        
+
         it('return true for canGoToProducts', function () {
             expect(controller.canGoToProducts()).to.equal(true);
         });
-
 
         it('return true for canGoToProduct', function () {
             expect(controller.canGoToProduct()).to.equal(true);
