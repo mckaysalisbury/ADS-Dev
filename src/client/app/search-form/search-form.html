@@ -6,16 +6,15 @@
         <div class="form-wizard wizard-horizontal">
             <!-- START wizard steps indicator-->
             <ol class="row-same-height">
-                <li ui-sref-active="active" class="col-sm-4 col-md-4" ui-sref=".search-by-purpose ">
-                    <h4>Search by purpose
-                    </h4>
+                <li ui-sref-active="active" class="col-sm-4 col-md-4 with-ripples" ui-sref=".search-by-purpose ">
+                    <a>
+                        <h4>Search by purpose</h4>
+                    </a>
                 </li>
-                <li class="col-sm-4 col-md-4"" ui-sref-active="active">
-                    <a ui-sref=".products" ng-if="canGoToProducts()">
-                                    <div>
+                <li class="col-sm-4 col-md-4 with-ripples" " ui-sref-active="active ">
+                    <a ui-sref=".products " ng-if="canGoToProducts() ">
                                         <h4>Product Search
                                         </h4>
-                                    </div>
                                 </a>
                     <span ng-if="!canGoToProducts() ">
                         <div>
@@ -24,7 +23,7 @@
                         </div>
                     </span>
                 </li>
-                <li class="col-sm-4 col-md-4" ui-sref-active="active ">
+                <li class="col-sm-4 col-md-4 with-ripples " ui-sref-active="active ">
                     <a ui-sref=".product " ng-if="canGoToProduct() ">
                                     <div>
                                         <h4>Product Details
@@ -41,5 +40,5 @@
         </div>
     </div>
     <!-- our nested state views will be injected here -->
-    <div class="row " id="form-views " ui-view></div>
+    <div ui-view class="fader-animation row " id="form-views "></div>
 </div>

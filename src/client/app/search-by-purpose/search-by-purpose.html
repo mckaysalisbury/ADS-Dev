@@ -67,11 +67,10 @@
 					</div>
 				</div>
 				<div class="panel-body col-xs-12 col-sm-12 col-md-12">
-					<button class="btn btn-primary col-xs-12 col-sm-12 col-md-12 " ng-disabled="searchForm.$invalid" type="submit" ng-click="vm.viewResults();">
+					<button class="btn btn-primary col-xs-12 col-sm-12 col-md-12  with-ripples" ng-disabled="searchForm.$invalid" type="submit" ng-click="vm.viewResults();">
 						<label>View</label>
 						<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
 						<label>Matching Drugs</label>
-						<div class="fa fa-angle-double-right"></div>
 					</button>
 				</div>
 				<div class="widget-foot ">

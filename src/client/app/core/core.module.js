@@ -5,13 +5,13 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router'])
+        'ui.router', 'flock.bootstrap.material'])
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {
-        var query = 'hello';
-        var purpose = 'WHello';
-        var ingredient = ' ';
+        var query = '';
+        var purpose = '';
+        var ingredient = '';
         return {
             getQuery: function () {
                 return query;
@@ -21,7 +21,7 @@
             },
 
             getPurpose: function () {
-                return 'he';
+                return 'purpose';
             },
 
             setPurpose: function (newPurpose) {
