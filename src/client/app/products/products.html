@@ -5,10 +5,10 @@
 			<div class="col-sm-12 widget-content text-left text-info">
 				<ul class="nav nav-pills nav-justified">
 					<li class="active">
-						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} without <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> Show products used for <strong>{{vm.purposeClean()}}</strong> without <strong>{{ vm.ingredientClean()}}</strong>. <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} with <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for <strong>{{vm.purposeClean()}}</strong> with <strong>{{ vm.ingredientClean()}}</strong>. <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
 					</li>
 				</ul>
 			</div>
