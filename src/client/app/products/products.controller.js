@@ -8,10 +8,13 @@
 
     ProductsController.$inject =
     ['$http', 'logger', '$location', '$stateParams',
-        'searchformservice', '$state', '$scope', 'common', '$q', '$rootScope'];
+        'searchformservice', '$state', '$scope', 'common', '$q', '$rootScope', '$window'];
+    // Override too many paramaters since all paramters are injected so no direct call is ever necessary
+    /* jshint -W072 */
     /* @ngInject */
     function ProductsController($http, logger, $location, $stateParams, searchformservice,
-        $state, $scope, common, $q, $rootScope) {
+        $state, $scope, common, $q, $rootScope, $window) {
+        /* jshint +W072 */
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
                 if (fromState.url === 'products') {
@@ -25,6 +28,30 @@
             });
 
         var vm = this;
+
+        var allColumns = [
+                    { field: 'brand_name', displayName: 'Product Name' },
+                    { field: 'manufacturer_name', displayName: 'Manufacturer' },
+                    {
+                        field: 'purpose_context',
+                        displayName: 'Purpose',
+                        cellTemplate: '<div class="ngCellText" ng-bind-html=' +
+                        '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
+                    },
+                    { field: 'generic_name', displayName: 'Active Ingredients' },
+                ];
+        var limitedColumns =  [{ field: 'brand_name', displayName: 'Product Name' },
+                    { field: 'manufacturer_name', displayName: 'Manufacturer' }];
+        vm.gridColumns = allColumns;
+
+        $scope.$watch(function() { return angular.element($window).width();}, function (newValue, oldValue) {
+            if (newValue && newValue < 700) {
+                vm.gridColumns = limitedColumns;
+            }
+            else {
+                vm.gridColumns = allColumns;
+            }
+        });
 
         vm.editSearch = function editSearch() {
             searchformservice.purpose = vm.purpose;
@@ -111,22 +138,13 @@
 
             vm['gridOptions' + propertySuffix] = {
                 data: 'vm.results' + propertySuffix,
-                columnDefs: [
-                    { field: 'brand_name', displayName: 'Product Name' },
-                    { field: 'manufacturer_name', displayName: 'Manufacturer' },
-                    {
-                        field: 'purpose_context',
-                        displayName: 'Purpose',
-                        cellTemplate: '<div class="ngCellText" ng-bind-html=' +
-                        '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
-                    },
-                    { field: 'generic_name', displayName: 'Active Ingredients' },
-                ],
+                columnDefs: 'vm.gridColumns',
                 multiSelect: false,
                 selectedItems: [],
                 afterSelectionChange: function (i, e) {
                     searchformservice.id = i.entity.id;
                     $state.go('^.product');
+                    window.scrollTo(0, 0);
                     return true;
                 },
 

@@ -6,24 +6,23 @@
         <div class="form-wizard wizard-horizontal">
             <!-- START wizard steps indicator-->
             <ol class="row-same-height">
-                <li ui-sref-active="active" class="col-sm-4 col-md-4 with-ripples" ui-sref=".search-by-purpose ">
+                <li ui-sref-active="active" angular-ripple class="col-sm-4 col-md-4" ui-sref=".search-by-purpose ">
                     <a>
                         <h4>Search by purpose</h4>
                     </a>
                 </li>
-                <li class="col-sm-4 col-md-4 with-ripples" " ui-sref-active="active ">
+                <li class="col-sm-4 col-md-4" angular-ripple ui-sref-active="active ">
                     <a ui-sref=".products " ng-if="canGoToProducts() ">
                                         <h4>Product Search
                                         </h4>
                                 </a>
                     <span ng-if="!canGoToProducts() ">
                         <div>
-                            <h4 style="color: #CCCCCC; ">Product Search
-                            </h4>
+                            <h4 style="color: #CCCCCC; ">Product Search</h4>
                         </div>
                     </span>
                 </li>
-                <li class="col-sm-4 col-md-4 with-ripples " ui-sref-active="active ">
+                <li class="col-sm-4 col-md-4 " angular-ripple ui-sref-active="active ">
                     <a ui-sref=".product " ng-if="canGoToProduct() ">
                                     <div>
                                         <h4>Product Details
