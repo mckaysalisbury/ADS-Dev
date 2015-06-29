@@ -17,6 +17,13 @@ You can easily install  by using Bower, a package manager for front-end componen
 
 `bower install `
 
+## Technologies used:
+
+* Overall
+ * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+ * [TypeScript](http://www.typescriptlang.org/)
+ * [Gulp](http://gulpjs.com/)
+* 
 
 
 ## Prototype
