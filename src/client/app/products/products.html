@@ -4,11 +4,11 @@
 		<div class="panel-body">
 			<div class="col-sm-12 widget-content text-left text-info">
 				<ul class="nav nav-pills nav-justified">
-					<li>
-						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} with <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
-					</li>
 					<li class="active">
 						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} without <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for {{vm.purposeClean()}} with <strong>{{ vm.ingredientClean()}}</strong> <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
 					</li>
 				</ul>
 			</div>
@@ -22,15 +22,6 @@
 		</div>
 		<div class="panel-body">
 			<div class="tab-content">
-				<div id="with" class="tab-pane fade">
-					<div class="text-left text-info">
-						<div class="form-group">
-							<input class="form-control input-lg" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..."></input>
-						</div>
-						<h4 style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</h4>
-					</div>
-					<div class="gridStyle" ng-grid="vm.gridOptionsWith"></div>
-				</div>
 				<div id="without" class="tab-pane fade in active">
 					<div class="text-left text-info">
 						<div class="form-group">
@@ -39,6 +30,15 @@
 						<h4 style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</h4>
 					</div>
 					<div class="gridStyle" ng-grid="vm.gridOptionsWithout"></div>
+				</div>
+				<div id="with" class="tab-pane fade">
+					<div class="text-left text-info">
+						<div class="form-group">
+							<input class="form-control input-lg" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..."></input>
+						</div>
+						<h4 style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</h4>
+					</div>
+					<div class="gridStyle" ng-grid="vm.gridOptionsWith"></div>
 				</div>
 			</div>
 		</div>
