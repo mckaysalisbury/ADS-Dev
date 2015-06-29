@@ -5,7 +5,10 @@
 @color_important: #fa3031;
 @color_violet: #932ab6;
 @color_darkblue: #00529b;
+@import "../../../bower_components/bootstrap-material-design/less/material.less";
 
+// Override @primary color with one took from _colors.less
+@primary:@color_darkblue;
 * {
     /*-webkit-box-shadow: none !important;
     -ms-box-shadow: none !important;
@@ -20,11 +23,11 @@
 }
 
 .btn.btn-primary {
-    background: #00529b !important;
+    background: #4f75b2 !important;
 }
 
     .btn.btn-primary:hover {
-        background: #4f75b2 !important;
+        background:#00529b  !important;
     }
 
 .btn.btn-info {
@@ -361,7 +364,7 @@ a {
 /* Bootstrap custom */
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-    background-color: @color_lightblue;
+    background-color: @primary;
 }
 
 /* #endregion */
@@ -553,7 +556,7 @@ a {
 }
 
 .form-wizard>ol>li.active {
-    background-color: #25aae1;
+    background-color: @color_darkblue;
 }
 
 .form-wizard>ol>li.active h4, .form-wizard>ol>div>li.active small {

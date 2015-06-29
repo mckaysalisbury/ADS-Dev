@@ -1,5 +1,5 @@
 <div class="panel"></div>
-<div class="col-sm-12">
+<div class="col-md-12">
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="col-sm-12 widget-content text-left text-info">
@@ -14,46 +14,31 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="tab-content">
-	<div id="without" class="tab-pane fade in active">
-		<div class="row-fluid">
-			<div class="col-md-12">
-				<div class="widget wdarkblue">
-					<div ht-widget-header title="Results" allow-collapse="true"></div>
-					<div class="widget-content text-left text-info">
-						<div class="form-group">
-							<input class="form-control" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." autofocus></input>
-						</div>
-						<div class="col-sm-12">
-							<label style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</label>
-						</div>
-						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWithout"></div>
-						<div class="widget-foot">
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<h3>Results</h3>
 			</div>
 		</div>
-	</div>
-	<div id="with" class="tab-pane fade">
-		<div class="row-fluid">
-			<div class="col-md-12">
-				<div class="widget wdarkblue">
-					<div ht-widget-header title="Results" allow-collapse="true"></div>
-					<div class="widget-content text-left text-info">
+		<div class="panel-body">
+			<div class="tab-content">
+				<div id="without" class="tab-pane fade in active">
+					<div class="text-left text-info">
 						<div class="form-group">
-							<input class="form-control" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..." ></input>
+							<input class="form-control input-lg" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..." autofocus></input>
 						</div>
-						<div class="col-sm-12">
-							<label style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</label>
-						</div>
-						<div class="col-sm-12 gridStyle" ng-grid="vm.gridOptionsWith"></div>
-						<div class="widget-foot">
-							<div class="clearfix"></div>
-						</div>
+						<h4 style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</h4>
 					</div>
+					<div class="gridStyle" ng-grid="vm.gridOptionsWithout"></div>
+				</div>
+				<div id="with" class="tab-pane fade">
+					<div class="text-left text-info">
+						<div class="form-group">
+							<input class="form-control input-lg" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..."></input>
+						</div>
+						<h4 style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</h4>
+					</div>
+					<div class="gridStyle" ng-grid="vm.gridOptionsWith"></div>
 				</div>
 			</div>
 		</div>
