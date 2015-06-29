@@ -5,7 +5,7 @@
 
     var config = {
         appErrorPrefix: '[SHIELD Error] ',
-        appTitle: 'SHIEL'
+        appTitle: 'SHIELD'
     };
 
     toastrConfig.$inject = ['toastr'];
