@@ -20,7 +20,7 @@ You can easily install  by using Bower, a package manager for front-end componen
 
 
 ## Prototype
-You can view the prototype at http://pyramidopenfdadev.herokuapp.com
+You can view the prototype at http://pyramidopenfda.herokuapp.com
 
 ## License
 ADS-Dev is licensed under the MIT license.
