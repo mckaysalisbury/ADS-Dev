@@ -69,6 +69,7 @@
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;
             $state.go('^.products');
+            window.scrollTo(0, 0);
         };
         vm.changePurpose = function changePurpose(newValue) {
             vm.purpose = newValue;

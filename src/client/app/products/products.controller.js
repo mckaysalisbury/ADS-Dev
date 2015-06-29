@@ -144,6 +144,7 @@
                 afterSelectionChange: function (i, e) {
                     searchformservice.id = i.entity.id;
                     $state.go('^.product');
+                    window.scrollTo(0, 0);
                     return true;
                 },
 
