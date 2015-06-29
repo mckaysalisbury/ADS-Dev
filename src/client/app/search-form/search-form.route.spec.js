@@ -24,7 +24,6 @@ describe('search form', function () {
         });
 
         it('of search-form should work with $state.go', function () {
-            $state.go('search-form');
             $rootScope.$apply();
             expect($state.is('search-form'));
         });

@@ -6,15 +6,15 @@
         .module('app.search-form')
         .controller('SearchFormController', SearchFormController);
 
-    SearchFormController.$inject = ['$state', '$scope', 'searchformservice'];
+    SearchFormController.$inject = ['$state', 'searchformservice'];
     /* @ngInject */
-    function SearchFormController($state, $scope, searchformservice) {
+    function SearchFormController($state, searchformservice) {
         var vm = this;
         $state.go('search-form.search-by-purpose');
-        $scope.canGoToProducts = function() {
+        vm.canGoToProducts = function() {
             return searchformservice.query ? true : false;
         };
-        $scope.canGoToProduct = function() {
+        vm.canGoToProduct = function() {
             return searchformservice.id ? true : false;
         };
     }
