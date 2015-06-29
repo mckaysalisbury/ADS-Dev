@@ -1,0 +1,21 @@
+{
+    "version": "0.1.0",
+    "command": "gulp",
+    "showOutput": "always",
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+  "tasks": [
+        {
+            "taskName": "b",
+            "args": [],
+            "isBuildCommand": true,
+            "problemMatcher": [
+                "$jshint-stylish",
+                "$lessCompile",
+                "$jshint"
+            ]
+        }
+    ]
+}

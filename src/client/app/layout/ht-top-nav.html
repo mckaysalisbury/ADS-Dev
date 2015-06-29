@@ -1,0 +1,27 @@
+<nav class="navbar">
+    <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+            <span class="brand-title" style="font-size:200%">
+                <div style="font-weight:bold;float:left;">SHIEL</div>
+                    <div class="fa fa-shield"></div>
+            </span>
+        </a>
+
+        <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <div class="pull-right navbar-logo">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a ng-href="{{vm.navline.link}}" target="_blank">
+                        {{vm.navline.text}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
