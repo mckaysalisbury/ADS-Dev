@@ -20,7 +20,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group" ng-class="{ 'has-error' : searchForm.purpose.$invalid && !searchForm.purpose.$pristine }">
-								<input class="form-control input-lg" required class="col-md-12" name="purpose" ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 }}"
+								<input class="form-control input-lg" required class="col-md-12" name="purpose" ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
 								ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
 								<p ng-show="searchForm.purpose.$invalid && !searchForm.purpose.$pristine" class="help-block">Purpose is required.</p>
 							</div>
@@ -69,11 +69,10 @@
 					</div>
 				</div>
 				<div class="panel-body col-xs-12 col-sm-12 col-md-12">
-					<button angular-ripple class="btn btn-primary col-xs-12 col-sm-12 col-md-12  " ng-disabled="searchForm.$invalid" type="submit"
-					ng-click="vm.viewResults();">
-						<label>View</label>
+					<button angular-ripple class="btn btn-primary col-xs-12 col-sm-12 col-md-12  " ng-disabled="searchForm.$invalid" type="submit">
+						<span>View</span>
 						<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
-						<label>Matching Drugs</label>
+						<span>Matching Drugs</span>
 					</button>
 				</div>
 				<div class="widget-foot ">
