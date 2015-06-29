@@ -21,7 +21,7 @@
 						<div class="col-md-12">
 							<div class="form-group" ng-class="{ 'has-error' : searchForm.purpose.$invalid && !searchForm.purpose.$pristine }">
 								<input class="form-control input-lg" required class="col-md-12" name="purpose" ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
-								ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?" autofocus></input>
+								ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
 								<p ng-show="searchForm.purpose.$invalid && !searchForm.purpose.$pristine" class="help-block">Purpose is required.</p>
 							</div>
 						</div>
