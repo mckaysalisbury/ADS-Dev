@@ -10,9 +10,6 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
 # ADS-Dev
 Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submission
 
-# Prototype
-You can view the prototype at http://pyramidopenfdadev.herokuapp.com
-
 # Development Approach
 
 ## Writeup (750 words)
@@ -35,7 +32,7 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
 * Backend
  * [Node.js](https://nodejs.org/)
  * [Express](http://expressjs.com/)
-* Testing / Analysis
+* Testing
  * [Mocha](http://mochajs.org/)
  * [Karma](http://karma-runner.github.io/)
  * [Hippie](https://github.com/vesln/hippie)
@@ -43,6 +40,26 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
  * [PhantomJS](http://phantomjs.org/)
 * Analysis
  * [Plato](https://github.com/es-analysis/plato)
+ * [jscs](https://www.npmjs.com/package/jscs) - <sub>(Artistic License 2.0)</sub>
+ 
+## Source Control
+
+Code is stored using [git](http://www.git-scm.com/), and the repository is also remotely hosted at [GitHub](https://github.com/PyramidSystemsInc/ADS-Dev)
+ 
+## Testing
+
+Both frontend and backend tests are written, and are automatically checked each push to Github by [Travis CI](https://travis-ci.org/)
+
+[![Build Status](https://travis-ci.org/PyramidSystemsInc/ADS-Dev.svg?branch=dev)](https://travis-ci.org/PyramidSystemsInc/ADS-Dev)
+
+## Deployment
+
+If tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com)
+
+
+## Configuration Management
+
+None of the hardware used for hosting the system is our own, so we interpret Configuration Management as monitoring the changes made to the software. We can do so by managing watching the git repository for changes, and we ensure coding style guidelines are met using [jscs](https://www.npmjs.com/package/jscs)   
 
 # Installation
 
