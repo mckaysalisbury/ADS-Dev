@@ -19,10 +19,15 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
 
 ## Technologies used:
 
-* Overall
+* Languages
  * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+ * [HTML](https://en.wikipedia.org/wiki/HTML)
  * [TypeScript](http://www.typescriptlang.org/)
+* Deployment / Automation
  * [Gulp](http://gulpjs.com/)
+ * [Yargs](https://www.npmjs.com/package/yargs)
+ * [Uglify](http://lisperator.net/uglifyjs/)
+ * [BrowserSync](http://www.browsersync.io/)
 * Frontend
  * [Bower](http://bower.io/)
  * [Bootstrap](http://getbootstrap.com)
@@ -30,17 +35,14 @@ You can view the prototype at http://pyramidopenfdadev.herokuapp.com
 * Backend
  * [Node.js](https://nodejs.org/)
  * [Express](http://expressjs.com/)
-* Testing
+* Testing / Analysis
  * [Mocha](http://mochajs.org/)
  * [Karma](http://karma-runner.github.io/)
  * [Hippie](https://github.com/vesln/hippie)
- * [Bard]()
-* Others / Unsorted
- * [Plato]()
- * [PhantomJS]()
- * [BrowserSync]()
- * [Uglify]()
- * [Yargs]()
+ * [Bard](https://github.com/wardbell/bardjs)
+ * [PhantomJS](http://phantomjs.org/)
+* Analysis
+ * [Plato](https://github.com/es-analysis/plato)
 
 # Installation
 
