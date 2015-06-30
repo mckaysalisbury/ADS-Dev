@@ -64,9 +64,10 @@ export class Fda {
   }
   
   private static Label(search: string, pageOptions : PageOptions, queryArguments, callback, filter): void {
+    var url =  "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + pageOptions.skip + "&limit=" + pageOptions.limit + "&search=product_type:otc+AND+NOT+(indications_and_usage:homeopathic+purpose:homeopathic+package_label_principal_display_panel:homeopathic+pharm_class_epc:extract)+AND+" + search;
     var options = {
       host: 'api.fda.gov',
-      path: "/drug/label.json?api_key=MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ&skip=" + pageOptions.skip + "&limit=" + pageOptions.limit + "&search=product_type:otc+AND+NOT+(indications_and_usage:homeopathic+purpose:homeopathic+package_label_principal_display_panel:homeopathic+pharm_class_epc:extract)+AND+" + search,
+      path: url,
       port: 80,
       method: 'GET'
     };
@@ -76,7 +77,13 @@ export class Fda {
         result += data;
       });
       response.on('end', function() {
-        var object = JSON.parse(result);
+        var object : any;
+        try{
+            object = JSON.parse(result);
+        }catch(e){
+            console.log(e);
+        }
+        
         object = Fda.SanitizeProductData(object);
         var filtered = filter(object);
         if (filtered.meta == undefined)
@@ -111,10 +118,10 @@ export class Fda {
   }
   private static SummaryProductDataResult(input) {
     var returnValue = new Object();
-    returnValue["brand_name"] = Fda.FirstIfArrayDefined(input.openfda.brand_name);
-    returnValue["generic_name"] = Fda.FirstIfArrayDefined(input.openfda.generic_name);
-    returnValue["purpose"] = Fda.FirstIfArrayDefined(input.purpose);
-    returnValue["manufacturer_name"] = Fda.FirstIfArrayDefined(input.openfda.manufacturer_name);
+    returnValue["brand_name"] = Fda.ConcatenatedIfArrayDefined(input.openfda.brand_name);
+    returnValue["generic_name"] = Fda.ConcatenatedIfArrayDefined(input.openfda.generic_name);
+    returnValue["purpose"] = Fda.ConcatenatedIfArrayDefined(input.purpose);
+    returnValue["manufacturer_name"] = Fda.ConcatenatedIfArrayDefined(input.openfda.manufacturer_name);
     // returnValue["active_ingredient"] = Fda.FirstIfArrayDefined(input.active_ingredient);
     // returnValue["inactive_ingredient"] = Fda.FirstIfArrayDefined(input.inactive_ingredient);
     // returnValue["effective_time"] = input.effective_time;
@@ -169,10 +176,16 @@ export class Fda {
     }
     return input;
   }
-  
-  private static FirstIfArrayDefined(input) {
+  private static ConcatenatedIfArrayDefined(input) {
     if (input != undefined) {
-      return input[0];
+      var result = '';
+      for (var i = 0; i < input.length; i++) {
+        if (result !== '') { 
+          result += '<br />';
+        }
+        result += input[i];
+      }
+      return result;
     }
     return undefined;
   }
