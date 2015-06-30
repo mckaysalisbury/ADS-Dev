@@ -1,6 +1,6 @@
-<div class="panel"></div>
+<div style="height:20px;"></div>
 <div class="col-md-12">
-	<div class="panel panel-info">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>Find products without an ingredient</h3>
@@ -9,7 +9,7 @@
 		<form name="searchForm" ng-submit="vm.viewResults();">
 			<!-- for the button to work with the enter key -->
 			<div class="panel-body">
-				<div class="text-left text-info col-xs-12 col-sm-6 col-md-6">
+				<div class="text-left col-xs-12 col-sm-6 col-md-6">
 					<div class="row">
 						<h3 class="col-md-12">I'm looking for a drug...</h3>
 					</div>
@@ -39,7 +39,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-left text-info col-xs-12 col-sm-6 col-md-6">
+				<div class="text-left col-xs-12 col-sm-6 col-md-6">
 					<div class="row">
 						<h3 class="col-md-12">that doesn't contain...</h3>
 					</div>
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<div class="panel-body col-xs-12 col-sm-12 col-md-12">
-					<button angular-ripple class="btn btn-primary col-xs-12 col-sm-12 col-md-12  " ng-disabled="searchForm.$invalid" type="submit">
+					<button angular-ripple class="btn btn-info col-xs-12 col-sm-12 col-md-12" ng-disabled="searchForm.$invalid" type="submit">
 						<span>View</span>
 						<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
 						<span>Matching Drugs</span>

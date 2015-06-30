@@ -57,6 +57,7 @@
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;
             $state.go('^.search-by-purpose');
+            window.scrollTo(0, 0);
         };
         setWithoutIngredientGrid();
         setWithIngredientGrid();

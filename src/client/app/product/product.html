@@ -1,10 +1,13 @@
-<div class="panel"></div>
 <div class="col-md-12">
-	<div class="panel panel-info">
+	<div>
+		<button class="btn btn-info" ng-click="vm.returnToResults();"><span class="fa fa-arrow-left"></span> <span>Return to Results</span></button>
+	</div>
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>
-					<div class="fa fa-info"></div>&nbsp;Product Details</h3>
+					<div class="fa fa-info"></div>&nbsp;Product Details
+				</h3>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -15,7 +18,7 @@
 				<strong>Purpose:</strong> <span ng-bind-html="vm.getStringFromArray(vm.result.purpose)"></span></div>
 		</div>
 	</div>
-	<div class="panel panel-warning">
+	<div class="panel panel-info">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>
@@ -24,7 +27,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="col-md-6">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
 							<h4>Active Ingredients</h4>
@@ -36,7 +39,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
 							<h4>Inactive Ingredients</h4>
@@ -67,7 +70,7 @@
 			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.drug_interactions)"></div>
 		</div>
 	</div>
-	<div class="panel panel-info">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>
@@ -78,7 +81,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="col-md-4">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
 							<h4>
@@ -94,7 +97,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
 							<h4>
@@ -109,7 +112,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title">
 							<h4>
@@ -124,7 +127,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-info">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>

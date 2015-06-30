@@ -1,20 +1,28 @@
-<div class="panel"></div>
+<div style="height:20px;"></div>
 <div class="col-md-12 ">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="col-sm-12 widget-content text-left text-info">
+			<div class="widget-content text-left">
+				<div class="col-xs-12">
+					<h4>
+						Showing products used for '<strong>{{vm.purposeClean()}}</strong>'<span>&nbsp;
+						<button class="btn btn-info btn-inline" ng-click="vm.editSearch();"><span class="fa fa-pencil"></span> <span>Edit Search</span></button>
+					</h4>
+				</div>
+			</div>				
+			<div class="col-sm-12 widget-content text-left text-info" ng-show="vm.ingredientClean()">
 				<ul class="nav nav-pills nav-justified">
 					<li class="active">
-						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> Show products used for <strong>{{vm.purposeClean()}}</strong> without <strong>{{ vm.ingredientClean()}}</strong>. <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> without '<strong>{{ vm.ingredientClean()}}</strong>' <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> Show products used for <strong>{{vm.purposeClean()}}</strong> with <strong>{{ vm.ingredientClean()}}</strong>. <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
+						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> with '<strong>{{ vm.ingredientClean()}}</strong>' <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-info">
+	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<h3>Results</h3>
@@ -23,7 +31,7 @@
 		<div class="panel-body">
 			<div class="tab-content">
 				<div id="without" class="tab-pane fade in active">
-					<div class="text-left text-info">
+					<div class="text-left">
 						<div class="form-group">
 							<input class="form-control input-lg" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..."></input>
 						</div>
