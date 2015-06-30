@@ -17,7 +17,7 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
 
 ## Data
 
-The data for this application comes from the [openFDA](https://open.fda.gov). <sub>((license)[https://open.fda.gov/license/])</sub>
+The data for this application comes from the [openFDA](https://open.fda.gov). <sub>[(license)](https://open.fda.gov/license/)</sub>
 
 ## Technologies used:
 
