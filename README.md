@@ -15,18 +15,21 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
 ## Writeup (750 words)
 (We possibly don't need a seperate writeup, as the writeup is this document?) 
 
+## Data
+
+The data for this application comes from the [openFDA](https://open.fda.gov). <sub>((license))[https://open.fda.gov/license/]</sub>
 
 ## Technologies used:
 
 * Languages
- * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
- * [HTML](https://en.wikipedia.org/wiki/HTML)
- * [TypeScript](http://www.typescriptlang.org/)
+ * [JavaScript](https://en.wikipedia.org/wiki/JavaScript) <sub>(HTML is an ISO open standard)</sub>
+ * [HTML](https://en.wikipedia.org/wiki/HTML) <sub>(HTML is an ISO open standard)</sub>
+ * [TypeScript](http://www.typescriptlang.org/) <sub>(Apache license)</sub>
 * Deployment / Automation
- * [Gulp](http://gulpjs.com/)
- * [Yargs](https://www.npmjs.com/package/yargs)
- * [Uglify](http://lisperator.net/uglifyjs/)
- * [Browsersync](http://www.browsersync.io/) <sup>(Apache license)</sup>
+ * [Gulp](http://gulpjs.com/) <sub>(MIT license)</sub>
+ * [Yargs](https://www.npmjs.com/package/yargs) <sub>(MIT license)</sub>
+ * [Uglify](http://lisperator.net/uglifyjs/) <sub>(BSD License)</sub>
+ * [Browsersync](http://www.browsersync.io/) <sub>(Apache license)</sub>
 * Frontend
  * [Bower](http://bower.io/) <sub>(MIT license)</sub>
  * [Bootstrap](http://getbootstrap.com) <sub>(MIT license)</sub>
@@ -57,7 +60,6 @@ Both frontend and backend tests are written, and are automatically checked each 
 ## Deployment
 
 If tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com)
-
 
 ## Configuration Management
 
