@@ -1,11 +1,11 @@
 cd /tmp
 
-rm -rf ADS-Dev; true
+if [ ! -d "ADS-Dev" ]; then
+	git clone https://github.com/PyramidSystemsInc/ADS-Dev.git -b dev
+	cd ADS-Dev
+	npm install
+fi
 
-git clone https://github.com/PyramidSystemsInc/ADS-Dev.git -b main
+cd /tmp/ADS-Dev
 
-cd ADS-Dev
-
-npm install gulp -g
-
-gulp serve-build
+npm start
