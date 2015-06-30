@@ -103,7 +103,8 @@
             };
 
             vm['rangeDisplay' + propertySuffix] = function () {
-                var currentlyDisplayed = vm['gridOptions' + propertySuffix].ngGrid.filteredRows.length; // grid.renderContainers.body.visibleRowCache.length;
+                var currentlyDisplayed = vm['gridOptions' + propertySuffix].ngGrid.filteredRows.length;
+                // grid.renderContainers.body.visibleRowCache.length;
                 return currentlyDisplayed + ' of ' + vm['totalServerItems' + propertySuffix];
             };
             vm['pagingOptions' + propertySuffix] = pagingOptions;
