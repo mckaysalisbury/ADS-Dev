@@ -13,6 +13,8 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
 # Development Approach
 
 ## Writeup (750 words)
+(We possibly don't need a seperate writeup, as the writeup is this document?) 
+
 
 ## Technologies used:
 
@@ -24,23 +26,23 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
  * [Gulp](http://gulpjs.com/)
  * [Yargs](https://www.npmjs.com/package/yargs)
  * [Uglify](http://lisperator.net/uglifyjs/)
- * [BrowserSync](http://www.browsersync.io/)
+ * [Browsersync](http://www.browsersync.io/) <sup>(Apache license)</sup>
 * Frontend
- * [Bower](http://bower.io/)
- * [Bootstrap](http://getbootstrap.com)
- * [AngularJS](http://angularjs.org/)
+ * [Bower](http://bower.io/) <sub>(MIT license)</sub>
+ * [Bootstrap](http://getbootstrap.com) <sub>(MIT license)</sub>
+ * [AngularJS](http://angularjs.org/) <sub>(MIT license)</sub>
 * Backend
- * [Node.js](https://nodejs.org/)
- * [Express](http://expressjs.com/)
+ * [Node.js](https://nodejs.org/) <sub>(MIT license)</sub>
+ * [Express](http://expressjs.com/) <sub>(MIT license)</sub>
 * Testing
- * [Mocha](http://mochajs.org/)
- * [Karma](http://karma-runner.github.io/)
- * [Hippie](https://github.com/vesln/hippie)
- * [Bard](https://github.com/wardbell/bardjs)
- * [PhantomJS](http://phantomjs.org/)
+ * [Mocha](http://mochajs.org/) <sub>(MIT license)</sub>
+ * [Karma](http://karma-runner.github.io/) <sub>(MIT license)</sub>
+ * [Hippie](https://github.com/vesln/hippie) <sub>(MIT license)</sub>
+ * [Bard](https://github.com/wardbell/bardjs) <sub>(MIT license)</sub>
+ * [PhantomJS](http://phantomjs.org/) <sub>(BSD License)</sub>
 * Analysis
- * [Plato](https://github.com/es-analysis/plato)
- * [jscs](https://www.npmjs.com/package/jscs) - <sub>(Artistic License 2.0)</sub>
+ * [Plato](https://github.com/es-analysis/plato) <sub>(MIT license)</sub>
+ * [jscs](https://www.npmjs.com/package/jscs) <sub>(Artistic license)</sub>
  
 ## Source Control
 
