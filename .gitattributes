@@ -1,0 +1,5 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Script files are used by docker containers based on Ubuntu, and need to be newline-only regardless of platform
+*.sh text eol=LF

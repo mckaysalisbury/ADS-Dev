@@ -103,12 +103,8 @@
             };
 
             vm['rangeDisplay' + propertySuffix] = function () {
-                var offset = (pagingOptions.currentPage - 1) * pagingOptions.pageSize;
-                var resultsCount = 0;
-                if (vm['results' + propertySuffix]) {
-                    resultsCount = vm['results' + propertySuffix].length;
-                }
-                return (offset + 1) + ' - ' + (offset + resultsCount);
+                var currentlyDisplayed = vm['gridOptions' + propertySuffix].ngGrid.filteredRows.length; // grid.renderContainers.body.visibleRowCache.length;
+                return currentlyDisplayed + ' of ' + vm['totalServerItems' + propertySuffix];
             };
             vm['pagingOptions' + propertySuffix] = pagingOptions;
 
