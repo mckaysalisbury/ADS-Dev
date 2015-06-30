@@ -78,7 +78,7 @@
             if (!text) {
                 return '';
             }
-            return text.replace(new RegExp(vm.purposeClean(), 'gi'), '<strong>$&</strong>');
+            return common.escapeHtml(text).replace(new RegExp(vm.purposeClean(), 'gi'), '<strong>$&</strong>');
         };
         function setWithIngredientGrid() {
             var lastPiece = searchformservice.query;
