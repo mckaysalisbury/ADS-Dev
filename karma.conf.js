@@ -16,7 +16,7 @@ module.exports = function(config) {
         exclude: gulpConfig.karma.exclude,
 
         proxies: {
-            '/': 'http://localhost:8888/'
+            '/web/': 'http://localhost:8000/'
         },
 
         // preprocess matching files before serving them to the browser

@@ -184,9 +184,6 @@ gulp.task('build-specs', ['templatecache'], function (done) {
     var options = config.getWiredepDefaultOptions();
     var specs = config.specs;
 
-    if (args.startServers) {
-        specs = [].concat(specs, config.serverIntegrationSpecs);
-    }
     options.devDependencies = true;
 
     return gulp
@@ -362,7 +359,7 @@ gulp.task('b', ['compile-tsc', 'test', 'test-integration', 'vet']);
  * Runs the integration test in mocha 
  */
 gulp.task('test-integration', function () {
-    return gulp.src(config.serverIntegrationTests)
+    return gulp.src(config.serverIntegrationSpecs)
         .pipe(mocha())
         .once('error', function () {
         process.exit(1);
@@ -605,10 +602,8 @@ function startPlatoVisualizer(done) {
  */
 function startTests(singleRun, done) {
     var child;
-    var excludeFiles = [];
     var fork = require('child_process').fork;
     var karma = require('karma').server;
-    var serverSpecs = config.serverIntegrationSpecs;
 
     if (args.startServers) {
         log('Starting servers');
@@ -616,16 +611,11 @@ function startTests(singleRun, done) {
         savedEnv.NODE_ENV = 'dev';
         savedEnv.PORT = 8888;
         child = fork(config.nodeServer);
-    } else {
-        if (serverSpecs && serverSpecs.length) {
-            excludeFiles = serverSpecs;
-        }
-    }
+    } 
 
     karma.start({
         configFile: __dirname + '/karma.conf.js',
-        exclude: excludeFiles,
-        singleRun: !!singleRun
+        singleRun: !!singleRun,
     }, karmaCompleted);
 
     ////////////////

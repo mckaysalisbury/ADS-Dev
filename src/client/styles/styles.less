@@ -1,15 +1,21 @@
 @color_lightblue: #25aae1;
 @color_blue: #1171a3;
-@color_success: #43c83c;
-@color_warning: #f88529;
-@color_important: #fa3031;
+@color_success: #1cd373;
+@color_warning: #e55353;
+@color_important: #ffdb45;
 @color_violet: #932ab6;
 @color_darkblue: #00529b;
 @color_secondary_primary: #4f75b2;
+
 @import "../../../bower_components/bootstrap-material-design/less/material.less";
 
 // Override @primary color with one took from _colors.less
 @primary:@color_darkblue;
+@info:@color_lightblue;
+@warning:@color_warning;
+@success:@color_success;
+
+
 * {
     /*-webkit-box-shadow: none !important;
     -ms-box-shadow: none !important;
@@ -165,14 +171,14 @@ a {
     
     .gridStyle {
         border: 1px solid rgb(212,212,212);
-        height: 320px;
+        height: 450px;
     }
 }
 
 @media (max-width: 320px) {
     .gridStyle {
         border: 1px solid rgb(212,212,212);
-        height: 120px;
+        height: 450px;
     }
 }
 
@@ -245,6 +251,46 @@ a {
     display:block;
     max-width: 100%; // Part 1: Set a maximum relative to the parent
     height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
+.header{
+    background-color: white;
+    padding: 20px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #00529b;
+}
+
+.footer{
+    background-color: white;
+    padding: 20px;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: #00529b;
+}
+ 
+.close {
+    opacity:1;
+}
+
+.ngPagerButton[disabled] {
+    opacity:0.3;
+}
+
+.panel-title h3 {
+    margin: 5px 0px;
+}
+
+h4 {
+    margin: 5px 0px;
+}
+
+.btn {
+    white-space: normal;
+}
+
+.btn-inline {
+    margin: 5px 0px;
 }
 
 /*#endregion*/

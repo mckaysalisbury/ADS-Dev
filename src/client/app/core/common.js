@@ -59,6 +59,13 @@
                 // console.log({'value': fullText, 'example': example});
                 return { 'value': fullText.toLowerCase(), 'example': example };
             };
+            common.escapeHtml = function (input) {
+                return input.replace(/&/g, '&amp;')
+                 .replace(/</g, '&lt;')
+                 .replace(/>/g, '&gt;')
+                 .replace(/"/g, '&quot;')
+                 .replace(/'/g, '&#039;');
+            };
             function getSampleTextFromInput(query, input, indexOfQuery, fullTextLength) {
                 var startIndex = indexOfQuery - 25;
                 var endIndex = indexOfQuery + 25 + fullTextLength;
@@ -89,14 +96,5 @@
                 return fullText;
             }
             return common;
-        })
-        .directive('autofocus', ['$document', function($document) {
-            return {
-                link: function($scope, $element, attrs) {
-                    setTimeout(function() {
-                        $element[0].focus();
-                    }, 100);
-                }
-            };
-        }]);
+        });
 })();
