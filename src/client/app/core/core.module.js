@@ -5,7 +5,7 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'angularRipple'])
+        'ui.router', 'angularRipple', 'ngMaterial'])
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {
