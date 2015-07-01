@@ -14,7 +14,7 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
 
 When we began looking at the requirements, we saw that the most restrictive set of requirements were twofold:
 
-1. That we needed to use the openfda apis
+1. That we needed to use the [openFDA API](https://open.fda.gov)s
 2. That we needed to focus on open source technologies
 
 We picked [Node.js](https://nodejs.org/) as a backend platform, and [AngularJS](http://angularjs.org/) as a frontend platform, in part because the data coming back from the FDA was in json, and would be easiest to handle in the backend with javascript.
