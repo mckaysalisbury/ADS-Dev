@@ -13,11 +13,23 @@ Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submissio
 # Development Approach
 
 ## Writeup (750 words)
-(We possibly don't need a seperate writeup, as the writeup is this document?) 
 
-## Data
+When we began looking at the requirements, we saw that the most restrictive set of requirements were twofold:
 
-The data for this application comes from the [openFDA](https://open.fda.gov). <sub>[(license)](https://open.fda.gov/license/)</sub>
+1. That we needed to use the openfda apis
+2. That we needed to focus on open source technlogies
+
+We picked [Node.js](https://nodejs.org/) as a backend platform, and [AngularJS](http://angularjs.org/) as a frontend platform, in part because the data coming back from the FDA was in json, and would be easiest to handle in the backend with javascript.
+
+The dev team and the design team worked together throughout the project, and this was particularly evident during the initial design phase. Both the development and the design teams looked at the FDA data, and we settled on the label database, because it was the most concrete. The other databases seemed too unreliable for proper analysis, and the label database was concrete and predictable (though a bit dirty). So we brainstormed ideas about what to build, and we decided to pick users with allergies (or other ingredients they would have to avoid) as a use case.
+
+From there we started exploring the technology stacks to get data coming through the pipeline from the API calls on the backend to the browser on the frontend, while also getting continuous integration and deployment working. We built a [couple of prototypes](https://trello.com/c/991zniQw) displaying data from the FDA, and from those prototypes the design team saw that we were on a different page from them.  
+
+That led us to our primary construction path of [Searching for products by purpose without an ingredient](https://trello.com/c/TTeC1nPK), [seeing those products](https://trello.com/c/Nawf3CCY), and then choosing one and [seeing the labeling details for a chosen product](https://trello.com/c/jqaKRQKC).
+
+Then the design team started usability tests, which led [to](https://trello.com/c/omaqHa8P) [more](https://trello.com/c/uOVLY6Py) [changes](https://trello.com/c/5KVPCaps).
+
+Theoretically, this proces could be repeated, but therew was a deadline, so we stopped primary development, and cleaned up remaining issues.
 
 ## Technologies used:
 
