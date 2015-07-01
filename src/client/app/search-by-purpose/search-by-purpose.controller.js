@@ -30,7 +30,7 @@
                 var element = chips[i];
                 newChip = createChip(element);
                 if (i !== chips.length - 1) {
-                    if (chipType == 'purpose') {
+                    if (chipType === 'purpose') {
                         vm.purposes.push(newChip);
                     }
                     else {
@@ -67,19 +67,19 @@
             return newChip;
         }
 
-        function query(query, chipType) {
-            var results = query ? vm.searchResults.filter(createFilterFor(query)) : vm.searchResults, deferred;
+        function query (queryText, chipType) {
+            var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();
-                if (chipType == 'purpose') {
-                    $http.get('/data/purpose/' + common.sanitize(query),
+                if (chipType === 'purpose') {
+                    $http.get('/data/purpose/' + common.sanitize(queryText),
                         { timeout: deferred.promise })
                         .success(function (response) {
                         deferred.resolve(vm.transformPurpose(response));
                     });
                 }
                 else {
-                    $http.get('/data/ingredient/' + common.sanitize(query),
+                    $http.get('/data/ingredient/' + common.sanitize(queryText),
                         { timeout: deferred.promise })
                         .success(function (response) {
                         deferred.resolve(vm.transformIngredient(response));

@@ -65,7 +65,7 @@ gulp.task('plato', function (done) {
 gulp.task('compile-tsc', function () {
     log('Compiling Typescript');
     gulp.src(config.allts)
-        .pipe(typescript({ sourceMap: true, module: "commonJs", removeComments: true }))
+        .pipe(typescript({ sourceMap: true, module: 'commonJs', removeComments: true }))
         .pipe(gulp.dest(config.typeScriptDirectory));
 });
 
@@ -345,7 +345,7 @@ gulp.task('autotest', function (done) {
  * --debug-brk or --debug
  * --nosync
  */
-gulp.task('serve-dev', ['inject'], function () {
+gulp.task('serve-dev', ['vet', 'inject'], function () {
     serve(true /*isDev*/);
 });
 
@@ -367,7 +367,7 @@ gulp.task('test-integration', function () {
         .once('end', function () {
         process.exit();
     });
-})
+});
 /**
  * serve the build environment
  * --debug-brk or --debug

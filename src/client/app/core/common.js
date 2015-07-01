@@ -15,14 +15,14 @@
                 }
                 return input.split(' ').join('+');
             };
-            
+
             common.sanitizeArray = function(input) {
                 if (!input) {
                     return input;
                 }
                 return input.join('+');
             };
-            
+
             common.unsanitize = function unsanitize(input) {
                 if (!input) {
                     return input;
