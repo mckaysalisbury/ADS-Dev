@@ -1,6 +1,6 @@
 /* jshint -W117, -W030 */
 describe('SearchByPurposeController', function () {
-    var controller;
+    var controller, scope;
 
     beforeEach(function () {
         bard.appModule('app.search-by-purpose');
@@ -8,18 +8,18 @@ describe('SearchByPurposeController', function () {
     });
 
     beforeEach(function () {
-        controller = $controller('SearchByPurposeController');
+        scope = $rootScope.$new();
         $rootScope.$apply();
+        controller = $controller('SearchByPurposeController', { $scope: scope });
     });
 
-    bard.verifyNoOutstandingHttpRequests();
 
     describe('typeahead', function () {
 
         function callGetExample(query, input) {
             var results = [];
-            results.push({'purpose': input});
-            var data = {'results': results, 'meta': { 'query': [query]}};
+            results.push({ 'purpose': input });
+            var data = { 'results': results, 'meta': { 'query': [query] } };
             return controller.transformPurpose(data)[0];
         }
 
