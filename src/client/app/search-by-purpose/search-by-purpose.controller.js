@@ -34,8 +34,12 @@
             }
         };
 
+        var nullOrEmpty = function(item) {
+            return item === null || item === '';
+        };
+
         vm.provideExamplePurposes = function () {
-            if (vm.purpose === null || vm.purpose === '') {
+            if (nullOrEmpty(vm.purpose)) {
                 vm.examplePurposes = [];
             }
             else {
@@ -50,7 +54,7 @@
             vm.searchPurposeWithoutIngredient();
         };
         vm.provideExampleIngredients = function () {
-            if (vm.ingredient === null || vm.ingredient === '') {
+            if (nullOrEmpty(vm.ingredient)) {
                 vm.exampleIngredients = [];
             }
             else {
