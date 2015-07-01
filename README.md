@@ -25,12 +25,11 @@ The dev team and the design team worked together throughout the project, and thi
 
 From there we started exploring the technology stacks to get data coming through the pipeline from the API calls on the backend to the browser on the frontend, while also getting continuous integration and deployment working. We built a [couple of prototypes](https://trello.com/c/991zniQw) displaying data from the FDA, and from those prototypes the design team saw that we were on a different page from them.  
 
-That led us to our primary construction path of [Searching for products by purpose without an ingredient](https://trello.com/c/TTeC1nPK).
+That led us to our primary construction path of [Searching for products by purpose without an ingredient](https://trello.com/c/TTeC1nPK), [seeing those products](https://trello.com/c/Nawf3CCY), and then choosing one and [seeing the labeling details for a chosen product](https://trello.com/c/jqaKRQKC).
 
+Then the design team started usability tests, which led to [more](https://trello.com/c/uOVLY6Py) [changes](https://trello.com/c/5KVPCaps).
 
-## Data
-
-The data for this application comes from the [openFDA](https://open.fda.gov). <sub>[(license)](https://open.fda.gov/license/)</sub>
+Theoretically, this proces could be repeated, but therew was a deadline, so we stopped primary development, and cleaned up remaining issues.
 
 ## Technologies used:
 
