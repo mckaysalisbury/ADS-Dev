@@ -27,7 +27,7 @@ From there we started exploring the technology stacks to get data coming through
 
 That led us to our primary construction path of [Searching for products by purpose without an ingredient](https://trello.com/c/TTeC1nPK), [seeing those products](https://trello.com/c/Nawf3CCY), and then choosing one and [seeing the labeling details for a chosen product](https://trello.com/c/jqaKRQKC).
 
-Then the design team started usability tests, which led to [more](https://trello.com/c/uOVLY6Py) [changes](https://trello.com/c/5KVPCaps).
+Then the design team started usability tests, which led [to](https://trello.com/c/omaqHa8P) [more](https://trello.com/c/uOVLY6Py) [changes](https://trello.com/c/5KVPCaps).
 
 Theoretically, this proces could be repeated, but therew was a deadline, so we stopped primary development, and cleaned up remaining issues.
 
