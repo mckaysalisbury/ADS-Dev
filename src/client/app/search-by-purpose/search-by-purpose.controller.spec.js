@@ -13,7 +13,6 @@ describe('SearchByPurposeController', function () {
         controller = $controller('SearchByPurposeController', { $scope: scope });
     });
 
-
     describe('typeahead', function () {
 
         function callGetExample(query, input) {
