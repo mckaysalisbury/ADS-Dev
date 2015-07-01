@@ -9,7 +9,3 @@ RUN adduser --home /tmp --disabled-password --gecos ADSUser --no-create-home ads
 ADD start.sh /tmp/
 
 RUN chmod +x /tmp/start.sh
-
-USER adsuser
-
-CMD /tmp/start.sh
