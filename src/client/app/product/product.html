@@ -68,10 +68,63 @@
 			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.overdosage)"></div>
 			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.adverse_reactions)"></div>
 			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.drug_interactions)"></div>
-			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor)"></div>
-			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist)"></div>
-			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding)"></div>
-			<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.other_safety_interactions)"></div>
+		</div>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<h3>
+					<div class="fa fa-plus"/>
+					Other Interactions
+				</h3>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>
+								<div class="fa fa-stethoscope" />
+								Ask Doctor/Pharmacist
+							</h4>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor)"></div>
+						<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist)"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>
+								<div class="fa fa-stethoscope" />
+								Pregnancy/Breastfeeding
+							</h4>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding)"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>
+								<div class="fa fa-stethoscope"></div>
+								Other Safety</h4>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-12 " ng-bind-html="vm.getStringFromArray(vm.result.other_safety_interactions)"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="panel panel-primary">
