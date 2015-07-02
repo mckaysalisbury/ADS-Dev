@@ -84,8 +84,17 @@ export class Fda {
             console.log(e);
         }
         
-        object = Fda.SanitizeProductData(object);
-        var filtered = filter(object);
+        var filtered : any;
+
+        // if (object === undefined)
+        // {
+        //   filtered = new object();
+        // }
+        // else
+        {
+          object = Fda.SanitizeProductData(object);
+          filtered = filter(object);
+        }
         if (filtered.meta == undefined)
         {
           filtered.meta = new Object();
@@ -129,7 +138,7 @@ export class Fda {
     // returnValue["set_id"] = input.set_id;
     return returnValue;
   }
-  private static SanitizeProductData(input) {
+  private static SanitizeProductData(input) {   
     if (!input.results) {
       return input;
     }

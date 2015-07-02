@@ -102,8 +102,8 @@
                 ['generic_name', 'inactive_ingredient']);
         };
         function setInitialValuesFromSearchQuery() {
-            vm.purpose = common.unsanitize(searchformservice.purpose);
-            vm.ingredient = common.unsanitize(searchformservice.ingredient);
+            vm.purpose = searchformservice.purpose;
+            vm.ingredient = searchformservice.ingredient;
             if (vm.purpose) {
                 vm.provideExamplePurposes();
             }
@@ -113,6 +113,5 @@
         }
 
         setInitialValuesFromSearchQuery();
-
     }
 })();

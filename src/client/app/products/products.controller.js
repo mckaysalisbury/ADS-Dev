@@ -67,13 +67,13 @@
             if (!vm.ingredient) {
                 return '';
             }
-            return vm.ingredient.split('+').join(' ');
+            return vm.ingredient;
         };
         vm.purposeClean = function purposeClean() {
             if (!vm.purpose) {
                 return '';
             }
-            return vm.purpose.split('+').join(' ');
+            return vm.purpose;
         };
         vm.boldTextMatchingPurpose = function boldTextMatchingPurpose(text) {
             if (!text) {
@@ -158,10 +158,9 @@
         }
 
         function insertContextualPurpose(results) {
-            var purpose = common.unsanitize(vm.purpose);
             if (results) {
                 for (var i = 0; i < results.length; i++) {
-                    var example = common.getExample(purpose, results[i].purpose).example;
+                    var example = common.getExample(vm.purpose, results[i].purpose).example;
                     if (example) {
                         results[i].purpose_context = example;
                     }
