@@ -135,7 +135,7 @@
                 angular.forEach(vm.purposes, function (value, key) {
                     productParameters.push(value.name);
                 });
-                angular.forEach(vm.ingredients, function (value, key) {
+                angular.forEach(vm.purposes, function (value, key) {
                     ingredientParameters.push(value.name);
                 });
                 return '/data/purposeWithoutIngredient/' + common.sanitizeArray(productParameters) +
