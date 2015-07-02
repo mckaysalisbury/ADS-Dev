@@ -5,13 +5,13 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'ngMaterial'])
+        'ui.router', 'angularRipple'])
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {
         var query = '';
-        var purposes = [];
-        var ingredients = [];
+        var purpose = '';
+        var ingredient = '';
         return {
             getQuery: function () {
                 return query;
@@ -20,19 +20,16 @@
                 query = newQuery;
             },
 
-            getPurposes: function () {
-                return purposes;
+            getPurpose: function () {
+                return 'purpose';
             },
 
-            setPurposes: function (newPurposes) {
-                purposes = newPurposes;
+            setPurpose: function (newPurpose) {
+                purpose = newPurpose;
             },
 
-            getIngredients: function () {
-                return ingredients;
-            },
-            setIngredients: function (newIngredients) {
-                ingredients = newIngredients;
+            getIngredient: function (newIngredient) {
+                ingredient = newIngredient;
             }
         };
     }

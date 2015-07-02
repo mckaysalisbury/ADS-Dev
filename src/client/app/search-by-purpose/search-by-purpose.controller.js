@@ -1,4 +1,3 @@
-/* jshint -W117, -W043 */
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../../../typings/jquery/jquery.d.ts"/>
 (function () {
@@ -8,139 +7,88 @@
         .module('app.search-by-purpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$window',
-        '$state', 'logger', 'searchformservice', 'common', '$q', '$timeout', '$scope'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window',
+        '$state', 'logger', 'searchformservice', 'common', '$q'];
 
     /* @ngInject */
-    function SearchByPurposeController($http, $window, $state,
-        logger, searchformservice, common, $q, $timeout, $scope) {
+    function SearchByPurposeController($http, $location, $window, $state,
+        logger, searchformservice, common, $q) {
         var vm = this;
 
-        vm.purposes = searchformservice.getPurposes();
-        vm.ingredients = searchformservice.getIngredients();
-        vm.query = query;
-        vm.searchResults = [];
-        vm.addChip = function (chip, chipType) {
-            if (chip.value) {
-                chip = chip.value;
-            }
-            var chips = chip.split(' ');
-            var newChip = {};
-            for (var i = 0; i < chips.length; i++) {
-                var element = chips[i];
-                newChip = createChip(element);
-                if (i !== chips.length - 1) {
-                    if (chipType === 'purpose') {
-                        vm.purposes.push(newChip);
-                    }
-                    else {
-                        vm.ingredients.push(newChip);
-                    }
-                }
-            }
-            vm.purposeText = '';
-            vm.ingredientText = '';
-            return newChip;
-        };
-
-        $scope.$watch(function () {
-            return vm.purposes.length;
-        }, refreshProductCount);
-
-        $scope.$watch(function () {
-            return vm.ingredients.length;
-        }, refreshProductCount);
-
-        function refreshProductCount() {
-            vm.productCount = 0;
-            vm.searchPurposeWithoutIngredient();
-        }
-
-        function createChip(chip) {
-            var newChip = { name: '' };
-            if (chip.value) {
-                newChip.name = chip.value;
-            }
-            else {
-                newChip.name = chip;
-            }
-            return newChip;
-        }
-
-        function query (queryText, chipType) {
-            var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
-            if (!deferred) {
-                deferred = $q.defer();
-                if (chipType === 'purpose') {
-                    $http.get('/data/purpose/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                        .success(function (response) {
-                        deferred.resolve(vm.transformPurpose(response));
-                    });
-                }
-                else {
-                    $http.get('/data/ingredient/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                        .success(function (response) {
-                        deferred.resolve(vm.transformIngredient(response));
-                    });
-                }
-                return deferred.promise;
-            }
-            else {
-                return results;
-            }
-        }
-
-        /**
-         * Create filter function for a query string
-         */
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-
-            return function filterFn(item) {
-                return (item.value.indexOf(lowercaseQuery) === 0);
-            };
-        }
-
         vm.searchPurposeWithoutIngredient = function () {
-            if (vm.purposeWithoutIngredientCancel) {
-                vm.purposeWithoutIngredientCancel.resolve();
-            }
-            vm.purposeWithoutIngredientCancel = $q.defer();
-            var url = buildHttpQuery();
-            $http.get(url,
-                { timeout: vm.purposeWithoutIngredientCancel.promise })
-                .success(function (response) {
-                if (response.meta && response.meta.results) {
-                    vm.productCount = response.meta.results.total;
-                }
-                else {
-                    vm.productCount = 0;
-                }
-            });
-        };
-
-        function buildHttpQuery() {
-            if (vm.ingredients.length === 0) {
-                var parameters = [];
-                angular.forEach(vm.purposes, function (value, key) {
-                    parameters.push(value.name);
-                });
-                return '/data/purpose/' + common.sanitizeArray(parameters);
+            if (!vm.purpose) {
+                vm.productCount = 0;
             }
             else {
-                var productParameters = [];
-                var ingredientParameters = [];
-                angular.forEach(vm.purposes, function (value, key) {
-                    productParameters.push(value.name);
+                if (vm.purposeWithoutIngredientCancel) {
+                    vm.purposeWithoutIngredientCancel.resolve();
+                }
+                vm.purposeWithoutIngredientCancel = $q.defer();
+                $http.get(getPurposeWithoutIngredientQuery(),
+                        {timeout: vm.purposeWithoutIngredientCancel.promise})
+                    .success(function (response) {
+                    if (response.meta && response.meta.results) {
+                        vm.productCount = response.meta.results.total;
+                    }
                 });
-                angular.forEach(vm.purposes, function (value, key) {
-                    ingredientParameters.push(value.name);
-                });
-                return '/data/purposeWithoutIngredient/' + common.sanitizeArray(productParameters) +
-                    '/' + common.sanitizeArray(ingredientParameters);
             }
+        };
+
+        var nullOrEmpty = function(item) {
+            return item === null || item === '';
+        };
+
+        vm.provideExamplePurposes = function () {
+            if (nullOrEmpty(vm.purpose)) {
+                vm.examplePurposes = [];
+            }
+            else {
+                if (vm.purposeCancel) {
+                    vm.purposeCancel.resolve();
+                }
+                vm.purposeCancel = $q.defer();
+                $http.get('/data/purpose/' + common.sanitize(vm.purpose),
+                        {timeout: vm.purposeCancel.promise})
+                    .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+            }
+            vm.searchPurposeWithoutIngredient();
+        };
+        vm.provideExampleIngredients = function () {
+            if (nullOrEmpty(vm.ingredient)) {
+                vm.exampleIngredients = [];
+            }
+            else {
+                if (vm.ingredientCancel) {
+                    vm.ingredientCancel.resolve();
+                }
+                vm.ingredientCancel = $q.defer();
+                $http.get('/data/ingredient/' + common.sanitize(vm.ingredient),
+                        {timeout: vm.ingredientCancel.promise})
+                    .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+            }
+            vm.searchPurposeWithoutIngredient();
+        };
+        vm.viewResults = function viewResults() {
+            searchformservice.query = getPurposeWithoutIngredientQuery();
+            searchformservice.purpose = vm.purpose;
+            searchformservice.ingredient = vm.ingredient;
+            $state.go('^.products');
+            window.scrollTo(0, 0);
+        };
+        vm.changePurpose = function changePurpose(newValue) {
+            vm.purpose = newValue;
+            vm.provideExamplePurposes();
+        };
+        vm.changeIngredient = function changeIngredient(newValue) {
+            vm.ingredient = newValue;
+            vm.provideExampleIngredients();
+        };
+        function getPurposeWithoutIngredientQuery() {
+            if (!vm.ingredient || vm.ingredient === '') {
+                return '/data/purpose/' + common.sanitize(vm.purpose);
+            }
+            return '/data/purposeWithoutIngredient/' + common.sanitize(vm.purpose) +
+                '/' + common.sanitize(vm.ingredient);
         }
 
         vm.transformPurpose = function (data) {
@@ -153,13 +101,18 @@
                 data.results,
                 ['generic_name', 'inactive_ingredient']);
         };
+        function setInitialValuesFromSearchQuery() {
+            vm.purpose = common.unsanitize(searchformservice.purpose);
+            vm.ingredient = common.unsanitize(searchformservice.ingredient);
+            if (vm.purpose) {
+                vm.provideExamplePurposes();
+            }
+            if (vm.ingredient) {
+                vm.provideExampleIngredients();
+            }
+        }
 
-        vm.viewResults = function viewResults() {
-            searchformservice.query = buildHttpQuery();
-            searchformservice.purpose = vm.purposes;
-            searchformservice.ingredient = vm.ingredients;
-            $state.go('^.products');
-            window.scrollTo(0, 0);
-        };
+        setInitialValuesFromSearchQuery();
+
     }
 })();
