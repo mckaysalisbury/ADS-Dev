@@ -2,15 +2,11 @@
 <div class="col-md-12 ">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="widget-content text-left">
-				<div class="col-xs-12">
-					<h4>
-						Showing products used for '<strong>{{vm.purposeClean()}}</strong>'<span>&nbsp;
-						<button class="btn btn-info btn-inline" ng-click="vm.editSearch();"><span class="fa fa-pencil"></span> <span>Edit Search</span></button>
-					</h4>
-				</div>
+			<div class="col-xs-12 widget-content text-left">
+					Showing products used for '<strong>{{vm.purposeClean()}}</strong>'<span>&nbsp;
+					<button class="btn btn-info btn-inline" ng-click="vm.editSearch();"><span class="fa fa-pencil"></span> <span>Edit Search</span></button>
 			</div>				
-			<div class="col-sm-12 widget-content text-left text-info" ng-show="vm.ingredientClean()">
+			<div class="col-sm-12 col-xs-12 widget-content text-left text-info" ng-show="vm.ingredientClean()">
 				<ul class="nav nav-pills nav-justified">
 					<li class="active">
 						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> without '<strong>{{ vm.ingredientClean()}}</strong>' <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
