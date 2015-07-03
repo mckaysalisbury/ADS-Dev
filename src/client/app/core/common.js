@@ -14,7 +14,7 @@
                     return input;
                 }
                 return input.split(' ').join('+');
-            }
+            };
             common.sanitizeArray = function(input) {
                 if (!input) {
                     return input;
