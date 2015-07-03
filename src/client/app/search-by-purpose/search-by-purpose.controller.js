@@ -20,6 +20,7 @@
         vm.ingredients = searchformservice.getIngredients();
         vm.query = query;
         vm.searchResults = [];
+        vm.selectedItemChange = selectedItemChange;
         vm.addChip = function (chip, chipType) {
             if (chip.value) {
                 chip = chip.value;
@@ -38,10 +39,17 @@
                     }
                 }
             }
-            vm.purposeText = '';
-            vm.ingredientText = '';
+            //vm.purposeText = '';
+            //vm.ingredientText = '';
             return newChip;
         };
+
+        function selectedItemChange(item) {
+            // Fixes bug in AM where a user select a chip
+            // from the collection, adds it to the chips and tries to delete it
+            // by pressing backspace.
+            vm.selectedItem = undefined;
+        }
 
         $scope.$watch(function () {
             return vm.purposes.length;
@@ -67,7 +75,7 @@
             return newChip;
         }
 
-        function query (queryText, chipType) {
+        function query(queryText, chipType) {
             var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();
@@ -158,7 +166,7 @@
             searchformservice.query = buildHttpQuery();
             searchformservice.purpose = vm.purposes;
             searchformservice.ingredient = vm.ingredients;
-            $state.go('^.products');
+            $state.go('products');
             window.scrollTo(0, 0);
         };
     }

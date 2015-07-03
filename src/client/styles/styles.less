@@ -7,7 +7,7 @@
 @color_darkblue: #00529b;
 @color_secondary_primary: #4f75b2;
 
-@import "../../../bower_components/bootstrap-material-design/less/material.less";
+//@import "../../../bower_components/bootstrap-material-design/less/material.less";
 
 // Override @primary color with one took from _colors.less
 @primary:@color_darkblue;
@@ -16,18 +16,6 @@
 @success:@color_success;
 
 
-* {
-    /*-webkit-box-shadow: none !important;
-    -ms-box-shadow: none !important;
-    box-shadow: none !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
-    -webkit-text-shadow: none !important;
-    -ms-text-shadow: none !important;
-    text-shadow: none !important;*/
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    /*font-weight: 400;*/
-}
 
 a {
     cursor: pointer;
@@ -165,6 +153,9 @@ a {
         border: 1px solid rgb(212,212,212);
         height: 500px;
     }
+    .ngPagerContainer{
+    margin-top: 0px !important;
+}
 }
 
 @media (max-width: 480px) {
@@ -173,6 +164,10 @@ a {
         border: 1px solid rgb(212,212,212);
         height: 450px;
     }
+    
+    .ngPagerContainer{
+    margin-top: 0px !important;
+}
 }
 
 @media (max-width: 320px) {
@@ -180,72 +175,21 @@ a {
         border: 1px solid rgb(212,212,212);
         height: 450px;
     }
+    
+    
+
+    .ngPagerContainer{
+    margin-top: 0px !important;
+}
 }
 
 /*#endregion */
-
-
-/* Forms Styles */
-.form-wizard>ol {
-    list-style-type: none;
-    text-align: center;
-    padding: 0 15px;
-}
-
-.form-wizard>ol>li {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    background-color: #fcfcfc;
-    cursor: pointer;
-}
-
-.form-wizard>ol>li>a {
-    text-decoration: none;
-}
-
-.form-wizard>ol>li .label {
-    background-color: @color_lightblue;
-    vertical-align: super;
-    
-    .form-wizard>ol>li h4 {
-    display: inline-block;
-    color: #515253
-}
-}
-
-.form-wizard>ol>li.active {
-    background-color: @color_darkblue;
-}
-
-.form-wizard>ol>li.active h4, .form-wizard>ol>div>li.active small {
-    color: #fff
-}
-
 
 .ngRowCountPicker {
     visibility: collapse;
 }
 
-  [angular-ripple] {
-    position: relative;
-    overflow: hidden;
-  }
-  .angular-ripple {
-    display: block;
-    position: absolute;
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 50%;
-    transform: scale(0);
-  }
-  .angular-ripple.animate {
-    animation: ripple 0.35s linear;
-  }
-  @keyframes ripple {
-    100% {
-      opacity: 0;
-      transform: scale(2.5);
-    }
-  }
+
 .logoImage {
     // Copied from .img-responsive()
     display:block;
@@ -294,31 +238,31 @@ h4 {
 }
 
 /* Chips */
-.chips-panel .include-chips .md-chip {
+.include-chips .md-chip {
   position: relative;
   padding-right: 35px;
   background: #66BB6A;
   }
-.chips-panel .exclude-chips .md-chip {
+.exclude-chips .md-chip {
   position: relative;
   padding-right: 35px;
   background: #EF5350;
   }
-  .chips-panel .include-chips .md-chips .md-chip.md-focused {
+  .include-chips .md-chips .md-chip.md-focused {
     background: #388E3C;
     color: white;
      }
-  .chips-panel .exclude-chips .md-chips .md-chip.md-focused {
+  .exclude-chips .md-chips .md-chip.md-focused {
     background: #D32F2F;
     color: white;
      }
-  .chips-panel .md-chip .md-chip-remove-container {
+  .md-chip .md-chip-remove-container {
     position: absolute;
     right: 4px;
     top: 4px;
     margin-right: 0;
     height: 24px; }
-    .chips-panel .md-chip .md-chip-remove-container button {
+    .md-chip .md-chip-remove-container button {
       position: relative;
       height: 24px;
       width: 24px;
@@ -332,27 +276,90 @@ h4 {
       margin: 0;
       transition: background 0.15s linear;
       display: block; }
-      .chips-panel .md-chip .md-chip-remove-container button md-icon {
+      .md-chip .md-chip-remove-container button md-icon {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate3d(-50%, -50%, 0) scale(0.7);
         color: white;
         fill: white; }
-      .chips-panel .md-chip .md-chip-remove-container button.includechip:hover, .chips-panel .include-chips .md-chip .md-chip-remove-container button.includechip:focus {
+      .md-chip .md-chip-remove-container button.includechip:hover, .include-chips .md-chip .md-chip-remove-container button.includechip:focus {
         background: #81C784 }
         
-      .chips-panel .md-chip .md-chip-remove-container button.excludechip:hover, .chips-panel .include-chips .md-chip .md-chip-remove-container button.excludechip:focus {
+      .md-chip .md-chip-remove-container button.excludechip:hover, .include-chips .md-chip .md-chip-remove-container button.excludechip:focus {
         background: #E57373 }
         
 .color-red{
     color: red;
 }
-
 /* Angular Material Design */
 .md-autocomplete-suggestions li {
     height: auto;
 }
+.md-primary.md-info {
+    background: @primary !important;
+}
 
+.alert {
+    background: @color_warning;
+    color:white;
+}
 
+// Makes md-tabs responsive
+.md-center-tabs {
+    height: auto !important;
+}
+
+.md-tab {
+    white-space: normal;
+    height: auto !important;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    color: white;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .9
+}
+
+.close:focus, .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5
+}
+
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0
+}
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: @color_secondary_primary;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 10px
+}
+
+.filter-panel {
+    background: #E3F2FD;
+}
+
+.filter-panel a{
+    text-decoration: none !important;
+    color:black;
+    height:100%;
+    width:100%;
+}
 /*#endregion*/

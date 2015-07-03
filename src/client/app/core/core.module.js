@@ -5,7 +5,11 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'ngMaterial'])
+        'ui.router', 'ngMaterial']).config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('blue')
+            .accentPalette('pink');
+    })
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {

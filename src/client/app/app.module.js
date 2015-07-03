@@ -8,7 +8,6 @@
         'app.products',
         'app.product',
         'app.search-by-purpose',
-        'app.search-form',
         'app.about'
     ]);
 })();

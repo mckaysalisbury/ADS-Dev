@@ -14,9 +14,9 @@
     function getStates() {
         return [
             {
-                state: 'search-form.product',
+                state: 'product',
                 config:{
-                    url: 'product',
+                    url: '/product',
                     controller: 'ProductController',
                     controllerAs: 'vm',
                     templateUrl: 'app/product/product.html',

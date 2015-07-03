@@ -14,9 +14,9 @@
     function getStates() {
         return [
             {
-                state: 'search-form.search-by-purpose',
+                state: 'search-by-purpose',
                 config: {
-                    url: 'searchbypurpose',
+                    url: '/',
                     templateUrl: 'app/search-by-purpose/search-by-purpose.html',
                     controller: 'SearchByPurposeController',
                     controllerAs: 'vm',

@@ -16,17 +16,17 @@ describe('products routes', function () {
         bard.verifyNoOutstandingHttpRequests();
 
         it('should map state products to url /products ', function() {
-            expect($state.href('search-form.products', {})).to.equal('/products');
+            expect($state.href('products', {})).to.equal('/products');
         });
 
         it('should map /search-form.products route to product View template', function () {
-            expect($state.get('search-form.products').templateUrl).to.equal(view);
+            expect($state.get('products').templateUrl).to.equal(view);
         });
 
         it('of search-form.products should work with $state.go', function () {
-            $state.go('search-form.products');
+            $state.go('products');
             $rootScope.$apply();
-            expect($state.is('search-form.products'));
+            expect($state.is('products'));
         });
     });
 });
