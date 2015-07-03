@@ -194,11 +194,11 @@
                 vm.purpose = '';
             }
         }
-        
+
         $scope.$watch('vm.selectedIndex', function (current, old) {
             switch (current) {
-                case 0: $state.go("products.without"); break;
-                case 1: $state.go("products.with"); break;
+                case 0: $state.go('products.without'); break;
+                case 1: $state.go('products.with'); break;
 
             }
         });

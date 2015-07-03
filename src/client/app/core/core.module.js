@@ -35,9 +35,10 @@
             getIngredients: function () {
                 return ingredients;
             },
+
             setIngredients: function (newIngredients) {
                 ingredients = newIngredients;
-            }
+            },
         };
     }
 })();

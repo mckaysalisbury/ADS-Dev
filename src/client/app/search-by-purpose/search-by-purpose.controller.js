@@ -1,4 +1,3 @@
-/* jshint -W117, -W043 */
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../../../typings/jquery/jquery.d.ts"/>
 (function () {
@@ -8,14 +7,13 @@
         .module('app.search-by-purpose')
         .controller('SearchByPurposeController', SearchByPurposeController);
 
-    SearchByPurposeController.$inject = ['$http', '$window',
-        '$state', 'logger', 'searchformservice', 'common', '$q', '$timeout', '$scope'];
+    SearchByPurposeController.$inject = ['$http', '$location', '$window',
+        '$state', 'logger', 'searchformservice', 'common', '$scope', '$q'];
 
     /* @ngInject */
-    function SearchByPurposeController($http, $window, $state,
-        logger, searchformservice, common, $q, $timeout, $scope) {
+    function SearchByPurposeController($http, $location, $window, $state,
+        logger, searchformservice, common, $scope, $q) {
         var vm = this;
-
         vm.purposes = searchformservice.getPurposes();
         vm.ingredients = searchformservice.getIngredients();
         vm.query = query;
@@ -73,7 +71,7 @@
             return newChip;
         }
 
-        function query (queryText, chipType) {
+        function query(queryText, chipType) {
             var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();

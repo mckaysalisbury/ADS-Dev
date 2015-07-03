@@ -4,5 +4,5 @@
 
     angular
         .module('app.core')
-        .constant('toastr', toastr);
+        .constant('toastr', toastr)
 })();
