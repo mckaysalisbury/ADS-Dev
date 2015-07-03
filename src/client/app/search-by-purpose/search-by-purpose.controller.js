@@ -39,8 +39,6 @@
                     }
                 }
             }
-            //vm.purposeText = '';
-            //vm.ingredientText = '';
             return newChip;
         };
 
@@ -75,7 +73,7 @@
             return newChip;
         }
 
-        function query(queryText, chipType) {
+        function query (queryText, chipType) {
             var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();
