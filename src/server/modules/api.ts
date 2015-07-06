@@ -8,7 +8,7 @@ export class Fda {
     Fda.Label(
       'id:' + id,
       new PageOptions("1","1"),
-      Fda.QueryFromArguments(arguments),
+      Fda.QueryFromArguments(arguments, 1),
       callback,
       Fda.Identity);
   }
@@ -17,7 +17,7 @@ export class Fda {
     Fda.Label(
       Fda.MultiWordStart('brand_name', brand),
       new PageOptions(page, count),
-      Fda.QueryFromArguments(arguments),
+      Fda.QueryFromArguments(arguments, 1),
       callback,
       Fda.SummaryProductData);
   }
@@ -27,7 +27,7 @@ export class Fda {
     Fda.Label(
       Fda.MultiWordStart("generic_name", ingredient) + "+" + Fda.MultiWordStart("inactive_ingredient", ingredient), 
       new PageOptions(page, count),
-      Fda.QueryFromArguments(arguments),
+      Fda.QueryFromArguments(arguments, 1),
       callback,
       Fda.SummaryProductData);
   }
@@ -36,7 +36,7 @@ export class Fda {
     Fda.Label(
       Fda.MultiWordStart("purpose", purpose),
       new PageOptions(page, count),
-      Fda.QueryFromArguments(arguments),
+      Fda.QueryFromArguments(arguments, 1),
       callback,
       Fda.SummaryProductData);
   }
@@ -47,7 +47,7 @@ export class Fda {
        "+AND+NOT+" + Fda.MultiWordStart("generic_name", ingredient) +
        "+AND+NOT+" + Fda.MultiWordStart("inactive_ingredient", ingredient),
       new PageOptions(page, count),   
-      Fda.QueryFromArguments(arguments),
+      Fda.QueryFromArguments(arguments, 2),
       callback,
       Fda.SummaryProductData);
   }
@@ -58,7 +58,7 @@ export class Fda {
        "+AND+(" + Fda.MultiWordStart("generic_name", ingredient) +
        "+" + Fda.MultiWordStart("inactive_ingredient", ingredient) + ')',
        new PageOptions(page, count),
-       Fda.QueryFromArguments(arguments),
+       Fda.QueryFromArguments(arguments, 2),
        callback,
        Fda.SummaryProductData);
   }
@@ -220,9 +220,13 @@ export class Fda {
     // multiple 'z's to make sure that certain things don't get excluded like "snoo" shouln't exclude "snoozing" (because "snoozing" is greater than "snooz") (or "fluconazole" if you're trying to think of something people might actually search for.)
   }
   
-  private static QueryFromArguments(methodArguments : IArguments) : any
+  private static QueryFromArguments(methodArguments : IArguments, numberOfArguments : number) : any
   {
-    delete methodArguments[methodArguments.length - 1];
+    var query = [];
+    for (var i = 0; i < numberOfArguments; i++)
+    {
+      query.push(methodArguments[i]);
+    }
     return methodArguments;
   }
 }

@@ -126,12 +126,14 @@
         };
 
         function buildHttpQuery() {
+            var url;
             if (vm.ingredients.length === 0) {
                 var parameters = [];
                 angular.forEach(vm.purposes, function (value, key) {
                     parameters.push(value.name);
                 });
-                return '/data/purpose/' + common.sanitizeAndCombine(parameters);
+                url = '/data/purpose/' + common.sanitizeAndCombine(parameters);
+                return url;
             }
             else {
                 var productParameters = [];
@@ -142,8 +144,9 @@
                 angular.forEach(vm.ingredients, function (value, key) {
                     ingredientParameters.push(value.name);
                 });
-                return '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
+                url = '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
                     '/' + common.sanitizeAndCombine(ingredientParameters);
+                return url;
             }
         }
 
