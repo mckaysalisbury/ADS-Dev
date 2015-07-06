@@ -4,7 +4,7 @@ var should = require('should');
 require('typescript-require');
 var app = require('../app'), hippie = require('hippie');
 
-describe('data products', function () {
+describe('products', function () {
     it('unspecified should 404', function (done) {
         hippie(app)
             .get('/data/products/')
@@ -85,9 +85,7 @@ describe('purpose', function () {
             done();
         });
     });
-});
 
-describe('purpose', function () {
     it('sunscreen should be found', function (done) {
         hippie(app)
             .json()
@@ -145,7 +143,7 @@ describe('purpose', function () {
     });
 });
 
-describe('data product', function () {
+describe('product', function () {
     it('Specific product should be tylenol', function (done) {
         hippie(app)
             .json()

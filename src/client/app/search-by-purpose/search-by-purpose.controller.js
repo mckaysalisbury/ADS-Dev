@@ -75,20 +75,21 @@
             var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();
+                var baseUrl;
+                var transform;
                 if (chipType === 'purpose') {
-                    $http.get('/data/purpose/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                    .success(function (response) {
-                        deferred.resolve(vm.transformPurpose(response));
-                    });
+                    baseUrl = '/data/purpose/';
+                    transform = vm.transformPurpose;
                 }
                 else {
-                    $http.get('/data/ingredient/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                        .success(function (response) {
-                            deferred.resolve(vm.transformIngredient(response));
-                        });
+                    baseUrl = '/data/ingredient/';
+                    transform = vm.transformIngredient;
                 }
+                $http.get(baseUrl + common.sanitize(queryText),
+                    { timeout: deferred.promise })
+                    .success(function (response) {
+                        deferred.resolve(transform(response));
+                    });
                 return deferred.promise;
             }
             else {
