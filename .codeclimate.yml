@@ -7,3 +7,4 @@ languages:
 exclude_paths:
  - bower_components/**/*
  - node_modules/**/*
+ - **.spec.js
