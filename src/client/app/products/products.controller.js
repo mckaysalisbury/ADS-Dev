@@ -177,16 +177,16 @@
             if (!query) {
                 return;
             }
-            if (query[0]) {
-                vm.purpose = query[0];
+            if (query["0"]) {
+                vm.purpose = query["0"];
             }
             else {
                 vm.query = '';
             }
 
-            if (query[1]) {
+            if (query["1"]) {
                 vm.hasIngredient = true;
-                vm.ingredient = query[1];
+                vm.ingredient = query["1"];
             }
             else {
                 vm.ingredient = '';

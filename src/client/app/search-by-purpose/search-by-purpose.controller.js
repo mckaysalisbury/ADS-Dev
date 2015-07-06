@@ -19,27 +19,24 @@
         vm.query = query;
         vm.searchResults = [];
         vm.selectedItemChange = selectedItemChange;
-        vm.addChip = function (chip, chipType) {
+        // vm.test = function() {
+        //     alert('in vm');
+        // };
+        vm.checkChipAdd = function(event, prefix) {
+            vm[prefix + "Text"] = vm[prefix + "Text"].trim();
+            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + "Text"]){
+                var chip = createChip(vm[prefix + "Text"]);
+                vm[prefix + "Text"] = '';
+                vm[prefix + "s"].push(chip);
+            }
+        };
+        vm.addChip = function (chip) {
             if (chip.value) {
                 chip = chip.value;
             }
-            var chips = chip.split(' ');
-            var newChip = {};
-            for (var i = 0; i < chips.length; i++) {
-                var element = chips[i];
-                newChip = createChip(element);
-                if (i !== chips.length - 1) {
-                    if (chipType === 'purpose') {
-                        vm.purposes.push(newChip);
-                    }
-                    else {
-                        vm.ingredients.push(newChip);
-                    }
-                }
-            }
             vm.selectedPurpose = '';
             vm.selectedIngredient = '';
-            return newChip;
+            return createChip(chip);
         };
 
         function selectedItemChange(item) {
