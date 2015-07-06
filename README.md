@@ -53,7 +53,7 @@ Once the initial product was stable and could be consistently deployed and run l
 
 This process of iteration was repeated with a second round of usability testing on mobile devices, which revealed another round of responsiveness issues and usability considerations. Theoretically, this process could be repeated further, but due to the impending RFQ deadline, we stopped primary development and cleaned up remaining issues. Some of the development team continued to support a separate Pool One design prototype to implement the features that were not possible within the allotted time frame; see our [Pool One](https://github.com/PyramidSystemsInc/ADS-Design/tree/master#deliverables) submission for details.
 
-The product was designed and developed using free and open software, frameworks and tools. Prioritization and design materials were communicated via Trello, while brainstorming and wireframes used physical whiteboards. For a full list of technologies used to create the prototype and the open licenses they use, see the Technologies Used section of this readme file.
+The product was designed and developed using free and open software, frameworks and tools. Prioritization and design materials were communicated via Trello, while brainstorming and wireframes used physical whiteboards. For a full list of technologies used to create the prototype and the open licenses they use, see the [Technologies Used](https://github.com/PyramidSystemsInc/ADS-Dev/tree/master#technologies-used) section of this readme file.
 
 ### Technologies Used
 
@@ -100,7 +100,7 @@ All code is stored using git, and pushed to our [public GitHub repository](https
 
 None of the hardware used for hosting the system is our own, so we interpret Configuration Management as monitoring the changes made to the software. We can do so by watching the git repository for changes, and we ensure coding style guidelines are met using [jscs](https://www.npmjs.com/package/jscs) and [Code Climate](https://codeclimate.com/). 
 
-For the current build, deployment and code status, see the "Deliverables" section of this readme file.
+For the current build, deployment and code status, see the [Deliverables](https://github.com/PyramidSystemsInc/ADS-Dev/tree/master#deliverables) section of this readme file.
 
 ### Continuous Monitoring
 We are using Uptime Robot to monitor the up and down time of our app at [Uptime Robot](https://uptimerobot.com/dashboard.php#mainDashboard)
