@@ -7,7 +7,7 @@
 	<div layout-padding>
 		<div>
 			<md-input-container layout="row" layout-sm="column" md-no-float>
-				<h3 flex-sm="flex" layout-padding class="md-display-title">for the purpose of</h3>
+				<h3 flex-gt-sm="20" flex-sm="flex" layout-padding class="md-display-title">for the purpose of</h3>
 				<md-chips flex flex-sm="flex" class="include-chips md-display-1" ng-model="vm.purposes"
 				md-on-append="vm.addChip($chip)" ng-keypress="vm.checkChipAdd($event, 'purpose')">
 					<md-autocomplete md-autofocus="false" required md-selected-item="vm.selectedPurpose" input-name="purposeAutoComplete" md-search-text-change
@@ -37,7 +37,7 @@
 				</md-chips>
 			</md-input-container>
 			<md-input-container layout="row" layout-sm="column" md-no-float>
-				<h3 flex-sm="flex" layout-padding class="md-display-title">without the ingredient(s)</h3>
+				<h3 flex-gt-sm="20" flex-sm="flex" layout-padding class="md-display-title">without the ingredient(s)</h3>
 				<md-chips flex flex-sm="flex" class="exclude-chips" ng-model="vm.ingredients"
 					md-on-append="vm.addChip($chip)" ng-keypress="vm.checkChipAdd($event, 'ingredient')">
 					<md-autocomplete md-autofocus="false" md-search-text-change md-selected-item-change
