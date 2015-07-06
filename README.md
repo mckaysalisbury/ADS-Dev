@@ -71,11 +71,15 @@ The product was designed and developed using free and open software, frameworks 
 
 ### Configuration Management, Testing, and Deployment
 
-All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to GitHub by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com) for public consumption.
+All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to GitHub by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://psiopenfda.herokuapp.com) for public consumption.
 
 None of the hardware used for hosting the system is our own, so we interpret Configuration Management as monitoring the changes made to the software. We can do so by watching the git repository for changes, and we ensure coding style guidelines are met using [jscs](https://www.npmjs.com/package/jscs) and [Code Climate](https://codeclimate.com/). 
 
 For the current build, deployment and code status, see the "Deliverables" section of this readme file.
+
+### Continuous Monitoring
+We are using Uptime Robot to monitor the up and down time of our app at [Uptime Robot](https://uptimerobot.com/dashboard.php#mainDashboard)
+Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
 
 ### Installation
 To install and run this prototype locally via container, we use [Docker](https://www.docker.com/):
