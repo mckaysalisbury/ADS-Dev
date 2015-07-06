@@ -1,54 +1,36 @@
-<div style="height:20px;"></div>
-<div class="col-md-12 ">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="widget-content text-left">
-				<div class="col-xs-12">
-					<h4>
-						Showing products used for '<strong>{{vm.purposeClean()}}</strong>'<span>&nbsp;
-						<button class="btn btn-info btn-inline" ng-click="vm.editSearch();"><span class="fa fa-pencil"></span> <span>Edit Search</span></button>
-					</h4>
-				</div>
-			</div>				
-			<div class="col-sm-12 widget-content text-left text-info" ng-show="vm.ingredientClean()">
-				<ul class="nav nav-pills nav-justified">
-					<li class="active">
-						<a data-toggle="tab" href="#without"><span class="fa  fa-filter "></span> without '<strong>{{ vm.ingredientClean()}}</strong>' <span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span></a>
-					</li>
-					<li>
-						<a data-toggle="tab" href="#with"><span class="fa  fa-filter "></span> with '<strong>{{ vm.ingredientClean()}}</strong>' <span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span></a>
-					</li>
-				</ul>
-			</div>
+<div layout="row" layout-sm="column">
+	<md-button class="md-primary md-raised" ng-click="vm.editSearch();">
+		<span class="fa fa-pencil"></span>
+		<span>Edit Search</span>
+	</md-button>
+</div>
+<div layout-margin layout="column" class="md-whiteframe-z2">
+	<md-toolbar class="md-primary md-info">
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">Matching Drugs</h2>
 		</div>
-	</div>
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<div class="panel-title">
-				<h3>Results</h3>
-			</div>
+	</md-toolbar>
+	<div layout-padding>
+		<div layout="row" layout-sm="column">
+			<h4 layout-margin>Showing products used for '
+				<strong>{{vm.purposeClean()}}</strong>'</h4>
 		</div>
-		<div class="panel-body">
-			<div class="tab-content">
-				<div id="without" class="tab-pane fade in active">
-					<div class="text-left">
-						<div class="form-group">
-							<input class="form-control input-lg" ng-model="vm.filterOptionsWithout.filterText" placeholder="Filter a product..."></input>
-						</div>
-						<h4 style="font-weight:normal;">Showing {{ vm.rangeDisplayWithout() }}</h4>
-					</div>
-					<div class="gridStyle" ng-grid="vm.gridOptionsWithout"></div>
-				</div>
-				<div id="with" class="tab-pane fade">
-					<div class="text-left text-info">
-						<div class="form-group">
-							<input class="form-control input-lg" ng-model="vm.filterOptionsWith.filterText" placeholder="Filter a product..."></input>
-						</div>
-						<h4 style="font-weight:normal;">Showing {{vm.rangeDisplayWith() }}</h4>
-					</div>
-					<div class="gridStyle" ng-grid="vm.gridOptionsWith"></div>
-				</div>
-			</div>
-		</div>
+		<section class="md-tabs-content" class="md-whiteframe-z2" layout-margin ng-show="vm.ingredientClean()">
+			<md-tabs md-autoselect md-stretch-tabs="always" md-selected="vm.selectedIndex">
+				<md-tab>
+					<md-tab-label>without '
+						<strong>{{ vm.ingredientClean()}}</strong>'
+						<span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span>
+					</md-tab-label>
+				</md-tab>
+				<md-tab>
+					<md-tab-label>with '
+						<strong>{{ vm.ingredientClean()}}</strong>'
+						<span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span>
+					</md-tab-label>
+				</md-tab>
+			</md-tabs>
+		</section>
+		<div ui-view class="fader-animation"></div>
 	</div>
 </div>

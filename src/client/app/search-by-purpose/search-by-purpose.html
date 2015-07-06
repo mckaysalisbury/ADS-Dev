@@ -1,90 +1,74 @@
-<div style="height:20px;"></div>
-<div class="col-md-12">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<div class="panel-title">
-				<h3>Find products without an ingredient</h3>
-			</div>
+<div layout-margin layout="column" class="md-whiteframe-z2">
+	<md-toolbar class="md-primary md-info">
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">I'm looking for an over-the-counter medication...</h2>
 		</div>
-		<form name="searchForm" ng-submit="vm.viewResults();">
-			<!-- for the button to work with the enter key -->
-			<div class="panel-body">
-				<div class="text-left col-xs-12 col-sm-6 col-md-6">
-					<div class="row">
-						<h3 class="col-md-12">I'm looking for a drug...</h3>
-					</div>
-					<div class="row">
-						<h3 class="col-md-12">
-							<div class="fa fa-heartbeat"></div>&nbsp;Purpose</h3>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group" ng-class="{ 'has-error' : searchForm.purpose.$invalid && !searchForm.purpose.$pristine }">
-								<input class="form-control input-lg" required class="col-md-12" name="purpose" ng-model="vm.purpose" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
-								ng-change="vm.provideExamplePurposes();" placeholder="What's your purpose?"></input>
-								<p ng-show="searchForm.purpose.$invalid && !searchForm.purpose.$pristine" class="help-block">Purpose is required.</p>
+	</md-toolbar>
+	<div layout-padding>
+		<div>
+			<md-input-container layout="row" layout-sm="column" md-no-float>
+				<h3 flex-sm="flex" layout-padding class="md-display-title">with the following purpose(s) that includes</h3>
+				<md-chips flex flex-sm="flex" class="include-chips md-display-1" ng-model="vm.purposes"
+				md-on-append="vm.addChip($chip, 'purpose')">
+					<md-autocomplete md-autofocus="false" required md-selected-item="vm.selectedItem" input-name="purposeAutoComplete" md-search-text-change
+					md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.purposeText" md-items="item in vm.query(vm.purposeText, 'purpose')"
+					md-item-text="item.value" md-delay="150" placeholder="Enter a purpose">
+						<md-item-template>
+							<div>
+								<span md-highlight-text="vm.purposeText" md-highlight-flags="^i">{{item.value}}</span>
 							</div>
-						</div>
-					</div>
-					<div class="row" ng-show="searchForm.purpose.$valid">
-						<h3 class="col-md-12">{{vm.examplePurposes ? vm.examplePurposes.length : 0}} matching purposes</h3>
-					</div>
-					<div class="row" ng-show="searchForm.purpose.$valid">
-						<h3 class="col-md-12">Purposes include...</h3>
-					</div>
-					<div class="row" style="overflow: auto; max-height: 350px;" ng-show="searchForm.purpose.$valid">
-						<div ng-repeat="x in vm.examplePurposes">
-							<a class="col-xs-4 col-md-4" ng-click="vm.changePurpose(x.value);" style="font-weight:bold;">{{ x.value }}</a>
-							<label style="word-wrap:break-word" class="col-xs-8 col-md-8 bold">{{ x.example }}</label>
-						</div>
-					</div>
-				</div>
-				<div class="text-left col-xs-12 col-sm-6 col-md-6">
-					<div class="row">
-						<h3 class="col-md-12">that doesn't contain...</h3>
-					</div>
-					<div class="row">
-						<h3 class="col-md-12">
-							<div class="fa fa-flask"></div>&nbsp;Ingredient</div>
-					</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<input name="ingredient" class="form-control input-lg" ng-model="vm.ingredient" ng-model-options="{updateOn: 'default blur submit', debounce: { 'default': 300, 'blur': 0, 'submit': 0 }}"
-								ng-change="vm.provideExampleIngredients();" placeholder="What's the ingredient?"></input>
+							<div>
+								<small>e.g., {{item.example}}</small>
 							</div>
+						</md-item-template>
+						<md-not-found>No matches found for "{{vm.purposeText}}".</md-not-found>
+						<div ng-messages="searchForm.purposeAutoComplete.$error">
+							<p ng-message="required">Purpose is required</p>
 						</div>
-					</div>
-					<div class="row" ng-show="vm.ingredient != null && vm.ingredient != ''">
-						<h3 class="col-md-12">{{vm.exampleIngredients ? vm.exampleIngredients.length : 0}} matching ingredients</h3>
-					</div>
-					<div class="row" ng-show="vm.ingredient != null && vm.ingredient != ''">
-						<h3 class="col-md-12">Ingredients excluded:</h3>
-					</div>
-					<div class="row" style="overflow: auto; max-height: 350px;" ng-show="vm.ingredient != null && vm.ingredient != ''">
-						<div ng-repeat="x in vm.exampleIngredients">
-							<a ng-click="vm.changeIngredient(x.value);" class="col-xs-4 col-md-4" style="font-weight:bold;">{{ x.value }}</a>
-							<label style="word-wrap:break-word" class="col-xs-8 col-md-8 bold">{{ x.example }}</label>
-						</div>
-					</div>
-				</div>
-				<div class="panel-body col-xs-12 col-sm-12 col-md-12">
-					<button angular-ripple class="btn btn-info col-xs-12 col-sm-12 col-md-12" ng-disabled="searchForm.$invalid" type="submit">
-						<span>View</span>
-						<span class="badge">{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
-						<span>Matching Drugs</span>
+					</md-autocomplete>
+					<md-chip-template>
+						<span>
+							<strong>{{$chip.name}}</strong>
+						</span>
+					</md-chip-template>
+					<button md-chip-remove="" class="md-primary includechip">
+						<md-icon md-svg-icon="md-close"></md-icon>
 					</button>
-				</div>
-				<div class="widget-foot ">
-					<div class="clearfix "></div>
-				</div>
-			</div>
-		</form>
+				</md-chips>
+			</md-input-container>
+			<md-input-container layout="row" layout-sm="column" md-no-float>
+				<h3 flex-sm="flex" layout-padding class="md-display-title">and the following ingredient(s) that exclude</h3>
+				<md-chips flex flex-sm="flex" class="exclude-chips" ng-model="vm.ingredients"
+				md-on-append="vm.addChip($chip, 'ingredient')">
+					<md-autocomplete md-autofocus="false" md-search-text-change md-selected-item-change md-search-text="vm.ingredientText" md-items="item in vm.query(vm.ingredientText, 'ingredient')"
+					md-item-text="item.value" md-delay="150" placeholder="Enter an ingredient">
+						<md-item-template>
+							<div>
+								<span md-highlight-text="vm.ingredientText" md-highlight-flags="^i">{{item.value}}</span>
+							</div>
+							<div>
+								<small>e.g., {{item.example}}</small>
+							</div>
+						</md-item-template>
+						<md-not-found>No matches found for "{{vm.ingredientText}}".</md-not-found>
+					</md-autocomplete>
+					<md-chip-template>
+						<span>
+							<strong>{{$chip.name}}</strong>
+						</span>
+					</md-chip-template>
+					<button md-chip-remove="" class="md-primary excludechip">
+						<md-icon md-svg-icon="md-close"></md-icon>
+					</button>
+				</md-chips>
+			</md-input-container>
+			<md-input-container>
+				<md-button flex class="md-primary md-raised" ng-disabled="vm.productCount === 0" ng-click="vm.viewResults()">
+					<span>View</span>
+					<span>{{ vm.productCount === undefined ? 0 : vm.productCount }}</span>
+					<span>Matching Drugs</span>
+				</md-button>
+			</md-input-container>
+		</div>
 	</div>
 </div>
-<script>
-	$(document).ready(function() {
-	                // This command is used to initialize some elements and make them work properly
-	                $.material.init();
-	            });
-</script>

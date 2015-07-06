@@ -1,0 +1,8 @@
+<div layout="column">
+	<md-input-container>
+		<label>Filter a product...</label>
+		<input ng-model="$parent.vm.filterOptionsWith.filterText"></input>
+	</md-input-container>
+	<h4 style="font-weight:normal;">Showing {{$parent.vm.rangeDisplayWith() }}</h4>
+	<div class="gridStyle" ng-grid="$parent.vm.gridOptionsWith"></div>
+</div>

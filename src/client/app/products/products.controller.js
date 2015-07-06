@@ -30,21 +30,21 @@
         var vm = this;
 
         var allColumns = [
-                    { field: 'brand_name', displayName: 'Product Name' },
-                    { field: 'manufacturer_name', displayName: 'Manufacturer' },
-                    {
-                        field: 'purpose_context',
-                        displayName: 'Purpose',
-                        cellTemplate: '<div class="ngCellText" ng-bind-html=' +
-                        '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
-                    },
-                    { field: 'generic_name', displayName: 'Active Ingredients' },
-                ];
-        var limitedColumns =  [{ field: 'brand_name', displayName: 'Product Name' },
-                    { field: 'manufacturer_name', displayName: 'Manufacturer' }];
+            { field: 'brand_name', displayName: 'Product Name' },
+            { field: 'manufacturer_name', displayName: 'Manufacturer' },
+            {
+                field: 'purpose_context',
+                displayName: 'Purpose',
+                cellTemplate: '<div class="ngCellText" ng-bind-html=' +
+                '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
+            },
+            { field: 'generic_name', displayName: 'Active Ingredients' },
+        ];
+        var limitedColumns = [{ field: 'brand_name', displayName: 'Product Name' },
+            { field: 'manufacturer_name', displayName: 'Manufacturer' }];
         vm.gridColumns = allColumns;
 
-        $scope.$watch(function() { return angular.element($window).width();}, function (newValue, oldValue) {
+        $scope.$watch(function () { return angular.element($window).width(); }, function (newValue, oldValue) {
             if (newValue && newValue < 700) {
                 vm.gridColumns = limitedColumns;
             }
@@ -56,7 +56,7 @@
         vm.editSearch = function editSearch() {
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;
-            $state.go('^.search-by-purpose');
+            $state.go('search-by-purpose');
             window.scrollTo(0, 0);
         };
         setWithoutIngredientGrid();
@@ -141,7 +141,7 @@
                 selectedItems: [],
                 afterSelectionChange: function (i, e) {
                     searchformservice.id = i.entity.id;
-                    $state.go('^.product');
+                    $state.go('product');
                     window.scrollTo(0, 0);
                     return true;
                 },
@@ -181,7 +181,6 @@
             }
             var splitBySlash = query.split('/');
             if (splitBySlash.length > 4) {
-
                 vm.hasIngredient = true;
                 vm.ingredient = splitBySlash[4];
             }
@@ -195,5 +194,13 @@
                 vm.purpose = '';
             }
         }
+
+        $scope.$watch('vm.selectedIndex', function (current, old) {
+            switch (current) {
+                case 0: $state.go('products.without'); break;
+                case 1: $state.go('products.with'); break;
+
+            }
+        });
     }
 })();

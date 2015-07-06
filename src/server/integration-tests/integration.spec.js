@@ -4,23 +4,6 @@ var should = require('should');
 require('typescript-require');
 var app = require('../app'), hippie = require('hippie');
 
-describe('Requesting from data.gov', function () {
-    it('should return results', function (done) {
-        hippie()
-            .json()
-            .get('https://api.fda.gov/drug/event.json?search=patient.drug.openfda.pharm_class_epc:' +
-            '"nonsteroidal+anti-inflammatory+drug"&count=patient.reaction.reactionmeddrapt.exact')
-            .expectStatus(200)
-            .end(function (err, res, body) {
-            if (err) {
-                throw err;
-            }
-            body.results.should.be.instanceOf(Array);
-            done();
-        });
-    });
-});
-
 describe('data products', function () {
     it('unspecified should 404', function (done) {
         hippie(app)
