@@ -165,18 +165,5 @@
             $state.go('products');
             window.scrollTo(0, 0);
         };
-
-        function setInitialValuesFromSearchQuery() {
-            vm.purpose = searchformservice.purpose;
-            vm.ingredient = searchformservice.ingredient;
-            if (vm.purpose) {
-                vm.provideExamplePurposes();
-            }
-            if (vm.ingredient) {
-                vm.provideExampleIngredients();
-            }
-        }
-
-        setInitialValuesFromSearchQuery();
     }
 })();

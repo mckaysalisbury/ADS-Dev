@@ -12,20 +12,17 @@
 	</md-toolbar>
 	<div layout-padding>
 		<div layout="row" layout-sm="column">
-			<h4 layout-margin>Showing products used for '
-				<strong>{{vm.purposeClean()}}</strong>'</h4>
+			<h4 layout-margin>Showing products used for '<strong>{{vm.purposeClean()}}</strong>'</h4>
 		</div>
 		<section class="md-tabs-content" class="md-whiteframe-z2" layout-margin ng-show="vm.ingredientClean()">
 			<md-tabs md-autoselect md-stretch-tabs="always" md-selected="vm.selectedIndex">
 				<md-tab>
-					<md-tab-label>without '
-						<strong>{{ vm.ingredientClean()}}</strong>'
+					<md-tab-label>without '<strong>{{ vm.ingredientClean()}}</strong>'
 						<span class="badge">{{ vm.metaWithout && vm.metaWithout.results ? vm.metaWithout.results.total : 0 }}</span>
 					</md-tab-label>
 				</md-tab>
 				<md-tab>
-					<md-tab-label>with '
-						<strong>{{ vm.ingredientClean()}}</strong>'
+					<md-tab-label>with '<strong>{{ vm.ingredientClean()}}</strong>'
 						<span class="badge">{{ vm.metaWith && vm.metaWith.results ? vm.metaWith.results.total : 0 }}</span>
 					</md-tab-label>
 				</md-tab>
