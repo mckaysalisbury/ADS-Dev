@@ -37,6 +37,8 @@
                     }
                 }
             }
+            vm.selectedPurpose = '';
+            vm.selectedIngredient = '';
             return newChip;
         };
 
