@@ -6,3 +6,4 @@ build/*
 integration_test/*
 node_modules/*
 bower_components/*
+gulp-tsc-tmp-*/*
