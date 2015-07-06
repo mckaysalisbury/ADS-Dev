@@ -5,13 +5,17 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'angularRipple'])
+        'ui.router', 'ngMaterial']).config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('blue')
+            .accentPalette('pink');
+    })
         .factory('searchformservice', SearchFormService);
 
     function SearchFormService() {
         var query = '';
-        var purpose = '';
-        var ingredient = '';
+        var purposes = [];
+        var ingredients = [];
         return {
             getQuery: function () {
                 return query;
@@ -20,17 +24,21 @@
                 query = newQuery;
             },
 
-            getPurpose: function () {
-                return 'purpose';
+            getPurposes: function () {
+                return purposes;
             },
 
-            setPurpose: function (newPurpose) {
-                purpose = newPurpose;
+            setPurposes: function (newPurposes) {
+                purposes = newPurposes;
             },
 
-            getIngredient: function (newIngredient) {
-                ingredient = newIngredient;
-            }
+            getIngredients: function () {
+                return ingredients;
+            },
+
+            setIngredients: function (newIngredients) {
+                ingredients = newIngredients;
+            },
         };
     }
 })();

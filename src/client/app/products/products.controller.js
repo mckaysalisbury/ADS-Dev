@@ -40,11 +40,11 @@
                     },
                     { field: 'generic_name', displayName: 'Active Ingredients' },
                 ];
-        var limitedColumns =  [{ field: 'brand_name', displayName: 'Product Name' },
+        var limitedColumns = [{ field: 'brand_name', displayName: 'Product Name' },
                     { field: 'manufacturer_name', displayName: 'Manufacturer' }];
         vm.gridColumns = allColumns;
 
-        $scope.$watch(function() { return angular.element($window).width(); }, function (newValue, oldValue) {
+        $scope.$watch(function () { return angular.element($window).width(); }, function (newValue, oldValue) {
             if (newValue && newValue < 700) {
                 vm.gridColumns = limitedColumns;
             }
@@ -56,7 +56,7 @@
         vm.editSearch = function editSearch() {
             searchformservice.purpose = vm.purpose;
             searchformservice.ingredient = vm.ingredient;
-            $state.go('^.search-by-purpose');
+            $state.go('search-by-purpose');
             window.scrollTo(0, 0);
         };
         setWithoutIngredientGrid();
@@ -141,7 +141,7 @@
                 selectedItems: [],
                 afterSelectionChange: function (i, e) {
                     searchformservice.id = i.entity.id;
-                    $state.go('^.product');
+                    $state.go('product');
                     window.scrollTo(0, 0);
                     return true;
                 },
@@ -192,5 +192,13 @@
                 vm.ingredient = '';
             }
         }
+
+        $scope.$watch('vm.selectedIndex', function (current, old) {
+            switch (current) {
+                case 0: $state.go('products.without'); break;
+                case 1: $state.go('products.with'); break;
+
+        }
+        });
     }
 })();

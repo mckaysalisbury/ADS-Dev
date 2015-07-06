@@ -15,18 +15,18 @@ describe('search by purpose routes', function () {
 
         bard.verifyNoOutstandingHttpRequests();
 
-        it('should map state search by purpose to url /searchbypurpose ', function() {
-            expect($state.href('search-form.search-by-purpose', {})).to.equal('/searchbypurpose');
+        it('should map state search by purpose to url / ', function() {
+            expect($state.href('search-by-purpose', {})).to.equal('/');
         });
 
-        it('should map /search-form.search-by-purpose route to search-by-purpose View template', function () {
-            expect($state.get('search-form.search-by-purpose').templateUrl).to.equal(view);
+        it('should map /search-by-purpose route to search-by-purpose View template', function () {
+            expect($state.get('search-by-purpose').templateUrl).to.equal(view);
         });
 
-        it('of search-form.search-by-purpose should work with $state.go', function () {
-            $state.go('search-form.search-by-purpose');
+        it('of search-by-purpose should work with $state.go', function () {
+            $state.go('search-by-purpose');
             $rootScope.$apply();
-            expect($state.is('search-form.search-by-purpose'));
+            expect($state.is('search-by-purpose'));
         });
     });
 });

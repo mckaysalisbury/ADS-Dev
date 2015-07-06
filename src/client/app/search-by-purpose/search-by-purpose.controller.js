@@ -8,87 +8,143 @@
         .controller('SearchByPurposeController', SearchByPurposeController);
 
     SearchByPurposeController.$inject = ['$http', '$location', '$window',
-        '$state', 'logger', 'searchformservice', 'common', '$q'];
+        '$state', 'logger', 'searchformservice', 'common', '$scope', '$q'];
 
     /* @ngInject */
     function SearchByPurposeController($http, $location, $window, $state,
-        logger, searchformservice, common, $q) {
+        logger, searchformservice, common, $scope, $q) {
         var vm = this;
+        vm.purposes = searchformservice.getPurposes();
+        vm.ingredients = searchformservice.getIngredients();
+        vm.query = query;
+        vm.searchResults = [];
+        vm.selectedItemChange = selectedItemChange;
+        vm.addChip = function (chip, chipType) {
+            if (chip.value) {
+                chip = chip.value;
+            }
+            var chips = chip.split(' ');
+            var newChip = {};
+            for (var i = 0; i < chips.length; i++) {
+                var element = chips[i];
+                newChip = createChip(element);
+                if (i !== chips.length - 1) {
+                    if (chipType === 'purpose') {
+                        vm.purposes.push(newChip);
+                    }
+                    else {
+                        vm.ingredients.push(newChip);
+                    }
+                }
+            }
+            return newChip;
+        };
 
-        vm.searchPurposeWithoutIngredient = function () {
-            if (!vm.purpose) {
+        function selectedItemChange(item) {
+            // Fixes bug in AM where a user select a chip
+            // from the collection, adds it to the chips and tries to delete it
+            // by pressing backspace.
+            vm.selectedItem = undefined;
+        }
+
+        $scope.$watch(function () {
+            return vm.purposes.length;
+        }, refreshProductCount);
+
+        $scope.$watch(function () {
+            return vm.ingredients.length;
+        }, refreshProductCount);
+
+        function refreshProductCount() {
                 vm.productCount = 0;
+            vm.searchPurposeWithoutIngredient();
+            }
+
+        function createChip(chip) {
+            var newChip = { name: '' };
+            if (chip.value) {
+                newChip.name = chip.value;
             }
             else {
-                if (vm.purposeWithoutIngredientCancel) {
-                    vm.purposeWithoutIngredientCancel.resolve();
+                newChip.name = chip;
                 }
-                vm.purposeWithoutIngredientCancel = $q.defer();
-                $http.get(getPurposeWithoutIngredientQuery(),
-                        {timeout: vm.purposeWithoutIngredientCancel.promise})
+            return newChip;
+        }
+
+        function query(queryText, chipType) {
+            var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
+            if (!deferred) {
+                deferred = $q.defer();
+                if (chipType === 'purpose') {
+                    $http.get('/data/purpose/' + common.sanitize(queryText),
+                        { timeout: deferred.promise })
                     .success(function (response) {
-                    if (response.meta && response.meta.results) {
-                        vm.productCount = response.meta.results.total;
+                        deferred.resolve(vm.transformPurpose(response));
+                    });
                     }
+                else {
+                    $http.get('/data/ingredient/' + common.sanitize(queryText),
+                        { timeout: deferred.promise })
+                        .success(function (response) {
+                        deferred.resolve(vm.transformIngredient(response));
                 });
             }
-        };
-
-        var nullOrEmpty = function(item) {
-            return item === null || item === '';
-        };
-
-        vm.provideExamplePurposes = function () {
-            if (nullOrEmpty(vm.purpose)) {
-                vm.examplePurposes = [];
+                return deferred.promise;
             }
             else {
-                if (vm.purposeCancel) {
-                    vm.purposeCancel.resolve();
-                }
-                vm.purposeCancel = $q.defer();
-                $http.get('/data/purpose/' + common.sanitize(vm.purpose),
-                        {timeout: vm.purposeCancel.promise})
-                    .success(function (response) { vm.examplePurposes = vm.transformPurpose(response); });
+                return results;
             }
-            vm.searchPurposeWithoutIngredient();
+        }
+
+        /**
+         * Create filter function for a query string
+         */
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+
+            return function filterFn(item) {
+                return (item.value.indexOf(lowercaseQuery) === 0);
         };
-        vm.provideExampleIngredients = function () {
-            if (nullOrEmpty(vm.ingredient)) {
-                vm.exampleIngredients = [];
+        }
+
+        vm.searchPurposeWithoutIngredient = function () {
+            if (vm.purposeWithoutIngredientCancel) {
+                vm.purposeWithoutIngredientCancel.resolve();
+            }
+            vm.purposeWithoutIngredientCancel = $q.defer();
+            var url = buildHttpQuery();
+            $http.get(url,
+                { timeout: vm.purposeWithoutIngredientCancel.promise })
+                .success(function (response) {
+                if (response.meta && response.meta.results) {
+                    vm.productCount = response.meta.results.total;
             }
             else {
-                if (vm.ingredientCancel) {
-                    vm.ingredientCancel.resolve();
-                }
-                vm.ingredientCancel = $q.defer();
-                $http.get('/data/ingredient/' + common.sanitize(vm.ingredient),
-                        {timeout: vm.ingredientCancel.promise})
-                    .success(function (response) { vm.exampleIngredients = vm.transformIngredient(response); });
+                    vm.productCount = 0;
             }
-            vm.searchPurposeWithoutIngredient();
+            });
         };
-        vm.viewResults = function viewResults() {
-            searchformservice.query = getPurposeWithoutIngredientQuery();
-            searchformservice.purpose = vm.purpose;
-            searchformservice.ingredient = vm.ingredient;
-            $state.go('^.products');
-            window.scrollTo(0, 0);
-        };
-        vm.changePurpose = function changePurpose(newValue) {
-            vm.purpose = newValue;
-            vm.provideExamplePurposes();
-        };
-        vm.changeIngredient = function changeIngredient(newValue) {
-            vm.ingredient = newValue;
-            vm.provideExampleIngredients();
-        };
-        function getPurposeWithoutIngredientQuery() {
-            if (!vm.ingredient || vm.ingredient === '') {
-                return '/data/purpose/' + common.sanitize(vm.purpose);
+
+        function buildHttpQuery() {
+            if (vm.ingredients.length === 0) {
+                var parameters = [];
+                angular.forEach(vm.purposes, function (value, key) {
+                    parameters.push(value.name);
+                });
+                return '/data/purpose/' + common.sanitizeArray(parameters);
             }
-            return '/data/purposeWithoutIngredient/' + common.sanitize(vm.purpose) +
-                '/' + common.sanitize(vm.ingredient);
+            else {
+                var productParameters = [];
+                var ingredientParameters = [];
+                angular.forEach(vm.purposes, function (value, key) {
+                    productParameters.push(value.name);
+                });
+                angular.forEach(vm.ingredients, function (value, key) {
+                    ingredientParameters.push(value.name);
+                });
+                return '/data/purposeWithoutIngredient/' + common.sanitizeArray(productParameters) +
+                    '/' + common.sanitizeArray(ingredientParameters);
+            }
         }
 
         vm.transformPurpose = function (data) {
@@ -101,6 +157,15 @@
                 data.results,
                 ['generic_name', 'inactive_ingredient']);
         };
+
+        vm.viewResults = function viewResults() {
+            searchformservice.query = buildHttpQuery();
+            searchformservice.purpose = vm.purposes;
+            searchformservice.ingredient = vm.ingredients;
+            $state.go('products');
+            window.scrollTo(0, 0);
+        };
+
         function setInitialValuesFromSearchQuery() {
             vm.purpose = searchformservice.purpose;
             vm.ingredient = searchformservice.ingredient;

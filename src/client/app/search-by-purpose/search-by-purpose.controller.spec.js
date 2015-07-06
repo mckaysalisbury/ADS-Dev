@@ -1,6 +1,6 @@
 /* jshint -W117, -W030 */
 describe('SearchByPurposeController', function () {
-    var controller;
+    var controller, scope;
 
     beforeEach(function () {
         bard.appModule('app.search-by-purpose');
@@ -8,11 +8,9 @@ describe('SearchByPurposeController', function () {
     });
 
     beforeEach(function () {
-        controller = $controller('SearchByPurposeController');
-        $rootScope.$apply();
+        scope = $rootScope.$new();
+        controller = $controller('SearchByPurposeController', {$scope:scope});
     });
-
-    bard.verifyNoOutstandingHttpRequests();
 
     describe('typeahead', function () {
 
