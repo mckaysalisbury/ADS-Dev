@@ -197,8 +197,7 @@
             switch (current) {
                 case 0: $state.go('products.without'); break;
                 case 1: $state.go('products.with'); break;
-
-        }
+            }
         });
     }
 })();

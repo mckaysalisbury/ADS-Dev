@@ -18,6 +18,14 @@
                 output = encodeURIComponent(input);
                 return output;
             };
+            common.sanitizeAndCombine = function(input) {
+                var output;
+                if (!input) {
+                    return input;
+                }
+                output = common.sanitize(input.join(' '));
+                return output;
+            };
             common.getExampleDistinct = function getExampleDistinct(query, results, properties) {
                 var result = [];
                 if (!query) {

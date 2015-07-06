@@ -56,9 +56,9 @@
         }, refreshProductCount);
 
         function refreshProductCount() {
-                vm.productCount = 0;
+            vm.productCount = 0;
             vm.searchPurposeWithoutIngredient();
-            }
+        }
 
         function createChip(chip) {
             var newChip = { name: '' };
@@ -67,7 +67,7 @@
             }
             else {
                 newChip.name = chip;
-                }
+            }
             return newChip;
         }
 
@@ -81,14 +81,14 @@
                     .success(function (response) {
                         deferred.resolve(vm.transformPurpose(response));
                     });
-                    }
+                }
                 else {
                     $http.get('/data/ingredient/' + common.sanitize(queryText),
                         { timeout: deferred.promise })
                         .success(function (response) {
-                        deferred.resolve(vm.transformIngredient(response));
-                });
-            }
+                            deferred.resolve(vm.transformIngredient(response));
+                        });
+                }
                 return deferred.promise;
             }
             else {
@@ -104,7 +104,7 @@
 
             return function filterFn(item) {
                 return (item.value.indexOf(lowercaseQuery) === 0);
-        };
+            };
         }
 
         vm.searchPurposeWithoutIngredient = function () {
@@ -116,13 +116,13 @@
             $http.get(url,
                 { timeout: vm.purposeWithoutIngredientCancel.promise })
                 .success(function (response) {
-                if (response.meta && response.meta.results) {
-                    vm.productCount = response.meta.results.total;
-            }
-            else {
-                    vm.productCount = 0;
-            }
-            });
+                    if (response.meta && response.meta.results) {
+                        vm.productCount = response.meta.results.total;
+                    }
+                    else {
+                        vm.productCount = 0;
+                    }
+                });
         };
 
         function buildHttpQuery() {
@@ -131,7 +131,7 @@
                 angular.forEach(vm.purposes, function (value, key) {
                     parameters.push(value.name);
                 });
-                return '/data/purpose/' + common.sanitizeArray(parameters);
+                return '/data/purpose/' + common.sanitizeAndCombine(parameters);
             }
             else {
                 var productParameters = [];
@@ -142,8 +142,8 @@
                 angular.forEach(vm.ingredients, function (value, key) {
                     ingredientParameters.push(value.name);
                 });
-                return '/data/purposeWithoutIngredient/' + common.sanitizeArray(productParameters) +
-                    '/' + common.sanitizeArray(ingredientParameters);
+                return '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
+                    '/' + common.sanitizeAndCombine(ingredientParameters);
             }
         }
 
