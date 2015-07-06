@@ -86,23 +86,28 @@ For the current build, deployment and code status, see the "Deliverables" sectio
 We are using Uptime Robot to monitor the up and down time of our app at [Uptime Robot](https://uptimerobot.com/dashboard.php#mainDashboard)
 Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
 
-### Installation
+
+### Run locally
+To install and run this prototype locally, without using a container, you can do the following:
+
+- Install [Node.js](https://nodejs.org)
+- Download the source 
+- In a command line interface, navigate to the source
+  - Type `npm install`
+  - Type `npm start`
+
+### Run in a container
 To install and run this prototype locally via container, we use [Docker](https://www.docker.com/):
 
-1. Install and run Docker, following the instructions on their [Getting Started page](http://docs.docker.com/windows/started/).
-2. Open the boot2docker command window
-3. Type docker pull psiit/psi1.0
-4. Then type docker run -i -t -p 3000:3000 -d psiit/psi1.0
-5. Optional type docker ps - to get the container id
-6. Optional type docker logs --follow (+container id)
-7. When complete type boot2docker ip to get the local ip address
-8. Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
+- Install and run Docker, following the instructions on their [Getting Started page](http://docs.docker.com/windows/started/).
+- Open the boot2docker command window
+- Type `docker pull psiit/psi1.0`
+- Then type `docker run -i -t -p 3000:3000 -d psiit/psi1.0`
+  - Optional type `docker ps` to get the container id
+  - Optional type `docker logs --follow (+container id)`
+- When complete type `boot2docker ip` to get the local ip address
+- Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
 
-To install and run this prototype locally, without using a container, we use [Bower](http://bower.io), a package manager for front-end components. After pulling this repository to your local environment:
-
-![Bower](http://benschwarz.github.io/bower-badges/badge@2x.png)
-
-`bower install`
 
 ### License
 ADS-Dev is licensed under the MIT license. For details, see the LICENSE file in our GitHub repository.
