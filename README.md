@@ -90,9 +90,11 @@ Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.he
 ### Run locally
 To install and run this prototype locally, without using a container, you can do the following:
 
-- Install [Node](https://nodejs.org)
-- Type `npm install`
-- Type `npm start`
+- Install [Node.js](https://nodejs.org)
+- Download the source 
+- In a command line interface, navigate to the source
+  - Type `npm install`
+  - Type `npm start`
 
 ### Run in a container
 To install and run this prototype locally via container, we use [Docker](https://www.docker.com/):
