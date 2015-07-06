@@ -23,11 +23,11 @@
         //     alert('in vm');
         // };
         vm.checkChipAdd = function(event, prefix) {
-            vm[prefix + "Text"] = vm[prefix + "Text"].trim();
-            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + "Text"]){
-                var chip = createChip(vm[prefix + "Text"]);
-                vm[prefix + "Text"] = '';
-                vm[prefix + "s"].push(chip);
+            vm[prefix + 'Text'] = vm[prefix + 'Text'].trim();
+            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + 'Text']) {
+                var chip = createChip(vm[prefix + 'Text']);
+                vm[prefix + 'Text'] = '';
+                vm[prefix + 's'].push(chip);
             }
         };
         vm.addChip = function (chip) {
