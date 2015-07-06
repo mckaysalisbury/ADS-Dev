@@ -10,29 +10,27 @@
             common.contains = $.inArray;
             /* jshint +W117 */
             common.sanitize = function sanitize(input) {
+                var output;
                 if (!input) {
                     return input;
                 }
-                return input.split(' ').join('+');
+                // input = input.split(' ').join('+');
+                output = encodeURIComponent(input);
+                return output;
             };
-            common.sanitizeArray = function(input) {
+            common.sanitizeAndCombine = function(input) {
+                var output;
                 if (!input) {
                     return input;
                 }
-                return input.join('+');
-            };
-            common.unsanitize = function unsanitize(input) {
-                if (!input) {
-                    return input;
-                }
-                return input.split('+').join(' ');
+                output = common.sanitize(input.join(' '));
+                return output;
             };
             common.getExampleDistinct = function getExampleDistinct(query, results, properties) {
                 var result = [];
                 if (!query) {
                     return result;
                 }
-                query = common.unsanitize(query);
                 if (!results) {
                     return result;
                 }

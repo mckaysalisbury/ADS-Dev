@@ -30,18 +30,18 @@
         var vm = this;
 
         var allColumns = [
-            { field: 'brand_name', displayName: 'Product Name' },
-            { field: 'manufacturer_name', displayName: 'Manufacturer' },
-            {
-                field: 'purpose_context',
-                displayName: 'Purpose',
-                cellTemplate: '<div class="ngCellText" ng-bind-html=' +
-                '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
-            },
-            { field: 'generic_name', displayName: 'Active Ingredients' },
-        ];
+                    { field: 'brand_name', displayName: 'Product Name' },
+                    { field: 'manufacturer_name', displayName: 'Manufacturer' },
+                    {
+                        field: 'purpose_context',
+                        displayName: 'Purpose',
+                        cellTemplate: '<div class="ngCellText" ng-bind-html=' +
+                        '"vm.boldTextMatchingPurpose(row.getProperty(col.field))"></div>'
+                    },
+                    { field: 'generic_name', displayName: 'Active Ingredients' },
+                ];
         var limitedColumns = [{ field: 'brand_name', displayName: 'Product Name' },
-            { field: 'manufacturer_name', displayName: 'Manufacturer' }];
+                    { field: 'manufacturer_name', displayName: 'Manufacturer' }];
         vm.gridColumns = allColumns;
 
         $scope.$watch(function () { return angular.element($window).width(); }, function (newValue, oldValue) {
@@ -61,19 +61,18 @@
         };
         setWithoutIngredientGrid();
         setWithIngredientGrid();
-        setPurposeAndIngredient();
 
         vm.ingredientClean = function ingredientClean() {
             if (!vm.ingredient) {
                 return '';
             }
-            return vm.ingredient.split('+').join(' ');
+            return vm.ingredient;
         };
         vm.purposeClean = function purposeClean() {
             if (!vm.purpose) {
                 return '';
             }
-            return vm.purpose.split('+').join(' ');
+            return vm.purpose;
         };
         vm.boldTextMatchingPurpose = function boldTextMatchingPurpose(text) {
             if (!text) {
@@ -123,6 +122,7 @@
                         totalItems = response.meta.results.total;
                     }
                     vm['totalServerItems' + propertySuffix] = totalItems;
+                    setPurposeAndIngredient(response.meta.query);
                 });
             };
             getData();
@@ -158,10 +158,9 @@
         }
 
         function insertContextualPurpose(results) {
-            var purpose = common.unsanitize(vm.purpose);
             if (results) {
                 for (var i = 0; i < results.length; i++) {
-                    var example = common.getExample(purpose, results[i].purpose).example;
+                    var example = common.getExample(vm.purpose, results[i].purpose).example;
                     if (example) {
                         results[i].purpose_context = example;
                     }
@@ -173,25 +172,24 @@
             return results;
         }
 
-        function setPurposeAndIngredient() {
-            var query = searchformservice.query;
+        function setPurposeAndIngredient(query) {
             vm.hasIngredient = false;
             if (!query) {
                 return;
             }
-            var splitBySlash = query.split('/');
-            if (splitBySlash.length > 4) {
+            if (query['0']) {
+                vm.purpose = query['0'];
+            }
+            else {
+                vm.query = '';
+            }
+
+            if (query['1']) {
                 vm.hasIngredient = true;
-                vm.ingredient = splitBySlash[4];
+                vm.ingredient = query['1'];
             }
             else {
                 vm.ingredient = '';
-            }
-            if (splitBySlash.length > 3) {
-                vm.purpose = splitBySlash[3];
-            }
-            else {
-                vm.purpose = '';
             }
         }
 
@@ -199,7 +197,6 @@
             switch (current) {
                 case 0: $state.go('products.without'); break;
                 case 1: $state.go('products.with'); break;
-
             }
         });
     }

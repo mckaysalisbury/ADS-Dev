@@ -1,4 +1,4 @@
-<div layout-margin layout="column" class="md-whiteframe-z2">
+<div layout-margin layout="column" class="md-whiteframe-z2 panel">
 	<md-toolbar class="md-primary md-info">
 		<div class="md-toolbar-tools">
 			<h2 class="md-flex">I'm looking for an over-the-counter medication...</h2>
@@ -7,10 +7,10 @@
 	<div layout-padding>
 		<div>
 			<md-input-container layout="row" layout-sm="column" md-no-float>
-				<h3 flex-sm="flex" layout-padding class="md-display-title">with the following purpose(s) that includes</h3>
+				<h3 flex-sm="flex" layout-padding class="md-display-title">for the purpose of</h3>
 				<md-chips flex flex-sm="flex" class="include-chips md-display-1" ng-model="vm.purposes"
-				md-on-append="vm.addChip($chip, 'purpose')">
-					<md-autocomplete md-autofocus="false" required md-selected-item="vm.selectedItem" input-name="purposeAutoComplete" md-search-text-change
+				md-on-append="vm.addChip($chip)" ng-keypress="vm.checkChipAdd($event, 'purpose')">
+					<md-autocomplete md-autofocus="false" required md-selected-item="vm.selectedPurpose" input-name="purposeAutoComplete" md-search-text-change
 					md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.purposeText" md-items="item in vm.query(vm.purposeText, 'purpose')"
 					md-item-text="item.value" md-delay="150" placeholder="Enter a purpose">
 						<md-item-template>
@@ -37,11 +37,13 @@
 				</md-chips>
 			</md-input-container>
 			<md-input-container layout="row" layout-sm="column" md-no-float>
-				<h3 flex-sm="flex" layout-padding class="md-display-title">and the following ingredient(s) that exclude</h3>
+				<h3 flex-sm="flex" layout-padding class="md-display-title">without the ingredient(s)</h3>
 				<md-chips flex flex-sm="flex" class="exclude-chips" ng-model="vm.ingredients"
-				md-on-append="vm.addChip($chip, 'ingredient')">
-					<md-autocomplete md-autofocus="false" md-search-text-change md-selected-item-change md-search-text="vm.ingredientText" md-items="item in vm.query(vm.ingredientText, 'ingredient')"
-					md-item-text="item.value" md-delay="150" placeholder="Enter an ingredient">
+					md-on-append="vm.addChip($chip)" ng-keypress="vm.checkChipAdd($event, 'ingredient')">
+					<md-autocomplete md-autofocus="false" md-search-text-change md-selected-item-change
+						md-selected-item-change="vm.selectedItemChange(item)" md-selected-item="vm.selectedIngredient"
+						md-search-text="vm.ingredientText" md-items="item in vm.query(vm.ingredientText, 'ingredient')"
+						md-item-text="item.value" md-delay="150" placeholder="Enter an ingredient">
 						<md-item-template>
 							<div>
 								<span md-highlight-text="vm.ingredientText" md-highlight-flags="^i">{{item.value}}</span>

@@ -4,7 +4,7 @@ var should = require('should');
 require('typescript-require');
 var app = require('../app'), hippie = require('hippie');
 
-describe('data products', function () {
+describe('products', function () {
     it('unspecified should 404', function (done) {
         hippie(app)
             .get('/data/products/')
@@ -85,9 +85,7 @@ describe('purpose', function () {
             done();
         });
     });
-});
 
-describe('purpose', function () {
     it('sunscreen should be found', function (done) {
         hippie(app)
             .json()
@@ -106,13 +104,13 @@ describe('purpose', function () {
     it('"pai fev" should find pain relievers and fever reducers', function (done) {
         hippie(app)
             .json()
-            .get('/data/purpose/pai+fev')
+            .get('/data/purpose/pai%20fev')
             .expectStatus(200)
             .end(function (err, res, body) {
             if (err) {
                 throw err;
             }
-            body.results[0]['purpose'].should.be.eql('Purpose Pain reliever/fever reducer');
+            body.results[0]['purpose'].should.be.eql('Pain reliever/fever reducer');
             done();
         });
     });
@@ -120,13 +118,13 @@ describe('purpose', function () {
     it('should have the query in the meta', function (done) {
         hippie(app)
             .json()
-            .get('/data/purpose/pai+fev')
+            .get('/data/purpose/pai%20fev')
             .expectStatus(200)
             .end(function (err, res, body) {
             if (err) {
                 throw err;
             }
-            body.meta.query[0].should.be.eql('pai+fev');
+            body.meta.query[0].should.be.eql('pai fev');
             done();
         });
     });
@@ -145,7 +143,7 @@ describe('purpose', function () {
     });
 });
 
-describe('data product', function () {
+describe('product', function () {
     it('Specific product should be tylenol', function (done) {
         hippie(app)
             .json()

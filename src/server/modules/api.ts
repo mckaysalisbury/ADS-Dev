@@ -84,8 +84,17 @@ export class Fda {
             console.log(e);
         }
         
-        object = Fda.SanitizeProductData(object);
-        var filtered = filter(object);
+        var filtered : any;
+
+        // if (object === undefined)
+        // {
+        //   filtered = new object();
+        // }
+        // else
+        {
+          object = Fda.SanitizeProductData(object);
+          filtered = filter(object);
+        }
         if (filtered.meta == undefined)
         {
           filtered.meta = new Object();
@@ -129,7 +138,7 @@ export class Fda {
     // returnValue["set_id"] = input.set_id;
     return returnValue;
   }
-  private static SanitizeProductData(input) {
+  private static SanitizeProductData(input) {   
     if (!input.results) {
       return input;
     }
@@ -197,12 +206,12 @@ export class Fda {
   public static MultiWordStart(field : string, query : string) : string
   {
     var queryPiece = new Array();
-    query.replace(' ', '+');
-    query.split('+').forEach((word) =>
+    query.split(' ').forEach((word) =>
       {
         queryPiece.push(field + ":" + Fda.WordStart(word));
       });
-    return '(' +queryPiece.join("+AND+") + ')';
+    var wordJoined = '(' + queryPiece.join("+AND+") + ')';
+    return wordJoined;
   }
   
   public static WordStart(startOfWord : string) : string{

@@ -19,25 +19,24 @@
         vm.query = query;
         vm.searchResults = [];
         vm.selectedItemChange = selectedItemChange;
-        vm.addChip = function (chip, chipType) {
+        // vm.test = function() {
+        //     alert('in vm');
+        // };
+        vm.checkChipAdd = function(event, prefix) {
+            vm[prefix + 'Text'] = vm[prefix + 'Text'].trim();
+            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + 'Text']) {
+                var chip = createChip(vm[prefix + 'Text']);
+                vm[prefix + 'Text'] = '';
+                vm[prefix + 's'].push(chip);
+            }
+        };
+        vm.addChip = function (chip) {
             if (chip.value) {
                 chip = chip.value;
             }
-            var chips = chip.split(' ');
-            var newChip = {};
-            for (var i = 0; i < chips.length; i++) {
-                var element = chips[i];
-                newChip = createChip(element);
-                if (i !== chips.length - 1) {
-                    if (chipType === 'purpose') {
-                        vm.purposes.push(newChip);
-                    }
-                    else {
-                        vm.ingredients.push(newChip);
-                    }
-                }
-            }
-            return newChip;
+            vm.selectedPurpose = '';
+            vm.selectedIngredient = '';
+            return createChip(chip);
         };
 
         function selectedItemChange(item) {
@@ -75,20 +74,21 @@
             var results = queryText ? vm.searchResults.filter(createFilterFor(queryText)) : vm.searchResults, deferred;
             if (!deferred) {
                 deferred = $q.defer();
+                var baseUrl;
+                var transform;
                 if (chipType === 'purpose') {
-                    $http.get('/data/purpose/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                        .success(function (response) {
-                        deferred.resolve(vm.transformPurpose(response));
-                    });
+                    baseUrl = '/data/purpose/';
+                    transform = vm.transformPurpose;
                 }
                 else {
-                    $http.get('/data/ingredient/' + common.sanitize(queryText),
-                        { timeout: deferred.promise })
-                        .success(function (response) {
-                        deferred.resolve(vm.transformIngredient(response));
-                    });
+                    baseUrl = '/data/ingredient/';
+                    transform = vm.transformIngredient;
                 }
+                $http.get(baseUrl + common.sanitize(queryText),
+                    { timeout: deferred.promise })
+                    .success(function (response) {
+                        deferred.resolve(transform(response));
+                    });
                 return deferred.promise;
             }
             else {
@@ -116,13 +116,13 @@
             $http.get(url,
                 { timeout: vm.purposeWithoutIngredientCancel.promise })
                 .success(function (response) {
-                if (response.meta && response.meta.results) {
-                    vm.productCount = response.meta.results.total;
-                }
-                else {
-                    vm.productCount = 0;
-                }
-            });
+                    if (response.meta && response.meta.results) {
+                        vm.productCount = response.meta.results.total;
+                    }
+                    else {
+                        vm.productCount = 0;
+                    }
+                });
         };
 
         function buildHttpQuery() {
@@ -131,7 +131,7 @@
                 angular.forEach(vm.purposes, function (value, key) {
                     parameters.push(value.name);
                 });
-                return '/data/purpose/' + common.sanitizeArray(parameters);
+                return '/data/purpose/' + common.sanitizeAndCombine(parameters);
             }
             else {
                 var productParameters = [];
@@ -142,8 +142,8 @@
                 angular.forEach(vm.ingredients, function (value, key) {
                     ingredientParameters.push(value.name);
                 });
-                return '/data/purposeWithoutIngredient/' + common.sanitizeArray(productParameters) +
-                    '/' + common.sanitizeArray(ingredientParameters);
+                return '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
+                    '/' + common.sanitizeAndCombine(ingredientParameters);
             }
         }
 

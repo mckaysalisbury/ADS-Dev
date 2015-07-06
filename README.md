@@ -61,21 +61,26 @@ The product was designed and developed using free and open software, frameworks 
  * [git](http://www.git-scm.com/)
  * [GitHub](https://github.com/)
 * Languages
- * [JavaScript](https://en.wikipedia.org/wiki/JavaScript) <sub>(HTML is an ISO open standard)</sub>
- * [HTML](https://en.wikipedia.org/wiki/HTML) <sub>(HTML is an ISO open standard)</sub>
+ * [JavaScript](https://en.wikipedia.org/wiki/JavaScript) <sub>(ECMAScript is an open standard)</sub>
+ * [HTML](https://en.wikipedia.org/wiki/HTML) <sub>(HTML is an open standard)</sub>
  * [TypeScript](http://www.typescriptlang.org/) <sub>(Apache license)</sub>
 * Deployment / Automation
+ * [Bower](http://bower.io/) <sub>(MIT license)</sub>
  * [Gulp](http://gulpjs.com/) <sub>(MIT license)</sub>
  * [Yargs](https://www.npmjs.com/package/yargs) <sub>(MIT license)</sub>
  * [Uglify](http://lisperator.net/uglifyjs/) <sub>(BSD License)</sub>
  * [Browsersync](http://www.browsersync.io/) <sub>(Apache license)</sub>
  * [Code Climate](https://codeclimate.com/) <sub>(open source version)</sub>
  * [Docker](https://www.docker.com/) <sub>(Apache license)</sub>
-* Frontend
- * [Bower](http://bower.io/) <sub>(MIT license)</sub>
- * [Bootstrap](http://getbootstrap.com) <sub>(MIT license)</sub>
+* Client Side
  * [AngularJS](http://angularjs.org/) <sub>(MIT license)</sub>
-* Backend
+ * [Angular Material](https://github.com/angular/material) <sub>(MIT license)</sub>
+ * [Angular ngGrid](https://github.com/angular-ui/ng-grid) <sub>(MIT license)</sub>
+ * [Angular UI Router](https:https://github.com/angular-ui/ui-router) <sub>(MIT license)</sub>
+ * [Font Awesome](https://github.com/FortAwesome/Font-Awesome) <sub>(MIT license)</sub>
+ * [jQuery](https://github.com/jquery/jquery) <sub>(MIT license)</sub>
+ * [Toastr](https://github.com/CodeSeven/toastr) <sub>(MIT license)</sub>
+* Server Side
  * [Node.js](https://nodejs.org/) <sub>(MIT license)</sub>
  * [Express](http://expressjs.com/) <sub>(MIT license)</sub>
 * Testing
@@ -88,32 +93,41 @@ The product was designed and developed using free and open software, frameworks 
 * Analysis
  * [Plato](https://github.com/es-analysis/plato) <sub>(MIT license)</sub>
  * [jscs](https://www.npmjs.com/package/jscs) <sub>(Artistic license)</sub>
-
+ 
 ### Configuration Management, Testing, and Deployment
 
-All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to GitHub by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com) for public consumption.
+All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to GitHub by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://psiopenfda.herokuapp.com) for public consumption.
 
 None of the hardware used for hosting the system is our own, so we interpret Configuration Management as monitoring the changes made to the software. We can do so by watching the git repository for changes, and we ensure coding style guidelines are met using [jscs](https://www.npmjs.com/package/jscs) and [Code Climate](https://codeclimate.com/). 
 
 For the current build, deployment and code status, see the "Deliverables" section of this readme file.
 
-### Installation
+### Continuous Monitoring
+We are using Uptime Robot to monitor the up and down time of our app at [Uptime Robot](https://uptimerobot.com/dashboard.php#mainDashboard)
+Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
+
+
+### Run locally
+To install and run this prototype locally, without using a container, you can do the following:
+
+- Install [Node.js](https://nodejs.org)
+- Download the source 
+- In a command line interface, navigate to the source
+  - Type `npm install`
+  - Type `npm start`
+
+### Run in a container
 To install and run this prototype locally via container, we use [Docker](https://www.docker.com/):
 
-1. Install and run Docker, following the instructions on their [Getting Started page](http://docs.docker.com/windows/started/).
-2. Open the boot2docker command window
-3. Type docker pull psiit/psi1.0
-4. Then type docker run -i -t -p 3000:3000 -d psiit/psi1.0
-5. Optional type docker ps - to get the container id
-6. Optional type docker logs --follow (+container id)
-7. When complete type boot2docker ip to get the local ip address
-8. Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
+- Install and run Docker, following the instructions on their [Getting Started page](http://docs.docker.com/windows/started/).
+- Open the boot2docker command window
+- Type `docker pull psiit/psi1.0`
+- Then type `docker run -i -t -p 3000:3000 -d psiit/psi1.0`
+  - Optional type `docker ps` to get the container id
+  - Optional type `docker logs --follow (+container id)`
+- When complete type `boot2docker ip` to get the local ip address
+- Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
 
-To install and run this prototype locally, without using a container, we use [Bower](http://bower.io), a package manager for front-end components. After pulling this repository to your local environment:
-
-![Bower](http://benschwarz.github.io/bower-badges/badge@2x.png)
-
-`bower install`
 
 ## License
 ADS-Dev is licensed under the MIT license.
