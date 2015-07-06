@@ -45,17 +45,22 @@ The product was designed and developed using free and open software, frameworks 
  * [HTML](https://en.wikipedia.org/wiki/HTML) <sub>(HTML is an open standard)</sub>
  * [TypeScript](http://www.typescriptlang.org/) <sub>(Apache license)</sub>
 * Deployment / Automation
+ * [Bower](http://bower.io/) <sub>(MIT license)</sub>
  * [Gulp](http://gulpjs.com/) <sub>(MIT license)</sub>
  * [Yargs](https://www.npmjs.com/package/yargs) <sub>(MIT license)</sub>
  * [Uglify](http://lisperator.net/uglifyjs/) <sub>(BSD License)</sub>
  * [Browsersync](http://www.browsersync.io/) <sub>(Apache license)</sub>
  * [Code Climate](https://codeclimate.com/) <sub>(open source version)</sub>
  * [Docker](https://www.docker.com/) <sub>(Apache license)</sub>
-* Frontend
- * [Bower](http://bower.io/) <sub>(MIT license)</sub>
- * [Bootstrap](http://getbootstrap.com) <sub>(MIT license)</sub>
+* Client Side
  * [AngularJS](http://angularjs.org/) <sub>(MIT license)</sub>
-* Backend
+ * [Angular Material](https://github.com/angular/material) <sub>(MIT license)</sub>
+ * [Angular ngGrid](https://github.com/angular-ui/ng-grid) <sub>(MIT license)</sub>
+ * [Angular UI Router](httpshttps://github.com/angular-ui/ui-router) <sub>(MIT license)</sub>
+ * [Font Awesome](https://github.com/FortAwesome/Font-Awesome) <sub>(MIT license)</sub>
+ * [jQuery](https://github.com/jquery/jquery) <sub>(MIT license)</sub>
+ * [Toastr](httpshttps://github.com/CodeSeven/toastr) <sub>(MIT license)</sub>
+* Server Side
  * [Node.js](https://nodejs.org/) <sub>(MIT license)</sub>
  * [Express](http://expressjs.com/) <sub>(MIT license)</sub>
 * Testing
