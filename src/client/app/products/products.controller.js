@@ -44,7 +44,7 @@
                     { field: 'manufacturer_name', displayName: 'Manufacturer' }];
         vm.gridColumns = allColumns;
 
-        $scope.$watch(function() { return angular.element($window).width();}, function (newValue, oldValue) {
+        $scope.$watch(function() { return angular.element($window).width(); }, function (newValue, oldValue) {
             if (newValue && newValue < 700) {
                 vm.gridColumns = limitedColumns;
             }
@@ -61,7 +61,6 @@
         };
         setWithoutIngredientGrid();
         setWithIngredientGrid();
-        setPurposeAndIngredient();
 
         vm.ingredientClean = function ingredientClean() {
             if (!vm.ingredient) {
@@ -123,6 +122,7 @@
                         totalItems = response.meta.results.total;
                     }
                     vm['totalServerItems' + propertySuffix] = totalItems;
+                    setPurposeAndIngredient(response.meta.query);
                 });
             };
             getData();
@@ -172,26 +172,24 @@
             return results;
         }
 
-        function setPurposeAndIngredient() {
-            var query = searchformservice.query;
+        function setPurposeAndIngredient(query) {
             vm.hasIngredient = false;
             if (!query) {
                 return;
             }
-            var splitBySlash = query.split('/');
-            if (splitBySlash.length > 4) {
+            if (query[0]) {
+                vm.purpose = query[0];
+            }
+            else {
+                vm.query = '';
+            }
 
+            if (query[1]) {
                 vm.hasIngredient = true;
-                vm.ingredient = splitBySlash[4];
+                vm.ingredient = query[1];
             }
             else {
                 vm.ingredient = '';
-            }
-            if (splitBySlash.length > 3) {
-                vm.purpose = splitBySlash[3];
-            }
-            else {
-                vm.purpose = '';
             }
         }
     }

@@ -206,12 +206,12 @@ export class Fda {
   public static MultiWordStart(field : string, query : string) : string
   {
     var queryPiece = new Array();
-    query.replace(' ', '+');
-    query.split('+').forEach((word) =>
+    query.split(' ').forEach((word) =>
       {
         queryPiece.push(field + ":" + Fda.WordStart(word));
       });
-    return '(' +queryPiece.join("+AND+") + ')';
+    var wordJoined = '(' + queryPiece.join("+AND+") + ')';
+    return wordJoined;
   }
   
   public static WordStart(startOfWord : string) : string{
