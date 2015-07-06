@@ -71,7 +71,7 @@ The product was designed and developed using free and open software, frameworks 
 
 ### Configuration Management, Testing, and Deployment
 
-All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to Github by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com) for public consumption.
+All code is stored using git, and pushed to our [public GitHub repository](https://github.com/PyramidSystemsInc/ADS-Dev/). Both frontend and backend tests are automatically checked on each push to GitHub by [Travis CI](https://travis-ci.org/). If the tests pass, the code is deployed to [Heroku](http://pyramidopenfdadev.herokuapp.com) for public consumption.
 
 None of the hardware used for hosting the system is our own, so we interpret Configuration Management as monitoring the changes made to the software. We can do so by watching the git repository for changes, and we ensure coding style guidelines are met using [jscs](https://www.npmjs.com/package/jscs) and [Code Climate](https://codeclimate.com/). 
 
@@ -86,7 +86,7 @@ To install and run this prototype locally via container, we use [Docker](https:/
 4. Then type docker run -i -t -p 3000:3000 -d psiit/psi1.0
 5. Optional type docker ps - to get the container id
 6. Optional type docker logs --follow (+container id)
-7. When complete type boot2docker ip to get teh local ip address
+7. When complete type boot2docker ip to get the local ip address
 8. Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
 
 To install and run this prototype locally, without using a container, we use [Bower](http://bower.io), a package manager for front-end components. After pulling this repository to your local environment:
