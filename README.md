@@ -67,6 +67,8 @@ Due to time constraints, testing was limited to the functional behavior of the a
  * [Bard](https://github.com/wardbell/bardjs) <sub>(MIT license)</sub>
  * [PhantomJS](http://phantomjs.org/) <sub>(BSD License)</sub>
  * [Travis CI](https://travis-ci.org/) <sub>(MIT license)</sub>
+ * [Selenium](http://www.seleniumhq.org/) <sub>(Apache license)</sub>
+ * [Nightwatch.js](http://nightwatchjs.org/) <sub>(MIT license)</sub>
 * Analysis
  * [Plato](https://github.com/es-analysis/plato) <sub>(MIT license)</sub>
  * [jscs](https://www.npmjs.com/package/jscs) <sub>(Artistic license)</sub>
