@@ -54,6 +54,7 @@ Due to time constraints, testing was limited to the functional behavior of the a
  * [Angular ngGrid](https://github.com/angular-ui/ng-grid) <sub>(MIT license)</sub>
  * [Angular UI Router](https:https://github.com/angular-ui/ui-router) <sub>(MIT license)</sub>
  * [Font Awesome](https://github.com/FortAwesome/Font-Awesome) <sub>(MIT license)</sub>
+ * [Roboto](https://www.google.com/fonts/specimen/Roboto) <sub>(Apache license)</sub>
  * [jQuery](https://github.com/jquery/jquery) <sub>(MIT license)</sub>
  * [Toastr](https://github.com/CodeSeven/toastr) <sub>(MIT license)</sub>
 * Server Side
