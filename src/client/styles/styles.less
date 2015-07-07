@@ -53,7 +53,19 @@ p {
 }
 
 a {
-    cursor: pointer;
+    color: #0277bb;
+    text-decoration: none;
+    -webkit-transition: color 0.1s linear;
+    -moz-transition: color 0.1s linear;
+    transition: color 0.1s linear
+}
+
+a:hover {
+    color: #01476f
+}
+
+a:active, a:focus {
+    color: #01476f
 }
 
 /* #endregion */
@@ -277,21 +289,21 @@ a {
 .include-chips .md-chip {
   position: relative;
   padding-right: 35px;
-    background: #388E3C;
+    background: #7986CB;
     color: white;
   }
 .exclude-chips .md-chip {
   position: relative;
   padding-right: 35px;
-    background: #D32F2F;
+    background: #F06292;
     color: white;
   }
   .include-chips .md-chips .md-chip.md-focused {
-    background: #388E3C;
+    background: #3949AB;
     color: white;
      }
   .exclude-chips .md-chips .md-chip.md-focused {
-    background: #D32F2F;
+    background: #D81B60;
     color: white;
      }
   .md-chips .md-chip .md-chip-remove-container {
@@ -322,10 +334,10 @@ a {
         color: white;
         fill: white; }
       .md-chip .md-chip-remove-container button.includechip:hover, .include-chips .md-chip .md-chip-remove-container button.includechip:focus {
-        background: #81C784;
+        background: #303F9F;
       }        
       .md-chip .md-chip-remove-container button.excludechip:hover, .include-chips .md-chip .md-chip-remove-container button.excludechip:focus {
-        background: #E57373;
+        background: #C2185B;
       }
         
 .color-red{
@@ -340,6 +352,8 @@ a {
 }
 
 .alert {
+    max-height: 4.0em;
+    padding:1%;
     background: @color_warning;
     color:white;
 }
