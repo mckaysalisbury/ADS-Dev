@@ -41,6 +41,7 @@ Due to time constraints, testing was limited to the functional behavior of the a
  * [HTML](https://en.wikipedia.org/wiki/HTML) <sub>(HTML is an open standard)</sub>
  * [TypeScript](http://www.typescriptlang.org/) <sub>(Apache license)</sub>
 * Deployment / Automation
+ * [Travis CI](https://travis-ci.org/) <sub>(MIT license)</sub>
  * [Bower](http://bower.io/) <sub>(MIT license)</sub>
  * [Gulp](http://gulpjs.com/) <sub>(MIT license)</sub>
  * [Yargs](https://www.npmjs.com/package/yargs) <sub>(MIT license)</sub>
@@ -66,7 +67,6 @@ Due to time constraints, testing was limited to the functional behavior of the a
  * [Hippie](https://github.com/vesln/hippie) <sub>(MIT license)</sub>
  * [Bard](https://github.com/wardbell/bardjs) <sub>(MIT license)</sub>
  * [PhantomJS](http://phantomjs.org/) <sub>(BSD License)</sub>
- * [Travis CI](https://travis-ci.org/) <sub>(MIT license)</sub>
  * [Selenium](http://www.seleniumhq.org/) <sub>(Apache license)</sub>
  * [Nightwatch.js](http://nightwatchjs.org/) <sub>(MIT license)</sub>
 * Analysis
