@@ -1,7 +1,7 @@
 # Pyramid Systems ADS RFQ: Pool Two Development
 
 ### Deliverables
-1. [Pool Two Prototype URL](http://pyramidopenfdadev.herokuapp.com/)
+1. [Pool Two Prototype URL](http://psiopenfda.herokuapp.com/)
 2. [Pool Two Repository on GitHub](https://github.com/PyramidSystemsInc/ADS-Dev)
 3. Summary of Approach: README.md (this file)
 4. Product Backlog: [Live on Trello](https://trello.com/b/S1uBdwEg/product-backlog), final snapshot in /process_docs/
@@ -87,7 +87,7 @@ We are using Uptime Robot to monitor the up and down time of our app at [Uptime 
 Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
 
 ### Installation Instructions
-This prototype is hosted remotely on [Heroku](http://pyramidopenfdadev.herokuapp.com/), which does not support Internet Explorer 9 or earlier. 
+This prototype is hosted remotely on [Heroku](http://psiopenfda.herokuapp.com/), which does not support Internet Explorer 9 or earlier. 
 
 To install and run this prototype locally, without using a container, you can do the following:
 
@@ -106,7 +106,7 @@ To install and run this prototype locally via container, we use [Docker](https:/
   - Optional type `docker ps` to get the container id
   - Optional type `docker logs --follow (+container id)`
 - When complete type `boot2docker ip` to get the local ip address
-- Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
+- Open web browser and use the ip (exp. 192.168.59.103:3000) with the port 3000 to open the app
 
 ### License
 ADS-Dev is licensed under the MIT license. For details, see the LICENSE file in our GitHub repository.
