@@ -58,18 +58,39 @@
 		</md-toolbar>
 		<div layout-padding>
 			<section layout-padding layout="column">
-				<p ng-show="vm.getStringFromArray(vm.result.warnings) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.warnings)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.warnings_and_cautions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.warnings_and_cautions)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.keep_out_of_reach_of_children) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.keep_out_of_reach_of_children)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.do_not_use) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.do_not_use)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.stop_use) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.stop_use)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.overdosage) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.overdosage)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.adverse_reactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.adverse_reactions)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.drug_interactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.drug_interactions)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.ask_doctor) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding)"></p>
-				<p ng-show="vm.getStringFromArray(vm.result.other_safety_interactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.other_safety_interactions)"></p>
+				<span ng-show="vm.getStringFromArray(vm.result.keep_out_of_reach_of_children) !== '' || vm.getStringFromArray(vm.result.do_not_use) !== '' || vm.getStringFromArray(vm.result.stop_use) !== ''">
+					<h3>
+						<strong>Conditions for Use</strong>
+					</h3>
+					<p ng-show="vm.getStringFromArray(vm.result.keep_out_of_reach_of_children) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.keep_out_of_reach_of_children)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.do_not_use) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.do_not_use)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.stop_use) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.stop_use)"></p>
+				</span>
+				<span ng-show="vm.getStringFromArray(vm.result.overdosage) !== '' || vm.getStringFromArray(vm.result.adverse_reactions) !== '' || vm.getStringFromArray(vm.result.drug_interactions) !== ''">
+					<h3>
+						<strong>Adverse Reactions</strong>
+					</h3>
+					<p ng-show="vm.getStringFromArray(vm.result.overdosage) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.overdosage)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.adverse_reactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.adverse_reactions)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.drug_interactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.drug_interactions)"></p>
+				</span>
+				<span ng-show="vm.getStringFromArray(vm.result.ask_doctor) !== '' || vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist) !== '' || vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding) !== ''">
+					<h3>
+						<strong>Ask A Doctor</strong>
+					</h3>
+					<p ng-show="vm.getStringFromArray(vm.result.ask_doctor) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.ask_doctor_or_pharmacist)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.pregnancy_or_breast_feeding)"></p>
+				</span>
+				</span>
+				<span ng-show="vm.getStringFromArray(vm.result.other_safety_interactions) !== '' || vm.getStringFromArray(vm.result.warnings) !== '' || vm.getStringFromArray(vm.result.warnings_and_cautions) !== ''">
+					<h3>
+						<strong>Other Warnings</strong>
+					</h3>
+					<p ng-show="vm.getStringFromArray(vm.result.other_safety_interactions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.other_safety_interactions)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.warnings) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.warnings)"></p>
+					<p ng-show="vm.getStringFromArray(vm.result.warnings_and_cautions) !== ''" class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.warnings_and_cautions)"></p>
+				</span>
 		</div>
 	</div>
 </div>
