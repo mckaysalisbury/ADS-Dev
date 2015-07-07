@@ -19,12 +19,10 @@
         vm.query = query;
         vm.searchResults = [];
         vm.selectedItemChange = selectedItemChange;
-        // vm.test = function() {
-        //     alert('in vm');
-        // };
-        vm.checkChipAdd = function(event, prefix) {
+
+        vm.checkChipAdd = function (event, prefix) {
             vm[prefix + 'Text'] = vm[prefix + 'Text'].trim();
-            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + 'Text']) {
+            if ((event.key === 'Tab' || event.keyCode === 32) && vm[prefix + 'Text']) {
                 var chip = createChip(vm[prefix + 'Text']);
                 vm[prefix + 'Text'] = '';
                 vm[prefix + 's'].push(chip);
@@ -34,8 +32,6 @@
             if (chip.value) {
                 chip = chip.value;
             }
-            vm.selectedPurpose = '';
-            vm.selectedIngredient = '';
             return createChip(chip);
         };
 
@@ -88,6 +84,9 @@
                     { timeout: deferred.promise })
                     .success(function (response) {
                         deferred.resolve(transform(response));
+                    })
+                    .error(function (data, status, headers, config) {
+                        deferred.resolve();
                     });
                 return deferred.promise;
             }
@@ -126,12 +125,14 @@
         };
 
         function buildHttpQuery() {
+            var url;
             if (vm.ingredients.length === 0) {
                 var parameters = [];
                 angular.forEach(vm.purposes, function (value, key) {
                     parameters.push(value.name);
                 });
-                return '/data/purpose/' + common.sanitizeAndCombine(parameters);
+                url = '/data/purpose/' + common.sanitizeAndCombine(parameters);
+                return url;
             }
             else {
                 var productParameters = [];
@@ -142,8 +143,9 @@
                 angular.forEach(vm.ingredients, function (value, key) {
                     ingredientParameters.push(value.name);
                 });
-                return '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
-                    '/' + common.sanitizeAndCombine(ingredientParameters);
+                url = '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
+                '/' + common.sanitizeAndCombine(ingredientParameters);
+                return url;
             }
         }
 
