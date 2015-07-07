@@ -6,9 +6,6 @@
 @color_violet: #932ab6;
 @color_darkblue: #00529b;
 @color_secondary_primary: #4f75b2;
-
-//@import "../../../bower_components/bootstrap-material-design/less/material.less";
-
 // Override @primary color with one took from _colors.less
 @primary:@color_darkblue;
 @info:@color_lightblue;
@@ -35,7 +32,24 @@ h6 {
 }
 
 body {
-    background: #eeeeee;
+    background: #FAFAFA;
+}
+
+
+
+body,
+button,
+input,
+select,
+textarea {
+    color: #212121;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+p {
+    line-height: 1.8;
 }
 
 a {
@@ -153,7 +167,17 @@ a {
 }
 /*#endregion */
 
+
 /* Responsive */
+@media (min-width: 960px) {
+    main {
+        display: block;
+        width: 940px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
 @media (max-width: 979px) {
     .gridStyle {
         border: 1px solid rgb(212,212,212);
@@ -212,7 +236,6 @@ a {
 
 
 .logoImage {
-    // Copied from .img-responsive()
     display:block;
     max-width: 100%; // Part 1: Set a maximum relative to the parent
     height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
@@ -242,14 +265,6 @@ a {
     opacity:0.3;
 }
 
-.panel-title h3 {
-    margin: 5px 0px;
-}
-
-h4 {
-    margin: 5px 0px;
-}
-
 .btn {
     white-space: normal;
 }
@@ -262,12 +277,14 @@ h4 {
 .include-chips .md-chip {
   position: relative;
   padding-right: 35px;
-  background: #66BB6A;
+    background: #388E3C;
+    color: white;
   }
 .exclude-chips .md-chip {
   position: relative;
   padding-right: 35px;
-  background: #EF5350;
+    background: #D32F2F;
+    color: white;
   }
   .include-chips .md-chips .md-chip.md-focused {
     background: #388E3C;
@@ -388,14 +405,5 @@ button.close {
 .layout-content {
   margin: 25px;
   box-sizing: border-box;
-}
-
-.panel {
-    background: white;
-}
-
-.panel-container {
-    background: white;
-    border: 1px #eeeeee solid;
 }
 /*#endregion*/

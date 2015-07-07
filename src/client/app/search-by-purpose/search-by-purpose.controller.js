@@ -19,9 +19,7 @@
         vm.query = query;
         vm.searchResults = [];
         vm.selectedItemChange = selectedItemChange;
-        // vm.test = function() {
-        //     alert('in vm');
-        // };
+
         vm.checkChipAdd = function(event, prefix) {
             vm[prefix + 'Text'] = vm[prefix + 'Text'].trim();
             if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + 'Text']) {

@@ -6,17 +6,19 @@
     </div>
 </div>
 <div layout="column" ng-controller="ShellController as vm">
-    <div class="alert" layout-padding ng-show="vm.isAlertOpen">
-        <div layout="column">
+    <div class="alert" ng-show="vm.isAlertOpen">
+        <div layout-padding layout-margin layout="column">
             <div layout="row" layout-align="end center">
-                <h4 flex>Warning! Disclaimer from FDA</h4>
+                <h4 class="md-title" flex><i class="fa fa-warning"></i>Warning! Disclaimer from FDA</h4>
                 <button class="close" ng-click="vm.isAlertOpen = false">×</button>
             </div>
-            <p>openFDA is a beta research project and not for clinical use. While we make every effort to ensure that data is accurate,
+            <p class="md-body-2">openFDA is a beta research project and not for clinical use. While we make every effort to ensure that data is accurate,
                 you should assume all results are unvalidated.</p>
         </div>
     </div>
-        <div id="content" class="layout-content" ui-view></div>
+    <div layout="row" layout-align="center center">
+        <main class="layout-content" layout="column" ui-view></main>
+    </div>
 </div>
 <div class="footer" ng-controller="ShellController as vm">
     <a href="{{vm.navline.link}}">
