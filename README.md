@@ -87,6 +87,8 @@ We are using Uptime Robot to monitor the up and down time of our app at [Uptime 
 Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
 
 ### Installation Instructions
+This prototype is hosted remotely on [Heroku](http://pyramidopenfdadev.herokuapp.com/), which does not support Internet Explorer 9 or earlier. 
+
 To install and run this prototype locally, without using a container, you can do the following:
 
 - Install [Node.js](https://nodejs.org) and [Git](https://git-scm.com/downloads)
