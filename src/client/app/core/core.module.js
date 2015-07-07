@@ -5,7 +5,7 @@
         .module('app.core', [
         'ngAnimate', 'ngSanitize',
         'blocks.exception', 'blocks.logger', 'blocks.router',
-        'ui.router', 'ngMaterial', 'ngMdIcons']).config(function ($mdThemingProvider) {
+        'ui.router', 'ngMaterial']).config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('pink');
