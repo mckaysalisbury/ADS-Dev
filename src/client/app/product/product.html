@@ -8,17 +8,21 @@
 	<div layout="column" flex class="md-whiteframe-z3">
 		<md-toolbar class="md-primary md-info">
 			<div layout="row" layout-margin layout-padding>
-				<h2 layout-margin class="md-flex">
-					<i class="fa fa-info"></i>&nbsp;Product Information</h2>
+				<h4 layout-margin class="md-flex">
+					<i class="fa fa-info"></i>&nbsp;Product Information</h4>
 			</div>
 		</md-toolbar>
 		<md-content layout-padding layout="row">
 			<section layout-padding layout="column">
-				<h2 layout-padding class="md-display-1" ng-bind-html="vm.getStringFromArray(vm.result.openfda.brand_name)"></h2>
 				<span layout-padding>
-					<h2 class="md-headline">Manufacturer</h2>
+					<h1 class="md-headline" ng-bind-html="vm.getStringFromArray(vm.result.openfda.brand_name)"></h1>
+					<h3>
+						<strong>Manufacturer</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.openfda.manufacturer_name)"></p>
-					<h2 class="md-headline">Purpose</h2>
+					<h3>
+						<strong>Purpose</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.purpose)"></p>
 				</span>
 		</md-content>
@@ -26,42 +30,30 @@
 </div>
 <div layout="row" layout-margin>
 	<div layout="column" flex class="md-whiteframe-z3">
-		<md-toolbar class="md-primary md-info">
-			<div layout="row" layout-margin layout-padding>
-				<h2 layout-margin class="md-flex">
-					<div class="fa fa-info"></div>&nbsp;Ingredients</h2>
+		<md-toolbar class="md-info">
+			<div class="md-toolbar-tools">
+				<h4>Active Ingredients</h4>
 			</div>
 		</md-toolbar>
-		<div layout-padding layout="row">
-			<section flex layout="row" layout-sm="column">
-				<div layout="column" layout-margin class="panel-container md-whiteframe-z1" flex>
-					<md-toolbar class="md-info">
-						<div class="md-toolbar-tools">
-							<h4>Active Ingredients</h4>
-						</div>
-					</md-toolbar>
-					<div layout="row">
-						<p class="md-body-2" layout-padding ng-bind-html="vm.getStringFromArray(vm.result.active_ingredient)"></p>
-					</div>
-				</div>
-				<div layout="column" layout-margin class=" md-whiteframe-z1" flex>
-					<md-toolbar class="md-info">
-						<div class="md-toolbar-tools">
-							<h4>Inactive Ingredients</h4>
-						</div>
-					</md-toolbar>
-					<p class="md-body-2" layout-padding ng-bind-html="vm.getStringFromArray(vm.result.inactive_ingredient)"></p>
-				</div>
-			</section>
+		<div layout="row">
+			<p class="md-body-2" layout-padding ng-bind-html="vm.getStringFromArray(vm.result.active_ingredient)"></p>
 		</div>
+	</div>
+	<div layout="column" flex class="md-whiteframe-z3">
+		<md-toolbar class="md-info">
+			<div class="md-toolbar-tools">
+				<h4>Inactive Ingredients</h4>
+			</div>
+		</md-toolbar>
+		<p class="md-body-2" layout-padding ng-bind-html="vm.getStringFromArray(vm.result.inactive_ingredient)"></p>
 	</div>
 </div>
 <div layout="row" layout-margin>
 	<div layout="column" flex class="md-whiteframe-z3">
 		<md-toolbar class="md-warn">
 			<div layout="row" layout-margin layout-padding>
-				<h2 layout-margin class="md-flex">
-					<div class="fa fa-medkit"></div>&nbsp;Warnings</h2>
+				<h4 layout-margin class="md-flex">
+					<div class="fa fa-medkit"></div>&nbsp;Warnings</h4>
 			</div>
 		</md-toolbar>
 		<div layout-padding>
@@ -85,30 +77,41 @@
 	<div layout="column" flex class="md-whiteframe-z3">
 		<md-toolbar class="md-primary md-info">
 			<div layout="row" layout-margin layout-padding>
-				<h2 layout-margin class="md-flex">
-					<div class="fa fa-eyedropper"></div>&nbsp;Instructions for Use</h2>
+				<h4 layout-margin class="md-flex">
+					<div class="fa fa-eyedropper"></div>&nbsp;Instructions for Use</h4>
 			</div>
 		</md-toolbar>
 		<div layout-padding>
 			<section layout-padding layout="column">
 				<span ng-show="vm.getStringFromArray(vm.result.instructions_for_use) !== ''">
-					<h2 class="md-headline">Instructions for Use</h2>
+					<h3>
+						<strong>Instructions for Use</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.instructions_for_use)"></p>
 				</span>
 				<span ng-show="vm.getStringFromArray(vm.result.dosage_and_administration) !== ''">
-					<h2 class="md-headline">Dosage and Administration</h2>
+					<h3>
+						<strong>Dosage and Administration</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.dosage_and_administration)"></p>
 				</span>
 				<span ng-show="vm.getStringFromArray(vm.result.storage_and_handling) !== ''">
-					<h2 class="md-headline">Storage and Handling</h2>
+					<h3>
+						<strong>Storage and Handling
+							<strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.storage_and_handling)"></p>
 				</span>
 				<span ng-show="vm.getStringFromArray(vm.result.when_using) !== ''">
-					<h2 class="md-headline">Caution</h2>
+					<h3>
+						<strong>Caution</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.when_using)"></p>
 				</span>
 				<span ng-show="vm.getStringFromArray(vm.result.indications_and_usage) !== ''">
-					<h2 class="md-headline">Indications and Usage</h2>
+					<h3>
+						<strong>Indications and Usage</strong>
+					</h3>
 					<p class="md-body-2" ng-bind-html="vm.getStringFromArray(vm.result.indications_and_usage)"></p>
 				</span>
 			</section>
