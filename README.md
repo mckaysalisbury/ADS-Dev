@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/PyramidSystemsInc/ADS-Dev.svg?branch=master)](https://travis-ci.org/PyramidSystemsInc/ADS-Dev) 
-
 # Pyramid Systems ADS RFQ: Pool Two Development
 
 ### Deliverables
-1. [Pool Two Prototype](https://github.com/PyramidSystemsInc/ADS-Dev/blob/master/README.md#prototype)
+1. [Pool Two Prototype URL](http://pyramidopenfdadev.herokuapp.com/)
 2. [Pool Two Repository on GitHub](https://github.com/PyramidSystemsInc/ADS-Dev)
 3. Summary of Approach: README.md (this file)
 4. Product Backlog: [Live on Trello](https://trello.com/b/S1uBdwEg/product-backlog), final snapshot in /process_docs/
@@ -14,30 +12,6 @@
 9. Dependency Status: [![Dependency Status](https://www.versioneye.com/user/projects/558b7920306662001e000b09/badge.svg?style=flat)](https://www.versioneye.com/user/projects/558b7920306662001e000b09)
 10. Code Climate: [![Code Climate](https://codeclimate.com/github/PyramidSystemsInc/ADS-Dev/badges/gpa.svg)](https://codeclimate.com/github/PyramidSystemsInc/ADS-Dev)
 11. Dev Dependency Status: [![devDependency Status](https://david-dm.org/PyramidSystemsInc/ADS-Dev/dev-status.svg)](https://david-dm.org/PyramidSystemsInc/ADS-Dev#info=devDependencies)
-
-[![Build Status](https://travis-ci.org/PyramidSystemsInc/ADS-Dev.svg?branch=master)](https://travis-ci.org/PyramidSystemsInc/ADS-Dev) 
-
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) 
-[![Dependency Status](https://www.versioneye.com/user/projects/558b7920306662001e000b09/badge.svg?style=flat)](https://www.versioneye.com/user/projects/558b7920306662001e000b09)
-[![Code Climate](https://codeclimate.com/github/PyramidSystemsInc/ADS-Dev/badges/gpa.svg)](https://codeclimate.com/github/PyramidSystemsInc/ADS-Dev)
-[![devDependency Status](https://david-dm.org/PyramidSystemsInc/ADS-Dev/dev-status.svg)](https://david-dm.org/PyramidSystemsInc/ADS-Dev#info=devDependencies)
-
-Hi openFDA,
-Your API key for mshields@psi-it.com is:
-MJbvXyEy77yTbS9xzasbPZhfIreiq9CjlvFpz5IZ
-
-## Prototype
-You can view the prototype at http://psiopenfda.herokuapp.com
-
-# ADS-Dev
-Pyramid Systems' GSA Agile Delivery Services BPA Development Technical submission
-
-# Development Approach
-
-When we began looking at the requirements, we saw that the most restrictive set of requirements were twofold:
-
-1. That we needed to use the [openFDA API](https://open.fda.gov)s
-2. That we needed to focus on open source technologies
 
 ### Product Vision
 For people who want to find over-the-counter medications free of certain ingredients for themselves or their family. SHIELD is a simple and responsive web app that allows people to quickly and easily see if a product has an ingredient they're allergic to, or find alternatives that are safe to use.
@@ -54,6 +28,8 @@ Once the initial product was stable and could be consistently deployed and run l
 This process of iteration was repeated with a second round of usability testing on mobile devices, which revealed another round of responsiveness issues and usability considerations. Theoretically, this process could be repeated further, but due to the impending RFQ deadline, we stopped primary development and cleaned up remaining issues. Some of the development team continued to support a separate Pool One design prototype to implement the features that were not possible within the allotted time frame; see our [Pool One](https://github.com/PyramidSystemsInc/ADS-Design/tree/master#deliverables) submission for details.
 
 The product was designed and developed using free and open software, frameworks and tools. Prioritization and design materials were communicated via Trello, while brainstorming and wireframes used physical whiteboards. For a full list of technologies used to create the prototype and the open licenses they use, see the [Technologies Used](https://github.com/PyramidSystemsInc/ADS-Dev/tree/master#technologies-used) section of this readme file.
+
+Due to time constraints, testing was limited to the functional behavior of the application under ordinary use. Future releases should include reviews to ensure compliance with [Section 508](http://www.section508.gov/section-508-standards-guide#Web) and [WCAG 2.0](http://www.w3.org/TR/WCAG20/#guidelines) accessibility standards, and [Plain Language](http://www.plainlanguage.gov/howto/quickreference/weblist.cfm) readability standards, including screen reader software. Further iterations of this prototype should focus on the remaining items identified during usability testing: searching and filtering over a result set larger than 100 items in order to quickly narrow a search to a trusted set of manufacturers or products, cleaning and unifying data fields in order to present them in a web-friendly format, and broadening the scope of the initial search to take advantage of the `spl_product_data_elements` API capability.
 
 ### Technologies Used
 
@@ -103,11 +79,11 @@ None of the hardware used for hosting the system is our own, so we interpret Con
 For the current build, deployment and code status, see the [Deliverables](https://github.com/PyramidSystemsInc/ADS-Dev/tree/master#deliverables) section of this readme file.
 
 ### Continuous Monitoring
+
 We are using Uptime Robot to monitor the up and down time of our app at [Uptime Robot](https://uptimerobot.com/dashboard.php#mainDashboard)
 Other monitoring by deployment is done directly on [Heroku](http://psiopenfda.herokuapp.com)
 
-
-### Run locally
+### Installation Instructions
 To install and run this prototype locally, without using a container, you can do the following:
 
 - Install [Node.js](https://nodejs.org) and [Git](https://git-scm.com/downloads)
@@ -116,7 +92,6 @@ To install and run this prototype locally, without using a container, you can do
   - Type `npm install`
   - Type `npm start`
 
-### Run in a container
 To install and run this prototype locally via container, we use [Docker](https://www.docker.com/):
 
 - Install and run Docker, following the instructions on their [Getting Started page](http://docs.docker.com/windows/started/).
@@ -127,10 +102,6 @@ To install and run this prototype locally via container, we use [Docker](https:/
   - Optional type `docker logs --follow (+container id)`
 - When complete type `boot2docker ip` to get the local ip address
 - Open web browser and use the ip (exp. 192.168.1.103:3000) with the port 3000 to open the app
-
-
-## License
-ADS-Dev is licensed under the MIT license.
 
 ### License
 ADS-Dev is licensed under the MIT license. For details, see the LICENSE file in our GitHub repository.
