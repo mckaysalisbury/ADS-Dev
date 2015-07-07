@@ -20,9 +20,9 @@
         vm.searchResults = [];
         vm.selectedItemChange = selectedItemChange;
 
-        vm.checkChipAdd = function(event, prefix) {
+        vm.checkChipAdd = function (event, prefix) {
             vm[prefix + 'Text'] = vm[prefix + 'Text'].trim();
-            if ((event.key === 'Tab' || event.key === ' ') && vm[prefix + 'Text']) {
+            if ((event.key === 'Tab' || event.keyCode === 32) && vm[prefix + 'Text']) {
                 var chip = createChip(vm[prefix + 'Text']);
                 vm[prefix + 'Text'] = '';
                 vm[prefix + 's'].push(chip);
@@ -32,8 +32,6 @@
             if (chip.value) {
                 chip = chip.value;
             }
-            vm.selectedPurpose = '';
-            vm.selectedIngredient = '';
             return createChip(chip);
         };
 
@@ -85,7 +83,10 @@
                 $http.get(baseUrl + common.sanitize(queryText),
                     { timeout: deferred.promise })
                     .success(function (response) {
-                        deferred.resolve(transform(response));
+                        deferred.resolve(transform(response))
+                    })
+                    .error(function (data, status, headers, config) {
+                        deferred.resolve();
                     });
                 return deferred.promise;
             }
@@ -143,7 +144,7 @@
                     ingredientParameters.push(value.name);
                 });
                 url = '/data/purposeWithoutIngredient/' + common.sanitizeAndCombine(productParameters) +
-                    '/' + common.sanitizeAndCombine(ingredientParameters);
+                '/' + common.sanitizeAndCombine(ingredientParameters);
                 return url;
             }
         }
