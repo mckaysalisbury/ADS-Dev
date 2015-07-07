@@ -8,15 +8,14 @@
 		<div layout-padding>
 			<div>
 				<md-input-container layout="row" layout-sm="column" md-no-float>
-					<!--<div layout="row" layout-padding>
-						<md-icon md-svg-src="../../images/heart-outline.svg" style="fill:#388E3C"></md-icon>
-					</div>-->
-					<h1 flex-gt-sm="30" class="md-body-1" flex-sm="flex" layout-padding>for the purpose of</h1>
+					<div layout="row" layout-padding>
+						<md-icon md-svg-src="../../images/heart-outline.svg" style="fill:#3F51B5"></md-icon>
+					</div>
 					<md-chips flex flex-sm="flex" class="include-chips md-display-1" ng-model="vm.purposes" md-on-append="vm.addChip($chip)"
 					ng-keypress="vm.checkChipAdd($event, 'purpose')">
 						<md-autocomplete md-autofocus="false" required md-selected-item="vm.selectedPurpose" input-name="purposeAutoComplete" md-search-text-change
 						md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.purposeText" md-items="item in vm.query(vm.purposeText, 'purpose')"
-						md-item-text="item.value" md-delay="150" placeholder="Enter a purpose">
+						md-item-text="item.value" md-delay="150" placeholder="For the purpose of">
 							<md-item-template>
 								<div>
 									<p md-highlight-text="vm.purposeText" md-highlight-flags="^i">{{item.value}}</p>
@@ -40,14 +39,13 @@
 					</md-chips>
 				</md-input-container>
 				<md-input-container layout="row" layout-sm="column" md-no-float>
-					<!--<div layout="row" layout-padding>
-						<md-icon md-svg-src="../../images/beaker-outline.svg" style="fill:#D32F2F"></md-icon>
-					</div>-->
-					<h1 flex-gt-sm="30" class="md-body-2" flex-sm="flex" layout-padding>without the ingredient(s)</h1>
+					<div layout="row" layout-padding>
+						<md-icon md-svg-src="../../images/beaker-outline.svg" style="fill:#E91E63"></md-icon>
+					</div>
 					<md-chips flex flex-sm="flex" class="exclude-chips" ng-model="vm.ingredients" md-on-append="vm.addChip($chip)" ng-keypress="vm.checkChipAdd($event, 'ingredient')">
 						<md-autocomplete md-autofocus="false" md-search-text-change md-selected-item-change md-selected-item-change="vm.selectedItemChange(item)"
 						md-selected-item="vm.selectedIngredient" md-search-text="vm.ingredientText" md-items="item in vm.query(vm.ingredientText, 'ingredient')"
-						md-item-text="item.value" md-delay="150" placeholder="Enter an ingredient">
+						md-item-text="item.value" md-delay="150" placeholder="Without the ingredient">
 							<md-item-template>
 								<div>
 									<span md-highlight-text="vm.ingredientText" md-highlight-flags="^i">{{item.value}}</span>
