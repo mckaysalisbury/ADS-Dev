@@ -83,7 +83,7 @@
                 $http.get(baseUrl + common.sanitize(queryText),
                     { timeout: deferred.promise })
                     .success(function (response) {
-                        deferred.resolve(transform(response))
+                        deferred.resolve(transform(response));
                     })
                     .error(function (data, status, headers, config) {
                         deferred.resolve();
